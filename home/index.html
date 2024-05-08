@@ -83,9 +83,29 @@
 
         .detail-terbaik {
             position: relative;
-            padding-top: 130px;
+            padding-top: 105px;
             padding-left: 650px;
         }
+
+        .lihat-selengkapnya {
+            width: 260px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.171);
+        }
+
+        .layanan-kami {
+            position: relative;
+            margin-left: 46px;
+            margin-top: 46px;
+        }
+
+        .hotel-image img{
+            margin-top: 15px;
+            padding-right: 25px;
+        }
+
     </style>
 
 </head>
@@ -94,7 +114,7 @@
 
     <!-- NAVIGASI -->
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
                 <img src="/res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
@@ -238,7 +258,7 @@
                 <section class="discount">
                     <div>
                         <p
-                            style="display: flex; justify-content: center; font-family: 'Abril Fatface', serif; font-weight: bolder; color: #4D5774; font-size: 50px; margin: 0;">
+                            style="display: flex; justify-content: center; font-family: 'Abril Fatface', serif; font-weight: bolder; color: #404a68; font-size: 50px; margin: 0;">
                             99%
                         </p>
                         <p
@@ -264,13 +284,52 @@
                     dengan impian</p>
 
                 <div style="display: flex; align-items: center;">
-                    <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
-                            class="award" src="/home/res/award.png" alt="award" style="width: 20px; height: auto;">
-                        Layanan Sewa
-                        Gedung Terbaik Di Indonesia</p>
+                    <div style="flex-direction: column;">
+                        <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
+                                class="award" src="/home/res/award.png" alt="award" style="width: 20px; height: auto;">
+                            No.1 Layanan Sewa Gedung Terbaik Di Indonesia</p>
+                        <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
+                                class="award" src="/home/res/calendar-days.png" alt="award"
+                                style="width: 20px; height: auto;">
+                            15 Tahun Lebih Kami Bersedia Layani Anda</p>
+                    </div>
+                </div>
+                <div>
+                    <section class="lihat-selengkapnya">
+                        <div style="display: flex; justify-content: center;">
+                            <p
+                                style="font-family: 'Abril Fatface', serif; font-size: 15px; font-weight: 400; margin-top: 13px;">
+                                LIHAT SELENGKAPNYA<img src="/home/res/arrow-right.png" alt="arrow"
+                                    style="width: 15px; height: auto; margin-bottom: 5px; margin-left: 10px;"></p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
+    </div>
+
+    <div>
+        <div class="layanan-kami">
+            <div>
+                <p style="font-size: 15px; color: #646464; font-weight: 500;">LAYANAN KAMI</p>
+                <p
+                    style="font-family: 'Abril Fatface', serif; font-size: 45px; font-weight: 700; color: #2D2D2D; margin-top: 10px;">
+                    Gedung impian dan ruangan<br>yang modern.</p>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <div style="margin-top: 30px; margin-left: 30px;">
+                    <img src="/home/res/quote-left.png" alt="quote" style="width: 40px; height: auto; margin-bottom: 20px;">
+                    <p style="font-family: 'Abril Fatface', serif; font-size: 22px; font-weight: 500;"><i>“Layanan
+                            Gedung<br>paling terbaik di<br>Indonesia, suka<br>banget..”</i></p>
+                    <p style="font-family: 'Abril Fatface', serif; font-size: 25px; font-weight: 900;">Najwa Shihab</p>
+                </div>
+                <div class="hotel-image" style="display: flex; flex-direction: row; margin-left: 100px;">
+                    <img src="/home/res/hotel1.png" alt="hotel" style="width: 310px; height: auto;">
+                    <img src="/home/res/hotel2.png" alt="hotel" style="width: 310px; height: auto;">
+                    <img src="/home/res/hotel3.png" alt="hotel" style="width: 310px; height: auto;">
+                </div>
+            </div>
+        </div>
     </div>
 
 
