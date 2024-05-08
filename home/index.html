@@ -7,8 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Home Enchanted Edifice</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
+
 
     <style>
+        @font-face {
+            font-family: 'Abril Fatface';
+            src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         .nav-link {
             font-family: 'Lato', sans-serif;
             font-weight: bold;
@@ -42,14 +51,52 @@
             top: 120px;
             left: 20px;
         }
+
+        .bg-home {
+            max-width: 100%;
+            height: 620px;
+            background-color: #E2E9F8;
+        }
+
+        .discount {
+            width: 200px;
+            height: 120px;
+            background-color: #ffffff;
+            border-radius: 25px;
+            position: absolute;
+            z-index: 1;
+            top: 405px;
+            left: 170px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.39);
+        }
+
+        .img-terbaik img {
+            position: absolute;
+            padding-top: 60px;
+            padding-left: 100px;
+            top: 0;
+            left: 0;
+            width: 430px;
+            height: auto;
+
+        }
+
+        .detail-terbaik {
+            position: relative;
+            padding-top: 130px;
+            padding-left: 650px;
+        }
     </style>
 
 </head>
 
 <body>
+
+    <!-- NAVIGASI -->
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/home">
                 <img src="/res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -89,7 +136,7 @@
         </div>
     </nav>
 
-
+    <!-- HOME IMAGE -->
     <div class="home_image"
         style="margin-left: 46px; margin-right: 46px; width: auto; text-align: center; position: relative;">
         <img src="/home/res/home-image.jpg" alt="Home Image" style="max-width: 100%;">
@@ -108,37 +155,122 @@
         </div>
     </div>
 
-
+    <!-- SERVIce -->
     <div class="home_services"
         style="margin-left: 46px; margin-right: 46px; margin-top: 120px; width: auto; text-align: center; position: relative;">
         <section class="rectangle">
             <div style="position: absolute; top: 60px; left: 20px; font-size: 16px; font-weight: bold; color: #4D5774;">
                 Services</div>
-            <div style="position: absolute; top: 80px; left: 20px; font-size: 32px; font-weight: bold; color: #8692A6;">
+            <div style="position: absolute; top: 80px; left: 20px; font-size: 32px; font-weight: bold; color: #646d8a;">
                 What do we offer</div>
         </section>
 
         <div class="rectangle_group"
             style="display: flex; justify-content: space-between; margin-top: 20px; position: absolute; z-index: 1;">
-            <section class="rectangle2" style="padding-left: 15px; padding-right: 15px;">
+            <section class="rectangle2" style="padding-left: 16px; padding-right: 16px;">
                 <img src="/home/res/Icon-Communication.png" alt="Communication" style="margin-top: 40px;">
                 <div
-                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 20px; color: #8692A6; margin-top: 15px;">
+                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
                     Pengalaman yang<br>Dihargai
                 </div>
-                <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #545454; margin-top: 15px; text-align: justify;">Kami bangga memberikan pengalaman acara yang tidak terlupakan bagi setiap tamu. Dari detail terkecil hingga layanan terbaik, kami berkomitmen untuk membuat acara Anda menjadi sukses.
+                <p
+                    style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                    Kami bangga memberikan pengalaman acara yang tidak terlupakan bagi setiap tamu. Dari detail terkecil
+                    hingga layanan terbaik, kami berkomitmen untuk membuat acara Anda menjadi sukses.
                 </p>
             </section>
             <section class="rectangle2">
+                <img src="/home/res/Icon-Security.png" alt="Communication" style="margin-top: 40px;">
+                <div
+                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+                    Kebersihan dan Keselamatan<br>Terjamin
+                </div>
+                <div style="padding-left: 16px; padding-right: 16px;">
+                    <p
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        Kami mengutamakan kebersihan dan keselamatan tamu kami. Setiap ruang acara dibersihkan secara
+                        menyeluruh dan dilengkapi dengan peralatan keselamatan terbaru.
+                    </p>
+                </div>
 
             </section>
             <section class="rectangle2">
-
+                <img src="/home/res/Icon-Idea.png" alt="Communication" style="margin-top: 40px;">
+                <div
+                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+                    Fasilitas Modern <br> <br>
+                </div>
+                <div style="padding-left: 16px; padding-right: 16px;">
+                    <p
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        Nikmati fasilitas modern seperti sistem soundsystem terbaru, pencahayaan yang dapat disesuaikan,
+                        dan akses internet super cepat untuk memastikan acara Anda berjalan dengan lancar.
+                    </p>
+                </div>
             </section>
-            <section class="rectangle2">
-
+            <section class="rectangle2" style="padding-left: 16px; padding-right: 16px;">
+                <img src="/home/res/Icon-Persons.png" alt="Communication" style="margin-top: 40px;">
+                <div
+                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+                    Fleksibilitas dan<br>Kepuasan Pelanggan
+                </div>
+                <div style="padding-left: 16px; padding-right: 16px;">
+                    <p
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        Kami siap untuk menyesuaikan ruang dan layanan kami sesuai dengan kebutuhan dan keinginan Anda.
+                        Kepuasan pelanggan adalah prioritas utama kami.
+                    </p>
+                </div>
             </section>
         </div>
+    </div>
+
+    <!-- JUDUL -->
+    <div style="display: flex; justify-content: center; margin-top: 170px; color: #8692A6;">
+        <h3 style="font-weight: bold; font-size: 32px; font-family: 'Lato', sans-serif;">Temukan Ruang Acara Impian Anda
+        </h3>
+    </div>
+
+    <!-- LAYANAN TERBAIK -->
+    <div style="margin-top: 40px;">
+        <section class="bg-home">
+            <div class="img-terbaik" style="position: relative;">
+                <section class="discount">
+                    <div>
+                        <p
+                            style="display: flex; justify-content: center; font-family: 'Abril Fatface', serif; font-weight: bolder; color: #4D5774; font-size: 50px; margin: 0;">
+                            99%
+                        </p>
+                        <p
+                            style="font-weight: bold; font-family: 'Lato', sans-serif; display: flex; justify-content: center; font-size: 21px; margin: 0; color: #4D5774;">
+                            Customer Suka
+                        </p>
+                    </div>
+                </section>
+                <div>
+                    <img src=" /home/res/terbaik1.png" alt="terbaik">
+                    <img src="/home/res/terbaik2.png" alt="terbaik"
+                        style="margin-top: 85px; margin-left: 150px; height: 520px; width: 450px;">
+                </div>
+            </div>
+            <div class="detail-terbaik">
+                <p style="font-family: 'Abril Fatface', serif; font-size: 15px; color: #646464;">LAYANAN TERBAIK</p>
+                <p style="font-family: 'Abril Fatface', serif; font-size: 45px; font-weight: 600; color: #2D2D2D;">
+                    Kami Berikan
+                    Gedung dan<br>Terbaik
+                </p>
+                <p style="font-family: 'Abril Fatface', serif; font-size: 18px; color: #6E6E6E;">Memberikan layanan
+                    terbaik sampai anda mendapatkan Gedung<br>sesuai
+                    dengan impian</p>
+
+                <div style="display: flex; align-items: center;">
+                    <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
+                            class="award" src="/home/res/award.png" alt="award" style="width: 20px; height: auto;">
+                        Layanan Sewa
+                        Gedung Terbaik Di Indonesia</p>
+                </div>
+            </div>
+        </section>
     </div>
 
 
