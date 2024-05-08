@@ -101,11 +101,20 @@
             margin-top: 46px;
         }
 
-        .hotel-image img{
+        .hotel-image img {
             margin-top: 15px;
-            padding-right: 25px;
+            padding-right: 5px;
         }
 
+        div.scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+            padding: 10px;
+        }
+
+        div.scrollmenu item {
+            padding: 10px;
+        }
     </style>
 
 </head>
@@ -194,7 +203,7 @@
                     Pengalaman yang<br>Dihargai
                 </div>
                 <p
-                    style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                    style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333; margin-top: 15px; text-align: justify;">
                     Kami bangga memberikan pengalaman acara yang tidak terlupakan bagi setiap tamu. Dari detail terkecil
                     hingga layanan terbaik, kami berkomitmen untuk membuat acara Anda menjadi sukses.
                 </p>
@@ -207,7 +216,7 @@
                 </div>
                 <div style="padding-left: 16px; padding-right: 16px;">
                     <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333; margin-top: 15px; text-align: justify;">
                         Kami mengutamakan kebersihan dan keselamatan tamu kami. Setiap ruang acara dibersihkan secara
                         menyeluruh dan dilengkapi dengan peralatan keselamatan terbaru.
                     </p>
@@ -222,7 +231,7 @@
                 </div>
                 <div style="padding-left: 16px; padding-right: 16px;">
                     <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333; margin-top: 15px; text-align: justify;">
                         Nikmati fasilitas modern seperti sistem soundsystem terbaru, pencahayaan yang dapat disesuaikan,
                         dan akses internet super cepat untuk memastikan acara Anda berjalan dengan lancar.
                     </p>
@@ -236,7 +245,7 @@
                 </div>
                 <div style="padding-left: 16px; padding-right: 16px;">
                     <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #9c9c9c; margin-top: 15px; text-align: justify;">
+                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333; margin-top: 15px; text-align: justify;">
                         Kami siap untuk menyesuaikan ruang dan layanan kami sesuai dengan kebutuhan dan keinginan Anda.
                         Kepuasan pelanggan adalah prioritas utama kami.
                     </p>
@@ -281,8 +290,8 @@
                 </p>
                 <p style="font-family: 'Abril Fatface', serif; font-size: 18px; color: #6E6E6E;">Memberikan layanan
                     terbaik sampai anda mendapatkan Gedung<br>sesuai
-                    dengan impian</p>
-
+                    dengan impian
+                </p>
                 <div style="display: flex; align-items: center;">
                     <div style="flex-direction: column;">
                         <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
@@ -318,12 +327,13 @@
             </div>
             <div style="display: flex; flex-direction: row;">
                 <div style="margin-top: 30px; margin-left: 30px;">
-                    <img src="/home/res/quote-left.png" alt="quote" style="width: 40px; height: auto; margin-bottom: 20px;">
+                    <img src="/home/res/quote-left.png" alt="quote"
+                        style="width: 40px; height: auto; margin-bottom: 20px;">
                     <p style="font-family: 'Abril Fatface', serif; font-size: 22px; font-weight: 500;"><i>“Layanan
                             Gedung<br>paling terbaik di<br>Indonesia, suka<br>banget..”</i></p>
                     <p style="font-family: 'Abril Fatface', serif; font-size: 25px; font-weight: 900;">Najwa Shihab</p>
                 </div>
-                <div class="hotel-image" style="display: flex; flex-direction: row; margin-left: 100px;">
+                <div class="hotel-image" style="display: flex; flex-direction: row; margin-left: 90px;">
                     <img src="/home/res/hotel1.png" alt="hotel" style="width: 310px; height: auto;">
                     <img src="/home/res/hotel2.png" alt="hotel" style="width: 310px; height: auto;">
                     <img src="/home/res/hotel3.png" alt="hotel" style="width: 310px; height: auto;">
@@ -332,6 +342,18 @@
         </div>
     </div>
 
+    <div class="scrollmenu" style="display: flex; flex-direction: row; margin-top: 46px;">
+        <p style="font-family: 'Abril Fatface', serif; font-size: 65px; margin-left: 45px;">Our <span
+                style="font-weight: 900;">customers</span><br>think we’re<br>
+            the best
+        </p>
+        <img class="item" src="/home/res/f2.png" alt="image" style="width: 430px; height: auto;">
+        <img class="item" src="/home/res/f3.png" alt="image" style="width: 430px; height: auto;">
+        <img class="item" src="/home/res/f4.png" alt="image" style="width: 20px; height: auto;">
+        <img class="item" src="/home/res/f5.png" alt="image" style="width: 20px; height: auto;">
+        <img class="item" src="/home/res/f6.png" alt="image" style="width: 20px; height: auto;">
+        <img class="item" src="/home/res/f7.png" alt="image" style="width: 20px; height: auto;">
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
