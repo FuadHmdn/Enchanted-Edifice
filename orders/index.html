@@ -10,10 +10,10 @@
 
   <style>
     @font-face {
-            font-family: 'Abril Fatface';
-            src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
+      font-family: 'Abril Fatface';
+      src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
     }
 
     body {
@@ -56,7 +56,7 @@
     .menu button {
       justify-content: center;
       width: 130px;
-      margin: 40px;
+      margin: 60px;
       border-radius: 15px;
     }
 
@@ -138,24 +138,38 @@
 
   <!-- Konten Menu -->
   <div id="scheduled" class="menu-content" style="display: none; margin-left: 46px; margin-right: 46px;">
-    <section class="scheduled">
+    <!-- <section class="scheduled">
       <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 20px;">
+
         <div style="display: flex; flex-direction: column;">
           <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">La Frande Apartemen</p>
           <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
             <img src="/orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.3/5 <span>(999+ reviews)</span> <span> | Kiaracondong, Bandung</span></p>
+            <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.3/5 <span>(999+ reviews)</span>
+              <span> | Kiaracondong, Bandung</span>
+            </p>
           </div>
-          <img src="/orders/res/contoh.png" alt="contoh" style="max-width: 100%; height: auto;">
+          <img src="/orders/res/contoh.png" alt="contoh"
+            style="width: 260px; height: auto; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
         </div>
 
-        <div>
-          <p></p>
-          <p></p>
-          <button></button>
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
+          <div style="margin-right: 100px;">
+            <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
+              Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">12 Mei
+                2024</span></p>
+            <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
+              Check Out: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">22 Mei
+                2024</span></p>
+          </div>
+
+          <button type="button" class="btn btn-secondary"
+            style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
         </div>
+
+
       </div>
-    </section>
+    </section> -->
   </div>
 
   <div id="ongoing" class="menu-content" style="display: none;">
@@ -234,6 +248,47 @@
       ongoingContent.style.display = 'none';
       completedContent.style.display = 'block';
     });
+  </script>
+
+  <script>
+    // Menemukan elemen kontainer
+    var menuContainer = document.getElementById("scheduled");
+
+    // Mengambil data dari server
+    fetch('url_ke_server/api/data')
+      .then(response => response.json())
+      .then(data => {
+        // Membuat elemen untuk setiap item dalam data
+        data.forEach(function (item) {
+          var itemContainer = document.createElement("section");
+          itemContainer.classList.add("scheduled");
+
+          var content = `
+        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 20px;">
+          <div style="display: flex; flex-direction: column;">
+            <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.name}</p>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+              <img src="/orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
+              <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">${item.rating} <span>${item.reviews}</span>${item.location}</p>
+            </div>
+            <img src="/orders/res/contoh.png" alt="contoh" style="width: 260px; height: auto; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
+            <div style="margin-right: 100px;">
+              <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.checkInDate}</span></p>
+              <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check Out: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.checkOutDate}</span></p>
+            </div>
+            <button type="button" class="btn btn-secondary" style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
+          </div>
+        </div>
+      `;
+
+          itemContainer.innerHTML = content;
+          menuContainer.appendChild(itemContainer);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+
   </script>
 </body>
 
