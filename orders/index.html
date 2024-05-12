@@ -62,10 +62,32 @@
 
     .scheduled {
       width: 100%;
+      height: 300px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+    }
+
+    .ongoing {
+      width: 100%;
       height: 290px;
       background-color: #ffffff;
       border-radius: 15px;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+    }
+
+    .completed {
+      width: 100%;
+      height: 220px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+    }
+
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: #8692A6;
     }
   </style>
 
@@ -120,7 +142,8 @@
   <div class="orders_image"
     style="margin-left: 46px; margin-right: 46px; width: auto; text-align: center; position: relative;">
     <section class="effect-image"></section>
-    <img src="../orders/res/download (7) 3.png" alt="Home Image" style="width: 1214px; height: 485px; margin-top: 30px;">
+    <img src="../orders/res/download (7) 3.png" alt="Home Image"
+      style="width: 1214px; height: 485px; margin-top: 30px;">
     <div class="image-text"
       style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">
       <p
@@ -129,54 +152,48 @@
     </div>
   </div>
 
+  <!-- LINE -->
+  <div style="margin-left: 90px; margin-right: 90px; margin-top: 60px; margin-bottom: 0;">
+    <section class="line">
+
+    </section>
+  </div>
+
   <!-- Menu -->
-  <div class="menu" style="display: flex; flex-direction: row; justify-content: center; margin-top: 100px;">
-    <button id="btnScheduled" type="button" class="btn btn-secondary btn-custom">Scheduled</button>
-    <button id="btnOngoing" type="button" class="btn btn-secondary btn-custom">Ongoing</button>
-    <button id="btnCompleted" type="button" class="btn btn-secondary btn-custom">History</button>
+  <div class="menu" style="display: flex; flex-direction: row; justify-content: center;">
+    <button id="btnScheduled" type="button" class="btn btn-secondary">Scheduled</button>
+    <button id="btnOngoing" type="button" class="btn btn-secondary">Ongoing</button>
+    <button id="btnCompleted" type="button" class="btn btn-secondary">History</button>
   </div>
 
   <!-- Konten Menu -->
   <div id="scheduled" class="menu-content" style="display: none; margin-left: 46px; margin-right: 46px;">
-    <!-- <section class="scheduled">
-      <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 20px;">
+  </div>
 
-        <div style="display: flex; flex-direction: column;">
-          <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">La Frande Apartemen</p>
-          <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="/orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.3/5 <span>(999+ reviews)</span>
-              <span> | Kiaracondong, Bandung</span>
-            </p>
-          </div>
-          <img src="/orders/res/contoh.png" alt="contoh"
-            style="width: 260px; height: auto; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+  <div id="ongoing" class="menu-content" style="display: none; margin-left: 46px; margin-right: 46px;">
+  </div>
+
+  <div id="completed" class="menu-content" style="display: none; margin-left: 46px; margin-right: 46px;">
+    <!-- <section class="completed">
+      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px;">
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 60px;">
+          <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif; color: #000000;">${item.judul}</p>
+          <p
+            style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500; margin-top: 30px;">
+            Check Out: <span
+              style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span>
+          </p>
         </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
-          <div style="margin-right: 100px;">
-            <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
-              Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">12 Mei
-                2024</span></p>
-            <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
-              Check Out: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">22 Mei
-                2024</span></p>
-          </div>
-
-          <button type="button" class="btn btn-secondary"
-            style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
+        <div style="display: flex; flex-direction: column; margin-top: 65px; align-items: flex-end;">
+          <p
+            style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600;">
+            Rp.<span>${item.harga}</span></p>
+          <button type="button" class="btn btn-primary"
+            style="margin-top: 0px; width: 200px; height: 40px; border-radius: 30px;">Tambah Ulasan</button>
         </div>
-
-
       </div>
     </section> -->
-  </div>
 
-  <div id="ongoing" class="menu-content" style="display: none;">
-    <img src="../res/EnchantedEdifice.png" alt="">
-  </div>
-  <div id="completed" class="menu-content" style="display: none;">
-    <!-- Konten untuk Completed -->
   </div>
 
   <!-- BOTTOM BAR -->
@@ -250,11 +267,12 @@
     });
   </script>
 
+  <!-- Schedule Get -->
   <script>
     // Menemukan elemen kontainer
-    var menuContainer = document.getElementById("scheduled");
+    var menuScheduleContainer = document.getElementById("scheduled");
 
-    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/schedule.php')
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/schedule.php')
       .then(response => response.json())
       .then(data => {
         // Membuat elemen untuk setiap item dalam data
@@ -263,32 +281,117 @@
           itemContainer.classList.add("scheduled");
 
           var content = `
-        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 20px;">
+        <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
           <div style="display: flex; flex-direction: column;">
             <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
               <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
               <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5 <span>999+ reviews </span>| Bandar Lampung</p>
             </div>
-            <img src="${item.gambar}" alt="contoh" style="width: 260px; height: 170px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+            <img src="${item.gambar}" alt="contoh" style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
           </div>
           <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
             <div style="margin-right: 100px;">
               <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check In: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
               <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check Out: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span></p>
             </div>
-            <button type="button" class="btn btn-secondary" style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
+            <button type="button" class="btn btn-primary" style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
           </div>
         </div>
       `;
 
           itemContainer.innerHTML = content;
           itemContainer.style.marginBottom = "60px";
-          menuContainer.appendChild(itemContainer);
+          menuScheduleContainer.appendChild(itemContainer);
         });
       })
       .catch(error => console.error('Error:', error));
   </script>
+
+  <!-- Ongoing -->
+  <script>
+    // Menemukan elemen kontainer
+    var menuOngoingContainer = document.getElementById("ongoing");
+
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/ongoing.php')
+      .then(response => response.json())
+      .then(data => {
+        // Membuat elemen untuk setiap item dalam data
+        data.forEach(function (item) {
+          var itemContainer = document.createElement("section");
+          itemContainer.classList.add("ongoing");
+
+          var content = `
+          <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
+            <div style="display: flex; flex-direction: column;">
+              <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
+              <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                <img src="${item.gambar}" alt="contoh"
+                  style="width: 285px; height: 195px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+                <div style="display: flex; flex-direction: column; margin-left: 60px;">
+                  <p
+                    style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500">
+                    Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
+                  <p
+                    style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600;">
+                    Rp.<span>${item.harga}</span></p>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-danger"
+              style="margin-top: 195px; width: 200px; height: 40px; border-radius: 30px; margin-left: 150px;">Cancel
+              Reservation</button>
+          </div>`;
+
+          itemContainer.innerHTML = content;
+          itemContainer.style.marginBottom = "60px";
+          menuOngoingContainer.appendChild(itemContainer);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+
+  <!-- Completed -->
+  <script>
+    // Menemukan elemen kontainer
+    var menuCompletedContainer = document.getElementById("completed");
+
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/completed.php')
+      .then(response => response.json())
+      .then(data => {
+        // Membuat elemen untuk setiap item dalam data
+        data.forEach(function (item) {
+          var itemContainer = document.createElement("section");
+          itemContainer.classList.add("completed");
+
+          var content = `
+          <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px;">
+            <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 55px;">
+              <p style="margin: 0; font-size: 26px; font-family: 'Lato', sans-serif; color: #000000; font-weight: 800;">${item.judul}</p>
+              <p
+                style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500; margin-top: 30px;">
+                Check Out: <span
+                  style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span>
+              </p>
+            </div>
+            <div style="display: flex; flex-direction: column; margin-top: 65px; align-items: flex-end;">
+              <p
+                style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600; margin-right: 5px;">
+                Rp.<span>${item.harga}</span></p>
+              <button type="button" class="btn btn-primary"
+                style="margin-top: 0px; width: 200px; height: 40px; border-radius: 30px;">Tambah Ulasan</button>
+            </div>
+          </div>`;
+
+          itemContainer.innerHTML = content;
+          itemContainer.style.marginBottom = "60px";
+          menuCompletedContainer.appendChild(itemContainer);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+
 </body>
 
 </html>
