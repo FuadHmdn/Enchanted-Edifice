@@ -53,10 +53,24 @@
 
         .test {
             width: 750px;
-            height: 290px;
+            height: 315px;
             background-color: #ffffff;
             border-radius: 15px;
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+        }
+
+        .bg-kategori {
+            width: 80px;
+            height: 25px;
+            background-color: #c9d5ee;
+            border-radius: 15px;
+        }
+
+        .bg-kategori2 {
+            width: 80px;
+            height: 25px;
+            background-color: #c9d5ee;
+            border-radius: 15px;
         }
     </style>
 
@@ -164,8 +178,9 @@
                 <div style="display: flex; flex-direction: column;">
                     <section class="test">
 
-                        <div style="display: flex; flex-direction: column;">
-                            <div style="display: flex; flex-direction: row; ">
+                        <div
+                            style="display: flex; flex-direction: column; margin-right: 46px; margin-left: 46px; margin-top: 25px; margin-bottom: 25px;">
+                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
 
                                 <!-- JUDUL KETERANGAN -->
                                 <div style="display: flex; flex-direction: column; ">
@@ -186,29 +201,34 @@
 
                                 <!-- FASILITAS -->
                                 <div style="display: flex; flex-direction: column;">
-                                    <div style="display: flex; flex-direction: row;">
+                                    <div id="kategori" style="display: flex; flex-direction: row; margin-bottom: 10px;">
+                                        <section class="bg-kategori">
 
+                                        </section>
                                     </div>
-                                    <div style="display: flex; flex-direction: row;">
+                                    <div id="kategori2" style="display: flex; flex-direction: row;">
+                                        <section class="bg-kategori2">
 
+                                        </section>
                                     </div>
                                 </div>
                             </div>
 
 
                             <!--  -->
-                            <div style="display: flex; flex-direction: row;">
+                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
                                 <img src="../orders/res/contoh.png" alt="contoh"
-                                    style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+                                    style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 10px;">
 
-                                <div style="display: flex; flex-direction: column;">
+                                <div
+                                    style="display: flex; flex-direction: column; margin-top: 50px; align-items: flex-end;">
                                     <p
                                         style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
-                                        Check Out: <span
-                                            style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span>
+                                        Harga: <span
+                                            style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.harga}</span>
                                     </p>
                                     <button type="button" class="btn btn-primary"
-                                        style="margin-top: 0px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek
+                                        style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;">Cek
                                         Detail</button>
                                 </div>
                             </div>
@@ -265,6 +285,81 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+        <script>
+    // Menemukan elemen kontainer
+            var daftarHotelContainer = document.getElementById("daftar-hotel");
+
+            fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/hotel.php')
+        .then(response => response.json())
+        .then(data => {
+                // Membuat elemen untuk setiap item dalam data
+                data.forEach(function (item) {
+                    // Buat elemen div untuk setiap item
+                    var itemContainer = document.createElement("div");
+                    itemContainer.classList.add("daftar-hotel");
+
+                    // Konten HTML untuk setiap item
+                    var content = `
+                <section class="daftar-hotel">
+                    <div style="display: flex; flex-direction: row; margin-left: 46px; margin-right: 46px;">
+                        <div style="display: flex; flex-direction: column;">
+                            <section class="test">
+                                <div style="display: flex; flex-direction: column; margin-right: 46px; margin-left: 46px; margin-top: 25px; margin-bottom: 25px;">
+                                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                        <div style="display: flex; flex-direction: column; ">
+                                            <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">
+                                                ${item.judul}
+                                            </p>
+                                            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                                                <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
+                                                <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5
+                                                    <span>999+
+                                                        reviews </span>| Bandar Lampung
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <div id="kategori" style="display: flex; flex-direction: row; margin-bottom: 10px;">
+                                                <section class="bg-kategori"></section>
+                                            </div>
+                                            <div id="kategori2" style="display: flex; flex-direction: row;">
+                                                <section class="bg-kategori2"></section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    // Lanjutan kode JavaScript untuk menampilkan daftar hotel
+                                    <!--  -->
+                                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                        <img src="../orders/res/contoh.png" alt="contoh"
+                                            style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 10px;">
+
+                                        <div style="display: flex; flex-direction: column; margin-top: 50px; align-items: flex-end;">
+                                            <p
+                                                style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">
+                                                Harga: <span
+                                                    style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.harga}</span>
+                                            </p>
+                                            <button type="button" class="btn btn-primary"
+                                                style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;">Cek
+                                                Detail</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                `;
+
+                itemContainer.innerHTML = content;
+                itemContainer.style.marginBottom = "60px";
+                daftarHotelContainer.appendChild(itemContainer);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
 </body>
 
 </html>
