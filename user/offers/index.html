@@ -52,11 +52,11 @@
         }
 
         .test {
-            width: 750px;
+            width: 800px;
             height: 315px;
             background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.397);
         }
 
         .bg-fitur {
@@ -71,6 +71,14 @@
             height: 25px;
             background-color: #c9d5ee;
             border-radius: 15px;
+        }
+
+        .special-offers-style {
+            width: 300px;
+            height: auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.397);
         }
     </style>
 
@@ -174,14 +182,23 @@
     </div>
 
     <!-- Daftar Hotel -->
+
     <section class="daftar-hotel" style="margin-top: 60px;">
-        <div id="daftar-hotel" style="max-width: 100%;">
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div id="daftar-hotel" style="max-width: 100%;">
+            </div>
+
+            <div style="display: flex; flex-direction: column; width: 100%; align-items: center; margin-left: 65px;">
+                <p style="margin-top: 20px; font-weight: 700; font-size: 22px; margin-right: 40px;">Special Offers</p>
+                <div id="special-offers" style="width: 100%;">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- BOTTOM BAR -->
     <div class="footer"
-        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 155px; padding-bottom: 30px;">
+        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 55px; padding-bottom: 30px;">
 
         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
             <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
@@ -227,7 +244,7 @@
         </script>
 
 
-    <!-- Daftae Hotel -->
+    <!-- Daftar Hotel -->
     <script>
         // Menemukan elemen kontainer
         var daftarHotelContainer = document.getElementById("daftar-hotel");
@@ -318,8 +335,8 @@
                                         <div style="display: flex; flex-direction: column; margin-top: 50px; align-items: flex-end;">
                                             <p
                                                 style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 500 color: #484848;">
-                                                Harga: <span
-                                                    style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #06ac00;">${item.harga}</span>
+                                                Harga: <span style="font-size: 26px; font-weight: 600;">Rp.<span
+                                                    style="font-family: 'Montserrat', sans-serif; color: #06ac00;">${item.harga}</span></span>
                                             </p>
                                             <button type="button" class="btn btn-primary"
                                                 style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;">Cek
@@ -333,9 +350,43 @@
                 `;
 
                     itemContainer.innerHTML = content;
-                    itemContainer.style.paddingBottom = "30px";
-                    itemContainer.style.paddingTop = "40px";
+                    itemContainer.style.paddingBottom = "20px";
+                    itemContainer.style.paddingTop = "20px";
                     daftarHotelContainer.appendChild(itemContainer);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+    <!-- Daftar Special Offers -->
+    <script>
+        // Menemukan elemen kontainer
+        var daftarSpecialOffers = document.getElementById("special-offers");
+
+        fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/SpecialOffers.php')
+            .then(response => response.json())
+            .then(data => {
+                // Membuat elemen untuk setiap item dalam data
+                data.forEach(function (item) {
+                    // Buat elemen div untuk setiap item
+                    var itemContainer = document.createElement("section");
+                    itemContainer.classList.add("special-offers-style");
+
+                    // Konten HTML untuk setiap item
+                    var content = `
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                            <div style="display: flex; align-items: center; width: 100%; justify-content: center;">
+                                <img src="${item.gambar}" alt="contoh" style="width: 270px; height: 190px; margin-top: 16px; border-radius: 15px;">
+                            </div>
+                            <p style="margin-left: 16px; margin-top: 26px; font-weight: 600; font-size: 18px;">${item.judul}</p>
+                            <p style="margin-left: 16px; margin-top: 0; font-weight: 400; font-size: 14px;">4 Mei - 1 November</p>
+                            <p style="margin-left: 16px; margin-top: 0; font-weight: 500; font-size: 18px;">mulai <span style="font-size: 26px; font-weight: 600;">Rp.<span style="color: #06ac00;">${item.harga}</span></span></p>
+                    </div>
+                `;
+
+                    itemContainer.innerHTML = content;
+                    itemContainer.style.marginBottom = "30px";
+                    daftarSpecialOffers.appendChild(itemContainer);
                 });
             })
             .catch(error => console.error('Error:', error));
