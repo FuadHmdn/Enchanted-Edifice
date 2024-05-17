@@ -249,7 +249,7 @@
         // Menemukan elemen kontainer
         var daftarHotelContainer = document.getElementById("daftar-hotel");
 
-        fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/getAll.php')
+        fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getAll.php')
             .then(response => response.json())
             .then(data => {
                 // Membuat elemen untuk setiap item dalam data
@@ -363,7 +363,7 @@
         // Menemukan elemen kontainer
         var daftarSpecialOffers = document.getElementById("special-offers");
 
-        fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/SpecialOffers.php')
+        fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/SpecialOffers.php')
             .then(response => response.json())
             .then(data => {
                 // Membuat elemen untuk setiap item dalam data

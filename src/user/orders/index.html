@@ -36,13 +36,6 @@
       position: relative;
     }
 
-    .btn-custom:active {
-      background-color: #ff0000;
-      /* Ganti dengan warna yang diinginkan */
-      color: #ffffff;
-      /* Ganti dengan warna teks yang sesuai */
-    }
-
     .menu button {
       justify-content: center;
       width: 130px;
@@ -259,7 +252,7 @@
     // Menemukan elemen kontainer
     var menuScheduleContainer = document.getElementById("scheduled");
 
-    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/schedule.php')
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/schedule.php')
       .then(response => response.json())
       .then(data => {
         // Membuat elemen untuk setiap item dalam data
@@ -300,7 +293,7 @@
     // Menemukan elemen kontainer
     var menuOngoingContainer = document.getElementById("ongoing");
 
-    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/ongoing.php')
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/ongoing.php')
       .then(response => response.json())
       .then(data => {
         // Membuat elemen untuk setiap item dalam data
@@ -344,7 +337,7 @@
     // Menemukan elemen kontainer
     var menuCompletedContainer = document.getElementById("completed");
 
-    fetch('http://localhost/PemWeb/Enchanted-Edifice/database/custommer/completed.php')
+    fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/completed.php')
       .then(response => response.json())
       .then(data => {
         // Membuat elemen untuk setiap item dalam data
