@@ -29,31 +29,36 @@
             margin-right: 20px;
         }
 
-        .home_image img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 30px;
-        }
-
         .rectangle {
             max-width: 100%;
             height: 400px;
             background-color: #C2D4FB;
             border-radius: 20px;
+            margin-bottom: -280px;
         }
 
         .rectangle2 {
-            width: 265px;
-            height: 360px;
+            flex: 1 1 calc(25% - 16px);
+            margin: 8px;
+            padding: 16px;
+            box-sizing: border-box;
             background-color: #ffffff;
-            border-radius: 10px;
-            margin-right: 35px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.39);
+            border-radius: 20px;
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.589);
+        }
+
+        .rectangle2 img {
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
         .rectangle_group {
-            top: 120px;
-            left: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .bg-home {
@@ -130,7 +135,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
-                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
+                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;"
+                    alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -157,7 +163,6 @@
                     <li class="nav-item">
                         <button class="btn btn-outline-secondary" style="border-radius: 15px;">
                             <span class="d-inline d-sm-none">☰</span>
-                            <i class="bi bi-person"></i>
                             <span class="d-none d-sm-inline">
                                 <img src="../../res/profile_vector.png" alt="profile">
                             </span>
@@ -170,14 +175,15 @@
     </nav>
 
     <!-- HOME IMAGE -->
-    <div class="home_image"
-        style="margin-left: 46px; margin-right: 46px; width: auto; text-align: center; position: relative;">
+    <div
+        style="margin-left: 46px; margin-right: 46px; width: auto; height: auto; text-align: center; position: relative; margin-top: 30px;">
         <img src="../home/res/home-image.jpg" alt="Home Image" style="max-width: 100%;">
         <div class="image-text"
             style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">
-            <p style="font-family: 'Lato', sans-serif; font-size: 42px; color: #ffffff; display: inline-block;">
+            <p style="font-family: 'Lato', sans-serif; font-size: 2.625rem; color: #ffffff; display: inline-block;">
                 Rencanakan Acara Anda dengan Mudah</p>
-            <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #ffffff; display: inline-block;">Dengan
+            <p style="font-family: 'Lato', sans-serif; font-size: 1.125rem; color: #ffffff; display: inline-block;">
+                Dengan
                 ruang yang luas dan fleksibel, Anda dapat mewujudkan segala jenis acara yang Anda impikan.</p>
         </div>
         <div class="input-group mb-3"
@@ -198,58 +204,52 @@
                 What do we offer</div>
         </section>
 
-        <div class="rectangle_group"
-            style="display: flex; justify-content: space-between; margin-top: 20px; position: absolute; z-index: 1;">
-            <section class="rectangle2" style="padding-left: 16px; padding-right: 16px;">
-                <img src="../home/res/Icon-Communication.png" alt="Communication" style="margin-top: 40px;">
-                <div
-                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+        <div class="rectangle_group">
+            <!-- 1 -->
+            <section class="box rectangle2">
+                <img src="../home/res/Icon-Communication.png" alt="Communication">
+                <div style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6;">
                     Pengalaman yang<br>Dihargai
                 </div>
-                <p
-                    style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333c5; margin-top: 15px; text-align: justify;">
+                <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
                     Kami bangga memberikan pengalaman acara yang tidak terlupakan bagi setiap tamu. Dari detail terkecil
                     hingga layanan terbaik, kami berkomitmen untuk membuat acara Anda menjadi sukses.
                 </p>
             </section>
-            <section class="rectangle2">
-                <img src="../home/res/Icon-Security.png" alt="Communication" style="margin-top: 40px;">
-                <div
-                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+            <!-- 2 -->
+            <section class="box rectangle2">
+                <img src="../home/res/Icon-Security.png" alt="Security">
+                <div style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6;">
                     Kebersihan dan Keselamatan<br>Terjamin
                 </div>
-                <div style="padding-left: 16px; padding-right: 16px;">
-                    <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333c5; margin-top: 15px; text-align: justify;">
+                <div>
+                    <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
                         Kami mengutamakan kebersihan dan keselamatan tamu kami. Setiap ruang acara dibersihkan secara
                         menyeluruh dan dilengkapi dengan peralatan keselamatan terbaru.
                     </p>
                 </div>
-
             </section>
-            <section class="rectangle2">
-                <img src="../home/res/Icon-Idea.png" alt="Communication" style="margin-top: 40px;">
-                <div
-                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+            <!-- 3 -->
+            <section class="box rectangle2">
+                <img src="../home/res/Icon-Idea.png" alt="Idea">
+                <div style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6;">
                     Fasilitas Modern <br> <br>
                 </div>
-                <div style="padding-left: 16px; padding-right: 16px;">
-                    <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333c5; margin-top: 15px; text-align: justify;">
+                <div>
+                    <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
                         Nikmati fasilitas modern seperti sistem soundsystem terbaru, pencahayaan yang dapat disesuaikan,
                         dan akses internet super cepat untuk memastikan acara Anda berjalan dengan lancar.
                     </p>
                 </div>
             </section>
-            <section class="rectangle2" style="padding-left: 16px; padding-right: 16px;">
-                <img src="../home/res/Icon-Persons.png" alt="Communication" style="margin-top: 40px;">
-                <div
-                    style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6; margin-top: 15px;">
+            <!-- 4 -->
+            <section class="box rectangle2">
+                <img src="../home/res/Icon-Persons.png" alt="Persons">
+                <div style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 18px; color: #8692A6;">
                     Fleksibilitas dan<br>Kepuasan Pelanggan
                 </div>
-                <div style="padding-left: 16px; padding-right: 16px;">
-                    <p
-                        style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #333333c5; margin-top: 15px; text-align: justify;">
+                <div>
+                    <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
                         Kami siap untuk menyesuaikan ruang dan layanan kami sesuai dengan kebutuhan dan keinginan Anda.
                         Kepuasan pelanggan adalah prioritas utama kami.
                     </p>
@@ -259,15 +259,16 @@
     </div>
 
     <!-- JUDUL -->
-    <div style="display: flex; justify-content: center; margin-top: 170px; color: #646d8a;">
+    <div style="display: flex; justify-content: center; margin-top: 120px; color: #646d8a;">
         <h3 style="font-weight: bold; font-size: 32px; font-family: 'Lato', sans-serif;">Temukan Ruang Acara Impian Anda
         </h3>
     </div>
 
     <!-- LAYANAN TERBAIK -->
     <div style="margin-top: 40px;">
-        <section class="bg-home">
-            <div class="img-terbaik" style="position: relative;">
+        <section class="bg-home" style="max-width: 100%; box-sizing: border-box;">
+            <div class="img-terbaik" style="position: relative; max-width: 100%; display: flex; flex-wrap: wrap;
+            justify-content: center;">
                 <section class="discount">
                     <div>
                         <p
@@ -299,7 +300,8 @@
                 <div style="display: flex; align-items: center;">
                     <div style="flex-direction: column;">
                         <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
-                                class="award" src="../home/res/award.png" alt="award" style="width: 20px; height: auto;">
+                                class="award" src="../home/res/award.png" alt="award"
+                                style="width: 20px; height: auto;">
                             No.1 Layanan Sewa Gedung Terbaik Di Indonesia</p>
                         <p style="font-family: 'Abril Fatface', serif; font-size: 21px; font-weight: 800;"><img
                                 class="award" src="../home/res/calendar-days.png" alt="award"
@@ -321,6 +323,7 @@
         </section>
     </div>
 
+    <!-- Layanan Kami -->
     <div>
         <div class="layanan-kami">
             <div>
@@ -331,7 +334,7 @@
             </div>
             <div style="display: flex; flex-direction: row;">
                 <div style="margin-top: 30px; margin-left: 30px;">
-                    <img src="./home/res/quote-left.png" alt="quote"
+                    <img src="../home/res/quote-left.png" alt="quote"
                         style="width: 40px; height: auto; margin-bottom: 20px;">
                     <p style="font-family: 'Abril Fatface', serif; font-size: 22px; font-weight: 500;"><i>“Layanan
                             Gedung<br>paling terbaik di<br>Indonesia, suka<br>banget..”</i></p>
