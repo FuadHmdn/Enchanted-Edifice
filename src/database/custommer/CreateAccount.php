@@ -24,8 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     }
 
+    // Hash password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     // Query untuk menyimpan data ke database
-    $sql = "INSERT INTO custommer (username, email, password) VALUES ('$name', '$email', '$password')";
+    $sql = "INSERT INTO custommer (username, email, password) VALUES ('$name', '$email', '$hashedPassword')";
 
     if (mysqli_query($connection, $sql)) {
         // Registrasi berhasil, tampilkan popup
