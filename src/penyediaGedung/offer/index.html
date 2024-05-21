@@ -8,227 +8,656 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Home Enchanted Edifice</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
-
-
-    <style>
-        body {
-            background-color: #F3F4F7;
-        }
-
-        @font-face {
-            font-family: 'Abril Fatface';
-            src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .nav-link {
-            font-family: 'Lato', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 20px;
-        }
-
-        .rectangle {
-            max-width: 100%;
-            height: 400px;
-            background-color: #C2D4FB;
-            border-radius: 20px;
-            margin-bottom: -280px;
-        }
-
-        .rectangle2 {
-            flex: 1 1 calc(25% - 16px);
-            margin: 8px;
-            padding: 16px;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.589);
-        }
-
-        .rectangle2 img {
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        .rectangle_group {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .bg-home {
-            max-width: 100%;
-            height: auto;
-            padding-bottom: 120px;
-            background-color: #E2E9F8;
-        }
-
-        .discount {
-            width: 200px;
-            height: 120px;
-            background-color: #ffffff;
-            border-radius: 25px;
-            position: absolute;
-            z-index: 1;
-            top: 405px;
-            left: 170px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.39);
-        }
-
-        .img-terbaik img {
-            position: absolute;
-            padding-top: 60px;
-            padding-left: 100px;
-            top: 0;
-            left: 0;
-            width: 430px;
-            height: auto;
-
-        }
-
-        .detail-terbaik {
-            position: relative;
-            padding-top: 105px;
-            padding-left: 650px;
-        }
-
-        .lihat-selengkapnya {
-            width: 260px;
-            height: 50px;
-            background-color: #ffffff;
-            border-radius: 25px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.171);
-        }
-
-        .layanan-kami {
-            position: relative;
-            margin-left: 46px;
-            margin-top: 46px;
-        }
-
-        .hotel-image img {
-            margin-top: 15px;
-            padding-right: 5px;
-        }
-
-        div.scrollmenu {
-            overflow: auto;
-            white-space: nowrap;
-            padding: 10px;
-        }
-
-        div.scrollmenu item {
-            padding: 10px;
-        }
-    </style>
-
 </head>
 
 <body>
-
-    <!-- NAVIGASI -->
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">
-                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;"
-                    alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto" style="margin-right: 46px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../home/" style="color: #8692A6;">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../offer/" style="color: #0a1e3f;">OFFERS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../order/" style="color: #8692A6;">ORDERS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../review/" style="color: #8692A6;">REVIEW</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../salary/" style="color: #8692A6;">SALARY</a>
-                    </li>
-                    <li class="nav-item">
-                        <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
-                            <span class="d-inline d-sm-none">☰</span>
-                            <span class="d-none d-sm-inline">
-                                <img src="../../res/profile_vector.png" alt="profile">
-                            </span>
-                        </button>
-                    </li>
-                </ul>
-
-            </div>
+<div style="width: 1540px; height: 4087px; position: relative; background: #FBFBFB">
+    <div style="width: 1440px; height: 3951px; left: -4580.60px; top: 39.27px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
+    <div style="width: 1440px; height: 3951px; left: 39px; top: 102px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
+    <img style="width: 1440px; height: 540px; left: 50px; top: 50px; position: absolute" src="https://via.placeholder.com/1440x540" />
+    <div style="left: 104px; top: 3658px; position: absolute; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+        <div style="width: 1260px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+          <div style="width: 1260px; height: 303.50px; border: 3px #E8EEFB solid"></div>
         </div>
-    </nav>
-
-
-
-
+        </div>
+      </div>
+    </div>
+    
     <!-- BOTTOM BAR -->
     <div
-        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+    style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p
-                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting
-                Events, Enchanted<br>Experiences!</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                About</p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Follow Us
-            </p>
-
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
-
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+        <p
+            style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+            Enchanting
+            Events, Enchanted<br>Experiences!</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <p
+            style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+            Services</p>
+        <p style="margin: 0;">Booking</p>
+    </div>
 
-    <script>
-        function profileClick() {
-            window.location.href = "../profile/";
-        }
-    </script>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <p
+            style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+            About</p>
+        <p style="margin: 0;">Our Story</p>
+        <p style="margin: 0;">Blog</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <p
+            style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+            Follow Us
+        </p>
+
+        <div style="display: flex; flex-direction: row;">
+            <img src="../../res/Facebook.png" alt="Facebook">
+            <img src="../../res/Twitter.png" alt="Twitter">
+            <img src="../../res/LinkedIn.png" alt="LinkedIn">
+        </div>
+    </div>
+    <div style="width: 1442px; height: 540px; left: 48px; top: 50px; position: absolute; background: rgba(2.64, 9.30, 26.44, 0.51)"></div>
+    <div style="width: 1440px; height: 99px; left: 50px; top: 95px; position: absolute">
+      <div style="width: 1440px; height: 99px; padding-top: 24px; padding-bottom: 24px; left: 0px; top: 0px; position: absolute; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+        <div style="width: 1261px; justify-content: space-between; align-items: center; display: inline-flex">
+          <div style="flex: 1 1 0; height: 99px; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+            <img style="width: 84px; height: 84px" src="https://via.placeholder.com/84x84" />
+            <div><span style="color: #D3D6DB; font-size: 22px; font-family: Roboto; font-weight: 700; line-height: 33px; word-wrap: break-word">Enchanted</span><span style="color: #ABB5C6; font-size: 22px; font-family: Roboto; font-weight: 400; line-height: 33px; word-wrap: break-word">Edifice</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="width: 80px; height: 41px; left: 1271px; top: 30px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+        <div style="width: 80px; height: 41px; position: relative">
+          <div style="width: 23px; height: 23px; left: 44px; top: 9px; position: absolute; background: white"></div>
+          <div style="width: 29px; height: 29px; padding-left: 3.62px; padding-right: 3.62px; padding-top: 7.25px; padding-bottom: 7.25px; left: 8px; top: 6px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+            <div style="width: 21.75px; height: 14.50px; background: white"></div>
+          </div>
+          <div style="width: 80px; height: 41px; left: 0px; top: 0px; position: absolute; border-radius: 15px; border: 2px white solid"></div>
+        </div>
+      </div>
+      <div style="width: 424px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
+        <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
+          <div class="nav-link" href="../home/" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">HOME</div>
+          <div class="nav-link active" aria-current="page" href="../offer/" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">OFFERS</div>
+          <div class="nav-link" href="../order/"style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">ORDERS</div>
+          <div class="nav-link" href="../review/" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">REVIEW</div>
+          <div class="nav-link" href="../salary/" style="justify-content: center; align-items: center; gap: 4px; display: flex">
+            <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 1217px; height: 521px; left: 161px; top: 371px; position: absolute; background: rgba(133.98, 145.72, 165.75, 0.55)"></div>
+    <div style="width: 25px; height: 18.75px; left: 670px; top: 688px; position: absolute">
+      <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white"></div>
+      <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute">
+        <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: #D9D9D9"></div>
+        <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute">
+          <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white"></div>
+          <div style="width: 25px; height: 9.38px; left: 0px; top: 0px; position: absolute; background: #E31D1C"></div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 182px; height: 182px; left: 677px; top: 429px; position: absolute">
+      <div style="width: 173.47px; height: 173.47px; left: 4.26px; top: 4.26px; position: absolute">
+        <div style="width: 173.47px; height: 173.47px; left: 0px; top: 0px; position: absolute; background: #D9D9D9; border-radius: 9999px; border: 6px black solid"></div>
+        <div style="width: 240.80px; height: 310.51px; left: -26.14px; top: -25.35px; position: absolute; background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%)"></div>
+      </div>
+      <div style="width: 182px; height: 182px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; border: 7px white solid"></div>
+    </div>
+    <div style="left: 668px; top: 631px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 36px; font-family: Poppins; font-weight: 500; word-wrap: break-word">Nabila Putri</div>
+    <div style="left: 704px; top: 685px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Lampung, Indonesia</div>
+    <div style="width: 204px; padding-left: 22px; padding-right: 22px; padding-top: 10px; padding-bottom: 10px; left: 667px; top: 752px; position: absolute; background: #5C6975; border-radius: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div style="width: 21.50px; height: 18.81px; background: white"></div>
+      <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Profile</div>
+    </div>
+    <div style="width: 204px; padding-left: 22px; padding-right: 22px; padding-top: 10px; padding-bottom: 10px; left: 666px; top: 752px; position: absolute; background: rgba(16.72, 56.03, 92.44, 0.88); border-radius: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div style="width: 21.50px; height: 18.81px; background: white"></div>
+      <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Store</div>
+    </div>
+    <div style="width: 199px; height: 57px; left: 670px; top: 3263px; position: absolute">
+      <div style="width: 199px; height: 57px; left: 0px; top: 0px; position: absolute; background: #D3E3FF; border-radius: 20px"></div>
+      <div style="left: 55px; top: 14px; position: absolute; text-align: center; color: #3B527E; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 28.80px; word-wrap: break-word">+Offers</div>
+    </div>
+    <div style="width: 1281px; height: 2148px; left: 129px; top: 1050px; position: absolute">
+      <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 302px; height: 98px; left: 16px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">Empire State Building</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 411px; height: 480px; left: 435px; top: 0px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 302px; height: 98px; left: 24px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Resident Soho</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 411px; height: 480px; left: 870px; top: 0px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 302px; height: 98px; left: 24px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">London Bridge Building</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 411px; height: 480px; left: 0px; top: 556px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 330px; height: 98px; left: 16px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">Grand Ballroom at The Plaza</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 411px; height: 480px; left: 435px; top: 556px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 342px; height: 98px; left: 24px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Waldorf Astoria Ballroom</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 411px; height: 480px; left: 870px; top: 556px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+        <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+        <div style="width: 302px; height: 98px; left: 24px; top: 344px; position: absolute">
+          <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+          <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+          <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Ritz-Carlton Ballroom</div>
+          <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+            <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+            <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+              <div style="width: 16px; height: 16px; position: relative">
+                <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+        </div>
+      </div>
+      <div style="width: 1281px; height: 480px; left: 0px; top: 1112px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 302px; height: 98px; left: 16px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Classic Room</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+        <div style="width: 411px; height: 480px; left: 435px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 353px; height: 98px; left: 24px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The InterContinental Ballroom</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+        <div style="width: 411px; height: 480px; left: 870px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 346px; height: 98px; left: 24px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Fairmont Grand Ballroom</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+      </div>
+      <div style="width: 1281px; height: 480px; left: 0px; top: 1668px; position: absolute">
+        <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 302px; height: 98px; left: 16px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Biltmore Ballrooms</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+        <div style="width: 411px; height: 480px; left: 435px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 302px; height: 98px; left: 24px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The St. Regis Ballroom</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+        <div style="width: 411px; height: 480px; left: 870px; top: 0px; position: absolute">
+          <div style="width: 411px; height: 480px; left: 0px; top: 0px; position: absolute; background: #FAFAFA; border-radius: 16px"></div>
+          <img style="width: 411px; height: 320px; left: 0px; top: 0px; position: absolute; border-top-left-radius: 16px; border-top-right-radius: 16px" src="https://via.placeholder.com/411x320" />
+          <div style="width: 378px; height: 98px; left: 24px; top: 344px; position: absolute">
+            <div style="left: 0px; top: 0px; position: absolute; color: #24AB70; font-size: 12px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">London NW8 7JT England</div>
+            <div style="left: 0px; top: 80px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">$200 Par Night</div>
+            <div style="left: 0px; top: 26px; position: absolute; color: #222222; font-size: 24px; font-family: Open Sans; font-weight: 600; line-height: 30px; word-wrap: break-word">The Pierre Hotel Grand Ballroom</div>
+            <div style="width: 131px; height: 18px; left: 171px; top: 80px; position: absolute">
+              <div style="left: 108px; top: 0px; position: absolute; color: #222222; font-size: 16px; font-family: Open Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">4.8</div>
+              <div style="width: 16px; height: 16px; left: 0px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 20px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 40px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 60px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #F95F5F"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #F95F5F"></div>
+                </div>
+              </div>
+              <div style="width: 16px; height: 16px; left: 80px; top: 1px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                <div style="width: 16px; height: 16px; position: relative">
+                  <div style="width: 16px; height: 16px; left: 16px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; opacity: 0; background: #E5E5E5"></div>
+                  <div style="width: 13.30px; height: 12.67px; left: 1.36px; top: 1.33px; position: absolute; background: #E5E5E5"></div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 16px; height: 0px; left: 141px; top: 81px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 1px #DDDDDD solid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img style="width: 411px; height: 326.38px; left: 132px; top: 1606px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x326" />
+    <img style="width: 411px; height: 329px; left: 564px; top: 1605px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x329" />
+    <img style="width: 411px; height: 320px; left: 999px; top: 2162px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x320" />
+    <img style="width: 411px; height: 325.30px; left: 132px; top: 2159px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x325" />
+    <img style="width: 411px; height: 321.80px; left: 564px; top: 2162px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x322" />
+    <img style="width: 411px; height: 329px; left: 999px; top: 1605px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x329" />
+    <img style="width: 411px; height: 339px; left: 129px; top: 2718px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x339" />
+    <img style="width: 411px; height: 336px; left: 999px; top: 2715px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x336" />
+    <img style="width: 411px; height: 339px; left: 568px; top: 2718px; position: absolute; border-radius: 20px" src="https://via.placeholder.com/411x339" />
+  </div>
+
 </body>
-
 </html>
