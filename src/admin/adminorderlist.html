@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f5f7;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    padding: 20px;
+    text-align: center;
+    background-color: #eceff1;
+}
+
+.logo h2 {
+    color: #3949ab;
+    margin: 0;
+}
+
+nav {
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    padding: 15px 20px;
+}
+
+nav ul li.section-title {
+    font-weight: bold;
+    color: #78909c;
+    text-transform: uppercase;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li.active a {
+    background-color: #eceff1;
+    color: #3949ab;
+}
+
+.settings {
+    padding: 20px;
+    border-top: 1px solid #eceff1;
+}
+
+.settings a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    padding: 10px;
+    border: 1px solid #eceff1;
+    border-radius: 5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    position: relative;
+    margin-right: 20px;
+}
+
+.notification-icon {
+    font-size: 24px;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.language img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-info span {
+    margin: 2px 0;
+}
+
+.order-list {
+    padding: 20px;
+}
+
+.order-list h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eceff1;
+}
+
+table th {
+    background-color: #f9fafb;
+}
+
+table td .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.status.completed {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+.status.processing {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.status.canceled {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-buttons {
+    display: flex;
+}
+
+.pagination-buttons button {
+    background-color: #ffffff;
+    border: 1px solid #eceff1;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.pagination-buttons button:hover {
+    background-color: #eceff1;
+}
+
+</style>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>EnchantedEdifice</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li class="active"><a href="#">Order Lists</a></li>
+                    <li><a href="#">Notifications</a></li>
+                    <li class="section-title">USER</li>
+                    <li><a href="#">Customer</a></li>
+                    <li><a href="#">Provider</a></li>
+                    <li class="section-title">VERIFICATIONS</li>
+                    <li><a href="#">Payments</a></li>
+                </ul>
+            </nav>
+            <div class="settings">
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-count">6</span>
+                    </div>
+                    <div class="language">
+                        <img src="uk-flag.png" alt="English">
+                    </div>
+                    <div class="user-info">
+                        <span>Fuad</span>
+                        <span class="role">Admin</span>
+                    </div>
+                </div>
+            </header>
+            <div class="order-list">
+                <h2>Order Lists</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Building Address</th>
+                            <th>Date</th>
+                            <th>Package</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>00001</td>
+                            <td>Christine Brooks</td>
+                            <td>089 Kutch Green Apt. 448</td>
+                            <td>04 Sep 2019</td>
+                            <td>Wedding</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>00002</td>
+                            <td>Rosie Pearson</td>
+                            <td>979 Immanuel Ferry Suite 526</td>
+                            <td>28 May 2019</td>
+                            <td>Birthday Party</td>
+                            <td><span class="status processing">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>00003</td>
+                            <td>Darrell Caldwell</td>
+                            <td>8587 Frida Ports</td>
+                            <td>23 Nov 2019</td>
+                            <td>Wedding</td>
+                            <td><span class="status canceled">Canceled</span></td>
+                        </tr>
+                        <tr>
+                            <td>00004</td>
+                            <td>Gilbert Johnston</td>
+                            <td>768 Destiny Lake Suite 600</td>
+                            <td>05 Feb 2019</td>
+                            <td>Khitnan</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>00005</td>
+                            <td>Alan Cain</td>
+                            <td>042 Mylene Throughway</td>
+                            <td>29 Jul 2019</td>
+                            <td>Anniversary</td>
+                            <td><span class="status processing">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>00006</td>
+                            <td>Alfred Murray</td>
+                            <td>543 Weimann Mountain</td>
+                            <td>15 Aug 2019</td>
+                            <td>Gender Reveal</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>00007</td>
+                            <td>Maggie Sullivan</td>
+                            <td>New Scottieberg</td>
+                            <td>21 Dec 2019</td>
+                            <td>Baby Shower</td>
+                            <td><span class="status processing">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>00008</td>
+                            <td>Rosie Todd</td>
+                            <td>New Jon</td>
+                            <td>30 Apr 2019</td>
+                            <td>Wedding</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>00009</td>
+                            <td>Dollie Hines</td>
+                            <td>124 Lyla Forge Suite 975</td>
+                            <td>09 Jan 2019</td>
+                            <td>Birthday</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <span>Showing 1-9 of 78</span>
+                    <div class="pagination-buttons">
+                        <button>❮</button>
+                        <button>❯</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
