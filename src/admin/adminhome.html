@@ -5,7 +5,1626 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage Admin Enchanted Edifice</title>
 </head>
+<style>
+    .admin-dashboard {
+  background: #FBFBFB;
+  display: flex;
+  padding-left: 48.1px;
+  width: 1440px;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-top-bar-1 {
+  background: #FFFFFF;
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+  padding: 13px 31px 13px 30px;
+  width: 1201px;
+  box-sizing: border-box;
+}
+.admin-dashboard .dashboard {
+  margin-top: 6px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.1px;
+  color: #202224;
+}
+.admin-dashboard .total-users {
+  box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 17px 16px;
+  box-sizing: border-box;
+}
+.admin-dashboard .up-from-yesterday {
+  margin: 0 2px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .ic-trending-up-24-px {
+  margin: 5px 10px 5px 0;
+  display: flex;
+  width: 20px;
+  height: 12px;
+  box-sizing: border-box;
+}
+.admin-dashboard .path {
+  width: 20px;
+  height: 12px;
+}
+.admin-dashboard .up-from-yesterd {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #00B69B;
+}
+.up-from-yesterd {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #606060;
+}
+.up-from-yesterd-sub1 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #00B69B;
+}
+.up-from-yesterd-sub2 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #12163C;
+}
+.admin-dashboard .icon {
+  margin-bottom: 16px;
+  width: 60px;
+  height: 60px;
+}
+.admin-dashboard .total-user {
+  opacity: 0.7;
+  margin-bottom: 16px;
+  display: inline-block;
+  align-self: flex-start;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #202224;
+}
+.admin-dashboard .container {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #202224;
+}
+.admin-dashboard .total-order {
+  box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 17px 16px;
+  box-sizing: border-box;
+}
+.admin-dashboard .up-from-yesterday-1 {
+  margin: 0 2px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .ic-trending-up-24-px-1 {
+  margin: 5px 10px 5px 0;
+  display: flex;
+  width: 20px;
+  height: 12px;
+  box-sizing: border-box;
+}
+.admin-dashboard .path-1 {
+  width: 20px;
+  height: 12px;
+}
+.admin-dashboard .up-from-past-we {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #00B69B;
+}
+.up-from-past-we {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #606060;
+}
+.up-from-past-we-sub1 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #00B69B;
+}
+.up-from-past-we-sub2 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #12163C;
+}
+.admin-dashboard .icon-1 {
+  margin-bottom: 16px;
+  width: 60px;
+  height: 60px;
+}
+.admin-dashboard .total-order-1 {
+  opacity: 0.7;
+  margin: 0 4.7px 16px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #202224;
+}
+.admin-dashboard .container-1 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #202224;
+}
+.admin-dashboard .total-sales {
+  box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 14.5px 17px 16px;
+  box-sizing: border-box;
+}
+.admin-dashboard .up-from-yesterday-2 {
+  margin-left: 2px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .ic-trending-down-24-px {
+  margin: 5px 10px 5px 0;
+  display: flex;
+  width: 20px;
+  height: 12px;
+  box-sizing: border-box;
+}
+.admin-dashboard .path-3 {
+  width: 20px;
+  height: 12px;
+}
+.admin-dashboard .down-from-yeste {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #F93C65;
+}
+.down-from-yeste {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #606060;
+}
+.down-from-yeste-sub1 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #F93C65;
+}
+.down-from-yeste-sub2 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #12163C;
+}
+.admin-dashboard .icon-3 {
+  margin-bottom: 16px;
+  width: 60px;
+  height: 60px;
+}
+.admin-dashboard .total-sales-1 {
+  opacity: 0.7;
+  margin-bottom: 16px;
+  display: inline-block;
+  align-self: flex-start;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #202224;
+}
+.admin-dashboard .container-2 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #202224;
+}
+.admin-dashboard .order-pending {
+  box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 17px 16px;
+  box-sizing: border-box;
+}
+.admin-dashboard .up-from-yesterday-3 {
+  margin: 0 2px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .ic-trending-up-24-px-2 {
+  margin: 5px 10px 5px 0;
+  display: flex;
+  width: 20px;
+  height: 12px;
+  box-sizing: border-box;
+}
+.admin-dashboard .path-4 {
+  width: 20px;
+  height: 12px;
+}
+.admin-dashboard .up-from-yesterd-1 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #00B69B;
+}
+.up-from-yesterd-1 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #606060;
+}
+.up-from-yesterd-1-sub1 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #00B69B;
+}
+.up-from-yesterd-1-sub2 {
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.333;
+  color: #12163C;
+}
+.admin-dashboard .icon-5 {
+  margin-bottom: 16px;
+  width: 60px;
+  height: 60px;
+}
+.admin-dashboard .total-pending {
+  opacity: 0.7;
+  margin-bottom: 16px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 16px;
+  color: #202224;
+}
+.admin-dashboard .container-3 {
+  align-self: flex-start;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #202224;
+}
+.admin-dashboard .sales-details {
+  box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  background: #FFFFFF;
+  position: relative;
+  margin: 0 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 32px 58px 32px;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .units {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .k {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-1 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-2 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-3 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-4 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-5 {
+  margin-right: 4.5px;
+  width: 74.9px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-6 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-7 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-8 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-9 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-10 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .k-11 {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .container-4 {
+  margin-right: 7.2px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .line {
+  opacity: 0.7;
+  margin: 4px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 998px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .line-1 {
+  width: 998px;
+  height: 1px;
+}
+.admin-dashboard .line-2 {
+  margin-bottom: 58px;
+  width: 998px;
+  height: 1px;
+}
+.admin-dashboard .line-3 {
+  margin-bottom: 58px;
+  width: 998px;
+  height: 1px;
+}
+.admin-dashboard .line-4 {
+  margin-bottom: 58px;
+  width: 998px;
+  height: 1px;
+}
+.admin-dashboard .line-5 {
+  margin-bottom: 58px;
+  width: 998px;
+  height: 1px;
+}
+.admin-dashboard .container-5 {
+  margin: 0 7.2px 50px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .container-6 {
+  margin: 0 7.2px 50px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .container-7 {
+  margin: 0 7.2px 50px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .container-8 {
+  margin-bottom: 50px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.75;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .top-sale {
+  position: absolute;
+  left: 316px;
+  top: 11px;
+  display: flex;
+  padding: 2px 6.4px 10px 10px;
+  box-sizing: border-box;
+}
+.admin-dashboard .combined-shape-4 {
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  translate: -50% 0;
+  width: 80px;
+  height: 28px;
+}
+.admin-dashboard .container-9 {
+  position: relative;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+.admin-dashboard .oval {
+  position: absolute;
+  left: 352px;
+  top: 41px;
+  width: 8px;
+  height: 8px;
+}
+.admin-dashboard .month-selector {
+  border-radius: 4px;
+  border: 0.6px solid #D5D5D5;
+  background: #FCFDFD;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 9px 16px 9px 19px;
+  box-sizing: border-box;
+}
+.admin-dashboard .icon-chevron-down {
+  margin: 2px 0;
+  display: flex;
+  width: 10px;
+  height: 6px;
+  box-sizing: border-box;
+}
+.admin-dashboard .shape {
+  width: 10px;
+  height: 6px;
+}
+.admin-dashboard .october {
+  margin-right: 15px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 0.833;
+  color: rgba(43, 48, 52, 0.4);
+}
+.admin-dashboard .sales {
+  margin: 5px 10px 3px 0;
+  display: inline-block;
+  width: 960px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 0.833;
+  color: #202224;
+}
+.admin-dashboard .container-10 {
+  position: relative;
+  margin: 0 15px 20px 0;
+  display: inline-block;
+  width: 206.9px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #FFFFFF;
+}
+.admin-dashboard .navigation-sidebar-menu-light {
+  background: #FFFFFF;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0 98px 0;
+  box-sizing: border-box;
+}
+.admin-dashboard .divider {
+  position: relative;
+  margin-bottom: 29px;
+  width: 240px;
+  height: 1px;
+}
+.admin-dashboard .pages {
+  opacity: 0.6;
+  position: relative;
+  margin: 0 125.4px 13px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .pages-1 {
+  opacity: 0.6;
+  position: relative;
+  margin: 0 64.7px 13px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .divider-1 {
+  position: absolute;
+  left: 50%;
+  top: 230px;
+  translate: -50% 0;
+  width: 240px;
+  height: 1px;
+}
+.admin-dashboard .divider-2 {
+  background: #E0E0E0;
+  position: relative;
+  margin: 0 0 10.4px 1px;
+  width: 239px;
+  height: 0.6px;
+}
+.admin-dashboard .logo {
+  position: relative;
+  margin: 0 12.6px 31px 0;
+  display: flex;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light {
+  position: relative;
+  margin: 0 51.8px 434px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light-1 {
+  position: relative;
+  margin: 0 61.4px 7px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light-2 {
+  position: relative;
+  margin: 0 53px 20px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light-3 {
+  position: relative;
+  margin: 0 62.1px 20px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light-4 {
+  position: relative;
+  margin: 0 33.4px 18px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .navigation-sidebar-item-light-5 {
+  position: relative;
+  margin-right: 70.5px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .products {
+  position: relative;
+  margin: 0 50.6px 18px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .hide-bg-hide-bg-copy-mask {
+  position: relative;
+  margin: 0 24px 15px 24px;
+  display: flex;
+  width: 192px;
+  box-sizing: border-box;
+}
+.admin-dashboard .hide-bg-copy {
+  border-radius: 4px;
+  background: #4880FF;
+  position: absolute;
+  left: -29px;
+  bottom: 0px;
+  width: 9px;
+  height: 50px;
+}
+.admin-dashboard .products-1 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #000000;
+}
+.admin-dashboard .container-11 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #FFFFFF;
+}
+.admin-dashboard .container {
+  border-radius: 5px;
+  display: flex;
+  width: 40px;
+  height: 27px;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-4 {
+  margin: 0 37.2px 0 76.3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 960.5px;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-5 {
+  margin-right: 74.1px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-6 {
+  margin-bottom: 27px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: flex-start;
+  width: 383.8px;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-7 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1140px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-8 {
+  margin: 3px 0;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-10 {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-11 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-16 {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 998px;
+  height: 195.4px;
+}
+.admin-dashboard .container-17 {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-18 {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-21 {
+  margin-right: 56.3px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-22 {
+  border-radius: 6px;
+  background: #4880FF;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 13px 0 7px 0;
+  width: 192px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-26 {
+  margin-right: 25.7px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-27 {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 230px;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-28 {
+  margin: 0 1.5px 30px 0;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-30 {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-31 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 1392.9px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-32 {
+  margin: 0 33px 30px 33px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-33 {
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-34 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-38 {
+  margin: 3px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-40 {
+  margin-right: 43.2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-41 {
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1074px;
+  box-sizing: border-box;
+}
+.admin-dashboard .profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 169px;
+  box-sizing: border-box;
+}
+.admin-dashboard .more {
+  margin: 13px 0;
+  width: 18px;
+  height: 18px;
+}
+.admin-dashboard .jone-aly {
+  margin: 0 4.2px 3px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 14px;
+  color: #404040;
+}
+.admin-dashboard .admin {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 12px;
+  color: #565656;
+}
+.admin-dashboard .man-438081960720 {
+  margin-right: 20px;
+  display: flex;
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+}
+.admin-dashboard .mask-1 {
+  width: 44px;
+  height: 44px;
+}
+.admin-dashboard .english {
+  margin: 9px 26.9px 8px 0;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.admin-dashboard .english-1 {
+  margin: 5px 11.8px 3px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  color: #646464;
+}
+.admin-dashboard .drop-down {
+  margin: 9.7px 0 12.7px 0;
+  display: flex;
+  width: 8.2px;
+  height: 4.7px;
+  box-sizing: border-box;
+}
+.admin-dashboard .shape-2 {
+  width: 8.2px;
+  height: 4.7px;
+}
+.admin-dashboard .flag {
+  border-radius: 5px;
+  background: #D8D8D8;
+  position: relative;
+  margin-right: 16px;
+  display: flex;
+  width: 40px;
+  height: 27px;
+  box-sizing: border-box;
+}
+.admin-dashboard .uk-flag {
+  background: url('../assets/images/uk_flag.png');
+  width: 40px;
+  height: 27px;
+}
+.admin-dashboard .icon-7 {
+  position: relative;
+  margin: 6px 26px 7.5px 0;
+  display: flex;
+  padding: 5px 5px 0 0;
+  width: 29px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .icon-8 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.admin-dashboard .combined-shape-5 {
+  margin-bottom: 1.5px;
+  width: 24px;
+  height: 18px;
+}
+.admin-dashboard .rectangle-23 {
+  opacity: 0.3;
+  border-radius: 2.3px;
+  background: #FF0000;
+  margin: 0 9px;
+  width: 6px;
+  height: 6px;
+}
+.admin-dashboard .oval-20 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+}
+.admin-dashboard .container-12 {
+  position: absolute;
+  top: 0px;
+  right: 4.8px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+.admin-dashboard .oval-21 {
+  opacity: 0.173;
+  position: absolute;
+  top: 18px;
+  right: 375px;
+  width: 18px;
+  height: 18px;
+}
+.admin-dashboard .icon-9 {
+  opacity: 0.898;
+  margin: 7px 24px 7px 0;
+  display: flex;
+  padding: 0 4.9px 0 5.9px;
+  box-sizing: border-box;
+}
+.admin-dashboard .container-13 {
+  overflow-wrap: break-word;
+  font-family: '?????', 'Roboto Condensed';
+  font-weight: 400;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .search {
+  border-radius: 19px;
+  border: 0.6px solid #D5D5D5;
+  background: #F5F6FA;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 9px 16.5px;
+  width: 388px;
+  box-sizing: border-box;
+}
+.admin-dashboard .search-1 {
+  opacity: 0.5;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  font-size: 14px;
+  color: #202224;
+}
+.admin-dashboard .search-2 {
+  opacity: 0.5;
+  margin: 0.5px 13.5px 3.4px 0;
+  width: 15px;
+  height: 15px;
+}
+.admin-dashboard .bright-web {
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 800;
+  font-size: 20px;
+  color: #4880FF;
+}
+.bright-web {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.333;
+  color: #000000;
+}
+.bright-web-sub4 {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.333;
+  color: var(--button-colour, #6A71F1);
+}
+.admin-dashboard .products-2 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-14 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-3 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-15 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-4 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-16 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-5 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-17 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-6 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-18 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-7 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #202224;
+}
+.admin-dashboard .container-19 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+.admin-dashboard .products-8 {
+  margin: 3px 0 8px 0;
+  display: inline-block;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #FFFFFF;
+}
+.admin-dashboard .container-20 {
+  margin-right: 20.1px;
+  overflow-wrap: break-word;
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  font-size: 22px;
+  color: #202224;
+}
+</style>
 <body>
     
+    <div class="admin-dashboard">
+        <div class="container-31">
+          <div class="navigation-top-bar-1">
+            <div class="container-7">
+              <div class="container-8">
+                <div class="icon-9">
+                  <span class="container-13">
+                    
+                  </span>
+                </div>
+                <div class="search">
+                  <img class="search-2" src="../assets/vectors/Unknown" />
+                  <span class="search-1">
+                    Search
+                  </span>
+                </div>
+              </div>
+              <div class="container-10">
+                <div class="icon-7">
+                  <div class="icon-8">
+                    <img class="combined-shape-5" src="../assets/vectors/Unknown" />
+                    <div class="rectangle-23">
+                    </div>
+                  </div>
+                  <img class="oval-20" src="../assets/vectors/Unknown" />
+                  <span class="container-12">
+                    6
+                  </span>
+                </div>
+                <div class="english">
+                  <div class="flag">
+                    <div class="container">
+                      <div class="uk-flag">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="english-1">
+                    English
+                  </div>
+                  <div class="drop-down">
+                    <img class="shape-2" src="../assets/vectors/Unknown" />
+                  </div>
+                </div>
+                <div class="profile">
+                  <div class="container-18">
+                    <div class="man-438081960720">
+                      <img class="mask-1" src="../assets/vectors/Unknown" />
+                    </div>
+                    <div class="container-38">
+                      <div class="jone-aly">
+                        Fuad
+                      </div>
+                      <span class="admin">
+                        Admin
+                      </span>
+                    </div>
+                  </div>
+                  <img class="more" src="../assets/vectors/Unknown" />
+                </div>
+              </div>
+            </div>
+            <img class="oval-21" src="../assets/vectors/Unknown" />
+          </div>
+          <div class="container-6">
+            <div class="container-10">
+              
+            </div>
+            <div class="dashboard">
+              Dashboard
+            </div>
+          </div>
+          <div class="container-32">
+            <div class="total-users">
+              <div class="container-30">
+                <div class="container-5">
+                  <div class="total-user">
+                    Total User
+                  </div>
+                  <span class="container">
+                    40,689
+                  </span>
+                </div>
+                <img class="icon" src="../assets/vectors/Unknown" />
+              </div>
+              <div class="up-from-yesterday">
+                <div class="ic-trending-up-24-px">
+                  <img class="path" src="../assets/vectors/Unknown" />
+                </div>
+                <p class="up-from-yesterd">
+                  <span class="up-from-yesterd-sub-1"></span><span class="up-from-yesterd-sub-2"></span><span></span>
+                </p>
+              </div>
+            </div>
+            <div class="total-order">
+              <div class="container-27">
+                <div class="container-34">
+                  <div class="total-order-1">
+                    Total Order
+                  </div>
+                  <span class="container-1">
+                    10293
+                  </span>
+                </div>
+                <img class="icon-1" src="../assets/vectors/Unknown" />
+              </div>
+              <div class="up-from-yesterday-1">
+                <div class="ic-trending-up-24-px-1">
+                  <img class="path-1" src="../assets/vectors/Unknown" />
+                </div>
+                <p class="up-from-past-we">
+                  <span class="up-from-past-we-sub-1"></span><span class="up-from-past-we-sub-2"></span><span></span>
+                </p>
+              </div>
+            </div>
+            <div class="total-sales">
+              <div class="container-28">
+                <div class="container-21">
+                  <div class="total-sales-1">
+                    Total Sales
+                  </div>
+                  <span class="container-2">
+                    $89,000
+                  </span>
+                </div>
+                <img class="icon-3" src="../assets/vectors/Unknown" />
+              </div>
+              <div class="up-from-yesterday-2">
+                <div class="ic-trending-down-24-px">
+                  <img class="path-3" src="../assets/vectors/Unknown" />
+                </div>
+                <p class="down-from-yeste">
+                  <span class="down-from-yeste-sub-1"></span><span class="down-from-yeste-sub-2"></span><span></span>
+                </p>
+              </div>
+            </div>
+            <div class="order-pending">
+              <div class="container-17">
+                <div class="container-26">
+                  <div class="total-pending">
+                    Total Cancel Orders
+                  </div>
+                  <span class="container-3">
+                    2040
+                  </span>
+                </div>
+                <img class="icon-5" src="../assets/vectors/Unknown" />
+              </div>
+              <div class="up-from-yesterday-3">
+                <div class="ic-trending-up-24-px-2">
+                  <img class="path-4" src="../assets/vectors/Unknown" />
+                </div>
+                <p class="up-from-yesterd-1">
+                  <span class="up-from-yesterd-1-sub-1"></span><span class="up-from-yesterd-1-sub-2"></span><span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="sales-details">
+            <div class="container-41">
+              <div class="sales">
+                Sales Details
+              </div>
+              <div class="month-selector">
+                <span class="october">
+                  October
+                </span>
+                <div class="icon-chevron-down">
+                  <img class="shape" src="../assets/vectors/Unknown" />
+                </div>
+              </div>
+            </div>
+            <div class="units">
+              <div class="container-33">
+                <div class="container-11">
+                  <div class="container-40">
+                    <div class="container-8">
+                      100%
+                    </div>
+                    <div class="container-7">
+                      80%
+                    </div>
+                    <div class="container-6">
+                      60%
+                    </div>
+                    <div class="container-5">
+                      40%
+                    </div>
+                    <span class="container-4">
+                      20%
+                    </span>
+                  </div>
+                  <div class="line">
+                    <img class="line-5" src="../assets/vectors/Unknown" />
+                    <img class="line-4" src="../assets/vectors/Unknown" />
+                    <img class="line-3" src="../assets/vectors/Unknown" />
+                    <img class="line-2" src="../assets/vectors/Unknown" />
+                    <img class="line-1" src="../assets/vectors/Unknown" />
+                  </div>
+                </div>
+                <img class="container-16" src="../assets/vectors/Unknown" />
+                <div class="top-sale">
+                  <img class="combined-shape-4" src="../assets/vectors/Unknown" />
+                  <span class="container-9">
+                    64,3664.77
+                  </span>
+                </div>
+                <img class="oval" src="../assets/vectors/Unknown" />
+              </div>
+              <div class="container-4">
+                <span class="k-5">
+                  5k
+                </span>
+                <span class="k-6">
+                  10k
+                </span>
+                <span class="k-7">
+                  15k
+                </span>
+                <span class="k-8">
+                  20k
+                </span>
+                <span class="k-9">
+                  25k
+                </span>
+                <span class="k-11">
+                  30k
+                </span>
+                <span class="k-10">
+                  35k
+                </span>
+                <span class="k">
+                  40k
+                </span>
+                <span class="k-1">
+                  45k
+                </span>
+                <span class="k-2">
+                  50k
+                </span>
+                <span class="k-3">
+                  55k
+                </span>
+                <span class="k-4">
+                  60k
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-sidebar-menu-light">
+          <img class="divider-1" src="../assets/vectors/Unknown" />
+          <div class="logo">
+            <p class="bright-web">
+              <span class="bright-web-sub-4"></span><span></span>
+            </p>
+          </div>
+          <div class="hide-bg-hide-bg-copy-mask">
+            <div class="container-22">
+              <span class="container-20">
+                
+              </span>
+              <div class="products-8">
+                Dashboard
+              </div>
+            </div>
+            <div class="hide-bg-copy">
+            </div>
+          </div>
+          <div class="products">
+            <span class="container-11">
+              
+            </span>
+            <div class="products-1">
+              Order List
+            </div>
+          </div>
+          <div class="navigation-sidebar-item-light-4">
+            <span class="container-18">
+              
+            </span>
+            <div class="products-6">
+              Notifications
+            </div>
+          </div>
+          <div class="pages">
+            USER
+          </div>
+          <div class="navigation-sidebar-item-light-2">
+            <span class="container-16">
+              
+            </span>
+            <div class="products-4">
+              Customer
+            </div>
+          </div>
+          <div class="navigation-sidebar-item-light-1">
+            <span class="container-15">
+              
+            </span>
+            <div class="products-3">
+              Provider
+            </div>
+          </div>
+          <div class="divider-2">
+          </div>
+          <div class="pages-1">
+            VERIFICATIONS
+          </div>
+          <div class="navigation-sidebar-item-light">
+            <span class="container-14">
+              
+            </span>
+            <div class="products-2">
+              Payments
+            </div>
+          </div>
+          <img class="divider" src="../assets/vectors/Unknown" />
+          <div class="navigation-sidebar-item-light-3">
+            <span class="container-17">
+              
+            </span>
+            <div class="products-5">
+              Settings
+            </div>
+          </div>
+          <div class="navigation-sidebar-item-light-5">
+            <span class="container-19">
+              
+            </span>
+            <div class="products-7">
+              Logout
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
 </body>
 </html>
