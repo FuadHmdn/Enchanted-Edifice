@@ -373,7 +373,7 @@
               <p
                 style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600; margin-right: 5px;">
                 Rp.<span>${item.harga}</span></p>
-              <button type="button" class="btn btn-primary"
+              <button type="button" class="btn btn-primary detail-button" data-id="${item.id_produk}"
                 style="margin-top: 0px; width: 200px; height: 40px; border-radius: 30px;">Tambah Ulasan</button>
             </div>
           </div>`;
@@ -381,6 +381,13 @@
           itemContainer.innerHTML = content;
           itemContainer.style.marginBottom = "60px";
           menuCompletedContainer.appendChild(itemContainer);
+        });
+        // Menambahkan event listener untuk semua tombol "Cek Detail"
+        document.querySelectorAll('.detail-button').forEach(button => {
+          button.addEventListener('click', function () {
+            var itemId = this.getAttribute('data-id');
+            window.location.href = `../orders/tambah_ulasan/index.php?id_produk=${itemId}`;
+          });
         });
       })
       .catch(error => console.error('Error:', error));

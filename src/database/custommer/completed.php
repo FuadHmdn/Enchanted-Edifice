@@ -3,10 +3,10 @@
 require_once ('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $sql = "SELECT produk.gambar, produk.judul, produk.harga, orders_customers.tanggal_masuk, orders_customers.tanggal_keluar 
-    FROM orders_customers 
-    JOIN produk ON orders_customers.id_produk = produk.id_produk 
-    WHERE orders_customers.status = 'completed';";
+    $sql = "SELECT produk.id_produk, produk.gambar, produk.judul, produk.harga, orders_customers.tanggal_masuk, orders_customers.tanggal_keluar 
+        FROM orders_customers 
+        JOIN produk ON orders_customers.id_produk = produk.id_produk 
+        WHERE orders_customers.status = 'completed';";
 
     $result = mysqli_query($connection, $sql);
 
