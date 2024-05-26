@@ -47,7 +47,7 @@
                     <a href="../../../user/index.html"
                         style="text-decoration: none; color: #8692A6; font-size: 16px; font-weight: bold; margin: 0;"><span><img
                                 src="../../res/arrow_back_ios_24px.png" alt="arrow"> Back</span></a>
-                    <p style="color: #8692A6; font-size: 16px;">Belum Punya Akun? <span><a href="#"
+                    <p style="color: #8692A6; font-size: 16px;">Belum Punya Akun? <span><a href="../../register/penyediaGedung/index.html"
                                 style="font-weight: bold; color: #1565D8;">Sign in</a></span></p>
                 </div>
 
@@ -58,16 +58,17 @@
                     </p>
                     <p style="color: #8692A6; font-size: 16px; margin: 0;">Welcome back! Please enter your details.</p>
 
-                    <form>
+                    <form action="../../../../database/penyedia_gedung/login.php" method="POST">
 
                         <div class="mt-4">
                             <label for="InputEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="InputEmail" style="height: 55px;">
+                            <input type="email" class="form-control" id="InputEmail" name="email" style="height: 55px;">
                         </div>
 
                         <div class="mt-3">
                             <label for="InputPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="InputPassword" style="height: 55px;">
+                            <input type="password" class="form-control" id="InputPassword" name="password"
+                                style="height: 55px;">
                         </div>
 
                         <div style="display: flex; justify-content: center; width: 100%; margin-top: 45px;">
