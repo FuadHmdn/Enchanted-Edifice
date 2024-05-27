@@ -6,10 +6,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $id_produk = $_POST['id_produk'];
     $message = $_POST['message'];
     $rating = $_POST['rating'];
-
-    // Debug: echo untuk memastikan id_produk diterima
-    echo "ID Produk: " . htmlspecialchars($id_produk) . "<br>";
-
+    
     // Cek apakah id_produk ada di tabel produk
     $stmt = $connection->prepare("SELECT id_produk FROM produk WHERE id_produk = ?");
     $stmt->bind_param("i", $id_produk);

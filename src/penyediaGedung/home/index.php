@@ -132,7 +132,6 @@
 <body>
 
     <!-- NAVIGASI -->
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
@@ -150,7 +149,7 @@
                         <a class="nav-link active" aria-current="page" href="../home/" style="color: #0a1e3f;">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../offer/" style="color: #8692A6;">OFFERS</a>
+                        <a class="nav-link" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../order/" style="color: #8692A6;">ORDERS</a>
@@ -184,7 +183,8 @@
             <p style="font-family: 'Lato', sans-serif; font-size: 2.625rem; color: #ffffff; display: inline-block;">
                 "Welcome to our seller's hub!</p>
             <p style="font-family: 'Lato', sans-serif; font-size: 1.125rem; color: #ffffff; display: inline-block;">
-                Explore our user-friendly home interface designed to streamline your selling experience and maximize your business potential.</p>
+                Explore our user-friendly home interface designed to streamline your selling experience and maximize
+                your business potential.</p>
         </div>
     </div>
 
@@ -206,7 +206,8 @@
                     Accurate Listing<br> <br>
                 </div>
                 <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
-                    The venue provider must ensure that all information provided in their venue listing is accurate and up-to-date, including details regarding facilities, capacity, pricing, and availability.
+                    The venue provider must ensure that all information provided in their venue listing is accurate and
+                    up-to-date, including details regarding facilities, capacity, pricing, and availability.
                 </p>
             </section>
             <!-- 2 -->
@@ -217,7 +218,9 @@
                 </div>
                 <div>
                     <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
-                        Venue providers are required to respond promptly to reservation requests from customers and confirm or deny the booking within a reasonable timeframe. Failure to respond promptly may result in penalties or suspension of their account.
+                        Venue providers are required to respond promptly to reservation requests from customers and
+                        confirm or deny the booking within a reasonable timeframe. Failure to respond promptly may
+                        result in penalties or suspension of their account.
                     </p>
                 </div>
             </section>
@@ -229,7 +232,9 @@
                 </div>
                 <div>
                     <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
-                        Venue providers must conduct themselves in a professional manner when interacting with customers, including maintaining clear communication, providing accurate information, and honoring agreed-upon terms and conditions.
+                        Venue providers must conduct themselves in a professional manner when interacting with
+                        customers, including maintaining clear communication, providing accurate information, and
+                        honoring agreed-upon terms and conditions.
                     </p>
                 </div>
             </section>
@@ -241,7 +246,9 @@
                 </div>
                 <div>
                     <p style="font-family: 'Roboto', sans-serif; font-size: 16px; color: #3333339f; text-align: start;">
-                        Venue providers are responsible for maintaining the quality and cleanliness of their venues to ensure a positive experience for customers. This includes regular maintenance, cleanliness, and adherence to safety regulations.
+                        Venue providers are responsible for maintaining the quality and cleanliness of their venues to
+                        ensure a positive experience for customers. This includes regular maintenance, cleanliness, and
+                        adherence to safety regulations.
                     </p>
                 </div>
             </section>
@@ -324,7 +331,8 @@
                 <div style="margin-top: 30px; margin-left: 30px;">
                     <img src="../home/res/quote-left.png" alt="quote"
                         style="width: 40px; height: auto; margin-bottom: 20px;">
-                    <p style="font-family: 'Abril Fatface', serif; font-size: 28px; font-weight: 500;"><i>“Layanan Gedung<br> paling terbaik di<br>Indonesia, suka<br>banget..”</i></p>
+                    <p style="font-family: 'Abril Fatface', serif; font-size: 28px; font-weight: 500;"><i>“Layanan
+                            Gedung<br> paling terbaik di<br>Indonesia, suka<br>banget..”</i></p>
                     <p style="font-family: 'Abril Fatface', serif; font-size: 25px; font-weight: 900;">Najwa Shihab</p>
                 </div>
                 <div class="hotel-image" style="display: flex; flex-direction: row; margin-left: 250px;">
@@ -337,10 +345,12 @@
     </div>
 
     <div class="scrollmenu" style="display: flex; flex-direction: row; margin-top: 46px;">
-        <p style="font-family: 'Abril Fatface', serif; font-size: 40px; margin-left: 45px;">We are committed to <br> continuously
-             strive to be <br>
-             the premier choice for <br>
-             event venue rentals, <br>providing exceptional <br>service, top-notch facilities, <br> and memorable experiences <br>for all our clients.<br><br><br><br><br>
+        <p style="font-family: 'Abril Fatface', serif; font-size: 40px; margin-left: 45px;">We are committed to <br>
+            continuously
+            strive to be <br>
+            the premier choice for <br>
+            event venue rentals, <br>providing exceptional <br>service, top-notch facilities, <br> and memorable
+            experiences <br>for all our clients.<br><br><br><br><br>
         </p>
         <img class="item" src="../home/res/f2.png" alt="image" style="width: 520px; height: 550px;">
         <img class="item" src="../home/res/f3.png" alt="image" style="width: 520px; height: 550px;">
