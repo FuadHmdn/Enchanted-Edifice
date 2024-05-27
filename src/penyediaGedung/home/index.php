@@ -149,7 +149,7 @@
                         <a class="nav-link active" aria-current="page" href="../home/" style="color: #0a1e3f;">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../offer/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
+                        <a class="nav-link" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../order/" style="color: #8692A6;">ORDERS</a>
