@@ -219,6 +219,12 @@ mysqli_close($connection);
         .catch(error => console.error('Error:', error));
     </script>
 
+    <script>
+      document.querySelector('.btn.btn-outline-primary').addEventListener('click', function () {
+        window.location.href = 'addOffers.html?id=<?php echo htmlspecialchars($_GET['id']); ?>';
+      });
+    </script>
+
   </body>
 
 </html>
