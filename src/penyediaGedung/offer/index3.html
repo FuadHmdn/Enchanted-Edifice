@@ -1120,23 +1120,23 @@
         }
 
         updateSelectedItems();
-  function updateCharacterCount(elementId, countId) {
-      var element = document.getElementById(elementId);
-      var countElement = document.getElementById(countId);
-      countElement.textContent = 'Characters: ' + element.value.length + '/' + element.maxLength;
-  }
-
-  document.getElementById('title').maxLength = 60;
-  document.getElementById('description').maxLength = 1200;
-
-  function setActive(element) {
-            document.querySelectorAll('.icon').forEach(icon => {
-                icon.classList.remove('active');
-                icon.classList.add('inactive');
-            });
-            element.classList.remove('inactive');
-            element.classList.add('active');
+        function updateCharacterCount(elementId, countId) {
+            var element = document.getElementById(elementId);
+            var countElement = document.getElementById(countId);
+            countElement.textContent = 'Characters: ' + element.value.length + '/' + element.maxLength;
         }
+
+        document.getElementById('title').maxLength = 60;
+        document.getElementById('description').maxLength = 1200;
+
+        function setActive(element) {
+                    document.querySelectorAll('.icon').forEach(icon => {
+                        icon.classList.remove('active');
+                        icon.classList.add('inactive');
+                    });
+                    element.classList.remove('inactive');
+                    element.classList.add('active');
+                }
   </script>
   
 </body>
