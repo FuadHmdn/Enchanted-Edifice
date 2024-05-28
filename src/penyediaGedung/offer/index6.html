@@ -89,7 +89,7 @@
         }
 
         .icon-text {
-            margin-top: 10px; /* Add some space between icon and text */
+            margin-top: 10px;
             color: #3B527E;
         }
 
@@ -115,6 +115,21 @@
             color: white;
         }
 
+        .icon-container .checkmark {
+            position: absolute;
+            bottom: 55px;
+            right: 23px;
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+        }
+
         .icon-section::before {
             content: '';
             position: absolute;
@@ -135,142 +150,54 @@
         .icon-section .icon-container:first-child::before {
             display: none;
         }
-        .package {
-            border-bottom: 1px solid #ddd;
-            padding: 20px;
-        }
-        .package:last-child {
-            border-bottom: none;
-        }
-        .package h2 {
-            margin: 0 0 10px 0;
-        }
-        .package p {
-            margin: 5px 0;
-        }
-        .package .facilities {
-            margin-left: 20px;
-        }
-        .controls {
+
+        .central-image {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .controls .left-controls {
-            display: flex;
-            align-items: center;
-        }
-        .remove-button, .add-button{
-            background-color: #6b84a8;
-            border: none;
-            font-size: large;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            margin-top: -20px;
-            cursor: pointer;
-            width: 50px;
-            align-items: center;
-            transition: background-color 0.3s;
-            margin-right: 10px;
-        }
-        .remove-button:hover {
-            background-color: #ff3737;
-        }
-        .remove-button:active {
-            background-color: #910000;
-        }
-        .add-button{
-            margin-left: 22px;
-            margin-top: 10px;
-        }
-        .add-button:hover {
-            background-color: #7facd9;
-        }
-        .add-button:active {
-            background-color: #3e8e41;
-        }
-        .price {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: right;
-        }
-        .description, .facilities-container {
-            background-color: #b8d5f276;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 10px;
-        }
-        .description p, .facilities-container ul {
-            margin: 0;
-        }
-        .facilities-container ul {
-            padding-left: 20px;
-        }
-        .post-button-container {
-            text-align: center;
-            margin-top: 2820px;
-            margin-left: 70px;
-        }
-        .post-button-container button {
-            background-color: #83a8d0;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            border-radius: 60px;
-            width: 200px;
-            transition: background-color 0.3s;
-            justify-content: center;
-        }
-        .post-button-container button:hover {
-            background-color: #264f7c;
-            color: #f5f8ff;
-        }
-        .post-button-container button:active {
-            background-color: #153b64;
-            color: #f5f8ff;
-        }
-        .modal, .confirm-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-        .modal-content, .confirm-modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
             text-align: center;
+            margin-top: 270px;
         }
-        .modal-content input, .modal-content textarea {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
+
+        .central-image img {
+            width: 400px;
+            height: auto;
         }
-        .modal-content button, .confirm-modal-content button {
+
+        .central-image p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #3B527E;
+        }
+
+        .central-image .button-container {
+            margin-top: 20px;
+        }
+
+        .central-image .button-container a {
+            text-decoration: none;
             padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
+            background-color: #3B527E;
+            color: white;
+            border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .confirm-modal-content button {
-            width: 80px;
-        }
-        .confirm-modal-content button:hover {
-            background-color: #a4b6de;
-        }
-        .confirm-modal-content button:active {
-            background-color: #5e7995;
+
+        .central-image .button-container a:hover {
+            background-color: #8facd3;
         }
 
+        .central-image .return-link {
+            margin-top: 10px;
+            color: #2b487d;
+            text-decoration: none;
+        }
 
+        .central-image .return-link:hover {
+            text-decoration: underline;
+            margin-top: 10px;
+        }
 
   </style>
 
@@ -294,129 +221,48 @@
     <div class="content-wrapper">
       <div class="container">
         <div class="icon-section">
-          <a href="index2.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index2.html"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-pencil"></i>
+                  <div class="checkmark">&#10003;</div>
               </div>
               <div class="icon-text">Description</div>
           </div> </a>
-          <a href="index3.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index3.html"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-list"></i>
+                  <div class="checkmark">&#10003;</div>
               </div>
               <div class="icon-text">Categories</div>
           </div> </a>
-          <a href="index4.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index4.html"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-camera"></i>
+                  <div class="checkmark" style="right: 9px;">&#10003;</div>
               </div>
               <div class="icon-text">Photos</div>
           </div></a>
           <a href="index5.html"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-megaphone"></i>
+                  <div class="checkmark"style="right: 6px;">&#10003;</div>
               </div>
               <div class="icon-text">Package</div>
-          </div>
-        </div></a>
-        <div class="package" style="margin-top: 199px;">
-            <div class="controls">
-                <div class="left-controls">
-                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
-                    <h2>Wedding Venue Package</h2>
-                </div>
-                <div class="price">Rp 90.000.000,-</div>
-            </div>
-            <div class="description">
-                <p><strong>Desc:</strong></p>
-                <p>Capacity: Accommodates up to 300 guests in a banquet-style setup.</p>
-            </div>
-            <div class="facilities-container">
-                <p><strong>Facilities:</strong></p>
-                <ul class="facilities">
-                    <li>Exclusive use of the main ballroom for 8 hours.</li>
-                    <li>Decorative lighting and sound system.</li>
-                    <li>Bridal suite for the newlyweds.</li>
-                    <li>Dedicated event coordinator.</li>
-                    <li>Customization menu options with complimentary food tasting.</li>
-                </ul>
-            </div>
+          </div></a>
         </div>
-        <div class="package">
-            <div class="controls">
-                <div class="left-controls">
-                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
-                    <h2>Romantic Engagement Package</h2>
-                </div>
-                <div class="price">Rp 25.000.000,-</div>
+        <div class="central-image">
+            <img src="../offer/res/Frame.png">
+            <p>Your advertisment was succesfully added!</p>
+            <div class="button-container">
+                <a href="index.php">View your advertisement</a>
             </div>
-            <div class="description">
-                <p><strong>Desc:</strong></p>
-                <p>Capacity: Accommodates up to 50 guests in an intimate setting.</p>
-            </div>
-            <div class="facilities-container">
-                <p><strong>Facilities:</strong></p>
-                <ul class="facilities">
-                    <li>Use of a private banquet room for 4 hours.</li>
-                    <li>Elegant decor with romantic lighting.</li>
-                    <li>Personalized engagement cake.</li>
-                    <li>Champagne toast for the couple.</li>
-                    <li>Customized menu options with hors d'oeuvres and beverages.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="controls">
-            <div class="left-controls">
-                <button class="add-button" onclick="showAddPackageForm()">+</button>
-                <span>Package</span>
-            </div>
+            <a class="return-link" href="../home/index.php">Return to previous page </a>
         </div>
     </div>
-    <div class="post-button-container">
-        <button class="post" onclick="confirmUpload()">Post</button>
-    </div>
+  </div>
 
-    <div class="modal" id="addPackageModal" >
-        <div class="modal-content" style="max-width: 800px;">
-            <h2>Add Package</h2>
-            <input type="text" id="packageTitle" placeholder="Title">
-            <textarea id="packageDesc" placeholder="Description"></textarea>
-            <textarea id="packageFacilities" placeholder="Facilities"></textarea>
-            <input type="text" id="packagePrice" placeholder="Price">
-            <button onclick="addPackage()">Add</button>
-            <button onclick="hideAddPackageForm()">Cancel</button>
-        </div>
-    </div>
-
-    <div class="confirm-modal" id="confirmDeletionModal">
-        <div class="confirm-modal-content">
-            <p>Are you sure you want to delete this package?</p>
-            <p>Please do not close this page</p>
-            <button onclick="deletePackage()">Yes</button>
-            <button onclick="hideDeletionModal()">No</button>
-        </div>
-    </div>
-
-    <div class="confirm-modal" id="confirmUploadModal">
-        <div class="confirm-modal-content">
-            <p>Are you sure you want to upload this offer?</p>
-            <p>Please do not close this page</p>
-            <button onclick="uploadOffer()">Yes</button>
-            <button onclick="hideUploadModal()">No</button>
-        </div>
-    </div>
-
-    <div class="confirm-modal" id="successModal">
-        <div class="confirm-modal-content">
-            <p>Your offer has been successfully uploaded!</p>
-            <button onclick="goToNextPage()">OK</button>
-        </div>
-    </div>
-
-    </div>
-</div>
-    <!-- BOTTOM BAR -->
-    <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+  <!-- BOTTOM BAR -->
+  <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
         <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
@@ -513,92 +359,20 @@
       <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Store</div>
     </div>
   </div>
- 
-<script>
-        let packageToDelete;
 
-    function showAddPackageForm() {
-        document.getElementById('addPackageModal').style.display = 'flex';
-    }
-
-    function hideAddPackageForm() {
-        document.getElementById('addPackageModal').style.display = 'none';
-    }
-
-    function addPackage() {
-        const title = document.getElementById('packageTitle').value;
-        const desc = document.getElementById('packageDesc').value;
-        const facilities = document.getElementById('packageFacilities').value;
-        const price = document.getElementById('packagePrice').value;
-
-        const newPackage = document.createElement('div');
-        newPackage.classList.add('package');
-        newPackage.innerHTML = `
-            <div class="controls">
-                <div class="left-controls">
-                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
-                    <h2>${title}</h2>
-                </div>
-                <div class="price">${price}</div>
-            </div>
-            <div class="description">
-                <p><strong>Desc:</strong></p>
-                <p>${desc}</p>
-            </div>
-            <div class="facilities-container">
-                <p><strong>Facilities:</strong></p>
-                <p>${facilities}</p>
-            </div>
-        `;
-
-        document.querySelector('.container').insertBefore(newPackage, document.querySelector('.controls:last-child'));
-            hideAddPackageForm();
-        }
-
-        function confirmDeletion(button) {
-            packageToDelete = button.parentElement.parentElement.parentElement;
-            document.getElementById('confirmDeletionModal').style.display = 'flex';
-        }
-
-        function deletePackage() {
-            packageToDelete.remove();
-            hideDeletionModal();
-        }
-
-        function hideDeletionModal() {
-            document.getElementById('confirmDeletionModal').style.display = 'none';
-        }
-
-        function confirmUpload() {
-            document.getElementById('confirmUploadModal').style.display = 'flex';
-        }
-
-        function hideUploadModal() {
-            document.getElementById('confirmUploadModal').style.display = 'none';
-        }
-
-        function uploadOffer() {
-            document.getElementById('confirmUploadModal').style.display = 'none';
-            document.getElementById('successModal').style.display = 'flex';
-        }
-
-        function goToNextPage() {
-            window.location.href = 'index6.html';
-        }
-
-
-
-  document.getElementById('title').maxLength = 60;
-  document.getElementById('description').maxLength = 1200;
-
-  function setActive(element) {
-            document.querySelectorAll('.icon').forEach(icon => {
-                icon.classList.remove('active');
-                icon.classList.add('inactive');
-            });
-            element.classList.remove('inactive');
-            element.classList.add('active');
-        }
-  </script>
+<script>  
+    document.getElementById('title').maxLength = 60;
+    document.getElementById('description').maxLength = 1200;
+  
+    function setActive(element) {
+              document.querySelectorAll('.icon').forEach(icon => {
+                  icon.classList.remove('active');
+                  icon.classList.add('inactive');
+              });
+              element.classList.remove('inactive');
+              element.classList.add('active');
+          }
+    </script>
 </body>
 </html>
+
