@@ -8,6 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Offers Enchanted Edifice</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
       body {
           display: flex;
@@ -29,7 +30,7 @@
           padding: 20px;
           position: absolute;
           width: 1400px; 
-          height: 720px; 
+          height: 570px; 
           top: 630px;
       }
       .container {
@@ -40,29 +41,102 @@
           margin-top: 20px;
           position: absolute;
           width: 1350px; 
-          height: 950px; 
+          height: 840px; 
           left: 90px; 
           top: 550px;
       }
-
+      
       .icon-section {
-          display: flex;
-          justify-content: space-around;
-          margin-top: -200px;
-      }
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            margin-top: -170px;
+            width: 1050px;
+            height:20px;
+            left: 120px; 
+            margin-bottom: 65px;
+        }
 
-      .icon {
-          text-align: center;
-          cursor: pointer;
-          color: #3B527E;
-          font-size: 20px;
-          font-weight: 600;
-      }
+        .icon-container {
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      .icon img {
-          width: 40px;
-          height: 40px;
-      }
+        .icon {
+            background-color: #E0E0E0;
+            border-radius: 55%;
+            padding: 20px;
+            width: 80px;
+            height: 80px;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon i {
+            font-size: 30px;
+            transition: color 0.3s;
+            color: #3B527E;
+        }
+
+        .icon-text {
+            margin-top: 10px; /* Add some space between icon and text */
+            color: #3B527E;
+        }
+
+        .icon-container.inactive .icon {
+            background-color: #E0E0E0;
+            color: #3B527E;
+        }
+
+        .icon-container.inactive .icon i {
+            color: #3B527E;
+        }
+
+        .icon-container.active .icon,
+        .icon-container:hover .icon,
+        .icon-container:focus .icon {
+            background-color: #3B527E;
+            color: white;
+        }
+
+        .icon-container.active .icon i,
+        .icon-container:hover .icon i,
+        .icon-container:focus .icon i {
+            color: white;
+        }
+
+        .icon-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                #3B527E,
+                #3B527E 5px,
+                transparent 5px,
+                transparent 10px
+            );
+            z-index: -1;
+        }
+
+
+        .icon-section .icon-container:first-child::before {
+            display: none;
+        }
 
       .form-section {
           padding: 20px;
@@ -79,7 +153,7 @@
       .form-section textarea {
           background: white;
           width: 100%;
-          border: 1px solid #ced4da;
+          border: 1px solid #a8b1bb;
           padding: 10px;
           border-radius: 5px;
           margin-bottom: 20px;
@@ -118,6 +192,7 @@
           text-align: center;
           margin-top: 200px;
       }
+
       .form-section .next-button button {
           background: #D3E3FF;
           color: #3B527E;
@@ -127,17 +202,32 @@
           font-size: 18px;
           font-weight: 600;
           cursor: pointer;
+          transition: background-color 0.3s, color 0.3s;
+          width: 199px; 
+          height: 60px;
       }
+
+      .form-section .next-button button:hover,
+      .form-section .next-button button:focus {
+          background: #3B527E;
+          color: white;
+      }
+
+      .form-section .next-button button:active {
+          background: #2A3B5E;
+          color: white;
+      }
+
   </style>
 
 </head>
 
 <body>
-<div style="width: 1540px; height: 3250px; position: relative; background: #FBFBFB">
-    <div style="width: 1440px; height: 3200px; left: -4580.60px; top: 39.27px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
-    <div style="width: 1440px; height: 3200px; left: 39px; top: 102px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
+<div style="width: 1540px; height: 3000px; position: relative; background: #FBFBFB">
+    <div style="width: 1440px; height: 2900px; left: -4580.60px; top: 39.27px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
+    <div style="width: 1440px; height: 2900px; left: 39px; top: 102px; position: absolute; background: #F3F4F7; box-shadow: 0px -6px 50px rgba(0, 0, 0, 0.15)"></div>
     <img style="width: 1440px; height: 540px; left: 40px; top: 50px; position: absolute" src="../offer/res/download (9).jpeg" />
-    <div style="left: 104px; top: 3000px; position: absolute; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+    <div style="left: 104px; top: 2700px; position: absolute; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
       <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
         <div style="width: 1260px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
           <div style="width: 1260px; height: 200.50px; border: 3px #E8EEFB solid"></div>
@@ -145,30 +235,36 @@
         </div>
       </div>
     </div>
+
     <!-- COLUMN BAR -->
     <div class="content-wrapper">
       <div class="container">
-          <div class="header"></div>
-
-          <div class="icon-section">
+        <div class="icon-section">
+          <a href="index2.html"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
-                  <img src="../offer/res/description-icon.png" alt="Description Icon">
-                  <div>Description</div>
+                  <i class="bi bi-pencil"></i>
               </div>
+              <div class="icon-text">Description</div>
+          </div> </a>
+          <a href="index3.html"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
-                  <img src="../offer/res/categories-icon.png" alt="Categories Icon">
-                  <div>Categories</div>
+                  <i class="bi bi-list"></i>
               </div>
+              <div class="icon-text">Categories</div>
+          </div> </a>
+          <a href="index4.html"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
-                  <img src="../offer/res/photos-icon.png" alt="Photos Icon">
-                  <div>Photos</div>
+                  <i class="bi bi-camera"></i>
               </div>
+              <div class="icon-text">Photos</div>
+          </div></a>
+          <a href="index5.html"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
-                  <img src="../offer/res/complaints-icon.png" alt="Complaints Icon">
-                  <div>Complaints</div>
+                  <i class="bi bi-megaphone"></i>
               </div>
+              <div class="icon-text">Package</div>
           </div>
-
+      </div></a>
           <div class="form-section">
             <h4 style="font-weight: bold;">Fill in the basic information about your item <br> <br></h4>
             
@@ -201,14 +297,16 @@
             <label for="price">Price</label>
             <input type="text" id="price" placeholder="Product price in PLN (gross)">
     
-            <div class="next-button">
+            <a href="index3.html">
+              <div class="next-button">
                 <button onclick="nextStep()">Next →</button>
             </div>
+          </a>
         </div>
         </div>
     </div>
     <!-- BOTTOM BAR -->
-    <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2800px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+    <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
         <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
@@ -313,10 +411,18 @@
       var countElement = document.getElementById(countId);
       countElement.textContent = 'Characters: ' + element.value.length + '/' + element.maxLength;
   }
-  
-  // Set maxLength for text fields
+
   document.getElementById('title').maxLength = 60;
   document.getElementById('description').maxLength = 1200;
+
+  function setActive(element) {
+            document.querySelectorAll('.icon').forEach(icon => {
+                icon.classList.remove('active');
+                icon.classList.add('inactive');
+            });
+            element.classList.remove('inactive');
+            element.classList.add('active');
+        }
   </script>
   
 </body>
