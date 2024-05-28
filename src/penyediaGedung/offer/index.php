@@ -41,7 +41,7 @@ mysqli_close($connection);
       /* Lebar item dengan margin antar item */
       margin-bottom: 45px;
       border-radius: 16px;
-      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.589);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.300);
     }
   </style>
   </head>
