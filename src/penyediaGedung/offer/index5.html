@@ -376,8 +376,8 @@
         <button class="post" onclick="confirmUpload()">Post</button>
     </div>
 
-    <div class="modal" id="addPackageModal">
-        <div class="modal-content">
+    <div class="modal" id="addPackageModal" >
+        <div class="modal-content" style="max-width: 800px;">
             <h2>Add Package</h2>
             <input type="text" id="packageTitle" placeholder="Title">
             <textarea id="packageDesc" placeholder="Description"></textarea>
@@ -517,78 +517,80 @@
       <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Store</div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>   
+ 
 <script>
-    document.querySelector('.upload-btn input').addEventListener('change', function(event) {
-    const files = event.target.files;
-    const photoGrid = document.querySelector('.photo-grid');
-    const nextBtn = document.querySelector('.next-btn');
+        let packageToDelete;
 
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            const photoDiv = document.createElement('div');
-            photoDiv.classList.add('photo');
-            photoDiv.style.filter = 'blur(5px)';
-
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            photoDiv.appendChild(img);
-
-            const deleteIcon = document.createElement('i');
-            deleteIcon.classList.add('fas', 'fa-times', 'delete-icon');
-            deleteIcon.onclick = function() {
-                photoDiv.remove();
-                updateNextButton();
-            };
-            photoDiv.appendChild(deleteIcon);
-
-            const progressDiv = document.createElement('div');
-            progressDiv.classList.add('progress');
-
-            const progressBar = document.createElement('div');
-            progressBar.classList.add('progress-bar');
-            progressDiv.appendChild(progressBar);
-
-            photoDiv.appendChild(progressDiv);
-            photoGrid.appendChild(photoDiv);
-
-            // Simulate upload progress
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 10;
-                progressBar.style.width = `${progress}%`;
-                photoDiv.style.filter = `blur(${5 - (progress / 20)}px)`;
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    progressDiv.remove();
-                }
-            }, 200);
-        };
-
-        reader.readAsDataURL(file);
+    function showAddPackageForm() {
+        document.getElementById('addPackageModal').style.display = 'flex';
     }
 
-    updateNextButton();
-});
-    function updateNextButton() {
-        const nextBtn = document.querySelector('.next-btn');
-        const photos = document.querySelectorAll('.photo-grid .photo');
-        
-        if (photos.length > 0) {
-            nextBtn.classList.add('active');
-            nextBtn.disabled = false;
-        } else {
-            nextBtn.classList.remove('active');
-            nextBtn.disabled = true;
+    function hideAddPackageForm() {
+        document.getElementById('addPackageModal').style.display = 'none';
+    }
+
+    function addPackage() {
+        const title = document.getElementById('packageTitle').value;
+        const desc = document.getElementById('packageDesc').value;
+        const facilities = document.getElementById('packageFacilities').value;
+        const price = document.getElementById('packagePrice').value;
+
+        const newPackage = document.createElement('div');
+        newPackage.classList.add('package');
+        newPackage.innerHTML = `
+            <div class="controls">
+                <div class="left-controls">
+                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
+                    <h2>${title}</h2>
+                </div>
+                <div class="price">${price}</div>
+            </div>
+            <div class="description">
+                <p><strong>Desc:</strong></p>
+                <p>${desc}</p>
+            </div>
+            <div class="facilities-container">
+                <p><strong>Facilities:</strong></p>
+                <p>${facilities}</p>
+            </div>
+        `;
+
+        document.querySelector('.container').insertBefore(newPackage, document.querySelector('.controls:last-child'));
+            hideAddPackageForm();
         }
-    }
+
+        function confirmDeletion(button) {
+            packageToDelete = button.parentElement.parentElement.parentElement;
+            document.getElementById('confirmDeletionModal').style.display = 'flex';
+        }
+
+        function deletePackage() {
+            packageToDelete.remove();
+            hideDeletionModal();
+        }
+
+        function hideDeletionModal() {
+            document.getElementById('confirmDeletionModal').style.display = 'none';
+        }
+
+        function confirmUpload() {
+            document.getElementById('confirmUploadModal').style.display = 'flex';
+        }
+
+        function hideUploadModal() {
+            document.getElementById('confirmUploadModal').style.display = 'none';
+        }
+
+        function uploadOffer() {
+            document.getElementById('confirmUploadModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function goToNextPage() {
+            // Replace with the actual link to the next page
+            window.location.href = 'next_page.html';
+        }
+
 
 
   document.getElementById('title').maxLength = 60;
