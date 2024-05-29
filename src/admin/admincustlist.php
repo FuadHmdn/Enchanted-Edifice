@@ -11,7 +11,7 @@ if ($connection->connect_error) {
 }
 
 // Ambil data orderan pengguna
-$sql = "SELECT * FROM orders_customers";
+$sql = "SELECT * FROM custommer";
 $result = $connection->query($sql);
 ?>
 
@@ -313,10 +313,10 @@ h1 {
             <nav>
                 <ul>
                     <li><a href="adminhome.html">Dashboard</a></li>
-                    <li class="active"><a href="adminorderlist.php">Order List</a></li>
+                    <li><a href="adminorderlist.php">Order List</a></li>
                     <li><a href="adminnotifikasi.html">Notifications</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php">Customer</a></li>
+                    <li class="active"><a href="admincustlist.php">Customer</a></li>
                     <li><a href="adminpenyediagedung.php">Provider</a></li>
                     <li class="section-title">VERIFICATIONS</li>
                     <li><a href="adminverifpayment.php">Payments</a></li>
@@ -349,12 +349,9 @@ h1 {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID Pesanan</th>
                             <th>ID Customer</th>
-                            <th>ID Produk</th>
-                            <th>Tanggal Masuk</th>
-                            <th>Tanggal Keluar</th>
-                            <th>Status</th>
+                            <th>Nama Customer</th>
+                            <th>Email Customer</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -363,20 +360,17 @@ h1 {
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                        <td>{$row['id_pesanan']}</td>
-                                        <td>{$row['id_custommer']}</td>
-                                        <td>{$row['id_produk']}</td>
-                                        <td>{$row['tanggal_masuk']}</td>
-                                        <td>{$row['tanggal_keluar']}</td>
-                                        <td class='status {$row['status']}'>{$row['status']}</td>
+                                        <td>{$row['id']}</td>
+                                        <td>{$row['username']}</td>
+                                        <td>{$row['email']}</td>
                                         <td>
-                                            <button onclick='editOrder({$row['id_pesanan']})'>Edit</button>
-                                            <button onclick='deleteOrder({$row['id_pesanan']})'>Delete</button>
+                                            <button onclick='editOrder({$row['id']})'>Edit</button>
+                                            <button onclick='deleteOrder({$row['id']})'>Delete</button>
                                         </td>
                                     </tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='7'>No orders found</td></tr>";
+                            echo "<tr><td colspan='7'>No customers found</td></tr>";
                         }
                         ?>
                     </tbody>
