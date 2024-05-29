@@ -2,7 +2,7 @@
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
-define('DB', 'enchanted-edifice');
+define('DB', 'enchanted_edifice');
 
 $connection = mysqli_connect(HOST, USER, PASS, DB);
 
