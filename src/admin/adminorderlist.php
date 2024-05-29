@@ -1,11 +1,20 @@
 <?php
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASS', '');
+define('DB', 'enchanted-edifice');
 
-include "database/koneksi.php";
+$connection = mysqli_connect(HOST, USER, PASS, DB);
 
-// Ambil data pengguna
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+// Ambil data orderan pengguna
 $sql = "SELECT * FROM orders_customers";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -303,9 +312,8 @@ h1 {
             </div>
             <nav>
                 <ul>
-                    
                     <li><a href="adminhome.html">Dashboard</a></li>
-                    <li class="active"><a href="adminorderlist.html">Order List</a></li>
+                    <li class="active"><a href="adminorderlist.php">Order List</a></li>
                     <li><a href="#">Notifications</a></li>
                     <li class="section-title">USER</li>
                     <li><a href="#">Customer</a></li>
@@ -337,76 +345,52 @@ h1 {
             </header>
 
             <h1>Order List</h1>
-            <div class="container">
-                <h1>Order Lists</h1>
-                <div class="order-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID Pesanan</th>
-                                <th>ID Customer</th>
-                                <th>ID Produk</th>
-                                <th>Tanggal Masuk</th>
-                                <th>Tanggal Keluar</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Database connection
-                            $conn = new mysqli('localhost', 'username', 'password', 'database');
-        
-                            // Check connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
+            <div class="order-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Pesanan</th>
+                            <th>ID Customer</th>
+                            <th>ID Produk</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>
+                                        <td>{$row['id_pesanan']}</td>
+                                        <td>{$row['id_custommer']}</td>
+                                        <td>{$row['id_produk']}</td>
+                                        <td>{$row['tanggal_masuk']}</td>
+                                        <td>{$row['tanggal_keluar']}</td>
+                                        <td class='status {$row['status']}'>{$row['status']}</td>
+                                        <td>
+                                            <button onclick='editOrder({$row['id_pesanan']})'>Edit</button>
+                                            <button onclick='deleteOrder({$row['id_pesanan']})'>Delete</button>
+                                        </td>
+                                    </tr>";
                             }
-        
-                            $sql = "SELECT id_pesanan, id_customer, id_produk, tanggal_masuk, tanggal_keluar, status FROM orders";
-                            $result = $conn->query($sql);
-        
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>
-                                            <td>{$row['id_pesanan']}</td>
-                                            <td>{$row['id_customer']}</td>
-                                            <td>{$row['id_produk']}</td>
-                                            <td>{$row['tanggal_masuk']}</td>
-                                            <td>{$row['tanggal_keluar']}</td>
-                                            <td class='status {$row['status']}'>{$row['status']}</td>
-                                            <td>
-                                                <button onclick='editOrder({$row['id_pesanan']})'>Edit</button>
-                                                <button onclick='deleteOrder({$row['id_pesanan']})'>Delete</button>
-                                            </td>
-                                        </tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='7'>No orders found</td></tr>";
-                            }
-        
-                            $conn->close();
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        } else {
+                            echo "<tr><td colspan='7'>No orders found</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+            <!--
                 <div class="pagination">
-                    <span>Showing 1-9 of 78</span>
-                </div>
+                <span>Showing 1-9 of 78</span>
             </div>
-
-            
-
-
-
-
-
-
-        
-        </main>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+                    -->
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
