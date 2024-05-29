@@ -37,36 +37,38 @@ mysqli_close($connection);
 
   .listProduk {
     width: calc(33.33% - 30px);
-    /* Lebar item dengan margin antar item */
     margin-bottom: 45px;
     border-radius: 16px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.300);
   }
 
   .modal {
-    /* This way it could be display flex or grid or whatever also. */
     display: none;
-
-    /* Probably need media queries here */
     width: 600px;
     max-width: 100%;
-
     height: auto;
     max-height: 100%;
-
     position: fixed;
-
     z-index: 100;
-
     left: 50%;
     top: 50%;
-
-    /* Use this for centering if unknown width/height */
     transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.4);
+  }
 
-    /* If known, negative margins are probably better (less chance of blurry text). */
-    /* margin: -200px 0 0 -200px; */
-
+  .editModal {
+    display: none;
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background: white;
     border-radius: 20px;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.4);
@@ -80,8 +82,42 @@ mysqli_close($connection);
     width: 100%;
     height: 100%;
     z-index: 50;
-
     background: rgba(0, 0, 0, 0.6);
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .editModal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
   }
 </style>
 </head>
@@ -177,7 +213,7 @@ mysqli_close($connection);
     </div>
   </div>
 
-  <!-- Modal hotel -->
+  <!-- Modal detail hotel -->
   <div class="modalOverlay" id="modalOverlay"></div>
   <div class="modal" id="modal">
     <p id="back" style="text-align: end; width: 100%; padding-right: 20px;">X</p>
@@ -186,7 +222,12 @@ mysqli_close($connection);
     </div>
   </div>
 
+  <!--Edit Modal -->
+  <div id="editModal" class="editModal">
+    <div class="editModal-content" id="editModalContent">
 
+    </div>
+  </div>
 
   <!-- Menu Item Hotel -->
   <div style="width: 100%; height: auto; left: 50%; top: 880px; position: absolute; transform: translateX(-50%); display: flex; flex-direction: column;">
@@ -259,14 +300,57 @@ mysqli_close($connection);
                       </p>
                     </div>
                     <div style="display: flex; flex-direction: row; justify-content: flex-end; padding: 20px;">
-                      <button type="button" class="btn btn-primary" style="margin-right: 18px; width: 100px;">Edit</button>
+                      <button type="button" onclick="editHotel()" class="btn btn-primary" id-"btnEdit" style="margin-right: 18px; width: 100px;">Edit</button>
                       <button type="button" onclick="deleteHotel(${item.id_produk})" class="btn btn-danger" id="btnDelete" style="width: 100px;">Delete</button>
                     </div>
                   `;
 
+                  var itemContentEdit = `
+                        <span class="close">&times;</span>
+                        <h2>Edit Gedung</h2>
+                        <form id="editForm" action="../../database/penyedia_gedung/update.php" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="id" value="${item.id_produk}" id="id">
+
+                          <div class="form-group">
+                            <label for="title">Judul:</label>
+                            <input type="text" name="title" value="${item.judul}" id="title" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="price">Harga:</label>
+                            <input type="number" name="price" value="${item.harga}" id="price" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="description">Deskripsi:</label>
+                            <textarea name="description" value="${item.deskripsi}" id="description" required></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="category">Kategori:</label>
+                            <input type="text" name="category" value="${item.kategori}" id="category" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="capacity">Kapasitas:</label>
+                            <input type="text" name="capacity" value="${item.kapasitas}" id="capacity" required>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="image">Gambar:</label>
+                            <input type="file" name="image" value="${item.gambar}" id="image">
+                          </div>
+
+                          <input type="submit" name="submit" value="Update">
+                        </form>
+                  `;
+
+                  editModalContent.innerHTML = itemContentEdit;
                   modalItem.innerHTML = itemContent;
                   modal.style.display = "block";
                   modalOverlay.style.display = "block";
+
+
                 })
                 .catch(error => console.error('Error fetching item details:', error));
             });
@@ -274,7 +358,6 @@ mysqli_close($connection);
         })
         .catch(error => console.error('Error fetching items:', error));
 
-      // Event listener untuk tombol "X" di modal
       document.getElementById('back').addEventListener('click', function(event) {
         event.preventDefault();
         modal.style.display = "none";
@@ -285,6 +368,7 @@ mysqli_close($connection);
       modalOverlay.addEventListener('click', function() {
         modal.style.display = "none";
         modalOverlay.style.display = "none";
+        editModal.style.display = "none";
       });
     });
   </script>
@@ -297,13 +381,18 @@ mysqli_close($connection);
           })
           .then(response => {
             if (response.ok) {
-              location.reload(); // Refresh halaman jika berhasil
+              location.reload();
             } else {
-              alert('Gagal menghapus item'); // Tampilkan pesan jika gagal
+              alert('Gagal menghapus item');
             }
           })
           .catch(error => console.error('Error:', error));
       }
+    }
+
+    function editHotel() {
+      modal.style.display = "none";
+      editModal.style.display = "block";
     }
   </script>
 

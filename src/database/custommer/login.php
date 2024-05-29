@@ -19,7 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($password, $user['password'])) {
             // Login berhasil
-            echo "<script>alert('Login berhasil!'); window.location.href = '../../user/home/index.html';</script>";
+            $_SESSION['custommer_id'] = $user['id'];
+            $custommerId = $user['id'];
+            echo "<script>alert('Login berhasil!'); window.location.href = '../../user/home/index.php?id=$custommerId';</script>";
             exit;
         } else {
             // Password salah
