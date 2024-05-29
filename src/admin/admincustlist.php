@@ -344,7 +344,7 @@ h1 {
                 </div>
             </header>
 
-            <h1>Order List</h1>
+            <h1>Customer List</h1>
             <div class="order-list">
                 <table>
                     <thead>
