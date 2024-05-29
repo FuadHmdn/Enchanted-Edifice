@@ -150,16 +150,16 @@
                         <a class="nav-link active" aria-current="page" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #000000;">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../offers/" style="color: #8692A6;">OFFERS</a>
+                        <a class="nav-link" href="../offers/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../orders/" style="color: #8692A6;">ORDERS</a>
+                        <a class="nav-link" href="../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contact/" style="color: #8692A6;">CONTACT US</a>
+                        <a class="nav-link" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../about/" style="color: #8692A6;">ABOUT</a>
+                        <a class="nav-link" href="../about/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ABOUT</a>
                     </li>
                     <li class="nav-item">
                         <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
