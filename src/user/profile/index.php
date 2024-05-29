@@ -1,6 +1,8 @@
 <?php
 require_once('../../database/koneksi.php');
 
+$nama = 'Guest'; // Initialize the variable with a default value
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
   $id = $_GET['id'];
 
@@ -10,10 +12,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      $nama = $row['username'];
+    $nama = $row['username'];
     }
   }
 }
+
 mysqli_close($connection);
 ?>
 
