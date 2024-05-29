@@ -106,19 +106,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto" style="margin-right: 46px;">
           <li class="nav-item">
-            <a class="nav-link" href="../home/" style="color: #8692A6;">HOME</a>
+            <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../offers/" style="color: #8692A6;">OFFERS</a>
+            <a class="nav-link" href="../offers/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../orders/" style="color: #000000;">ORDERS</a>
+            <a class="nav-link active" aria-current="page" href="../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #000000;">ORDERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../contact/" style="color: #8692A6;">CONTACT US</a>
+            <a class="nav-link" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../about/" style="color: #8692A6;">ABOUT</a>
+            <a class="nav-link" href="../about/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ABOUT</a>
           </li>
           <li class="nav-item">
             <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
@@ -217,7 +217,7 @@
 
   <script>
     function profileClick() {
-      window.location.href = "../profile/";
+      window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
     }
   </script>
 
@@ -386,7 +386,7 @@
         document.querySelectorAll('.detail-button').forEach(button => {
           button.addEventListener('click', function () {
             var itemId = this.getAttribute('data-id');
-            window.location.href = `../orders/tambah_ulasan/index.php?id_produk=${itemId}`;
+            window.location.href = `../orders/tambah_ulasan/index.php?id_produk=${itemId}&id=<?php echo htmlspecialchars($_GET['id']); ?>`;
           });
         });
       })

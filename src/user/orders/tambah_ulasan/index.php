@@ -92,7 +92,7 @@
     <div
         style="display: flex; flex-direction: column; max-width: 100%; height: auto; padding-left: 46px; padding-right: 46px; padding-top: 46px;">
 
-        <a href="../../orders/index.html"
+        <a href="../../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"
             style="text-decoration: none; color: #8692A6; font-size: 18px; font-weight: bold;">
             <span><img src="../../../login/user/res/arrow_back_ios_24px.png" alt="arrow"> Back</span>
         </a>
