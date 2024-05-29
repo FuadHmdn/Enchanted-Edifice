@@ -217,7 +217,7 @@
 
   <script>
     function profileClick() {
-      window.location.href = "../profile/";
+      window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
     }
   </script>
 
@@ -386,7 +386,7 @@
         document.querySelectorAll('.detail-button').forEach(button => {
           button.addEventListener('click', function () {
             var itemId = this.getAttribute('data-id');
-            window.location.href = `../orders/tambah_ulasan/index.php?id_produk=${itemId}`;
+            window.location.href = `../orders/tambah_ulasan/index.php?id_produk=${itemId}&id=<?php echo htmlspecialchars($_GET['id']); ?>`;
           });
         });
       })
