@@ -1,3 +1,13 @@
+<?php
+
+include "database/koneksi.php";
+
+// Ambil data pengguna
+$sql = "SELECT * FROM orders_customers";
+$result = $conn->query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,6 +231,69 @@ header {
 .sales-details h3 {
     margin-bottom: 20px;
 }
+h1 {
+    padding: 20px;
+}
+
+
+.order-list {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.order-list table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+.order-list table th, .order-list table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-list table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #333;
+}
+
+.order-list table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.processing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.canceled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.pagination {
+    padding: 15px;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
 </style>
 <body>
     <div class="container">
@@ -230,8 +303,9 @@ header {
             </div>
             <nav>
                 <ul>
-                    <li class="active"><a href="#">Dashboard</a></li>
-                    <li><a href="adminorderlist.html">Order List</a></li>
+                    
+                    <li><a href="adminhome.html">Dashboard</a></li>
+                    <li class="active"><a href="adminorderlist.html">Order List</a></li>
                     <li><a href="#">Notifications</a></li>
                     <li class="section-title">USER</li>
                     <li><a href="#">Customer</a></li>
@@ -261,34 +335,74 @@ header {
                     </div>
                 </div>
             </header>
-            <div class="dashboard">
-                <div class="overview-cards">
-                    <div class="card">
-                        <h3>Total User</h3>
-                        <p>40,689</p>
-                        <p class="percentage up">8.5% Up from yesterday</p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Order</h3>
-                        <p>10,293</p>
-                        <p class="percentage up">1.3% Up from past week</p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Sales</h3>
-                        <p>$89,000</p>
-                        <p class="percentage down">4.3% Down from yesterday</p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Cancel Orders</h3>
-                        <p>2040</p>
-                        <p class="percentage up">1.8% Up from yesterday</p>
-                    </div>
-                </div>
-                <div class="sales-details">
-                    <h3>Sales Details</h3>
-                    <canvas id="salesChart"></canvas>
+
+            <h1>Order List</h1>
+            <div class="container">
+                <h1>Order Lists</h1>
+                <div class="order-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Pesanan</th>
+                                <th>ID Customer</th>
+                                <th>ID Produk</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Tanggal Keluar</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Database connection
+                            $conn = new mysqli('localhost', 'username', 'password', 'database');
+        
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+        
+                            $sql = "SELECT id_pesanan, id_customer, id_produk, tanggal_masuk, tanggal_keluar, status FROM orders";
+                            $result = $conn->query($sql);
+        
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>
+                                            <td>{$row['id_pesanan']}</td>
+                                            <td>{$row['id_customer']}</td>
+                                            <td>{$row['id_produk']}</td>
+                                            <td>{$row['tanggal_masuk']}</td>
+                                            <td>{$row['tanggal_keluar']}</td>
+                                            <td class='status {$row['status']}'>{$row['status']}</td>
+                                            <td>
+                                                <button onclick='editOrder({$row['id_pesanan']})'>Edit</button>
+                                                <button onclick='deleteOrder({$row['id_pesanan']})'>Delete</button>
+                                            </td>
+                                        </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='7'>No orders found</td></tr>";
+                            }
+        
+                            $conn->close();
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+                <div class="pagination">
+                    <span>Showing 1-9 of 78</span>
+                </div>
+            </div>
+
+            
+
+
+
+
+
+
+        
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
