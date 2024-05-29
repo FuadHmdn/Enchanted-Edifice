@@ -346,7 +346,7 @@
                                                     style="font-family: 'Montserrat', sans-serif; color: #06ac00;">${item.harga}</span></span>
                                             </p>
                                             <button type="button" class="btn btn-primary"
-                                                style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;">Cek
+                                                style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;" onclick="window.location.href='detail.html'">Cek
                                                 Detail</button>
                                         </div>
                                     </div>
