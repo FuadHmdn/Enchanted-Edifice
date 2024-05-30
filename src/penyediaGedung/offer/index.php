@@ -286,10 +286,10 @@ mysqli_close($connection);
                 .then(data => {
                   var itemContent = `
                     <div style="display: flex; flex-direction: column; width: 100%;">
-                      <div style="display: flex; align-items: center; flex-direction: row; width: 100%; justify-content: space-between; padding: 20px;">
+                      <div style="display: flex; align-items: center; flex-direction: row; width: 100%; justify-content: space-around; padding: 20px;">
                         <img src="${item.gambar}" alt="contoh" style="width: 270px; height: 190px; border-radius: 15px;">
                         <div style="display: flex; flex-direction: column;">
-                          <p style="font-weight: 600; font-size: 26px;">${item.judul}</p>
+                          <p style="font-weight: 600; font-size: 22px;">${item.judul}</p>
                           <p style="margin-top: 0; font-weight: 400; font-size: 14px;">Kategori : ${item.kategori}</p>
                           <p style="margin-top: 0; font-weight: 400; font-size: 14px;">Kapasitas : ${item.kapasitas}</p>
                           <p style="margin-top: 0; font-weight: 500; font-size: 18px;">mulai <span style="font-size: 26px; font-weight: 600;">Rp.<span style="color: #06ac00;">${item.harga}</span></span></p>
@@ -309,7 +309,12 @@ mysqli_close($connection);
                         <span class="close">&times;</span>
                         <h2>Edit Gedung</h2>
                         <form id="editForm" action="../../database/penyedia_gedung/update.php" method="post" enctype="multipart/form-data">
-                          <input type="hidden" name="id" value="${item.id_produk}" id="id">
+                          <input type="hidden" name="id_pelanggan" value="<?php echo htmlspecialchars($_GET['id']); ?>" id="id_pelanggan">
+
+                          <div class="form-group">
+                            <label for="id_produk">Id Produk:</label>
+                            <input readonly type="text" name="id_produk" value="${item.id_produk}" id="id_produk" required>
+                          </div>
 
                           <div class="form-group">
                             <label for="title">Judul:</label>
@@ -323,7 +328,7 @@ mysqli_close($connection);
 
                           <div class="form-group">
                             <label for="description">Deskripsi:</label>
-                            <textarea name="description" value="${item.deskripsi}" id="description" required></textarea>
+                            <textarea name="description" id="description" required>${item.deskripsi}</textarea>
                           </div>
 
                           <div class="form-group">
@@ -334,11 +339,6 @@ mysqli_close($connection);
                           <div class="form-group">
                             <label for="capacity">Kapasitas:</label>
                             <input type="text" name="capacity" value="${item.kapasitas}" id="capacity" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="image">Gambar:</label>
-                            <input type="file" name="image" value="${item.gambar}" id="image">
                           </div>
 
                           <input type="submit" name="submit" value="Update">
