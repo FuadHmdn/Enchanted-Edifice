@@ -386,10 +386,11 @@ h1 {
                 <div class="pagination">
                 <span>Showing 1-9 of 78</span>
             </div>
-                    -->
+                    --> 
         </div>
     </main>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
 </body>
