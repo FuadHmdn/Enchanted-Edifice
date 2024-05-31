@@ -256,25 +256,25 @@
     <div class="content-wrapper">
       <div class="container">
         <div class="icon-section">
-          <a href="index2.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index2.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-pencil"></i>
               </div>
               <div class="icon-text">Description</div>
           </div> </a>
-          <a href="index3.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-list"></i>
               </div>
               <div class="icon-text">Categories</div>
           </div> </a>
-          <a href="index4.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index4.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-camera"></i>
               </div>
               <div class="icon-text">Photos</div>
           </div></a>
-          <a href="index5.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index5.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-megaphone"></i>
               </div>
@@ -879,7 +879,7 @@
         </div>         
     </div>
         </div>
-        <a href="index4.html"><div class="next-button">
+        <a href="index4.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="next-button">
             <button disabled onclick="nextStep()">Next →</button>
         </div></a>
         </div>
@@ -960,19 +960,12 @@
         <div
             style="width: 424px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
             <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
-                <a class="nav-link" href="../home/"
-                    style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
-                <a class="nav-link active" aria-current="page" href="../offer/"
-                    style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
-                <a class="nav-link" href="../order/"
-                    style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
-                <a class="nav-link" href="../review/"
-                    style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
-                <a class="nav-link" href="../salary/"
-                    style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
-                    <div
-                        style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">
-                        SALARY</div>
+                <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
+                <a class="nav-link active" aria-current="page" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
+                <a class="nav-link" href="../order/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
+                <a class="nav-link" href="../review/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
+                <a class="nav-link" href="../salaryi/ndex.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
+                    <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
                 </a>
             </div>
         </div>

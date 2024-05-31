@@ -155,10 +155,10 @@
                         <a class="nav-link" href="../order/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../review/" style="color: #8692A6;">REVIEW</a>
+                        <a class="nav-link" href="../review/index.html??id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">REVIEW</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../salary/" style="color: #8692A6;">SALARY</a>
+                        <a class="nav-link" href="../salary/?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
                     </li>
                     <li class="nav-item">
                         <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
@@ -408,5 +408,4 @@
         }
     </script>
 </body>
-
 </html>

@@ -89,7 +89,7 @@
         }
 
         .icon-text {
-            margin-top: 10px;
+            margin-top: 10px; /* Add some space between icon and text */
             color: #3B527E;
         }
 
@@ -115,21 +115,6 @@
             color: white;
         }
 
-        .icon-container .checkmark {
-            position: absolute;
-            bottom: 55px;
-            right: 23px;
-            width: 20px;
-            height: 20px;
-            background-color: #4CAF50;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 14px;
-        }
-
         .icon-section::before {
             content: '';
             position: absolute;
@@ -151,52 +136,109 @@
             display: none;
         }
 
-        .central-image {
+        .upload-container {
+            width: 80%;
+            max-width: 1200px;
+            border: 4px dashed #5b668d;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff00;
+            margin-top: 300px;
+            margin-left: 129px;
+        }
+        .upload-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .upload-header h1 {
+            margin: 0;
+            font-size: 23px;
+            font-family: sans-serif;
+            font-weight: 800px;
+        }
+        .photo-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .photo-grid .photo {
+            width: calc(25% - 10px);
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: filter 0.5s;
+        }
+        .photo-grid .photo img {
+            width: 100%;
+            display: block;
+        }
+        .photo-grid .photo .progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-color: #e0e0e0;
+        }
+        .photo-grid .photo .progress .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #4caf50;
+            transition: width 0.5s;
+        }
+        .photo-grid .photo .delete-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: red;
+            cursor: pointer;
+        }
+        .upload-btn {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            width: 25%;
+            height: 200px;
+            border: 2px dashed #5c618d;
+            border-radius: 10px;
+            cursor: pointer;
             text-align: center;
-            margin-top: 270px;
-        }
-
-        .central-image img {
-            width: 400px;
-            height: auto;
-        }
-
-        .central-image p {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #3B527E;
-        }
-
-        .central-image .button-container {
-            margin-top: 20px;
-        }
-
-        .central-image .button-container a {
-            text-decoration: none;
-            padding: 10px 20px;
-            background-color: #3B527E;
-            color: white;
-            border-radius: 5px;
             transition: background-color 0.3s;
         }
-
-        .central-image .button-container a:hover {
-            background-color: #8facd3;
+        .upload-btn:hover {
+            background-color: #8f9daa9e;
         }
-
-        .central-image .return-link {
-            margin-top: 10px;
-            color: #2b487d;
-            text-decoration: none;
+        .upload-btn input {
+            display: none;
         }
-
-        .central-image .return-link:hover {
-            text-decoration: underline;
-            margin-top: 10px;
+        .next-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background: #D3E3FF;
+            color: #3B527E;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: not-allowed;
+            transition: background-color 0.3s;
+            margin-top: 2690px;
+            margin-left: 139px;
+            width: 199px; 
+            height: 60px;
+        }
+        .next-btn.active {
+            background-color: #5b729d;
+            color: #D3D6DB;
+            cursor: pointer;
+        }
+        .next-btn.active:hover {
+            background-color: #2A3B5E;
+            color: #D3D6DB;
         }
 
   </style>
@@ -221,48 +263,52 @@
     <div class="content-wrapper">
       <div class="container">
         <div class="icon-section">
-          <a href="index2.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index2.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-pencil"></i>
-                  <div class="checkmark">&#10003;</div>
               </div>
               <div class="icon-text">Description</div>
           </div> </a>
-          <a href="index3.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-list"></i>
-                  <div class="checkmark">&#10003;</div>
               </div>
               <div class="icon-text">Categories</div>
           </div> </a>
-          <a href="index4.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index4.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-camera"></i>
-                  <div class="checkmark" style="right: 9px;">&#10003;</div>
               </div>
               <div class="icon-text">Photos</div>
           </div></a>
-          <a href="index5.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index5.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-megaphone"></i>
-                  <div class="checkmark"style="right: 6px;">&#10003;</div>
               </div>
               <div class="icon-text">Package</div>
-          </div></a>
-        </div>
-        <div class="central-image">
-            <img src="../offer/res/Frame.png">
-            <p>Your advertisment was succesfully added!</p>
-            <div class="button-container">
-                <a href="index.php">View your advertisement</a>
+          </div>
+        </div></a>
+        <div class="upload-container">
+            <div class="upload-header">
+                <h1>Add offer photos (max 10)</h1>
+                <span>Max size - 25Mb. Jpg, Png, Jpeg</span>
             </div>
-            <a class="return-link" href="../home/index.php">Return to previous page </a>
+            <div class="photo-grid">
+                <label class="upload-btn">
+                    <i class="fas fa-upload" style="font-size: 40px; color: #007bff;"></i>
+                    <span>Upload a photo</span>
+                    <input type="file" accept="image/*" multiple>
+                </label>
+            </div>
         </div>
     </div>
-  </div>
-
-  <!-- BOTTOM BAR -->
-  <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+        
+    <a href="index5.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">
+        <button class="next-btn" disabled>Next →</button>
+    </a>
+</div>
+    <!-- BOTTOM BAR -->
+    <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
         <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
@@ -323,11 +369,11 @@
       </div>
       <div style="width: 424px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
         <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
-            <a class="nav-link" href="../home/" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
-            <a class="nav-link active" aria-current="page" href="../offer/" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
-            <a class="nav-link" href="../order/" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
-            <a class="nav-link" href="../review/" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
-            <a class="nav-link" href="../salary/" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
+            <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
+            <a class="nav-link active" aria-current="page" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
+            <a class="nav-link" href="../order/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
+            <a class="nav-link" href="../review/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
+            <a class="nav-link" href="../salaryi/ndex.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
                 <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
             </a>
         </div>
@@ -360,19 +406,91 @@
     </div>
   </div>
 
-<script>  
-    document.getElementById('title').maxLength = 60;
-    document.getElementById('description').maxLength = 1200;
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>   
+<script>
+    document.querySelector('.upload-btn input').addEventListener('change', function(event) {
+    const files = event.target.files;
+    const photoGrid = document.querySelector('.photo-grid');
+    const nextBtn = document.querySelector('.next-btn');
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const photoDiv = document.createElement('div');
+            photoDiv.classList.add('photo');
+            photoDiv.style.filter = 'blur(5px)';
+
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            photoDiv.appendChild(img);
+
+            const deleteIcon = document.createElement('i');
+            deleteIcon.classList.add('fas', 'fa-times', 'delete-icon');
+            deleteIcon.onclick = function() {
+                photoDiv.remove();
+                updateNextButton();
+            };
+            photoDiv.appendChild(deleteIcon);
+
+            const progressDiv = document.createElement('div');
+            progressDiv.classList.add('progress');
+
+            const progressBar = document.createElement('div');
+            progressBar.classList.add('progress-bar');
+            progressDiv.appendChild(progressBar);
+
+            photoDiv.appendChild(progressDiv);
+            photoGrid.appendChild(photoDiv);
+
+            // Simulate upload progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = `${progress}%`;
+                photoDiv.style.filter = `blur(${5 - (progress / 20)}px)`;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    progressDiv.remove();
+                }
+            }, 200);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    updateNextButton();
+});
+    function updateNextButton() {
+        const nextBtn = document.querySelector('.next-btn');
+        const photos = document.querySelectorAll('.photo-grid .photo');
+        
+        if (photos.length > 0) {
+            nextBtn.classList.add('active');
+            nextBtn.disabled = false;
+        } else {
+            nextBtn.classList.remove('active');
+            nextBtn.disabled = true;
+        }
+    }
+
+
+  document.getElementById('title').maxLength = 60;
+  document.getElementById('description').maxLength = 1200;
+
+  function setActive(element) {
+            document.querySelectorAll('.icon').forEach(icon => {
+                icon.classList.remove('active');
+                icon.classList.add('inactive');
+            });
+            element.classList.remove('inactive');
+            element.classList.add('active');
+        }
+  </script>
   
-    function setActive(element) {
-              document.querySelectorAll('.icon').forEach(icon => {
-                  icon.classList.remove('active');
-                  icon.classList.add('inactive');
-              });
-              element.classList.remove('inactive');
-              element.classList.add('active');
-          }
-    </script>
 </body>
 </html>
-

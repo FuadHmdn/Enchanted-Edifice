@@ -35,15 +35,14 @@
       }
       .container {
           width: 100%;
-          max-width: 1440px;
+          max-width: 1335px;
           background: #E6EBF5;
           padding: 20px;
           margin-top: 20px;
           position: absolute;
-          width: 1350px; 
-          height: 840px; 
           left: 90px; 
           top: 550px;
+          min-height: 700px;
       }
       
       .icon-section {
@@ -133,90 +132,145 @@
             z-index: -1;
         }
 
-
         .icon-section .icon-container:first-child::before {
             display: none;
         }
+        .package {
+            border-bottom: 1px solid #ddd;
+            padding: 20px;
+        }
+        .package:last-child {
+            border-bottom: none;
+        }
+        .package h2 {
+            margin: 0 0 10px 0;
+        }
+        .package p {
+            margin: 5px 0;
+        }
+        .package .facilities {
+            margin-left: 20px;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .controls .left-controls {
+            display: flex;
+            align-items: center;
+        }
+        .remove-button, .add-button{
+            background-color: #6b84a8;
+            border: none;
+            font-size: large;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            margin-top: -20px;
+            cursor: pointer;
+            width: 50px;
+            align-items: center;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        .remove-button:hover {
+            background-color: #ff3737;
+        }
+        .remove-button:active {
+            background-color: #910000;
+        }
+        .add-button{
+            margin-left: 22px;
+            margin-top: 10px;
+        }
+        .add-button:hover {
+            background-color: #7facd9;
+        }
+        .add-button:active {
+            background-color: #3e8e41;
+        }
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+        }
+        .description, .facilities-container {
+            background-color: #b8d5f276;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .description p, .facilities-container ul {
+            margin: 0;
+        }
+        .facilities-container ul {
+            padding-left: 20px;
+        }
+        .post-button-container {
+            text-align: center;
+            margin-top: 2820px;
+            margin-left: 70px;
+        }
+        .post-button-container button {
+            background-color: #83a8d0;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            border-radius: 60px;
+            width: 200px;
+            transition: background-color 0.3s;
+            justify-content: center;
+        }
+        .post-button-container button:hover {
+            background-color: #264f7c;
+            color: #f5f8ff;
+        }
+        .post-button-container button:active {
+            background-color: #153b64;
+            color: #f5f8ff;
+        }
+        .modal, .confirm-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content, .confirm-modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .modal-content button, .confirm-modal-content button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .confirm-modal-content button {
+            width: 80px;
+        }
+        .confirm-modal-content button:hover {
+            background-color: #a4b6de;
+        }
+        .confirm-modal-content button:active {
+            background-color: #5e7995;
+        }
 
-      .form-section {
-          padding: 20px;
-          margin-top: 150px;
-          position: absolute;
-          left: 40px;
-      }
-      .form-section label {
-          font-weight: bold;
-          margin-bottom: 5px;
-          display: block;
-      }
-      .form-section input,
-      .form-section textarea {
-          background: white;
-          width: 100%;
-          border: 1px solid #a8b1bb;
-          padding: 10px;
-          border-radius: 5px;
-          margin-bottom: 20px;
-          font-size: 14px;
-          
-          margin-right: 200px;
-      }
 
-      .form-section textarea {
-          height: 200px;
-      }
-
-      .form-section .row {
-          display: flex;
-          justify-content: space-between;
-      }
-
-      .form-section .row div {
-          flex: 1;
-      }
-
-      .form-section .row div:last-child {
-          margin-right: 20px;
-      }
-
-      .character-count {
-          font-size: 12px;
-          color: #666;
-          text-align: left;
-          margin-top: -20px;
-          margin-bottom: 20px;
-          margin-left: 3px; ;
-      }
-
-      .form-section .next-button {
-          text-align: center;
-          margin-top: 200px;
-      }
-
-      .form-section .next-button button {
-          background: #D3E3FF;
-          color: #3B527E;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 10px;
-          font-size: 18px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color 0.3s, color 0.3s;
-          width: 199px; 
-          height: 60px;
-      }
-
-      .form-section .next-button button:hover,
-      .form-section .next-button button:focus {
-          background: #3B527E;
-          color: white;
-      }
-
-      .form-section .next-button button:active {
-          background: #2A3B5E;
-          color: white;
-      }
 
   </style>
 
@@ -240,71 +294,127 @@
     <div class="content-wrapper">
       <div class="container">
         <div class="icon-section">
-          <a href="index2.html"><div class="icon-container active" onclick="setActive(this)">
+          <a href="index2.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-pencil"></i>
               </div>
               <div class="icon-text">Description</div>
           </div> </a>
-          <a href="index3.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-list"></i>
               </div>
               <div class="icon-text">Categories</div>
           </div> </a>
-          <a href="index4.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index4.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container inactive" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-camera"></i>
               </div>
               <div class="icon-text">Photos</div>
           </div></a>
-          <a href="index5.html"><div class="icon-container inactive" onclick="setActive(this)">
+          <a href="index5.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"><div class="icon-container active" onclick="setActive(this)">
               <div class="icon">
                   <i class="bi bi-megaphone"></i>
               </div>
               <div class="icon-text">Package</div>
           </div>
-      </div></a>
-          <div class="form-section">
-            <h4 style="font-weight: bold;">Fill in the basic information about your item <br> <br></h4>
-            
-            <label for="title">Title</label>
-            <input type="text" id="title" placeholder="Title" value="Grand Indonesia Ballroom" oninput="updateCharacterCount('title', 'title-count')">
-            <div id="title-count" class="character-count">38/60</div>
-    
-            <label for="description">Description</label>
-            <textarea id="description" placeholder="Description" oninput="updateCharacterCount('description', 'description-count')">Capacity: The ballroom boasts a spacious area capable of accommodating up to 1000 guests in a banquet-style setup or up to 1500 guests in a theater-style arrangement. This ample space provides flexibility for hosting events of different scales.
-    Facilities: Equipped with modern audiovisual equipment, including sound systems, projectors, and screens, the ballroom ensures seamless presentations and entertainment during events. Additionally, professional lighting setups enhance the ambiance and create a captivating atmosphere for guests.
-    Services: The dedicated event management team at Grand Indonesia Hotel provides personalized assistance to ensure the success of every event. From event planning and coordination to catering services, the team is committed to delivering impeccable service and exceeding clients' expectations.
-    Location: Situated in the heart of Jakarta's central business district, Grand Indonesia Ballroom offers convenience and accessibility for both local and international guests. With its strategic location and luxurious amenities, it serves as an elegant venue choice for unforgettable events.</textarea>
-            <div id="description-count" class="character-count">322/1200</div>
-    
-            <div class="row">
-                <div>
-                    <label for="length">Length [m]</label>
-                    <input type="number" id="length" placeholder="Length [m]">
+        </div></a>
+        <div class="package" style="margin-top: 199px;">
+            <div class="controls">
+                <div class="left-controls">
+                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
+                    <h2>Wedding Venue Package</h2>
                 </div>
-                <div>
-                    <label for="width">Width [m]</label>
-                    <input type="number" id="width" placeholder="Width [m]">
-                </div>
-                <div>
-                    <label for="height">Height [m]</label>
-                    <input type="number" id="height" placeholder="Height [m]">
-                </div>
+                <div class="price">Rp 90.000.000,-</div>
             </div>
-    
-            <label for="price">Price</label>
-            <input type="text" id="price" placeholder="Product price in PLN (gross)">
-    
-            <a href="index3.html">
-              <div class="next-button">
-                <button onclick="nextStep()">Next →</button>
+            <div class="description">
+                <p><strong>Desc:</strong></p>
+                <p>Capacity: Accommodates up to 300 guests in a banquet-style setup.</p>
             </div>
-          </a>
+            <div class="facilities-container">
+                <p><strong>Facilities:</strong></p>
+                <ul class="facilities">
+                    <li>Exclusive use of the main ballroom for 8 hours.</li>
+                    <li>Decorative lighting and sound system.</li>
+                    <li>Bridal suite for the newlyweds.</li>
+                    <li>Dedicated event coordinator.</li>
+                    <li>Customization menu options with complimentary food tasting.</li>
+                </ul>
+            </div>
         </div>
+        <div class="package">
+            <div class="controls">
+                <div class="left-controls">
+                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
+                    <h2>Romantic Engagement Package</h2>
+                </div>
+                <div class="price">Rp 25.000.000,-</div>
+            </div>
+            <div class="description">
+                <p><strong>Desc:</strong></p>
+                <p>Capacity: Accommodates up to 50 guests in an intimate setting.</p>
+            </div>
+            <div class="facilities-container">
+                <p><strong>Facilities:</strong></p>
+                <ul class="facilities">
+                    <li>Use of a private banquet room for 4 hours.</li>
+                    <li>Elegant decor with romantic lighting.</li>
+                    <li>Personalized engagement cake.</li>
+                    <li>Champagne toast for the couple.</li>
+                    <li>Customized menu options with hors d'oeuvres and beverages.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="left-controls">
+                <button class="add-button" onclick="showAddPackageForm()">+</button>
+                <span>Package</span>
+            </div>
         </div>
     </div>
+    <div class="post-button-container">
+        <button class="post" onclick="confirmUpload()">Post</button>
+    </div>
+
+    <div class="modal" id="addPackageModal" >
+        <div class="modal-content" style="max-width: 800px;">
+            <h2>Add Package</h2>
+            <input type="text" id="packageTitle" placeholder="Title">
+            <textarea id="packageDesc" placeholder="Description"></textarea>
+            <textarea id="packageFacilities" placeholder="Facilities"></textarea>
+            <input type="text" id="packagePrice" placeholder="Price">
+            <button onclick="addPackage()">Add</button>
+            <button onclick="hideAddPackageForm()">Cancel</button>
+        </div>
+    </div>
+
+    <div class="confirm-modal" id="confirmDeletionModal">
+        <div class="confirm-modal-content">
+            <p>Are you sure you want to delete this package?</p>
+            <p>Please do not close this page</p>
+            <button onclick="deletePackage()">Yes</button>
+            <button onclick="hideDeletionModal()">No</button>
+        </div>
+    </div>
+
+    <div class="confirm-modal" id="confirmUploadModal">
+        <div class="confirm-modal-content">
+            <p>Are you sure you want to upload this offer?</p>
+            <p>Please do not close this page</p>
+            <button onclick="uploadOffer()">Yes</button>
+            <button onclick="hideUploadModal()">No</button>
+        </div>
+    </div>
+
+    <div class="confirm-modal" id="successModal">
+        <div class="confirm-modal-content">
+            <p>Your offer has been successfully uploaded!</p>
+            <button onclick="goToNextPage()">OK</button>
+        </div>
+    </div>
+
+    </div>
+</div>
     <!-- BOTTOM BAR -->
     <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
@@ -367,11 +477,11 @@
       </div>
       <div style="width: 424px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
         <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
-            <a class="nav-link" href="../home/" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
-            <a class="nav-link active" aria-current="page" href="../offer/" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
-            <a class="nav-link" href="../order/" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
-            <a class="nav-link" href="../review/" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
-            <a class="nav-link" href="../salary/" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
+            <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
+            <a class="nav-link active" aria-current="page" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
+            <a class="nav-link" href="../order/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
+            <a class="nav-link" href="../review/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
+            <a class="nav-link" href="../salaryi/ndex.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
                 <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
             </a>
         </div>
@@ -403,14 +513,80 @@
       <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Store</div>
     </div>
   </div>
-
-  
+ 
 <script>
-  function updateCharacterCount(elementId, countId) {
-      var element = document.getElementById(elementId);
-      var countElement = document.getElementById(countId);
-      countElement.textContent = 'Characters: ' + element.value.length + '/' + element.maxLength;
-  }
+        let packageToDelete;
+
+    function showAddPackageForm() {
+        document.getElementById('addPackageModal').style.display = 'flex';
+    }
+
+    function hideAddPackageForm() {
+        document.getElementById('addPackageModal').style.display = 'none';
+    }
+
+    function addPackage() {
+        const title = document.getElementById('packageTitle').value;
+        const desc = document.getElementById('packageDesc').value;
+        const facilities = document.getElementById('packageFacilities').value;
+        const price = document.getElementById('packagePrice').value;
+
+        const newPackage = document.createElement('div');
+        newPackage.classList.add('package');
+        newPackage.innerHTML = `
+            <div class="controls">
+                <div class="left-controls">
+                    <button class="remove-button" onclick="confirmDeletion(this)">-</button>
+                    <h2>${title}</h2>
+                </div>
+                <div class="price">${price}</div>
+            </div>
+            <div class="description">
+                <p><strong>Desc:</strong></p>
+                <p>${desc}</p>
+            </div>
+            <div class="facilities-container">
+                <p><strong>Facilities:</strong></p>
+                <p>${facilities}</p>
+            </div>
+        `;
+
+        document.querySelector('.container').insertBefore(newPackage, document.querySelector('.controls:last-child'));
+            hideAddPackageForm();
+        }
+
+        function confirmDeletion(button) {
+            packageToDelete = button.parentElement.parentElement.parentElement;
+            document.getElementById('confirmDeletionModal').style.display = 'flex';
+        }
+
+        function deletePackage() {
+            packageToDelete.remove();
+            hideDeletionModal();
+        }
+
+        function hideDeletionModal() {
+            document.getElementById('confirmDeletionModal').style.display = 'none';
+        }
+
+        function confirmUpload() {
+            document.getElementById('confirmUploadModal').style.display = 'flex';
+        }
+
+        function hideUploadModal() {
+            document.getElementById('confirmUploadModal').style.display = 'none';
+        }
+
+        function uploadOffer() {
+            document.getElementById('confirmUploadModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function goToNextPage() {
+            window.location.href = 'index6.php?id=<?php echo htmlspecialchars($_GET['id']); ?>';
+        }
+
+
 
   document.getElementById('title').maxLength = 60;
   document.getElementById('description').maxLength = 1200;
@@ -424,6 +600,5 @@
             element.classList.add('active');
         }
   </script>
-  
 </body>
 </html>
