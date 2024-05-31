@@ -213,6 +213,7 @@ mysqli_close($connection);
 
   <!-- Modal detail hotel -->
   <div class="modalOverlay" id="modalOverlay"></div>
+  
   <div class="modal" id="modal">
     <p id="back" style="text-align: end; width: 100%; padding-right: 20px;">X</p>
     <div id="modalItem">
