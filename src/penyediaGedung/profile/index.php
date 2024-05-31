@@ -98,27 +98,24 @@ mysqli_close($connection);
         </div>
     </nav>
 
-    <div
-        style="display: flex; flex-direction: column; background-color: white; max-width: 40%; min-height: 300px; margin-left: 450px; margin-right: 456px; margin-top: 76px; border-radius: 40px; margin-bottom: 70px; box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.589);
-        padding-left: 100px; padding-right: 100px; padding-top: 46px; padding-bottom: 46px;">
+    
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div style="display: flex; flex-direction: column; background-color: white; width: 60%; height: auto;  margin-top: 76px; border-radius: 40px; margin-bottom: 70px; box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.589);
+            padding-left: 100px; padding-right: 100px; padding-top: 46px; padding-bottom: 46px; align-items: center;">
 
-        <div style="display: flex; flex-direction: row; justify-content: space-between; flex: 1; align-items: center; padding-bottom: 46px;">
+            <img src="../profile/res/VectorProfile.png" alt="Profile" style=" max-width: 90%; width: 120px; height: auto;">
 
-            <img src="../profile/res/VectorProfile.png" alt="Profile" style="margin-left: 145px ;max-width: 90%; align-items: center; justify-content: center; width: 120px; height: auto;">
-            
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: -30px; margin-bottom: 20px; ">
-            <div style="font-size: 22px; font-weight: 700; max-width: 100%; margin: 0;"> <?php echo $nama; ?> </div>
-            <p style="font-size: 16px; font-weight: 300; max-width: 100%; margin: 0;">Penyedia Gedung</p>
-        </div>
-
-        <a href="../../login/user/login/PenyediaGedungLogin/index.html">
-            <div style="width: 200px;">
-                <button type="button" class="btn btn-outline-danger" style="width: 300px; margin-left: 60px;">Log Out</button>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 20px; margin-top: 20px;">
+                <div style="font-size: 22px; font-weight: 700; max-width: 100%; margin: 0;"> <?php echo $nama; ?> </div>
+                <p style="font-size: 16px; font-weight: 300; max-width: 100%; margin: 0;">Penyedia Gedung</p>
             </div>
-        </a>
+
+            <a href="../../login/user/login/PenyediaGedungLogin/index.html" style="align-items: center;">
+                <button type="button" class="btn btn-outline-danger" style="max-width: 100%; width: 300px; align-self: center;">Log Out</button>
+            </a>
+        </div>
     </div>
+
 
     <!-- BOTTOM BAR -->
     <div

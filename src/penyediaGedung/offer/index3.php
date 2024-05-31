@@ -943,20 +943,14 @@
                 </div>
             </div>
         </div>
-        <div
-            style="width: 80px; height: 41px; left: 1260px; top: 30px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-            <div style="width: 80px; height: 41px; position: relative">
-                <img style="width: 23px; height: 23px; left: 44px; top: 9px; position: absolute; "
-                    src="../offer/res/🦆 icon _User Circle_.png">
-                <div
-                    style="width: 29px; height: 29px; padding-left: 3.62px; padding-right: 3.62px; padding-top: 7.25px; padding-bottom: 7.25px; left: 8px; top: 6px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                    <img style="width: 21.75px; height: 14.50px;" src="../offer/res/material-symbols_menu.png">
-                </div>
-                <div
-                    style="width: 80px; height: 41px; left: 0px; top: 0px; position: absolute; border-radius: 15px; border: 2px white solid">
-                </div>
-            </div>
+    <button onclick="profileClick()" class="btn btn-outline-secondary" style="width: 80px; height: 41px; left: 1250px; top: 30px; position: absolute; justify-content: center; align-items: center; display: inline-flex; border: 20px">
+        <img style="width: 23px; height: 23px; left: 44px; top: 9px; position: absolute; " src="../offer/res/🦆 icon _User Circle_.png">
+        <div style="width: 29px; height: 29px; padding-left: 3.62px; padding-right: 3.62px; padding-top: 7.25px; padding-bottom: 7.25px; left: 8px; top: 6px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+          <img style="width: 21.75px; height: 14.50px;" src="../offer/res/material-symbols_menu.png">
         </div>
+        <div style="width: 80px; height: 41px; top: 0px; position: absolute; border-radius: 15px; border: 2px white solid">
+        </div>
+    </button>
         <div
             style="width: 424px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
             <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
@@ -1181,6 +1175,12 @@
             });
             element.classList.remove('inactive');
             element.classList.add('active');
+        }
+    </script>
+    
+    <script>
+        function profileClick() {
+            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
         }
     </script>
 
