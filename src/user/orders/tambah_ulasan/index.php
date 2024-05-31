@@ -88,54 +88,53 @@
 </head>
 
 <body>
+<div style="display: flex; flex-direction: column; max-width: 100%; height: auto; padding-left: 46px; padding-right: 46px; padding-top: 46px;">
 
-    <div
-        style="display: flex; flex-direction: column; max-width: 100%; height: auto; padding-left: 46px; padding-right: 46px; padding-top: 46px;">
+<a href="../../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="text-decoration: none; color: #8692A6; font-size: 18px; font-weight: bold;">
+    <span><img src="../../../login/user/res/arrow_back_ios_24px.png" alt="arrow"> Back</span>
+</a>
 
-        <a href="../../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>"
-            style="text-decoration: none; color: #8692A6; font-size: 18px; font-weight: bold;">
-            <span><img src="../../../login/user/res/arrow_back_ios_24px.png" alt="arrow"> Back</span>
-        </a>
+<div style="background-color: white; width: 100%; margin-left: 16px; margin-right: 16px; margin-top: 36px; padding: 16px; border-radius: 25px; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.450);">
+    <form id="review-form" action="../../../database/custommer/submitReview.php" method="post">
 
-        <div
-            style="background-color: white; width: 100%; margin-left: 16px; margin-right: 16px; margin-top: 36px; padding: 16px; border-radius: 25px; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.450);">
-            <form action="../../../database/custommer/submitReview.php" method="post">
+        <input type="hidden" name="id_produk" value="<?php echo htmlspecialchars($_GET['id_produk']); ?>">
+        <input type="hidden" name="id_custommer" value="<?php echo htmlspecialchars($_GET['id']); ?>">
 
-                <input type="hidden" name="id_produk" value="<?php echo htmlspecialchars($_GET['id_produk']); ?>">
-                <!-- Pesan Dan Button -->
-                <div class="form-group" style="display: flex; flex-direction: column;">
-                    <!-- TextField Pesan -->
-                    <label for="message" class="form-label" style="font-weight: 600;">Pesan</label>
-                    <textarea id="message" class="form-control" name="message" rows="5" cols="50"
-                        placeholder="Type your message here..." maxlength="500"
-                        style="background-color: #e9ebee; border-radius: 20px; padding: 10px;"></textarea>
+        <!-- Pesan Dan Button -->
+        <div class="form-group" style="display: flex; flex-direction: column;">
+            <!-- TextField Pesan -->
+            <label for="message" class="form-label" style="font-weight: 600;">Pesan</label>
+            <textarea id="message" class="form-control" name="message" rows="5" cols="50"
+                placeholder="Type your message here..." maxlength="500"
+                style="background-color: #e9ebee; border-radius: 20px; padding: 10px;"></textarea>
 
-                    <div class="rating">
-                        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                    </div>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
 
-                    <input id="submit-button" type="submit" value="SEND MESSAGE">
-                </div>
-            </form>
+            <input id="submit-button" type="submit" value="SEND MESSAGE">
         </div>
+    </form>
+</div>
 
-        <div id="review" style="margin-top: 30px;">
-        </div>
+<div id="review" style="margin-top: 30px;"></div>
+
+</div>
 
 
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
 
     <script>
         // Menemukan elemen kontainer
         var menuReviewContainer = document.getElementById("review");
+        var form = document.getElementById("review-form");
+        var id_produk = "<?php echo htmlspecialchars($_GET['id_produk']); ?>";
 
         // Fungsi untuk menghasilkan bintang berdasarkan rating
         function generateStarRating(rating) {
@@ -146,28 +145,69 @@
             return stars;
         }
 
-        fetch(`http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getReview.php?id_produk=<?php echo htmlspecialchars($_GET['id_produk']); ?>`)
+        function fetchReviews() {
+            fetch(`../../../database/custommer/getReview.php?id_produk=${id_produk}`)
+                .then(response => response.json())
+                .then(data => {
+                    menuReviewContainer.innerHTML = ''; // Clear existing reviews
+                    // Membuat elemen untuk setiap item dalam data
+                    data.forEach(function (item) {
+                        var itemContainer = document.createElement("div");
+                        itemContainer.classList.add("review-bg");
+
+                        var content = `<div class="review-list">
+                                        <p style="font-weight: bold; font-size: 18px;">User Review</p>
+                                        <p style="margin: 10px 0; font-size: 16px; font-family: 'Lato', sans-serif;">"${item.komentar}"</p>
+                                        <div style="display: flex; max-width: 100%;">
+                                            <span style="color: gold; font-size: 40px;">${generateStarRating(item.rating)}</span>
+                                        </div>
+                                    </div>`;
+
+                        itemContainer.innerHTML = content;
+                        itemContainer.style.marginBottom = "20px";
+                        menuReviewContainer.appendChild(itemContainer);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
             .then(response => response.json())
             .then(data => {
-                // Membuat elemen untuk setiap item dalam data
-                data.forEach(function (item) {
-                    var itemContainer = document.createElement("div");
-                    itemContainer.classList.add("review-bg");
-
-                    var content = `<div class="review-list">
-                                    <p style="font-weight: bold; font-size: 18px;">User Review</p>
-                                    <p style="margin: 10px 0; font-size: 16px; font-family: 'Lato', sans-serif;">"${item.komentar}"</p>
-                                    <div style="display: flex; max-width: 100%;">
-                                        <span style="color: gold; font-size: 40px;">${generateStarRating(item.rating)}</span>
-                                    </div>
-                                </div>`;
-
-                    itemContainer.innerHTML = content;
-                    itemContainer.style.marginBottom = "20px";
-                    menuReviewContainer.appendChild(itemContainer);
-                });
+                if (data.message) {
+                    alert(data.message);
+                }
+                addNewReview(formData.get('message'), formData.get('rating')); // Add new review to the top
             })
             .catch(error => console.error('Error:', error));
+        });
+
+        function addNewReview(message, rating) {
+            var itemContainer = document.createElement("div");
+            itemContainer.classList.add("review-bg");
+
+            var content = `<div class="review-list">
+                            <p style="font-weight: bold; font-size: 18px;">User Review</p>
+                            <p style="margin: 10px 0; font-size: 16px; font-family: 'Lato', sans-serif;">"${message}"</p>
+                            <div style="display: flex; max-width: 100%;">
+                                <span style="color: gold; font-size: 40px;">${generateStarRating(rating)}</span>
+                            </div>
+                        </div>`;
+
+            itemContainer.innerHTML = content;
+            itemContainer.style.marginBottom = "20px";
+            menuReviewContainer.insertBefore(itemContainer, menuReviewContainer.firstChild);
+        }
+
+        // Initial fetch of reviews
+        fetchReviews();
     </script>
 
 </body>

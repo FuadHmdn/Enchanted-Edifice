@@ -1,41 +1,41 @@
 <?php
 require_once('../koneksi.php');
 
-if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil data dari form
-    $id_produk = $_POST['id_produk'];
+    $id_produk = intval($_POST['id_produk']);
+    $id_custommer = intval($_POST['id_custommer']);
     $message = $_POST['message'];
-    $rating = $_POST['rating'];
-    
-    // Cek apakah id_produk ada di tabel produk
-    $stmt = $connection->prepare("SELECT id_produk FROM produk WHERE id_produk = ?");
+    $rating = intval($_POST['rating']);
+
+    // Cek apakah id_produk ada di tabel produk dan ambil id_penyedia_gedung
+    $stmt = $connection->prepare("SELECT id_penyedia_gedung FROM produk WHERE id_produk = ?");
     $stmt->bind_param("i", $id_produk);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // id_produk ditemukan, lanjutkan dengan insert ke review
+        $stmt->bind_result($id_penyedia_gedung);
+        $stmt->fetch();
         $stmt->close();
 
-        $stmt = $connection->prepare("INSERT INTO review (id_produk, rating, komentar) VALUES (?, ?, ?)");
-        $stmt->bind_param("iss", $id_produk, $rating, $message);
+        // Insert review ke tabel review
+        $stmt = $connection->prepare("INSERT INTO review (id_produk, id_custommer, id_penyedia_gedung, rating, komentar) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiss", $id_produk, $id_custommer, $id_penyedia_gedung, $rating, $message);
 
-        // Eksekusi prepared statement
         if ($stmt->execute()) {
-            echo "<script>alert('Review Telah Ditambahkan!'); window.location.href = '../../user/orders/tambah_ulasan/index.php?id_produk=$id_produk';</script>";
-            exit;
+            echo json_encode(array('message' => 'Review Telah Ditambahkan!'));
         } else {
-            echo "Error: " . $stmt->error;
+            echo json_encode(array('message' => 'Error: ' . $stmt->error));
         }
 
-        // Tutup prepared statement
         $stmt->close();
     } else {
-        // id_produk tidak ditemukan
-        echo "<script>alert('Produk tidak ditemukan!'); window.history.back();</script>";
+        echo json_encode(array('message' => 'Produk tidak ditemukan!'));
     }
 
-    // Tutup koneksi
     $connection->close();
+} else {
+    echo json_encode(array('message' => 'Invalid request method'));
 }
 ?>

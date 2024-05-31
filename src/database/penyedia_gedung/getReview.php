@@ -3,14 +3,16 @@
 require_once('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // Ambil dan sanitasi id_produk dari URL
-    $id_produk = isset($_GET['id_produk']) ? intval($_GET['id_produk']) : 0;
+    $id_penyedia_gedung = isset($_GET['id_penyedia_gedung']) ? intval($_GET['id_penyedia_gedung']) : 0;
 
-    if ($id_produk > 0) {
-        // Query untuk mendapatkan ulasan berdasarkan id_produk
-        $sql = "SELECT * FROM `review` WHERE id_produk = ?";
+    if ($id_penyedia_gedung > 0) {
+        $sql = "SELECT review.id, review.id_produk, review.rating, review.komentar 
+                FROM review 
+                JOIN produk ON review.id_produk = produk.id_produk
+                LEFT JOIN response ON review.id = response.id_review 
+                WHERE produk.id_penyedia_gedung = ? AND response.id_review IS NULL";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $id_produk);
+        $stmt->bind_param("i", $id_penyedia_gedung);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -26,11 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $stmt->close();
     } else {
-        echo json_encode(array('message' => 'Invalid id_produk'));
+        echo json_encode(array('message' => 'Invalid id_penyedia_gedung'));
     }
 } else {
     echo json_encode(array('message' => 'Invalid request method'));
 }
 
 $connection->close();
+
 ?>
+

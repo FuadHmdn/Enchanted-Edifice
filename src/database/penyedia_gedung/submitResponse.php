@@ -3,12 +3,13 @@
 require_once('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // Ambil dan sanitasi id_produk dari URL
     $id_produk = isset($_GET['id_produk']) ? intval($_GET['id_produk']) : 0;
 
     if ($id_produk > 0) {
-        // Query untuk mendapatkan ulasan berdasarkan id_produk
-        $sql = "SELECT * FROM `review` WHERE id_produk = ?";
+        $sql = "SELECT review.id, review.id_produk, review.rating, review.komentar 
+                FROM review 
+                LEFT JOIN response ON review.id = response.id_review 
+                WHERE review.id_produk = ? AND response.id_review IS NULL";
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("i", $id_produk);
         $stmt->execute();
@@ -33,4 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 $connection->close();
+
 ?>
