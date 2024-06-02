@@ -1,20 +1,23 @@
 <?php
 require_once('../../database/koneksi.php');
 
-$nama = 'Guest'; // Initialize the variable with a default value
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $sql = "SELECT username FROM custommer WHERE id = $id";
-
+if ($id && is_numeric($id)) {
+    $sql = "SELECT username, photo FROM custommer WHERE id = $id";
     $result = mysqli_query($connection, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $nama = $row['username'];
-        }
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nama = $row['username'];
+        $photo = $row['photo'];
+    } else {
+        echo "User not found.";
+        $photo = null;
     }
+} else {
+    echo "Invalid ID.";
+    $photo = null;
 }
 
 mysqli_close($connection);
@@ -99,8 +102,16 @@ mysqli_close($connection);
     <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
         <div style="display: flex; flex-direction: column; background-color: white; width: 60%; height: auto;  margin-top: 76px; border-radius: 40px; margin-bottom: 70px; box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.589);
             padding-left: 100px; padding-right: 100px; padding-top: 46px; padding-bottom: 46px; align-items: center;">
+            <?php if(isset($photo) && !empty($photo)): ?>
+                <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+                    <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/customer/<?php echo $photo; ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            <?php else: ?>
+                <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+                    <img src="../profile/res/VectorProfile.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            <?php endif; ?>
 
-            <img src="../profile/res/VectorProfile.png" alt="Profile" style=" max-width: 90%; width: 120px; height: auto;">
 
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 20px; margin-top: 20px;">
                 <div style="font-size: 22px; font-weight: 700; max-width: 100%; margin: 0;"> <?php echo $nama; ?> </div>

@@ -1,22 +1,27 @@
 <?php
 require_once('../../database/koneksi.php');
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-  $id = $_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-  $sql = "SELECT username FROM penyedia_gedung WHERE id = $id";
+if ($id && is_numeric($id)) {
+    $sql = "SELECT username, photo FROM penyedia_gedung WHERE id = $id";
+    $result = mysqli_query($connection, $sql);
 
-  $result = mysqli_query($connection, $sql);
-
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      $nama = $row['username'];
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nama = $row['username'];
+        $photo = $row['photo'];
+    } else {
+        echo "User not found.";
+        $photo = null;
     }
-  }
+} else {
+    echo "Invalid ID.";
+    $photo = null;
 }
+
 mysqli_close($connection);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -190,7 +195,7 @@ mysqli_close($connection);
   <div style="width: 182px; height: 182px; left: 50%; top: 350px; position: absolute; transform: translateX(-50%);">
     <div style="width: 173.47px; height: 173.47px; left: 4.26px; top: 4.26px; position: absolute">
       <div style="width: 173.47px; height: 173.47px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; overflow: hidden;">
-        <img src="../offer/res/332a995097c86d47a2177e337095f2f5 1.png" style="width: 100%; height: 100%; object-fit: cover;" />
+      <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/<?php echo $photo; ?>" style="width: 100%; height: 100%; object-fit: cover;" />
       </div>
     </div>
     <div style="width: 182px; height: 182px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; border: 7px white solid">

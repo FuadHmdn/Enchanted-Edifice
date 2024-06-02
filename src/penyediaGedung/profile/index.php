@@ -1,21 +1,28 @@
 <?php
 require_once('../../database/koneksi.php');
 
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-  $id = $_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-  $sql = "SELECT username FROM penyedia_gedung WHERE id = $id";
+if ($id && is_numeric($id)) {
+    $sql = "SELECT username, photo FROM penyedia_gedung WHERE id = $id";
+    $result = mysqli_query($connection, $sql);
 
-  $result = mysqli_query($connection, $sql);
-
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      $nama = $row['username'];
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nama = $row['username'];
+        $photo = $row['photo'];
+    } else {
+        echo "User not found.";
+        $photo = null;
     }
-  }
+} else {
+    echo "Invalid ID.";
+    $photo = null;
 }
+
 mysqli_close($connection);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +97,6 @@ mysqli_close($connection);
                         </button>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -99,8 +105,15 @@ mysqli_close($connection);
     <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
         <div style="display: flex; flex-direction: column; background-color: white; width: 60%; height: auto;  margin-top: 76px; border-radius: 40px; margin-bottom: 70px; box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.589);
             padding-left: 100px; padding-right: 100px; padding-top: 46px; padding-bottom: 46px; align-items: center;">
-
-            <img src="../profile/res/VectorProfile.png" alt="Profile" style=" max-width: 90%; width: 120px; height: auto;">
+            <?php if(isset($photo) && !empty($photo)): ?>
+                <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+                    <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/<?php echo $photo; ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            <?php else: ?>
+                <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+                    <img src="../profile/res/VectorProfile.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            <?php endif; ?>
 
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 20px; margin-top: 20px;">
                 <div style="font-size: 22px; font-weight: 700; max-width: 100%; margin: 0;"> <?php echo $nama; ?> </div>

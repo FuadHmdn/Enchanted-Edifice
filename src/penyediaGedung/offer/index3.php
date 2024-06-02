@@ -1,3 +1,28 @@
+<?php
+require_once('../../database/koneksi.php');
+
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($id && is_numeric($id)) {
+    $sql = "SELECT username, photo FROM penyedia_gedung WHERE id = $id";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nama = $row['username'];
+        $photo = $row['photo'];
+    } else {
+        echo "User not found.";
+        $photo = null;
+    }
+} else {
+    echo "Invalid ID.";
+    $photo = null;
+}
+
+mysqli_close($connection);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -964,48 +989,34 @@
             </div>
         </div>
     </div>
-    <div
-        style="width: 1217px; height: 521px; left: 161px; top: 371px; position: absolute; background: rgba(133.98, 145.72, 165.75, 0.55)">
-    </div>
-    <div style="width: 25px; height: 18.75px; left: 670px; top: 688px; position: absolute">
-        <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white"></div>
+    
+    <div style="width: 1217px; height: 521px; left: 163px; top: 371px; position: absolute; background: rgba(133.98, 145.72, 165.75, 0.55)"></div>
+    <div style="width: 25px; height: 18.75px; left: 675px; top: 688px; position: absolute">
+      <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white"></div>
+      <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute">
+        <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: #D9D9D9"></div>
         <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute">
-            <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: #D9D9D9">
-            </div>
-            <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute">
-                <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white">
-                </div>
-                <div style="width: 25px; height: 9.38px; left: 0px; top: 0px; position: absolute; background: #E31D1C">
-                </div>
-            </div>
+          <div style="width: 25px; height: 18.75px; left: 0px; top: 0px; position: absolute; background: white"></div>
+          <div style="width: 25px; height: 9.38px; left: 0px; top: 0px; position: absolute; background: #E31D1C"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="width: 182px; height: 182px; left: 675px; top: 429px; position: absolute">
+      <div style="width: 173.47px; height: 173.47px; left: 2.26px; top: 4.26px; position: absolute">
+        <div style="width: 173.47px; height: 173.47px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; overflow: hidden;">
+            <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/<?php echo $photo; ?>" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
     </div>
-    <div style="width: 182px; height: 182px; left: 677px; top: 429px; position: absolute">
-        <div style="width: 173.47px; height: 173.47px; left: 4.26px; top: 4.26px; position: absolute">
-            <div
-                style="width: 173.47px; height: 173.47px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; overflow: hidden;">
-                <img src="../offer/res/332a995097c86d47a2177e337095f2f5 1.png"
-                    style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-        </div>
-        <div
-            style="width: 182px; height: 182px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; border: 7px white solid">
-        </div>
+      <div style="width: 182px; height: 182px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; border: 7px white solid" ></div>
     </div>
-    <div
-        style="left: 690px; top: 631px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 36px; font-family: Poppins; font-weight: 500; word-wrap: break-word">
-        Nabila Putri</div>
-    <div
-        style="left: 713px; top: 685px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-        Lampung, Indonesia</div>
-    <div
-        style="width: 204px; padding-left: 22px; padding-right: 22px; padding-top: 10px; padding-bottom: 10px; left: 666px; top: 752px; position: absolute; background: rgba(16.72, 56.03, 92.44, 0.88); border-radius: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-        <img src="../offer/res/🦆 icon _share_.png" style="width: 21.50px; height: 18.81px" ;>
-        <div
-            style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-            Share Store</div>
+    <div style="left: 50%; top: 628px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 36px; font-family: Poppins; font-weight: 500; word-wrap: break-word; transform: translateX(-50%);"><?php echo $nama; ?></div>
+    <div style="left: 717px; top: 685px; position: absolute; color: rgba(16.72, 56.03, 92.44, 0.88); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Lampung, Indonesia</div>
+    <div style="width: 204px; padding-left: 22px; padding-right: 22px; padding-top: 10px; padding-bottom: 10px; left: 666px; top: 746px; position: absolute; background: rgba(16.72, 56.03, 92.44, 0.88); border-radius: 10px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <img src="../offer/res/🦆 icon _share_.png" style="width: 21.50px; height: 18.81px";>
+      <div style="text-align: center; color: white; font-size: 17px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Share Store</div>
     </div>
-    </div>
+  </div>
 
 
     <script>
