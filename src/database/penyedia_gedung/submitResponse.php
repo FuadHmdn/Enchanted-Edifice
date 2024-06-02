@@ -1,38 +1,32 @@
 <?php
-
 require_once('../koneksi.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $id_produk = isset($_GET['id_produk']) ? intval($_GET['id_produk']) : 0;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Mengambil id_review, response, dan id_penyedia_gedung dari body POST
+    $id_review = isset($_POST['id_review']) ? intval($_POST['id_review']) : 0;
+    $response_text = isset($_POST['response']) ? trim($_POST['response']) : '';
+    $id_penyedia_gedung = isset($_POST['id_penyedia_gedung']) ? intval($_POST['id_penyedia_gedung']) : 0;
 
-    if ($id_produk > 0) {
-        $sql = "SELECT review.id, review.id_produk, review.rating, review.komentar 
-                FROM review 
-                LEFT JOIN response ON review.id = response.id_review 
-                WHERE review.id_produk = ? AND response.id_review IS NULL";
+    if ($id_review > 0 && !empty($response_text) && $id_penyedia_gedung > 0) {
+        // Menyiapkan query untuk menyimpan respons ke dalam database
+        $sql = "INSERT INTO response (id_review, response_text, id_penyedia_gedung) VALUES (?, ?, ?)";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $id_produk);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $response = array();
-            while ($row = $result->fetch_assoc()) {
-                $response[] = $row;
-            }
-            echo json_encode($response);
+        $stmt->bind_param("isi", $id_review, $response_text, $id_penyedia_gedung);
+        
+        // Menjalankan query dan memberikan respons sesuai dengan hasilnya
+        if ($stmt->execute()) {
+            echo json_encode(array('success' => true, 'message' => 'Response submitted successfully'));
         } else {
-            echo json_encode(array('message' => 'No data found'));
+            echo json_encode(array('success' => false, 'message' => 'Failed to submit response'));
         }
 
         $stmt->close();
     } else {
-        echo json_encode(array('message' => 'Invalid id_produk'));
+        echo json_encode(array('success' => false, 'message' => 'Invalid input data'));
     }
 } else {
-    echo json_encode(array('message' => 'Invalid request method'));
+    echo json_encode(array('success' => false, 'message' => 'Invalid request method'));
 }
 
 $connection->close();
-
 ?>
