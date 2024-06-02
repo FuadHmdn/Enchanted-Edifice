@@ -52,9 +52,8 @@ mysqli_close($connection);
 </head>
 
 <body>
-
-    <!-- NAVIGASI -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
+        <!-- NAVIGASI -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
                 <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;"
@@ -65,27 +64,25 @@ mysqli_close($connection);
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto" style="margin-right: 46px;">
                     <li class="nav-item">
-                        <a class="nav-link" href="../home/" style="color: #8692A6;">HOME</a>
+                        <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color:  #8692A6;">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../offers/" style="color: #8692A6;">OFFERS</a>
+                        <a class="nav-link" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../orders/" style="color: #8692A6;">ORDERS</a>
+                        <a class="nav-link" href="../order/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contact/" style="color: #8692A6;">CONTACT US</a>
+                        <a class="nav-link" href="../review/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">REVIEW</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../about/" style="color: #8692A6;">ABOUT</a>
+                        <a class="nav-link" href="../salary/?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
                     </li>
                     <li class="nav-item">
-                        <button onclick="profileClick()" class="btn btn-outline-secondary active"
-                            style="border-radius: 15px;">
+                        <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
                             <span class="d-inline d-sm-none">☰</span>
                             <span class="d-none d-sm-inline">
                                 <img src="../../res/profile_vector.png" alt="profile">

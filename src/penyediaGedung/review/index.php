@@ -184,9 +184,9 @@ $id_penyedia_gedung = isset($_GET['id']) ? intval($_GET['id']) : 0;
         <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
             <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">HOME</a>
             <a class="nav-link" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #ffffff; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">OFFERS</a>
-            <a class="nav-link" href="../order/index.html?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
+            <a class="nav-link" href="../order/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">ORDERS</a>
             <a class="nav-link active" aria-current="page" href="../review/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: ##95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; text-decoration: none;">REVIEW</a>
-            <a class="nav-link" href="../salaryi/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
+            <a class="nav-link" href="../salary/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
                 <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
             </a>
         </div>
@@ -231,6 +231,11 @@ $id_penyedia_gedung = isset($_GET['id']) ? intval($_GET['id']) : 0;
             return card;
         }
 
+    </script>
+    <script>
+        function profileClick() {
+            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
+        }
     </script>
 </body>
 
