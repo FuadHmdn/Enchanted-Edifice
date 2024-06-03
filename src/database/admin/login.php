@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Login berhasil
             $_SESSION['admin_id'] = $user['id'];
             $adminId = $user['id'];
-            echo "<script>alert('Login berhasil!'); window.location.href = '../../admin/adminhome.html?id=$adminId';</script>";
+            echo "<script>alert('Login berhasil!'); window.location.href = '../../admin/adminhome.php?id=$adminId';</script>";
             exit;
         } else {
             // Password salah

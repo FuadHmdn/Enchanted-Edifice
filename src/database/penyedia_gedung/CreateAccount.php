@@ -65,8 +65,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Proses upload dokumen legalitas
+    $target_dir_document = "C:/PemWeb/Enchanted-Edifice/src/penyediaGedung/doclegalitas";
+    $target_file_document = $target_dir_document . basename($_FILES["legal_document"]["name"]);
+    $documentFileType = strtolower(pathinfo($target_file_document, PATHINFO_EXTENSION));
+
+    // Validasi dokumen
+    if ($documentFileType != "pdf") {
+        echo "<script>alert('Hanya file PDF yang diperbolehkan.'); window.location.href = '../../login/user/register/penyediaGedung/index.html';</script>";
+        exit;
+    }
+
+    if (move_uploaded_file($_FILES["legal_document"]["tmp_name"], $target_file_document)) {
+        $legal_document = basename($_FILES["legal_document"]["name"]);
+    } else {
+        echo "<script>alert('Terjadi kesalahan saat mengupload dokumen.'); window.location.href = '../../login/user/register/penyediaGedung/index.html';</script>";
+        exit;
+    }
+
     // Query untuk menyimpan data ke database
-    $sql = "INSERT INTO penyedia_gedung (bvn, username, email, password, photo) VALUES ('$bvn','$name', '$email', '$hashedPassword', '$photo')";
+    $sql = "INSERT INTO penyedia_gedung (bvn, username, email, password, photo, legalitas) VALUES ('$bvn','$name', '$email', '$hashedPassword', '$photo', '$legal_document')";
 
     if (mysqli_query($connection, $sql)) {
         // Registrasi berhasil, tampilkan popup

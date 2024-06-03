@@ -263,14 +263,14 @@ $result = $connection->query($sql);
             </div>
             <nav>
                 <ul>
-                    <li><a href="adminhome.html">Dashboard</a></li>
-                    <li><a href="adminorderlist.php">Order List</a></li>
-                    <li><a href="adminnotifikasi.html">Notifications</a></li>
+                    <li ><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
+                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
+                    <li><a href="adminnotifikasi.html?id=<?php echo htmlspecialchars($admin_id); ?>">Notifications</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php">Provider</a></li>
+                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
+                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
                     <li class="section-title">VERIFICATIONS</li>
-                    <li class="active"><a href="adminverifpayment.php">Payments</a></li>
+                    <li class="active"><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
                 </ul>
             </nav>
             <div class="settings">

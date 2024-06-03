@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Koneksi ke database
 define('HOST', 'localhost');
 define('USER', 'root');
@@ -11,14 +12,7 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-if (!isset($_SESSION['admin_id'])) {
-    header('Location: ../../login/user/login/admin/index.html');
-    exit;
-}
-
-$admin_username = $_SESSION['admin_username'];
-
-
+$admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '';
 
 // Ambil total user
 $sql_users = "SELECT COUNT(*) as total_users FROM custommer";
@@ -42,36 +36,30 @@ $result_sales = $connection->query($sql_sales);
 while ($row = $result_sales->fetch_assoc()) {
     $sales_data[] = $row;
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-</head>
-<style>
+    <style>
+        /* Tambahkan CSS Anda di sini */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
         body {
             display: flex;
             min-height: 100vh;
             background-color: #f4f5f7;
         }
-
         .container {
             display: flex;
             width: 100%;
         }
-
         .sidebar {
             width: 250px;
             background-color: #ffffff;
@@ -80,30 +68,24 @@ while ($row = $result_sales->fetch_assoc()) {
             flex-direction: column;
             justify-content: space-between;
         }
-
         .logo {
             padding: 20px;
             text-align: center;
             background-color: #eceff1;
         }
-
         .logo h2 {
             color: #3949ab;
             margin: 0;
         }
-
         nav {
             flex-grow: 1;
         }
-
         nav ul {
             list-style-type: none;
         }
-
         nav ul li {
             padding: 15px 20px;
         }
-
         nav ul li.section-title {
             font-weight: bold;
             color: #78909c;
@@ -111,7 +93,6 @@ while ($row = $result_sales->fetch_assoc()) {
             margin-top: 20px;
             padding: 10px 20px;
         }
-
         nav ul li a {
             text-decoration: none;
             color: #333;
@@ -120,7 +101,6 @@ while ($row = $result_sales->fetch_assoc()) {
             padding: 15px;
             margin: 0;
         }
-
         nav ul li a:hover {
             background-color: #1595eb;
             color: #ffffff;
@@ -128,32 +108,27 @@ while ($row = $result_sales->fetch_assoc()) {
             margin: 0;
             border-radius: 10px;
         }
-
         nav ul li.active a {
             background-color: #1595eb;
             color: #ffffff;
             padding: 15px;
             border-radius: 10px;
         }
-
         .settings {
             padding: 20px;
             border-top: 1px solid #eceff1;
         }
-
         .settings a {
             display: block;
             text-decoration: none;
             color: #333;
             margin-bottom: 10px;
         }
-
         .main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
-
         header {
             padding: 20px;
             background-color: #ffffff;
@@ -162,27 +137,22 @@ while ($row = $result_sales->fetch_assoc()) {
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
         .search-bar input {
             padding: 10px;
             border: 1px solid #eceff1;
             border-radius: 5px;
         }
-
         .header-right {
             display: flex;
             align-items: center;
         }
-
         .notification {
             position: relative;
             margin-right: 20px;
         }
-
         .notification-icon {
             font-size: 24px;
         }
-
         .notification-count {
             position: absolute;
             top: -5px;
@@ -193,34 +163,28 @@ while ($row = $result_sales->fetch_assoc()) {
             padding: 2px 6px;
             font-size: 12px;
         }
-
         .language img {
             width: 24px;
             height: 24px;
             border-radius: 50%;
             margin-right: 20px;
         }
-
         .user-info {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
         }
-
         .user-info span {
             margin: 2px 0;
         }
-
         .dashboard {
             padding: 20px;
         }
-
         .overview-cards {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
-
         .card {
             flex: 1;
             background-color: #ffffff;
@@ -230,53 +194,43 @@ while ($row = $result_sales->fetch_assoc()) {
             border-radius: 10px;
             text-align: center;
         }
-
         .card:last-child {
             margin-right: 0;
         }
-
         .card h3 {
             margin-bottom: 10px;
             color: #333;
         }
-
         .card p {
             margin-bottom: 5px;
             font-size: 24px;
             font-weight: bold;
         }
-
         .percentage {
             font-size: 14px;
             color: #78909c;
         }
-
         .percentage.up {
             color: green;
         }
-
         .percentage.down {
             color: red;
         }
-
         .sales-details {
             background-color: #ffffff;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border-radius: 10px;
         }
-
         .sales-details h3 {
             margin-bottom: 20px;
         }
-
         .chart-container {
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
             height: 300px;
         }
-
         .chart-bar {
             width: 50px;
             background-color: #1595eb;
@@ -285,20 +239,10 @@ while ($row = $result_sales->fetch_assoc()) {
             margin: 0 10px;
             border-radius: 5px 5px 0 0;
         }
-
         .chart-bar span {
             display: block;
             padding: 5px 0;
         }
-    </style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyedia Gedung</title>
-    <style>
-        /* Tambahkan CSS Anda di sini */
     </style>
 </head>
 <body>
@@ -309,14 +253,14 @@ while ($row = $result_sales->fetch_assoc()) {
             </div>
             <nav>
                 <ul>
-                    <li><a href="adminhome.php">Dashboard</a></li>
-                    <li><a href="adminorderlist.php">Order List</a></li>
-                    <li><a href="adminnotifikasi.html">Notifications</a></li>
+                    <li class="active"><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
+                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
+                    <li><a href="adminnotifikasi.html?id=<?php echo htmlspecialchars($admin_id); ?>">Notifications</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php">Customer</a></li>
-                    <li class="active"><a href="adminpenyediagedung.php">Provider</a></li>
+                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
+                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
                     <li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php">Payments</a></li>
+                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
                 </ul>
             </nav>
             <div class="settings">
@@ -332,67 +276,52 @@ while ($row = $result_sales->fetch_assoc()) {
                 <div class="header-right">
                     <div class="notification">
                         <span class="notification-icon">🔔</span>
-                        <!--
-                            <span class="notification-count">6</span>
-                         -->
                     </div>
                     <div class="user-info">
-                        <span><?php echo htmlspecialchars($admin_username); ?></span>
+                        <!-- Menampilkan username admin -->
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <h1>Penyedia Gedung</h1>
-            <div class="customer-list">
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $photo = $row['photo'];
-                        echo "<div class='customer-card' onclick='viewProvider({$row['id']})'>
-                                <div class='profile-pic'>";
-                        if(isset($photo) && !empty($photo)) {
-                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/{$photo}' alt='Profile'>";
-                        } else {
-                            echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
-                        }
-                        echo "</div>
-                                <h3>{$row['username']}</h3>
-                                <p>{$row['email']}</p>
-                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
-                                <button onclick='deleteProvider(event, {$row['id']})'>Delete</button>
-                            </div>";
-                    }
-                } else {
-                    echo "<p>No providers found</p>";
-                }
-                ?>
+            <h1>Dashboard</h1>
+            <div class="dashboard">
+                <div class="overview-cards">
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <p><?php echo $total_users; ?></p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Products</h3>
+                        <p><?php echo $total_products; ?></p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Orders</h3>
+                        <p><?php echo $total_orders; ?></p>
+                    </div>
+                </div>
+
+                <div class="sales-details">
+                    <h3>Sales Details</h3>
+                    <div class="chart-container">
+                        <?php foreach ($sales_data as $data): ?>
+                            <div class="chart-bar" style="height: <?php echo $data['total_sales'] * 20; ?>px;">
+                                <span><?php echo $data['total_sales']; ?></span>
+                                <span><?php echo $data['order_date']; ?></span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
-
-    <script>
-        function viewProvider(id) {
-            window.location.href = 'vieweachprovider.php?id=' + id;
-        }
-
-        function sendMessage(event, id, name, email) {
-            event.stopPropagation();
-            document.getElementById('providerId').value = id;
-            document.getElementById('providerName').textContent = name;
-            document.getElementById('sendMessageForm').classList.add('active');
-        }
-
-        function closeSendMessageForm() {
-            document.getElementById('sendMessageForm').classList.remove('active');
-        }
-
-        function deleteProvider(event, id) {
-            event.stopPropagation();
-            if (confirm('Are you sure you want to delete this account?')) {
-                // Add your delete logic here
-                console.log('Provider deleted: ' + id);
-            }
-        }
-    </script>
 </body>
 </html>
+
+<?php
+// Tutup koneksi database
+$connection->close();
+?>
