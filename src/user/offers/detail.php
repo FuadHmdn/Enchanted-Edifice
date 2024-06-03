@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             background-color: #F3F4Fdf1;
         }
+
         .container-custom {
             background-color: #E2E9F8;
             border-radius: 15px;
@@ -17,18 +19,21 @@
             margin-bottom: 40px;
             padding: 40px;
         }
+
         .header-image img {
             width: 100%;
             height: auto;
             max-height: 400px;
             border-radius: 15px;
         }
+
         .section-title {
             font-family: 'Lato', sans-serif;
             font-size: 24px;
             font-weight: bold;
             color: #333;
         }
+
         .section-subtitle {
             font-family: 'Lato', sans-serif;
             font-size: 18px;
@@ -36,65 +41,78 @@
             margin-top: 10px;
             margin-bottom: 20px;
         }
+
         .facility-icon {
             width: 60px;
             height: 60px;
         }
+
         .facility-description {
             font-family: 'Lato', sans-serif;
             font-size: 14px;
             color: #333;
         }
+
         .map-container {
             margin-top: 40px;
             text-align: center;
             height: 500px;
         }
+
         .price-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
         }
+
         .price-box div {
             font-family: 'Lato', sans-serif;
             font-size: 18px;
             color: #333;
         }
+
         .price-box h3 {
             font-family: 'Lato', sans-serif;
             font-size: 24px;
             font-weight: bold;
             color: #333;
         }
+
         .btn-custom {
             border-radius: 50px;
         }
+
         .facilities-section {
             display: flex;
             justify-content: space-between;
             margin-top: 40px;
         }
+
         .facilities-list {
             list-style: none;
             padding: 0;
         }
+
         .facilities-list li {
             margin-bottom: 10px;
             font-family: 'Lato', sans-serif;
             font-size: 16px;
             color: #333;
         }
+
         .contact-host {
             display: flex;
             align-items: center;
             margin-top: 20px;
         }
+
         .contact-host i {
             font-size: 24px;
             margin-right: 10px;
             color: #333;
         }
+
         .contact-host span {
             font-family: 'Lato', sans-serif;
             font-size: 18px;
@@ -135,13 +153,6 @@
             cursor: pointer;
         }
 
-        .editModal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            width: 80%;
-        }
-
         .close {
             color: #aaa;
             float: right;
@@ -150,6 +161,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <div id="container">
@@ -168,16 +180,27 @@
     <!-- Modal payment -->
     <div class="modalOverlay" id="modalOverlay"></div>
 
-    <div class="modal" id="modal">
+    <div class="modal" id="modal" style="padding: 24px;">
         <span class="close" id="close">&times;</span>
         <div id="modalItem">
-            <h3>Select your payment method</h3>
-            <p>Update your plan payment details.</p>
-            <div style="display: flex; flex-direction: row;">
-                <img src="./res/mastercard_logo.png" alt="">
-                <div>
-                    <p>Cash</p>
-                    <p>Set as default</p>
+            <h3 style="margin: 0;">Select your payment method</h3>
+            <p style="margin: 0;">Update your plan payment details.</p>
+
+            <!-- Master Card -->
+            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 16px; border: 1px solid #000; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
+                <img src="./res/mastercard_logo.png" alt="Master Card" style="width: 50px; height: 50px;">
+                <div style="border: 2px; margin-left: 10px;">
+                    <p style="margin: 0;">Cash</p>
+                    <p style="margin: 0;">Set as default</p>
+                </div>
+            </div>
+
+            <!-- Visa -->
+            <div style="display: flex; flex-direction: row; align-items: center; border: 1px solid #000; margin-top: 10px; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
+                <img src="./res/Visa_Logo.png" alt="Master Card" style="width: 50px; height: 35px;">
+                <div style="border: 2px; margin-left: 10px;">
+                    <p style="margin: 0;">Cash</p>
+                    <p style="margin: 0;">Set as default</p>
                 </div>
             </div>
         </div>
@@ -213,10 +236,25 @@
                         <p>${item.deskripsi}</p>
                         <h3 class="section-title mt-4">Atur Jadwal mu disini..</h3>
                         <div class="price-box">
-                            <div>
-                                <button class="btn btn-outline-secondary btn-custom"><i class="fa fa-calendar"></i> Check-in</button>
-                                <button class="btn btn-outline-secondary btn-custom" onclick="editHotel()"><i class="fa fa-calendar"></i> Check-out</button>
-                            </div>
+                        <form class="datetimeForm" style="display:flex; flex-direction:row;">
+                                <!-- Check-In Date (Hidden Input) -->
+                                <input type="datetime-local" class="checkin" name="checkin" style="display:none;">
+                                <div>
+                                    <button type="button" class="btn btn-outline-secondary btn-custom checkinButton">
+                                        <i class="fa fa-calendar"></i> Check-in
+                                    </button>
+                                </div>
+
+                                <!-- Check-Out Date (Hidden Input) -->
+                                <input type="datetime-local" class="checkout" name="checkout" style="display:none;">
+                                <div>
+                                    <button type="button" class="btn btn-outline-secondary btn-custom checkoutButton">
+                                        <i class="fa fa-calendar"></i> Check-out
+                                    </button>
+                                </div>
+
+                                <button type="submit">Submit</button>
+                            </form>
                             <h3>Rp.${item.harga}</h3>
                             <button class="btn btn-primary btn-custom" id="reserve">Reserve Now</button>
                         </div>
@@ -260,6 +298,25 @@
                         modalOverlay.style.display = "block";
                     });
 
+                    // Attach event listeners for check-in and check-out buttons
+                    itemContainer.querySelector('.checkinButton').onclick = function() {
+                        itemContainer.querySelector('.checkin').click();
+                    };
+
+                    itemContainer.querySelector('.checkoutButton').onclick = function() {
+                        itemContainer.querySelector('.checkout').click();
+                    };
+
+                    // Form submission handling for dynamically created forms
+                    itemContainer.querySelector('.datetimeForm').onsubmit = function(event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        const checkin = itemContainer.querySelector('.checkin').value;
+                        const checkout = itemContainer.querySelector('.checkout').value;
+
+                        alert(`Check-In Date: ${checkin}\nCheck-Out Date: ${checkout}`);
+                    };
+
                 });
             })
             .catch(error => console.error('Error:', error));
@@ -293,4 +350,5 @@
     </script>
 
 </body>
+
 </html>
