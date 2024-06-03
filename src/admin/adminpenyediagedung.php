@@ -57,6 +57,10 @@ $result = $connection->query($sql);
         text-align: center;
         background-color: #eceff1;
     }
+    
+    h1 {
+        padding: 20px;
+    }
 
     .logo h2 {
         color: #3949ab;
