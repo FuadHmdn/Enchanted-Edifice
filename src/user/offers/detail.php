@@ -236,10 +236,25 @@
                         <p>${item.deskripsi}</p>
                         <h3 class="section-title mt-4">Atur Jadwal mu disini..</h3>
                         <div class="price-box">
-                            <div>
-                                <button class="btn btn-outline-secondary btn-custom"><i class="fa fa-calendar"></i> Check-in</button>
-                                <button class="btn btn-outline-secondary btn-custom" onclick="editHotel()"><i class="fa fa-calendar"></i> Check-out</button>
-                            </div>
+                        <form class="datetimeForm" style="display:flex; flex-direction:row;">
+                                <!-- Check-In Date (Hidden Input) -->
+                                <input type="datetime-local" class="checkin" name="checkin" style="display:none;">
+                                <div>
+                                    <button type="button" class="btn btn-outline-secondary btn-custom checkinButton">
+                                        <i class="fa fa-calendar"></i> Check-in
+                                    </button>
+                                </div>
+
+                                <!-- Check-Out Date (Hidden Input) -->
+                                <input type="datetime-local" class="checkout" name="checkout" style="display:none;">
+                                <div>
+                                    <button type="button" class="btn btn-outline-secondary btn-custom checkoutButton">
+                                        <i class="fa fa-calendar"></i> Check-out
+                                    </button>
+                                </div>
+
+                                <button type="submit">Submit</button>
+                            </form>
                             <h3>Rp.${item.harga}</h3>
                             <button class="btn btn-primary btn-custom" id="reserve">Reserve Now</button>
                         </div>
@@ -282,6 +297,25 @@
                         modal.style.display = "block";
                         modalOverlay.style.display = "block";
                     });
+
+                    // Attach event listeners for check-in and check-out buttons
+                    itemContainer.querySelector('.checkinButton').onclick = function() {
+                        itemContainer.querySelector('.checkin').click();
+                    };
+
+                    itemContainer.querySelector('.checkoutButton').onclick = function() {
+                        itemContainer.querySelector('.checkout').click();
+                    };
+
+                    // Form submission handling for dynamically created forms
+                    itemContainer.querySelector('.datetimeForm').onsubmit = function(event) {
+                        event.preventDefault(); // Prevent the default form submission
+
+                        const checkin = itemContainer.querySelector('.checkin').value;
+                        const checkout = itemContainer.querySelector('.checkout').value;
+
+                        alert(`Check-In Date: ${checkin}\nCheck-Out Date: ${checkout}`);
+                    };
 
                 });
             })
