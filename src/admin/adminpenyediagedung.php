@@ -271,7 +271,6 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
             <div class="settings">
-                <a href="#">Settings</a>
                 <a href="#">Logout</a>
             </div>
         </aside>
