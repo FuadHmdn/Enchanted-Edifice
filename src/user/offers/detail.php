@@ -135,6 +135,23 @@
             box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.4);
         }
 
+        .modal-payment {
+            display: none;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.4);
+            justify-content: center;
+        }
+
         .modalOverlay {
             display: none;
             position: fixed;
@@ -159,6 +176,13 @@
             font-size: 28px;
             font-weight: bold;
         }
+
+        .no-border {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            font-size: 16px;
+        }
     </style>
 </head>
 
@@ -177,9 +201,16 @@
         </div>
     </div>
 
-    <!-- Modal payment -->
+    <!-- Modal overlay -->
     <div class="modalOverlay" id="modalOverlay"></div>
 
+    <!-- Modal Detail Payment -->
+    <div class="modal-payment" id="payment">
+
+    </div>
+
+
+    <!-- Modal payment -->
     <div class="modal" id="modal" style="padding: 24px;">
         <span class="close" id="close">&times;</span>
         <div id="modalItem">
@@ -187,7 +218,7 @@
             <p style="margin: 0;">Update your plan payment details.</p>
 
             <!-- Master Card -->
-            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 16px; border: 1px solid #000; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
+            <div id="master-card" style="display: flex; flex-direction: row; align-items: center; margin-top: 16px; border: 1px solid #000; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
                 <img src="./res/mastercard_logo.png" alt="Master Card" style="width: 50px; height: 50px;">
                 <div style="border: 2px; margin-left: 10px;">
                     <p style="margin: 0;">Cash</p>
@@ -196,7 +227,7 @@
             </div>
 
             <!-- Visa -->
-            <div style="display: flex; flex-direction: row; align-items: center; border: 1px solid #000; margin-top: 10px; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
+            <div id="visa-card" style="display: flex; flex-direction: row; align-items: center; border: 1px solid #000; margin-top: 10px; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
                 <img src="./res/Visa_Logo.png" alt="Master Card" style="width: 50px; height: 35px;">
                 <div style="border: 2px; margin-left: 10px;">
                     <p style="margin: 0;">Cash</p>
@@ -236,27 +267,24 @@
                         <p>${item.deskripsi}</p>
                         <h3 class="section-title mt-4">Atur Jadwal mu disini..</h3>
                         <div class="price-box">
-                        <form class="datetimeForm" style="display:flex; flex-direction:row;">
-                                <!-- Check-In Date (Hidden Input) -->
-                                <input type="datetime-local" class="checkin" name="checkin" style="display:none;">
+                            <form class="datetimeForm" style="display:flex; flex-direction:row;">
+                                <!-- Check-In Date -->
                                 <div>
-                                    <button type="button" class="btn btn-outline-secondary btn-custom checkinButton">
-                                        <i class="fa fa-calendar"></i> Check-in
-                                    </button>
+                                    <label for="checkin">Check-in
+                                    </label>
+                                    <input type="date" class="checkin" name="checkin" id="checkin" style="display:block;">
                                 </div>
 
-                                <!-- Check-Out Date (Hidden Input) -->
-                                <input type="datetime-local" class="checkout" name="checkout" style="display:none;">
+                                <!-- Check-Out Date -->
                                 <div>
-                                    <button type="button" class="btn btn-outline-secondary btn-custom checkoutButton">
-                                        <i class="fa fa-calendar"></i> Check-out
-                                    </button>
+                                    <label for="checkout">Check-out
+                                    </label>
+                                    <input type="date" class="checkout" name="checkout" id="checkout" style="display:block;">
                                 </div>
 
-                                <button type="submit">Submit</button>
                             </form>
                             <h3>Rp.${item.harga}</h3>
-                            <button class="btn btn-primary btn-custom" id="reserve">Reserve Now</button>
+                            <button class="btn btn-primary btn-custom" onclick="calculateTotal()" id="reserve">Reserve Now</button>
                         </div>
                     </div>
 
@@ -288,8 +316,47 @@
                             </div>
                         </div>
                     </div>
-                `;
+                    `;
 
+                    var itemContent = `
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px;">
+                        <h2>Booking Details</h2>
+                        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                            <img src="${item.gambar}" alt="" style="width: 300px; height: 200px; border-radius: 20px; margin-top: 20px;">
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; margin-left: 15px;">
+                                <form action="" style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="judul" style="width: 100px;">Judul:</label>
+                                        <input readonly type="text" name="judul" id="judul" value="${item.judul}" class="no-border">
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="checkinValue" style="width: 100px;">CheckIn:</label>
+                                        <input readonly type="date" name="checkinValue" id="checkinValue" class="no-border">
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="checkoutValue" style="width: 100px;">CheckOut:</label>
+                                        <input readonly type="date" name="checkoutValue" id="checkoutValue" class="no-border">
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="harga" style="width: 100px;">Harga:</label>
+                                        <input readonly type="text" name="harga" id="harga" value="${item.harga}" class="no-border">
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="fee" style="width: 100px;">Fee:</label>
+                                        <input readonly type="text" name="fee" id="fee" value="50000" class="no-border">
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;">
+                                        <label for="total" style="width: 100px;">Total:</label>
+                                        <input readonly type="text" name="total" id="total" class="no-border">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" style="width: 40%; margin-top: 25px;">Next</button>
+                    </div>
+                    `;
+
+                    payment.innerHTML = itemContent;
                     itemContainer.innerHTML = content;
                     container.appendChild(itemContainer);
 
@@ -298,24 +365,19 @@
                         modalOverlay.style.display = "block";
                     });
 
-                    // Attach event listeners for check-in and check-out buttons
-                    itemContainer.querySelector('.checkinButton').onclick = function() {
-                        itemContainer.querySelector('.checkin').click();
-                    };
+                    const checkin = document.getElementById('checkin');
+                    const checkinValue = document.getElementById('checkinValue');
 
-                    itemContainer.querySelector('.checkoutButton').onclick = function() {
-                        itemContainer.querySelector('.checkout').click();
-                    };
+                    const checkout = document.getElementById('checkout');
+                    const checkoutValue = document.getElementById('checkoutValue');
 
-                    // Form submission handling for dynamically created forms
-                    itemContainer.querySelector('.datetimeForm').onsubmit = function(event) {
-                        event.preventDefault(); // Prevent the default form submission
+                    checkin.addEventListener("input", function() {
+                        checkinValue.value = checkin.value;
+                    });
 
-                        const checkin = itemContainer.querySelector('.checkin').value;
-                        const checkout = itemContainer.querySelector('.checkout').value;
-
-                        alert(`Check-In Date: ${checkin}\nCheck-Out Date: ${checkout}`);
-                    };
+                    checkout.addEventListener("input", function() {
+                        checkoutValue.value = checkout.value;
+                    });
 
                 });
             })
@@ -340,12 +402,34 @@
             document.getElementById('modalOverlay').style.display = "none";
         }
 
+        // Ketika tombol close diklik, sembunyikan modal dan overlay
+        document.getElementById('master-card').onclick = function() {
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('payment').style.display = "block";
+        }
+
+        // Ketika tombol close diklik, sembunyikan modal dan overlay
+        document.getElementById('visa-card').onclick = function() {
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('payment').style.display = "block";
+        }
+
         // Ketika pengguna mengklik di luar modal, sembunyikan modal dan overlay
         window.onclick = function(event) {
             if (event.target == document.getElementById('modalOverlay')) {
                 document.getElementById('modal').style.display = "none";
+                document.getElementById('payment').style.display = "none";
                 document.getElementById('modalOverlay').style.display = "none";
             }
+        }
+    </script>
+
+    <script>
+        function calculateTotal() {
+            var harga = parseInt(document.getElementById('harga').value, 10);
+            var fee = parseInt(document.getElementById('fee').value, 10);
+            var total = harga + fee;
+            document.getElementById('total').value = total;
         }
     </script>
 
