@@ -17,6 +17,19 @@ $sql = "SELECT * FROM penyedia_gedung WHERE id = $order_id";
 $result = $connection->query($sql);
 
 $order = $result->fetch_assoc();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Update status legalitas
+    $new_status = $_POST['legalitas_status'];
+    $update_sql = "UPDATE penyedia_gedung SET legalitas_status = '$new_status' WHERE id = $order_id";
+    if ($connection->query($update_sql) === TRUE) {
+        echo "Record updated successfully";
+        // Refresh the page to show updated status
+        header("Refresh:0");
+    } else {
+        echo "Error updating record: " . $connection->error;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +67,7 @@ $order = $result->fetch_assoc();
             margin-bottom: 5px;
             font-weight: bold;
         }
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -120,9 +133,20 @@ $order = $result->fetch_assoc();
                 <label for="legalitas">Legalitas</label>
                 <a href="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/legalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
             </div>
+            <form method="post">
+                <div class="form-group">
+                    <label for="legalitas_status">Status Legalitas</label>
+                    <select id="legalitas_status" name="legalitas_status">
+                        <option value="VALID" <?php echo $order['legalitas_status'] == 'VALID' ? 'selected' : ''; ?>>VALID</option>
+                        <option value="INVALID" <?php echo $order['legalitas_status'] == 'INVALID' ? 'selected' : ''; ?>>INVALID</option>
+                    </select>
+                </div>
+                
+            </form>
             <div class="buttons">
                 <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
+                <button type="submit" class="update">Update Status</button>
             </div>
         </div>
         <div class="profile-pic">
