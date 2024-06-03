@@ -153,6 +153,9 @@ while ($row = $result_sales->fetch_assoc()) {
         .notification-icon {
             font-size: 24px;
         }
+        h1{
+            padding: 20px;
+        }
         .notification-count {
             position: absolute;
             top: -5px;
@@ -264,7 +267,7 @@ while ($row = $result_sales->fetch_assoc()) {
                 </ul>
             </nav>
             <div class="settings">
-                <a href="#">Settings</a>
+                
                 <a href="logout.php">Logout</a>
             </div>
         </aside>

@@ -362,7 +362,7 @@ $result = $connection->query($sql);
             </div>
             <nav>
                 <ul>
-                    <li<a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
+                    <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
                     <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
                     <li><a href="adminnotifikasi.html?id=<?php echo htmlspecialchars($admin_id); ?>">Notifications</a></li>
                     <li class="section-title">USER</li>
@@ -373,7 +373,6 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
             <div class="settings">
-                <a href="#">Settings</a>
                 <a href="#">Logout</a>
             </div>
         </aside>
