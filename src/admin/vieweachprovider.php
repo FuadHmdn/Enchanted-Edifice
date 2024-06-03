@@ -118,14 +118,7 @@ $order = $result->fetch_assoc();
             </div>
             <div class="form-group">
                 <label for="legalitas">Legalitas</label>
-                <?php 
-                $legalitas_path = "C:\xampp\htdocs\PemWeb\Enchanted-Edifice\src\penyediaGedung\doclegalitas" . htmlspecialchars($order['legalitas']);
-                if (file_exists($legalitas_path)) {
-                    echo '<a href="' . $legalitas_path . '" target="_blank">Download Legalitas</a>';
-                } else {
-                    echo 'File not found';
-                }
-                ?>
+                <a href="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/legalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
             </div>
             <div class="buttons">
                 <button class="message">Send Message</button>
