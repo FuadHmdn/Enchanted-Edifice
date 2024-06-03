@@ -116,6 +116,17 @@ $order = $result->fetch_assoc();
                 <label for="email">Email</label>
                 <input type="text" id="email" value="<?php echo htmlspecialchars($order['email']); ?>" readonly>
             </div>
+            <div class="form-group">
+                <label for="legalitas">Legalitas</label>
+                <?php 
+                $legalitas_path = "C:\xampp\htdocs\PemWeb\Enchanted-Edifice\src\penyediaGedung\doclegalitas" . htmlspecialchars($order['legalitas']);
+                if (file_exists($legalitas_path)) {
+                    echo '<a href="' . $legalitas_path . '" target="_blank">Download Legalitas</a>';
+                } else {
+                    echo 'File not found';
+                }
+                ?>
+            </div>
             <div class="buttons">
                 <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
