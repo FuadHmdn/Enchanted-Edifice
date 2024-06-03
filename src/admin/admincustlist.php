@@ -11,7 +11,7 @@ if ($connection->connect_error) {
 }
 
 // Ambil data customer
-$sql = "SELECT * FROM custommer";
+$sql = "SELECT id, username, email, password, photo FROM custommer";
 $result = $connection->query($sql);
 ?>
 
@@ -335,6 +335,7 @@ $result = $connection->query($sql);
                             <th>ID Customer</th>
                             <th>Nama Customer</th>
                             <th>Email Customer</th>
+                            <th>Photo</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -342,10 +343,20 @@ $result = $connection->query($sql);
                         <?php
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
+                                $photo = $row['photo'];
                                 echo "<tr>
                                         <td>{$row['id']}</td>
                                         <td>{$row['username']}</td>
                                         <td>{$row['email']}</td>
+                                        <td>";
+                                if(isset($photo) && !empty($photo)) {
+                                    echo "<div style='width: 120px; height: 120px; border-radius: 50%; overflow: hidden;'>
+                                            <img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/{$photo}' alt='Profile' style='width: 100%; height: 100%; object-fit: cover;'>
+                                          </div>";
+                                } else {
+                                    echo "No Photo";
+                                }
+                                echo    "</td>
                                         <td>
                                             <button onclick='sendMessage({$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Send Message</button>
                                             <button onclick='deleteOrder({$row['id']})'>Delete</button>
@@ -353,7 +364,7 @@ $result = $connection->query($sql);
                                     </tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No customers found</td></tr>";
+                            echo "<tr><td colspan='5'>No customers found</td></tr>";
                         }
                         ?>
                     </tbody>
@@ -384,7 +395,7 @@ $result = $connection->query($sql);
         }
 
         function deleteOrder(id) {
-            if (confirm('Are you sure you want to delete this account   ?')) {
+            if (confirm('Are you sure you want to delete this account?')) {
                 // Add your delete logic here
                 console.log('Order deleted: ' + id);
             }
