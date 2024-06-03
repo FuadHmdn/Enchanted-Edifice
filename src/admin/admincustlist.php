@@ -135,12 +135,6 @@ $result = $connection->query($sql);
         padding: 20px;
     }
 
-    .search-bar input {
-        padding: 10px;
-        border: 1px solid #eceff1;
-        border-radius: 5px;
-    }
-
     .header-right {
         display: flex;
         align-items: center;
@@ -238,7 +232,11 @@ $result = $connection->query($sql);
         background-color: #f8d7da;
         color: #721c24;
     }
-
+    .search-bar input {
+            padding: 10px;
+            border: 1px solid #eceff1;
+            border-radius: 5px;
+        }
     .pagination {
         padding: 15px;
         text-align: right;

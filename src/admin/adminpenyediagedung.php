@@ -21,10 +21,8 @@ $result = $connection->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penyedia Gedung</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-    /* Gaya CSS di sini, atau Anda dapat meletakkannya di file styles.css terpisah */
     * {
         margin: 0;
         padding: 0;
@@ -56,10 +54,6 @@ $result = $connection->query($sql);
         padding: 20px;
         text-align: center;
         background-color: #eceff1;
-    }
-    
-    h1 {
-        padding: 20px;
     }
 
     .logo h2 {
@@ -137,11 +131,13 @@ $result = $connection->query($sql);
         align-items: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
     .search-bar input {
-        padding: 10px;
-        border: 1px solid #eceff1;
-        border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #eceff1;
+            border-radius: 5px;
+        }
+    h1 {
+        padding: 20px;
     }
 
     .header-right {
@@ -190,108 +186,71 @@ $result = $connection->query($sql);
         padding: 20px;
     }
 
-    .order-list {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .order-list table {
-        width: 100%;
-        border-collapse: collapse;
+    .customer-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
         padding: 20px;
     }
 
-    .order-list table th, .order-list table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
+    .customer-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        width: calc(33.333% - 20px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
     }
 
-    .order-list table th {
-        background-color: #f8f8f8;
-        font-weight: bold;
+    .customer-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .customer-card .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    .customer-card .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .customer-card h3 {
+        margin: 10px 0 5px 0;
         color: #333;
     }
 
-    .order-list table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
+    .customer-card p {
+        margin: 5px 0 10px 0;
+        color: #777;
     }
 
-    .status {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        text-align: center;
-    }
-
-    .status.completed {
-        background-color: #d4edda;
-        color: #155724;
-    }
-
-    .status.processing {
-        background-color: #fff3cd;
-        color: #856404;
-    }
-
-    .status.canceled {
-        background-color: #f8d7da;
-        color: #721c24;
-    }
-
-    .pagination {
-        padding: 15px;
-        text-align: right;
-        font-size: 14px;
-        color: #666;
-    }
-
-    .send-message-form {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border-radius: 10px;
-        z-index: 1000;
-    }
-
-    .send-message-form.active {
-        display: block;
-    }
-
-    .send-message-form h2 {
-        margin-bottom: 20px;
-    }
-
-    .send-message-form textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .send-message-form button {
+    .customer-card button {
         padding: 10px 20px;
         border: none;
         background-color: #1595eb;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px;
     }
 
-    .send-message-form button.cancel {
-        background-color: #ddd;
-        color: #333;
+    .customer-card button:hover {
+        background-color: #0f7bb5;
     }
+
 </style>
 <body>
     <div class="container">
@@ -318,7 +277,7 @@ $result = $connection->query($sql);
         </aside>
         <main class="main-content">
             <header>
-                <div class="search-bar">
+            <div class="search-bar">
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="header-right">
@@ -334,52 +293,40 @@ $result = $connection->query($sql);
             </header>
 
             <h1>Penyedia Gedung</h1>
-            <div class="order-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID Penyedia</th>
-                            <th>Nama Penyedia</th>
-                            <th>Email Penyedia</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td>{$row['id']}</td>
-                                        <td>{$row['username']}</td>
-                                        <td>{$row['email']}</td>
-                                        <td>
-                                            <button onclick='sendMessage({$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Send Message</button>
-                                            <button onclick='deleteOrder({$row['id']})'>Delete</button>
-                                        </td>
-                                    </tr>";
-                            }
+            <div class="customer-list">
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $photo = $row['photo'];
+                        echo "<div class='customer-card' onclick='viewProvider({$row['id']})'>
+                                <div class='profile-pic'>";
+                        if(isset($photo) && !empty($photo)) {
+                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/{$photo}' alt='Profile'>";
                         } else {
-                            echo "<tr><td colspan='4'>No providers found</td></tr>";
+                            echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
                         }
-                        ?>
-                    </tbody>
-                </table>
+                        echo "</div>
+                                <h3>{$row['username']}</h3>
+                                <p>{$row['email']}</p>
+                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
+                                <button onclick='deleteProvider(event, {$row['id']})'>Delete</button>
+                            </div>";
+                    }
+                } else {
+                    echo "<p>No providers found</p>";
+                }
+                ?>
             </div>
         </main>
     </div>
 
-    <div class="send-message-form" id="sendMessageForm">
-        <h2>Send Message to <span id="providerName"></span></h2>
-        <form action="send_message.php" method="POST">
-            <input type="hidden" name="provider_id" id="providerId">
-            <textarea name="message" placeholder="Write your message here..."></textarea>
-            <button type="submit">Send</button>
-            <button type="button" class="cancel" onclick="closeSendMessageForm()">Cancel</button>
-        </form>
-    </div>
-
     <script>
-        function sendMessage(id, name, email) {
+        function viewProvider(id) {
+            window.location.href = 'vieweachprovider.php?id=' + id;
+        }
+
+        function sendMessage(event, id, name, email) {
+            event.stopPropagation();
             document.getElementById('providerId').value = id;
             document.getElementById('providerName').textContent = name;
             document.getElementById('sendMessageForm').classList.add('active');
@@ -389,12 +336,32 @@ $result = $connection->query($sql);
             document.getElementById('sendMessageForm').classList.remove('active');
         }
 
-        function deleteOrder(id) {
-            if (confirm('Are you sure you want to delete this order?')) {
-                // Add your delete logic here
-                console.log('Order deleted: ' + id);
-            }
-        }
+        function deleteProvider(event, id) {
+            event.stopPropagation();
+            if (confirm('Are you sure you want to delete this account?')) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Jika data berhasil dihapus dari database
+                            console.log('Provider deleted: ' + id);
+                            // Lakukan halaman refresh atau manipulasi DOM sesuai kebutuhan
+                            location.reload(); // Contoh: Refresh halaman
+                        } else {
+                            // Jika terjadi kesalahan saat menghapus data dari database
+                            console.error('Error deleting provider: ' + xhr.responseText);
+                            // Tampilkan pesan kesalahan kepada pengguna atau lakukan tindakan lainnya
+                            alert('Error deleting provider. Please try again later.');
+                        }
+                    }
+                };
+                // Kirim permintaan ke server untuk menghapus data dari database
+                xhr.open('POST', 'delete_provider.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.send('id=' + id);
+    }
+}
+
     </script>
 </body>
 </html>

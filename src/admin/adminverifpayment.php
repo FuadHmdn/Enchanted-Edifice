@@ -119,11 +119,6 @@ $result = $connection->query($sql);
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .search-bar input {
-        padding: 10px;
-        border: 1px solid #eceff1;
-        border-radius: 5px;
-    }
 
     .header-right {
         display: flex;
@@ -285,9 +280,6 @@ $result = $connection->query($sql);
         </aside>
         <main class="main-content">
             <header>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                </div>
                 <div class="header-right">
                     <div class="notification">
                         <span class="notification-icon">🔔</span>
