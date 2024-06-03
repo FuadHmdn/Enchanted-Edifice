@@ -115,6 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-size: 24px;
             cursor: pointer;
         }
+        .inline-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -136,17 +141,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="post">
                 <div class="form-group">
                     <label for="legalitas_status">Status Legalitas</label>
-                    <select id="legalitas_status" name="legalitas_status">
-                        <option value="VALID" <?php echo $order['legalitas_status'] == 'VALID' ? 'selected' : ''; ?>>VALID</option>
-                        <option value="INVALID" <?php echo $order['legalitas_status'] == 'INVALID' ? 'selected' : ''; ?>>INVALID</option>
-                    </select>
+                    <div class="inline-group">
+                        <select id="legalitas_status" name="legalitas_status">
+                            <option value="VALID" <?php echo $order['legalitas_status'] == 'VALID' ? 'selected' : ''; ?>>VALID</option>
+                            <option value="INVALID" <?php echo $order['legalitas_status'] == 'INVALID' ? 'selected' : ''; ?>>INVALID</option>
+                        </select>
+                        <button type="submit" class="update">Update</button>
+                    </div>
                 </div>
-                
             </form>
             <div class="buttons">
                 <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
-                <button type="submit" class="update">Update Status</button>
             </div>
         </div>
         <div class="profile-pic">
