@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Proses upload dokumen legalitas
-    $target_dir_document = "C:\xampp\htdocs\PemWeb\Enchanted-Edifice\src\penyediaGedung\doclegalitas";
+    $target_dir_document = "C:/xampp/htdocs/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas";
     $target_file_document = $target_dir_document . basename($_FILES["legal_document"]["name"]);
     $documentFileType = strtolower(pathinfo($target_file_document, PATHINFO_EXTENSION));
 
