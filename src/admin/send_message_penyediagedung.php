@@ -12,7 +12,7 @@ if ($connection->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $provider_id = $_POST['provider_id'];
-    $message = $_POST['message'];
+    $message = $_POST['message']; 
 
     if (!empty($provider_id) && !empty($message)) {
         
