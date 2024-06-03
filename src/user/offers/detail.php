@@ -100,61 +100,60 @@
             font-size: 18px;
             color: #333;
         }
+
+        .modal {
+            display: none;
+            width: 600px;
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .editModal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <!-- Header Image -->
-        <div class="header-image mb-4">
-            <img src="https://assets.bmdstatic.com/web/image?model=product.product&field=image_1024&id=78413&unique=0f81c26" alt="Gedung Indonesia">
-        </div>
+        <div id="container">
 
-        <!-- Apartment Description -->
-        <div class="container-custom">
-            <h2 class="section-title">Gedung Indonesia</h2>
-            <p class="section-subtitle">★ New To Sender  <a href="#">(999+ reviews)</a></p>
-            <p>Jakarta</p>
-            <p>Selamat datang di Gedung Indonesia, ikon baru kebanggaan Jakarta yang menghadirkan kemewahan dan kenyamanan di tengah hiruk-pikuk ibu kota. Dengan desain arsitektur yang megah, setiap ruang apartemen kami dirancang untuk menyatu dengan sempurna antara kemewahan dan kepraktisan.</p>
-            <p>Mulai dari fasilitas mewah hingga detail-detail yang terbaik, Apartemen Indonesia memberikan pengalaman hunian yang tak tertandingi. Dari lounge pribadi yang dilengkapi dengan pemandangan kota yang memukau hingga kolam renang infinity yang menawarkan suasana santai, kami hadir untuk memenuhi segala kebutuhan gaya hidup modern Anda.</p>
-
-            <h3 class="section-title mt-4">Atur Jadwal mu disini..</h3>
-            <div class="price-box">
-                <div>
-                    <button class="btn btn-outline-secondary btn-custom"><i class="fa fa-calendar"></i> Check-in</button>
-                    <button class="btn btn-outline-secondary btn-custom"><i class="fa fa-calendar"></i> Check-out</button>
-                </div>
-                <h3>600.000K</h3>
-                <button class="btn btn-primary btn-custom">Reserve Now</button>
-            </div>
-        </div>
-
-        <!-- Facilities Section -->
-        <div class="container-custom">
-            <div class="facilities-section">
-                <div>
-                    <h3 class="section-title">Fasilitas Teratas</h3>
-                    <ul class="facilities-list">
-                        <li><img src="../offers/image/PemanasRuangan.png" alt="Facility 1" class="facility-icon"> Pemanas ruangan</li>
-                        <li><img src="../offers/image/AC.png" alt="Facility 2" class="facility-icon"> Ruangan Ber AC</li>
-                        <li><img src="../offers/image/Elevator.png" alt="Facility 3" class="facility-icon"> Elevator</li>
-                        <li><img src="../offers/image/Layanan.png" alt="Facility 4" class="facility-icon"> Layanan Tiap Saat</li>
-                        <li><a href="#">Lihat semua fasilitas</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="section-title">The Sonder standard</h3>
-                    <ul class="facilities-list">
-                        <li><img src="../offers/image/Password.png" alt="Facility 5" class="facility-icon"> Chek-in Password</li>
-                        <li><img src="../offers/image/Wifi.png" alt="Facility 6" class="facility-icon"> WIFI Cepat</li>
-                        <li><img src="../offers/image/Kebersihan.png" alt="Facility 7" class="facility-icon"> Kebersihan Profesional</li>
-                        <li><img src="../offers/image/Perlengkapan.png" alt="Facility 8" class="facility-icon"> Perlengkapan Lengkap</li>
-                    </ul>
-                </div>
-                <div class="contact-host">
-                    <i class="fa fa-phone"></i>
-                    <span>(+62 ) 123 456 789</span>
-                </div>
-            </div>
         </div>
 
         <!-- Location Map -->
@@ -165,5 +164,133 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal payment -->
+    <div class="modalOverlay" id="modalOverlay"></div>
+
+    <div class="modal" id="modal">
+        <span class="close" id="close">&times;</span>
+        <div id="modalItem">
+            <h3>Select your payment method</h3>
+            <p>Update your plan payment details.</p>
+            <div style="display: flex; flex-direction: row;">
+                <img src="./res/mastercard_logo.png" alt="">
+                <div>
+                    <p>Cash</p>
+                    <p>Set as default</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+    <!-- item -->
+    <script>
+        // Menemukan elemen kontainer
+        var container = document.getElementById("container");
+
+        fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/penyedia_gedung/getItemById.php?id_produk=<?php echo htmlspecialchars($_GET['id_produk']); ?>')
+            .then(response => response.json())
+            .then(data => {
+                // Membuat elemen untuk setiap item dalam data
+                data.forEach(function(item) {
+                    // Buat elemen div untuk setiap item
+                    var itemContainer = document.createElement("div");
+
+                    // Konten HTML untuk setiap item
+                    var content = `
+                    <!-- Header Image -->
+                    <div class="header-image mb-4">
+                        <img src="${item.gambar}" alt="Gedung Indonesia">
+                    </div>
+
+                    <!-- Apartment Description -->
+                    <div class="container-custom">
+                        <h2 class="section-title">${item.judul}</h2>
+                        <p class="section-subtitle">★ New To Sender <a href="#">(999+ reviews)</a></p>
+                        <p>Jakarta</p>
+                        <p>${item.deskripsi}</p>
+                        <h3 class="section-title mt-4">Atur Jadwal mu disini..</h3>
+                        <div class="price-box">
+                            <div>
+                                <button class="btn btn-outline-secondary btn-custom"><i class="fa fa-calendar"></i> Check-in</button>
+                                <button class="btn btn-outline-secondary btn-custom" onclick="editHotel()"><i class="fa fa-calendar"></i> Check-out</button>
+                            </div>
+                            <h3>Rp.${item.harga}</h3>
+                            <button class="btn btn-primary btn-custom" id="reserve">Reserve Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Facilities Section -->
+                    <div class="container-custom">
+                        <div class="facilities-section">
+                            <div>
+                                <h3 class="section-title">Fasilitas Teratas</h3>
+                                <ul class="facilities-list">
+                                    <li><img src="../offers/image/PemanasRuangan.png" alt="Facility 1" class="facility-icon"> Pemanas ruangan</li>
+                                    <li><img src="../offers/image/AC.png" alt="Facility 2" class="facility-icon"> Ruangan Ber AC</li>
+                                    <li><img src="../offers/image/Elevator.png" alt="Facility 3" class="facility-icon"> Elevator</li>
+                                    <li><img src="../offers/image/Layanan.png" alt="Facility 4" class="facility-icon"> Layanan Tiap Saat</li>
+                                    <li><a href="#">Lihat semua fasilitas</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="section-title">The Sonder standard</h3>
+                                <ul class="facilities-list">
+                                    <li><img src="../offers/image/Password.png" alt="Facility 5" class="facility-icon"> Chek-in Password</li>
+                                    <li><img src="../offers/image/Wifi.png" alt="Facility 6" class="facility-icon"> WIFI Cepat</li>
+                                    <li><img src="../offers/image/Kebersihan.png" alt="Facility 7" class="facility-icon"> Kebersihan Profesional</li>
+                                    <li><img src="../offers/image/Perlengkapan.png" alt="Facility 8" class="facility-icon"> Perlengkapan Lengkap</li>
+                                </ul>
+                            </div>
+                            <div class="contact-host">
+                                <i class="fa fa-phone"></i>
+                                <span>(+62 ) 123 456 789</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                    itemContainer.innerHTML = content;
+                    container.appendChild(itemContainer);
+
+                    itemContainer.querySelector('.btn.btn-primary.btn-custom').addEventListener('click', function() {
+                        modal.style.display = "block";
+                        modalOverlay.style.display = "block";
+                    });
+
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+
+    <script>
+        function initMap() {
+            // Initialize the map
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -6.2088,
+                    lng: 106.8456
+                }, // Jakarta coordinates
+                zoom: 12 // Zoom level
+            });
+        }
+
+        // Ketika tombol close diklik, sembunyikan modal dan overlay
+        document.getElementById('close').onclick = function() {
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('modalOverlay').style.display = "none";
+        }
+
+        // Ketika pengguna mengklik di luar modal, sembunyikan modal dan overlay
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modalOverlay')) {
+                document.getElementById('modal').style.display = "none";
+                document.getElementById('modalOverlay').style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>
