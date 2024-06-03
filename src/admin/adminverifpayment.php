@@ -10,6 +10,20 @@ if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST['payment_id']) && isset($_POST['status'])) {
+        $payment_id = $_POST['payment_id'];
+        $status = $_POST['status'];
+
+        $update_query = "UPDATE admin_payment SET status='$status' WHERE id=$payment_id";
+        if ($connection->query($update_query) === TRUE) {
+            echo "";
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
+    }
+}
+
 $sql = "SELECT * FROM admin_payment";
 $result = $connection->query($sql);
 ?>
@@ -264,13 +278,13 @@ $result = $connection->query($sql);
             <nav>
                 <ul>
                     <li ><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
+                    <li class="active"><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
                     <li><a href="adminnotifikasi.html?id=<?php echo htmlspecialchars($admin_id); ?>">Notifications</a></li>
                     <li class="section-title">USER</li>
                     <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
                     <li class="section-title">VERIFICATIONS</li>
-                    <li class="active"><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
+                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
                 </ul>
             </nav>
             <div class="settings">
@@ -291,63 +305,53 @@ $result = $connection->query($sql);
                     </div>
                 </div>
             </header>
-            <h1>Payment</h1>
-            <div class="tabs">
-                <button class="tab-button active">Payment Status</button>
-                <button class="tab-button">Delivered Payment</button>
-            </div>
-            <div class="filters">
-                <select>
-                    <option>Payment Type</option>
-                    <option>Bank Mandiri</option>
-                    <option>Bank BNI</option>
-                    <option>Bank BCA</option>
-                    <option>Dompet Digital</option>
-                </select>
-                <select>
-                    <option>Payment Status</option>
-                    <option>Valid</option>
-                    <option>Invalid</option>
-                    <option>On Process</option>
-                </select>
-                <button class="reset-filters">🔄</button>
-            </div>
-            <div class="order-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Order ID</th>
-                            <th>Date</th>
-                            <th>Proof</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td>{$row['id']}</td>
-                                        <td>{$row['name']}</td>
-                                        <td>{$row['order_id']}</td>
-                                        <td>{$row['date']}</td>
-                                        <td><a href='uploads/{$row['proof']}' target='_blank'>{$row['proof']}</a></td>
-                                        <td>{$row['type']}</td>
-                                        <td><span class='status {$row['status']}'>{$row['status']}</span></td>
-                                    </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='7'>No payments found</td></tr>";
-                        }
-                        $connection->close();
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+
+    <div class="order-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Proof</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th> <!-- Tambah kolom untuk dropdown status -->
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['id']}</td>
+                                <td>{$row['name']}</td>
+                                <td>{$row['order_id']}</td>
+                                <td>{$row['date']}</td>
+                                <td><a href='uploads/{$row['proof']}' target='_blank'>{$row['proof']}</a></td>
+                                <td>{$row['type']}</td>
+                                <td><span class='status {$row['status']}'>{$row['status']}</span></td>
+                                <td>
+                                    <form method='post'>
+                                        <input type='hidden' name='payment_id' value='{$row['id']}'>
+                                        <select name='status'>
+                                            <option value='Valid'>Valid</option>
+                                            <option value='Invalid'>Invalid</option>
+                                            <option value='Processing'>Processing</option>
+                                        </select>
+                                        <button type='submit'>Update</button>
+                                    </form>
+                                </td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='8'>No payments found</td></tr>";
+                }
+                $connection->close();
+                ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
