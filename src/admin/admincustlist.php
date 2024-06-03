@@ -131,11 +131,8 @@ $result = $connection->query($sql);
         align-items: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
-    .search-bar input {
-        padding: 10px;
-        border: 1px solid #eceff1;
-        border-radius: 5px;
+    h1 {
+        padding: 20px;
     }
 
     .header-right {
@@ -235,7 +232,11 @@ $result = $connection->query($sql);
         background-color: #f8d7da;
         color: #721c24;
     }
-
+    .search-bar input {
+            padding: 10px;
+            border: 1px solid #eceff1;
+            border-radius: 5px;
+        }
     .pagination {
         padding: 15px;
         text-align: right;
@@ -286,6 +287,72 @@ $result = $connection->query($sql);
         background-color: #ddd;
         color: #333;
     }
+    
+    .customer-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .customer-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        width: calc(33.333% - 20px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+    }
+
+    .customer-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .customer-card .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    .customer-card .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .customer-card h3 {
+        margin: 10px 0 5px 0;
+        color: #333;
+    }
+
+    .customer-card p {
+        margin: 5px 0 10px 0;
+        color: #777;
+    }
+
+    .customer-card button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #1595eb;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px;
+    }
+
+    .customer-card button:hover {
+        background-color: #0f7bb5;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -328,36 +395,29 @@ $result = $connection->query($sql);
             </header>
 
             <h1>Customer List</h1>
-            <div class="order-list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID Customer</th>
-                            <th>Nama Customer</th>
-                            <th>Email Customer</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td>{$row['id']}</td>
-                                        <td>{$row['username']}</td>
-                                        <td>{$row['email']}</td>
-                                        <td>
-                                            <button onclick='sendMessage({$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Send Message</button>
-                                            <button onclick='deleteOrder({$row['id']})'>Delete</button>
-                                        </td>
-                                    </tr>";
-                            }
+            <div class="customer-list" >
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $photo = $row['photo'];
+                        echo "<div class='customer-card' onclick='viewCustomer({$row['id']})'>
+                                <div class='profile-pic'>";
+                        if(isset($photo) && !empty($photo)) {
+                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/{$photo}' alt='Profile'>";
                         } else {
-                            echo "<tr><td colspan='4'>No customers found</td></tr>";
+                            echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
                         }
-                        ?>
-                    </tbody>
-                </table>
+                        echo "</div>
+                                <h3>{$row['username']}</h3>
+                                <p>{$row['email']}</p>
+                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
+                                <button onclick='deleteOrder(event, {$row['id']})'>Delete</button>
+                            </div>";
+                    }
+                } else {
+                    echo "<p>No customers found</p>";
+                }
+                ?>
             </div>
         </main>
     </div>
@@ -373,7 +433,12 @@ $result = $connection->query($sql);
     </div>
 
     <script>
-        function sendMessage(id, name, email) {
+        function viewCustomer(id) {
+            window.location.href = 'vieweachcust.php?id=' + id;
+        }
+
+        function sendMessage(event, id, name, email) {
+            event.stopPropagation();
             document.getElementById('customerId').value = id;
             document.getElementById('customerName').textContent = name;
             document.getElementById('sendMessageForm').classList.add('active');
@@ -383,8 +448,9 @@ $result = $connection->query($sql);
             document.getElementById('sendMessageForm').classList.remove('active');
         }
 
-        function deleteOrder(id) {
-            if (confirm('Are you sure you want to delete this account   ?')) {
+        function deleteOrder(event, id) {
+            event.stopPropagation();
+            if (confirm('Are you sure you want to delete this account?')) {
                 // Add your delete logic here
                 console.log('Order deleted: ' + id);
             }
