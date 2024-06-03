@@ -12,11 +12,11 @@ if ($connection->connect_error) {
 }
 
 // Ambil data penyedia gedung berdasarkan ID
-$provider_id = $_GET['id'];
-$sql = "SELECT * FROM penyedia_gedung WHERE id = $provider_id";
+$order_id = $_GET['id'];
+$sql = "SELECT * FROM penyedia_gedung WHERE id = $order_id";
 $result = $connection->query($sql);
 
-$provider = $result->fetch_assoc();
+$order = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -110,20 +110,20 @@ $provider = $result->fetch_assoc();
         <div class="form">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" value="<?php echo htmlspecialchars($provider['username']); ?>" readonly>
+                <input type="text" id="username" value="<?php echo htmlspecialchars($order['username']); ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" id="email" value="<?php echo htmlspecialchars($provider['email']); ?>" readonly>
+                <input type="text" id="email" value="<?php echo htmlspecialchars($order['email']); ?>" readonly>
             </div>
             <div class="buttons">
                 <button class="message">Send Message</button>
-                <button class="delete" onclick="deleteProvider(<?php echo $provider_id; ?>)">Delete Account</button>
+                <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
             </div>
         </div>
         <div class="profile-pic">
-            <?php if(isset($provider['photo']) && !empty($provider['photo'])): ?>
-                <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/<?php echo htmlspecialchars($provider['photo']); ?>" alt="Profile Picture">
+            <?php if(isset($order['photo']) && !empty($order['photo'])): ?>
+                <img src="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/<?php echo htmlspecialchars($order['photo']); ?>" alt="Profile Picture">
             <?php else: ?>
                 <img src="/path/to/default-image.jpg" alt="Profile Picture">
             <?php endif; ?>
