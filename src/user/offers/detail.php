@@ -322,8 +322,8 @@
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px;">
                         <h2>Booking Details</h2>
                         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                            <img src="${item.gambar}" alt="" style="width: 300px; height: 200px; border-radius: 20px; margin-top: 20px;">
-                            <div style="display: flex; flex-direction: column; justify-content: space-between; margin-left: 15px; margin-top: 20px;">
+                            <img src="${item.gambar}" alt="" style="width: 300px; height: 250px; border-radius: 20px; margin-bottom: 30px;">
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; margin-left: 15px; margin-top: 40px;">
                             <form action="../../database/custommer/orderProduct.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 10px;">
                                 <input type="hidden" name="id_pelanggan" id="id_pelanggan" value="<?php echo htmlspecialchars($_GET['id']); ?>" >
                                 <input type="hidden" name="id_produk" id="id_produk" value="${item.id_produk}" >
