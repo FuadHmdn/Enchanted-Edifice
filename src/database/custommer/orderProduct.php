@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_pelanggan = $_POST['id_pelanggan'];
     $tanggal_masuk = $_POST['checkinValue'];
     $tanggal_keluar = $_POST['checkoutValue'];
-    $status = 'scheduled';
+    $status = 'schedule';
 
     // Validasi data
     if (empty($id_produk) || empty($id_pelanggan) || empty($tanggal_masuk) || empty($tanggal_keluar) || empty($status)) {
