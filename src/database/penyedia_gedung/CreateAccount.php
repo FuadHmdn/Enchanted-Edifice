@@ -87,6 +87,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO penyedia_gedung (bvn, username, email, password, photo, legalitas) VALUES ('$bvn','$name', '$email', '$hashedPassword', '$photo', '$legal_document')";
 
     if (mysqli_query($connection, $sql)) {
+        // Git commands to add, commit and push the uploaded file to the GitHub repository
+        shell_exec("cd C:/xampp/htdocs/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/ && git add $photo && git commit -m 'Add new photo $photo' && git push origin main");
+        shell_exec("cd C:/xampp/htdocs/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas/ && git add $legal_document && git commit -m 'Add new document $legal_document' && git push origin main");
+        
         // Registrasi berhasil, tampilkan popup
         echo "<script>alert('Registrasi berhasil!'); window.location.href = '../../login/user/login/PenyediaGedungLogin/index.html';</script>";
         exit;
