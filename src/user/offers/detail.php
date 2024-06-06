@@ -322,37 +322,43 @@
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px;">
                         <h2>Booking Details</h2>
                         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                            <img src="${item.gambar}" alt="" style="width: 300px; height: 200px; border-radius: 20px; margin-top: 20px;">
-                            <div style="display: flex; flex-direction: column; justify-content: space-between; margin-left: 15px;">
-                                <form action="" style="display: flex; flex-direction: column; gap: 10px;">
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="judul" style="width: 100px;">Judul:</label>
-                                        <input readonly type="text" name="judul" id="judul" value="${item.judul}" class="no-border">
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="checkinValue" style="width: 100px;">CheckIn:</label>
-                                        <input readonly type="date" name="checkinValue" id="checkinValue" class="no-border">
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="checkoutValue" style="width: 100px;">CheckOut:</label>
-                                        <input readonly type="date" name="checkoutValue" id="checkoutValue" class="no-border">
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="harga" style="width: 100px;">Harga:</label>
-                                        <input readonly type="text" name="harga" id="harga" value="${item.harga}" class="no-border">
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="fee" style="width: 100px;">Fee:</label>
-                                        <input readonly type="text" name="fee" id="fee" value="50000" class="no-border">
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <label for="total" style="width: 100px;">Total:</label>
-                                        <input readonly type="text" name="total" id="total" class="no-border">
-                                    </div>
-                                </form>
+                            <img src="${item.gambar}" alt="" style="width: 300px; height: 250px; border-radius: 20px; margin-bottom: 30px;">
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; margin-left: 15px; margin-top: 40px;">
+                            <form action="../../database/custommer/orderProduct.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 10px;">
+                                <input type="hidden" name="id_pelanggan" id="id_pelanggan" value="<?php echo htmlspecialchars($_GET['id']); ?>" >
+                                <input type="hidden" name="id_produk" id="id_produk" value="${item.id_produk}" >
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="judul" style="width: 100px;">Judul:</label>
+                                    <input readonly type="text" name="judul" id="judul" value="${item.judul}" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="checkinValue" style="width: 100px;">CheckIn:</label>
+                                    <input readonly type="date" name="checkinValue" id="checkinValue" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="checkoutValue" style="width: 100px;">CheckOut:</label>
+                                    <input readonly type="date" name="checkoutValue" id="checkoutValue" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="harga" style="width: 100px;">Harga:</label>
+                                    <input readonly type="text" name="harga" id="harga" value="${item.harga}" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="fee" style="width: 100px;">Fee:</label>
+                                    <input readonly type="text" name="fee" id="fee" value="50000" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="total" style="width: 100px;">Total:</label>
+                                    <input readonly type="text" name="total" id="total" class="no-border">
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <label for="buktiPembayaran" style="width: 100px;">Bukti:</label>
+                                    <input type="file" name="buktiPembayaran" id="buktiPembayaran" accept="image/*" class="no-border">
+                                </div>
+                                <button type="submit" class="btn btn-secondary" style="width: 40%; margin-top: 35px;">Next</button>
+                            </form>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-secondary" style="width: 40%; margin-top: 25px;">Next</button>
                     </div>
                     `;
 
