@@ -334,32 +334,12 @@ $result = $connection->query($sql);
         function closeSendMessageForm() {
             document.getElementById('sendMessageForm').classList.remove('active');
         }
-
-        function deleteProvider(event, id) {
-            event.stopPropagation();
-            if (confirm('Are you sure you want to delete this account?')) {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            // Jika data berhasil dihapus dari database
-                            console.log('Provider deleted: ' + id);
-                            // Lakukan halaman refresh atau manipulasi DOM sesuai kebutuhan
-                            location.reload(); // Contoh: Refresh halaman
-                        } else {
-                            // Jika terjadi kesalahan saat menghapus data dari database
-                            console.error('Error deleting provider: ' + xhr.responseText);
-                            // Tampilkan pesan kesalahan kepada pengguna atau lakukan tindakan lainnya
-                            alert('Error deleting provider. Please try again later.');
-                        }
-                    }
-                };
-                // Kirim permintaan ke server untuk menghapus data dari database
-                xhr.open('POST', 'delete_provider.php', true);
-                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhr.send('id=' + id);
-    }
-}
+        function deleteProvider(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_penyediagedung.php?id=" + userId;
+            }
+        }
+                        
 
     </script>
 </body>

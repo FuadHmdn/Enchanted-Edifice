@@ -10,24 +10,14 @@ if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM penyedia_gedung";
-$result = $connection->query($sql);
+$order_id = $_GET['id'];
+$query = "DELETE FROM penyedia_gedung WHERE id=$order_id";
 
-// Periksa apakah permintaan POST ada
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
-    $id = $_POST['id']; // ID item yang akan dihapus
-
-    // Query untuk menghapus data dari database
-    $sql = "DELETE FROM nama_tabel WHERE id = $id";
-
-    if ($conn->query($sql) === TRUE) {
-        // Redirect ke halaman lain atau tampilkan pesan sukses
-        header("Location: success.php");
-        exit();
-    } else {
-        echo "Error deleting record: " . $conn->error;
-    }
+mysqli_query($connection, $query);
+if ($connection->query($query) === TRUE) {
+    header('Location: adminpenyediagedung.php');
+    exit;
+} else {
+    echo "Error: " . $query . "<br>" . $connection->error;
 }
-
-$conn->close();
 ?>

@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
                 <label for="legalitas">Legalitas</label>
-                <a href="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/legalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
+                <a href="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/doclegalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
             </div>
             <form method="post">
                 <div class="form-group">
@@ -164,10 +164,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script>
-        function deleteProvider(id) {
-            if (confirm('Are you sure you want to delete this account?')) {
-                // Implement delete logic here
-                console.log('Account deleted: ' + id);
+        function deleteProvider($order_id) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_penyediagedung.php?id=" + $order_id;
             }
         }
     </script>
