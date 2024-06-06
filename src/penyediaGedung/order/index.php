@@ -23,6 +23,14 @@
             font-weight: normal;
             font-style: normal;
         }
+        
+
+        .nav-link {
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 20px;
+        }
 
         .bg-home {
             max-width: 80%;
