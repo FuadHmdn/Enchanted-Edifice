@@ -410,7 +410,7 @@ $result = $connection->query($sql);
                                 <h3>{$row['username']}</h3>
                                 <p>{$row['email']}</p>
                                 <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
-                                <button onclick='deleteOrder(event, {$row['id']})'>Delete</button>
+                                <button onclick='deleteCust({$row['id']})'>Delete</button>
                             </div>";
                     }
                 } else {
@@ -447,11 +447,9 @@ $result = $connection->query($sql);
             document.getElementById('sendMessageForm').classList.remove('active');
         }
 
-        function deleteOrder(event, id) {
-            event.stopPropagation();
-            if (confirm('Are you sure you want to delete this account?')) {
-                // Add your delete logic here
-                console.log('Order deleted: ' + id);
+        function deleteCust(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_cust.php?id=" + userId;
             }
         }
     </script>

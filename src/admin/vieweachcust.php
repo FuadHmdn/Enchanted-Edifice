@@ -118,7 +118,7 @@ $customer = $result->fetch_assoc();
             </div>
             <div class="buttons">
                 <button class="message">Send Message</button>
-                <button class="delete" onclick="deleteCustomer(<?php echo $customer_id; ?>)">Delete Account</button>
+                <button class="delete" onclick="deleteCust(<?php echo $customer_id; ?>)">Delete Account</button>
             </div>
         </div>
         <div class="profile-pic">
@@ -130,10 +130,9 @@ $customer = $result->fetch_assoc();
         </div>
     </div>
     <script>
-        function deleteCustomer(id) {
-            if (confirm('Are you sure you want to delete this account?')) {
-                // Implement delete logic here
-                console.log('Account deleted: ' + id);
+        function deleteCust($customer_id) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_cust.php?id=" + $customer_id;
             }
         }
     </script>
