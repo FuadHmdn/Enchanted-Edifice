@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
                 <label for="legalitas">Legalitas</label>
-                <a href="C:\xampp\htdocs\PemWeb\Enchanted-Edifice\src\penyediaGedung\doclegalitas\<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
+                <a href="http://localhost/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
             </div>
             <form method="post">
                 <div class="form-group">
