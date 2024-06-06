@@ -5,7 +5,7 @@ define('USER', 'root');
 define('PASS', '');
 define('DB', 'enchanted_edifice');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
+$connection = new mysqli(HOST, USER, PASS, DB);
 
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
@@ -13,16 +13,20 @@ if ($connection->connect_error) {
 
 // Ambil data penyedia gedung berdasarkan ID
 $order_id = $_GET['id'];
-$sql = "SELECT * FROM penyedia_gedung WHERE id = $order_id";
-$result = $connection->query($sql);
-
+$sql = "SELECT * FROM penyedia_gedung WHERE id = ?";
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $order_id);
+$stmt->execute();
+$result = $stmt->get_result();
 $order = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update status legalitas
     $new_status = $_POST['legalitas_status'];
-    $update_sql = "UPDATE penyedia_gedung SET legalitas_status = '$new_status' WHERE id = $order_id";
-    if ($connection->query($update_sql) === TRUE) {
+    $update_sql = "UPDATE penyedia_gedung SET legalitas_status = ? WHERE id = ?";
+    $update_stmt = $connection->prepare($update_sql);
+    $update_stmt->bind_param("si", $new_status, $order_id);
+    if ($update_stmt->execute()) {
         echo "Record updated successfully";
         // Refresh the page to show updated status
         header("Refresh:0");
@@ -136,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group">
                 <label for="legalitas">Legalitas</label>
-                <a href="/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/doclegalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
+                <a href="C:\xampp\htdocs\PemWeb\Enchanted-Edifice\src\penyediaGedung\doclegalitas<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
             </div>
             <form method="post">
                 <div class="form-group">
@@ -164,9 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script>
-        function deleteProvider($order_id) {
+        function deleteProvider(order_id) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_penyediagedung.php?id=" + $order_id;
+                window.location.href = "delete_penyediagedung.php?id=" + order_id;
             }
         }
     </script>
