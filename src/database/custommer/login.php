@@ -1,5 +1,5 @@
 <?php
-require_once ('../koneksi.php');
+require_once('../koneksi.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -11,30 +11,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Query untuk mengecek email dan password di database
-    $sql = "SELECT * FROM custommer WHERE email = '$email'";
-    $result = mysqli_query($connection, $sql);
+    // Fungsi untuk verifikasi login
+    function verify_login($connection, $table, $email, $password, $redirect_url)
+    {
+        $sql = "SELECT * FROM $table WHERE email = '$email'";
+        $result = mysqli_query($connection, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
-        if (password_verify($password, $user['password'])) {
-            // Login berhasil
-            $_SESSION['custommer_id'] = $user['id'];
-            $custommerId = $user['id'];
-            echo "<script>alert('Login berhasil!'); window.location.href = '../../user/home/index.php?id=$custommerId';</script>";
-            exit;
-        } else {
-            // Password salah
-            echo "<script>alert('Password salah. $password '); window.location.href = '../../login/user/login/UserLogin/index.html';</script>";
-            exit;
+        if (mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+            if (password_verify($password, $user['password'])) {
+                // Login berhasil
+                $_SESSION[$table . '_id'] = $user['id'];
+                $userId = $user['id'];
+                echo "<script>alert('Login berhasil!'); window.location.href = '$redirect_url?id=$userId';</script>";
+                exit;
+            } else {
+                // Password salah
+                echo "<script>alert('Password salah.'); window.location.href = '../../login/user/login/UserLogin/index.html';</script>";
+                exit;
+            }
         }
-    } else {
-        // Email tidak ditemukan
+        return false;
+    }
+
+    // Cek login untuk masing-masing tabel
+    $login_success = false;
+
+    // Cek tabel admin
+    if (verify_login($connection, 'admin', $email, $password, '../../admin/adminhome.php')) {
+        $login_success = true;
+    }
+    // Cek tabel penyedia gedung
+    if (!$login_success && verify_login($connection, 'penyedia_gedung', $email, $password, '../../penyediaGedung/home/index.php')) {
+        $login_success = true;
+    }
+    // Cek tabel custommer
+    if (!$login_success && verify_login($connection, 'custommer', $email, $password, '../../user/home/index.php')) {
+        $login_success = true;
+    }
+
+    if (!$login_success) {
+        // Email tidak ditemukan di semua tabel
         echo "<script>alert('Email tidak ditemukan.'); window.location.href = '../../login/user/login/UserLogin/index.html';</script>";
-        exit;
     }
 
     // Tutup koneksi
     mysqli_close($connection);
 }
-?>

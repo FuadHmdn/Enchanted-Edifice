@@ -120,7 +120,7 @@ mysqli_close($connection);
                 <p style="font-size: 16px; font-weight: 300; max-width: 100%; margin: 0;">Penyedia Gedung</p>
             </div>
 
-            <a href="../../login/user/login/PenyediaGedungLogin/index.html" style="align-items: center;">
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;">
                 <button type="button" class="btn btn-outline-danger" style="max-width: 100%; width: 300px; align-self: center;">Log Out</button>
             </a>
         </div>
