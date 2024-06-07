@@ -217,7 +217,7 @@
                 <h5>Design Team</h5>
                 <p>6 members</p>
             </div>
-            <a href="salary.php?team=design" class="badge bg-warning">Unpaid</a>
+            <span class="badge bg-success">Paid</span>
         </div>
 
         <div class="team-card">
@@ -287,7 +287,7 @@
                         <td>Urip@gmail.com</td>
                         <td>14 Feb 2019</td>
                         <td>Design Team</td>
-                        <td><span class="badge bg-danger">Unpaid</span></td>
+                        <td><span class="badge bg-success">Paid</span></td>
                     </tr>
                     <tr>
                         <td>00004</td>
