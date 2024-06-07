@@ -217,7 +217,7 @@
                 <h5>Design Team</h5>
                 <p>6 members</p>
             </div>
-            <a href="salary.php?team=design" class="badge bg-success">Paid</a>
+            <span class="badge bg-success">Paid</span>
         </div>
 
         <div class="team-card">
