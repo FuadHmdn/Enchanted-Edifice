@@ -149,59 +149,56 @@
         <p style="font-size: 66px; font-weight: 700; font-family: 'Abril Fatface', serif; margin: 0;">Hubungi Kami</p>
         <p style="font-size: 23px; font-weight: 100; font-family: 'Abril Fatface', serif; margin: 0;">Jangan ragu untuk
           meminta konsultasi atau bertanya lansung saja hubungi kami </p>
+          <!-- Input Data -->
+          <form action="<?php echo htmlspecialchars('../../../database/customer/submitform.php?id_custommer=' . urlencode($_GET['id_custommer'])); ?>" method="post">
 
-        <!-- Input Data -->
-        <form action="submitform.php?id_custommer=<?php echo $_GET['id_custommer']; ?>" method="post">
-          <!-- Text Filed Name-->
-          <div
-            style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 40px;">
+    <!-- Text Field Name -->
+    <div style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 40px;">
 
-            <!-- First Name -->
-            <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
-              <label for="FirstName" class="form-label" style="font-weight: 600; max-width: 100%;">First Name</label>
-              <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name"
-                style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
-            </div>
+        <!-- First Name -->
+        <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
+            <label for="FirstName" class="form-label" style="font-weight: 600; max-width: 100%;">First Name</label>
+            <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name"
+                   style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
+        </div>
 
-            <!-- Last Name -->
-            <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
-              <label for="FirstName" class="form-label" style="font-weight: 600;">Last Name</label>
-              <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Last Name"
-                style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
-            </div>
+        <!-- Last Name -->
+        <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
+            <label for="LastName" class="form-label" style="font-weight: 600;">Last Name</label>
+            <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last Name"
+                   style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
+        </div>
 
-          </div>
+    </div>
 
-          <!-- Text Field Email, Subject -->
-          <div
-            style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 20px;">
-            <!-- Email -->
-            <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
-              <label for="Email" class="form-label" style="font-weight: 600;">Email Address</label>
-              <input type="email" class="form-control" id="Email" name="Email" placeholder="Email"
-                style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
-            </div>
+    <!-- Text Field Email, Subject -->
+    <div style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 20px;">
+        <!-- Email -->
+        <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
+            <label for="Email" class="form-label" style="font-weight: 600;">Email Address</label>
+            <input type="email" class="form-control" id="Email" name="Email" placeholder="Email"
+                   style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
+        </div>
 
-            <!-- Subject -->
-            <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
-              <label for="Subject" class="form-label" style="font-weight: 600;">Subject</label>
-              <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Subject"
-                style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
-            </div>
-          </div>
+        <!-- Subject -->
+        <div class="form-group" style="display: flex; flex-direction: column; max-width: 100%;">
+            <label for="Subject" class="form-label" style="font-weight: 600;">Subject</label>
+            <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Subject"
+                   style="border-radius: 25px; width: auto; height: 55px; background-color: #e9ebee; max-width: 100%;">
+        </div>
+    </div>
 
-          <!-- Pesan Dan Button -->
-          <div class="form-group" style="display: flex; flex-direction: column;">
-            <!-- TextField Pesan -->
-            <label for="message" class="form-label" style="font-weight: 600;">Pesan</label>
-            <textarea id="message" class="form-control" name="message" rows="5" cols="50"
-              placeholder="Type your message here..." maxlength="500"
-              style="background-color: #e9ebee; border-radius: 20px; padding: 10px;"></textarea>
+    <!-- Pesan Dan Button -->
+    <div class="form-group" style="display: flex; flex-direction: column;">
+        <!-- TextField Pesan -->
+        <label for="message" class="form-label" style="font-weight: 600;">Pesan</label>
+        <textarea id="message" class="form-control" name="message" rows="5" cols="50"
+                  placeholder="Type your message here..." maxlength="500"
+                  style="background-color: #e9ebee; border-radius: 20px; padding: 10px;"></textarea>
 
-            <input id="submit-button" type="submit" value="SEND MESSAGE">
-          </div>
-        </form>
-
+        <input id="submit-button" type="submit" value="SEND MESSAGE">
+    </div>
+</form>
       </div>
 
     </div>
