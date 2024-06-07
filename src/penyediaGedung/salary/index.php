@@ -70,6 +70,75 @@
             padding: 10px;
             border-radius: 20px;
         }
+
+        .cek-salary-btn {
+            background-color: #E2E9F8;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #0a1e3f;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
     </style>
 
 </head>
@@ -126,6 +195,11 @@
         </div>
     </div>
 
+    <!-- CEK SALARY BUTTON -->
+    <div style="text-align: right; margin-right: 46px; margin-top: 20px;">
+        <button class="cek-salary-btn" onclick="openModal()">Cek Salary</button>
+    </div>
+
     <!-- TEAM CARDS -->
     <div class="container" style="margin-bottom: 90px; margin-top: 80px;">
         <div class="team-card">
@@ -174,8 +248,79 @@
         </div>
     </div>
 
-     <!-- BOTTOM BAR -->
-     <div
+    <!-- MODAL -->
+    <div id="salaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Salary Details</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Team</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00001</td>
+                        <td>Maharani Wahayuhu</td>
+                        <td>Wahayuhu@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Chief of Company</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <tr>
+                        <td>00002</td>
+                        <td>Fuuaach</td>
+                        <td>Fuuaach@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Chief of Company</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <tr>
+                        <td>00003</td>
+                        <td>Uripin</td>
+                        <td>Urip@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Design Team</td>
+                        <td><span class="badge bg-danger">Unpaid</span></td>
+                    </tr>
+                    <tr>
+                        <td>00004</td>
+                        <td>Ithin</td>
+                        <td>Ithinnn@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Marketing Team</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <tr>
+                        <td>00005</td>
+                        <td>Bellacaw</td>
+                        <td>Beww@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Social Media Team</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <tr>
+                        <td>00006</td>
+                        <td>Alfad</td>
+                        <td>Alfad@gmail.com</td>
+                        <td>14 Feb 2019</td>
+                        <td>Developer Team</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <!-- Additional rows can be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div
         style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
 
         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
@@ -224,6 +369,15 @@
         function profileClick() {
             window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
         }
+
+        function openModal() {
+            document.getElementById("salaryModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("salaryModal").style.display = "none";
+        }
     </script>
 </body>
+
 </html>
