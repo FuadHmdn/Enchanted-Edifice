@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,7 +151,7 @@
           meminta konsultasi atau bertanya lansung saja hubungi kami </p>
 
         <!-- Input Data -->
-        <form action="" method="post">
+        <form action="submitform.php?id_custommer=<?php echo $_GET['id_custommer']; ?>" method="post">
           <!-- Text Filed Name-->
           <div
             style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 40px;">
