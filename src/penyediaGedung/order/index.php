@@ -227,7 +227,8 @@
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
-                <th>DATE</th>
+                <th>DATE CHECK-IN</th>
+                <th>DATE CHECK-OUT</th>
                 <th>BUILDING</th>
                 <th>CATEGORY</th>
                 <th>STATUS</th>
@@ -302,6 +303,7 @@
             row.innerHTML = `
                 <td>${order.id_order}</td>
                 <td>${order.username}</td>
+                <td>${order.tanggal_masuk}</td>
                 <td>${order.tanggal_keluar}</td>
                 <td>${order.nama_gedung}</td>
                 <td>${order.kategori}</td>
@@ -310,8 +312,6 @@
             orderTable.appendChild(row);
         });
     }
-
-
 
         fetchOrders();
 
