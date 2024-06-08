@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($connection, $sql)) {
         // Registrasi berhasil, tampilkan popup
-        echo "<script>alert('Registrasi berhasil!'); window.location.href = '../../login/user/register/user/index.html';</script>";
+        echo "<script>alert('Registrasi berhasil!'); window.location.href = '../../login/user/login/userLogin/index.html';</script>";
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($connection);
