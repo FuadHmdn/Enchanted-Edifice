@@ -204,7 +204,6 @@
             <p style="font-family: 'Lato',sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">ORDER</p>
         </div>
     </div>
-
     <div style="margin-top: 40px;">
     <br><br>
     <br>
@@ -246,14 +245,14 @@
         <select id="category-select">
             <option value="">Select Category</option>
             <option value="Home">Home</option>
-                <option value="Ballroom">Ballroom</option>
-                <option value="MeetingRoom">Meeting Room</option>
-                <option value="OutdoorVenue">Outdoor Venue</option>
-                <option value="BanquetHall">Banquet Hall</option>
-                <option value="ConferenceCenter">Conference Center</option>
-                <option value="Auditorium">Auditorium</option>
-                <option value="CafeRestaurant">Cafe/Restaurant</option>
-                <option value="SportsFacility">Sports Facility</option>
+            <option value="Ballroom">Ballroom</option>
+            <option value="MeetingRoom">Meeting Room</option>
+            <option value="OutdoorVenue">Outdoor Venue</option>
+            <option value="BanquetHall">Banquet Hall</option>
+            <option value="ConferenceCenter">Conference Center</option>
+            <option value="Auditorium">Auditorium</option>
+            <option value="CafeRestaurant">Cafe/Restaurant</option>
+            <option value="SportsFacility">Sports Facility</option>
         </select>
         <button id="apply-category">Apply Now</button>
     </div>
@@ -267,53 +266,93 @@
     </div>
     <br><br><br><br>
 </div>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- BOTTOM BAR -->
+<div
+        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+            <p
+                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting
+                Events, Enchanted<br>Experiences!</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Services</p>
+            <p style="margin: 0;">Booking</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                About</p>
+            <p style="margin: 0;">Our Story</p>
+            <p style="margin: 0;">Blog</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Follow Us
+            </p>
+
+            <div style="display: flex; flex-direction: row;">
+                <img src="../../res/Facebook.png" alt="Facebook">
+                <img src="../../res/Twitter.png" alt="Twitter">
+                <img src="../../res/LinkedIn.png" alt="LinkedIn">
+            </div>
+        </div>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 <script>
     $(document).ready(function () {
-    fetchOrders(); // Memuat data saat halaman dimuat
+        fetchOrders(); // Memuat data saat halaman dimuat
 
-    // Fungsi untuk memuat data dari getorder.php
-    function fetchOrders() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id_penyedia_gedung = urlParams.get('id');
-        $.ajax({
-            url: '../../database/penyedia_gedung/getorder.php',
-            method: 'GET',
-            data: { id: id_penyedia_gedung },
-            success: function (data) {
-                const orders = JSON.parse(data);
-                displayOrders(orders); // Menampilkan data setelah berhasil dimuat
-            },
-            error: function (xhr, status, error) {
-                console.error("AJAX Error: ", status, error); // Debugging: Tampilkan error AJAX
-            }
-        });
-    }
+        // Fungsi untuk memuat data dari getorder.php
+        function fetchOrders() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_penyedia_gedung = urlParams.get('id');
+            $.ajax({
+                url: '../../database/penyedia_gedung/getorder.php',
+                method: 'GET',
+                data: { id: id_penyedia_gedung },
+                success: function (data) {
+                    const orders = JSON.parse(data);
+                    displayOrders(orders); // Menampilkan data setelah berhasil dimuat
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", status, error); // Debugging: Tampilkan error AJAX
+                }
+            });
+        }
 
-    // Fungsi untuk menampilkan data di tabel
-    function displayOrders(orders) {
-        const orderTable = document.getElementById('order-table');
-        orderTable.innerHTML = '';
-        orders.forEach(order => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${order.id_order}</td>
-                <td>${order.username}</td>
-                <td>${order.tanggal_masuk}</td>
-                <td>${order.tanggal_keluar}</td>
-                <td>${order.nama_gedung}</td>
-                <td>${order.kategori}</td>
-                <td class="${order.status_order === 'incomplete' ? 'status-incomplete' : 'status-complete'}">${order.status_order}</td>
-            `;
-            orderTable.appendChild(row);
-        });
-    }
-
-        fetchOrders();
+        // Fungsi untuk menampilkan data di tabel
+        function displayOrders(orders) {
+            const orderTable = document.getElementById('order-table');
+            orderTable.innerHTML = '';
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id_order}</td>
+                    <td>${order.username}</td>
+                    <td>${order.tanggal_masuk}</td>
+                    <td>${order.tanggal_keluar}</td>
+                    <td>${order.nama_gedung}</td>
+                    <td>${order.kategori}</td>
+                    <td class="${order.status_order === 'incomplete' ? 'status-incomplete' : 'status-complete'}">${order.status_order}</td>
+                `;
+                orderTable.appendChild(row);
+            });
+        }
 
         $('#datepicker').datepicker({
             format: 'yyyy-mm-dd',
@@ -362,22 +401,39 @@
                 $('.popup').hide();
             }
         });
-
         const filterOrders = (criteria) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id_penyedia_gedung = urlParams.get('id');
-            $.ajax({
-                url: '../../database/penyedia_gedung/getorder.php',
-                method: 'GET',
-                data: { id_penyedia_gedung, ...criteria },
-                success: function (data) {
-                    const orders = JSON.parse(data);
-                    displayOrders(orders);
-                }
-            });
-        };
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_penyedia_gedung = urlParams.get('id');
+    $.ajax({
+        url: '../../database/penyedia_gedung/getorder.php',
+        method: 'GET',
+        data: { id_penyedia_gedung },
+        success: function (data) {
+            let orders = JSON.parse(data);
+            
+            // Filter data berdasarkan tanggal
+            if (criteria.date) {
+                orders = orders.filter(order => order.tanggal_masuk === criteria.date);
+            }
+            
+            // Filter data berdasarkan kategori
+            if (criteria.category) {
+                orders = orders.filter(order => order.kategori === criteria.category);
+            }
+            
+            // Filter data berdasarkan status
+            if (criteria.status) {
+                orders = orders.filter(order => order.status_order === criteria.status);
+            }
+            
+            displayOrders(orders);
+        }
+    });
+};
+
     });
 </script>
+
 <script>
     function profileClick() {
         window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
