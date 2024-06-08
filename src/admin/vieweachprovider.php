@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 5px;
             cursor: pointer;
         }
-        .buttons .message {
+        .buttons .salary {
             background-color: #1595eb;
             color: white;
         }
@@ -155,9 +155,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </form>
             <div class="buttons">
-                <button class="message">Send Message</button>
+                <button onclick="viewSalary(event, <?php echo $row['id']; ?>)">View Salary</button>
                 <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
             </div>
+
         </div>
         <div class="profile-pic">
             <?php if(isset($order['photo']) && !empty($order['photo'])): ?>
@@ -172,6 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (confirm("Are you sure you want to delete this user?")) {
                 window.location.href = "delete_penyediagedung.php?id=" + order_id;
             }
+        }function viewSalary(event, id) {
+            event.stopPropagation();
+            window.location.href = 'vieweachsalary.php?id=' + id;
         }
     </script>
 </body>

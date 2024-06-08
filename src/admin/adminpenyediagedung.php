@@ -276,7 +276,7 @@ $result = $connection->query($sql);
         </aside>
         <main class="main-content">
             <header>
-            <div class="search-bar">
+                <div class="search-bar">
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="header-right">
@@ -307,7 +307,7 @@ $result = $connection->query($sql);
                         echo "</div>
                                 <h3>{$row['username']}</h3>
                                 <p>{$row['email']}</p>
-                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
+                                <button onclick='viewSalary(event, {$row['id']})'>View Salary</button>
                                 <button onclick='deleteProvider(event, {$row['id']})'>Delete</button>
                             </div>";
                     }
@@ -324,23 +324,19 @@ $result = $connection->query($sql);
             window.location.href = 'vieweachprovider.php?id=' + id;
         }
 
-        function sendMessage(event, id, name, email) {
+        function viewSalary(event, id) {
             event.stopPropagation();
-            document.getElementById('providerId').value = id;
-            document.getElementById('providerName').textContent = name;
-            document.getElementById('sendMessageForm').classList.add('active');
+            window.location.href = 'vieweachsalary.php?id=' + id;
         }
 
-        function closeSendMessageForm() {
-            document.getElementById('sendMessageForm').classList.remove('active');
-        }
-        function deleteProvider(userId) {
+        
+
+        function deleteProvider(event, userId) {
+            event.stopPropagation();
             if (confirm("Are you sure you want to delete this user?")) {
                 window.location.href = "delete_penyediagedung.php?id=" + userId;
             }
         }
-                        
-
     </script>
 </body>
 </html>

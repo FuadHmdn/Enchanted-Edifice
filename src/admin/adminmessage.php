@@ -310,7 +310,12 @@
                         }
 
                         $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
-                        $sql = "SELECT * FROM message_user WHERE user_type = '$userType'";
+                        if ($userType == 'customer') {
+                            $sql = "SELECT c.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_customer m JOIN custommer c ON m.id_customer = c.id";
+                        } else {
+                            $sql = "SELECT p.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_penyediagedung m JOIN penyedia_gedung p ON m.id_penyediagedung = p.id";
+                        }
+
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
