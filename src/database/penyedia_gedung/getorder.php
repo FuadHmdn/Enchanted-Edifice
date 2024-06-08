@@ -1,23 +1,48 @@
 <?php
 
-require_once ('../koneksi.php');
+require_once('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $id = $_GET['id_penyedia_gedung'];
-    $sql = "SELECT * FROM `payment` where id_penyedia_gedung = $id";
+    $id_penyedia_gedung = isset($_GET['id']) ? $_GET['id'] : '';
 
-    $result = mysqli_query($connection, $sql);
+    $sql = "SELECT o.id_order, c.name, o.tanggal_keluar, p.nama_gedung, o.kategori, o.status_order
+            FROM order_cust o
+            JOIN custommer c ON o.id_custommer = c.id_custommer
+            JOIN penyedia_gedung p ON o.id_penyedia_gedung = p.id_penyedia_gedung
+            WHERE o.id_penyedia_gedung = ?";
 
-    if (mysqli_num_rows($result) > 0) {
-        $response = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $response[] = $row;
-        }
-        echo json_encode($response);
-    } else {
-        echo json_encode(array('message' => 'No data found'));
+    $params = [$id_penyedia_gedung];
+
+    if (isset($_GET['date'])) {
+        $sql .= " AND o.tanggal_keluar = ?";
+        $params[] = $_GET['date'];
     }
-}
 
+    if (isset($_GET['category'])) {
+        $sql .= " AND o.kategori = ?";
+        $params[] = $_GET['category'];
+    }
+
+    if (isset($_GET['status'])) {
+        $sql .= " AND o.status_order = ?";
+        $params[] = $_GET['status'];
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $orders = [];
+    while ($row = $result->fetch_assoc()) {
+        $orders[] = $row;
+    }
+
+    echo json_encode($orders);
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
+
