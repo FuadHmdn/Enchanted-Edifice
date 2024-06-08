@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         shell_exec("cd C:/xampp/htdocs/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas/ && git add $legal_document && git commit -m 'Add new document $legal_document' && git push origin main");
         
         // Registrasi berhasil, tampilkan popup
-        echo "<script>alert('Registration successful! You can log in once your account is verified. Estimated verification time: five minutes to one hour.'); window.location.href = '../../login/user/login/PenyediaGedungLogin/index.html';</script>";
+        echo "<script>alert('Registration successful! You can log in once your account is verified. Estimated verification time: five minutes to one hour.'); window.location.href = '../../login/user/login/userLogin/index.html';</script>";
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($connection);
