@@ -218,17 +218,55 @@
             Acara Impian Anda</p>
         <div class="bg-kategori" style="display: flex; flex-direction: row; margin-top: 0; justify-content: space-between; align-items: center; padding-left: 40px; padding-right: 40px; max-width: 100%;">
             <select id="kategoriValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-                <option selected>Kategori</option>
+                <option selected>Categories</option>
+                <option value="Home">Home</option>
                 <option value="Ballroom">Ballroom</option>
-                <option value="Hotel">Hotel</option>
-                <option value="3">Three</option>
+                <option value="MeetingRoom">Meeting Room</option>
+                <option value="OutdoorVenue">Outdoor Venue</option>
+                <option value="BanquetHall">Banquet Hall</option>
+                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="CafeRestaurant">Cafe/Restaurant</option>
+                <option value="SportsFacility">Sports Facility</option>
+
             </select>
 
             <select class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-                <option selected>Lokasi</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected>Location</option>
+                    <option value="aceh">Aceh</option>
+                    <option value="bali">Bali</option>
+                    <option value="banten">Banten</option>
+                    <option value="bengkulu">Bengkulu</option>
+                    <option value="gorontalo">Gorontalo</option>
+                    <option value="jakarta">Jakarta</option>
+                    <option value="jambi">Jambi</option>
+                    <option value="west-java">West Java</option>
+                    <option value="central-java">Central Java</option>
+                    <option value="east-java">East Java</option>
+                    <option value="west-kalimantan">West Kalimantan</option>
+                    <option value="south-kalimantan">South Kalimantan</option>
+                    <option value="central-kalimantan">Central Kalimantan</option>
+                    <option value="east-kalimantan">East Kalimantan</option>
+                    <option value="north-kalimantan">North Kalimantan</option>
+                    <option value="bangka-belitung">Bangka Belitung</option>
+                    <option value="lampung">Lampung</option>
+                    <option value="maluku">Maluku</option>
+                    <option value="north-maluku">North Maluku</option>
+                    <option value="west-ntt">West Nusa Tenggara</option>
+                    <option value="east-ntt">East Nusa Tenggara</option>
+                    <option value="papua">Papua</option>
+                    <option value="west-papua">West Papua</option>
+                    <option value="riau">Riau</option>
+                    <option value="riau-islands">Riau Islands</option>
+                    <option value="west-sulawesi">West Sulawesi</option>
+                    <option value="south-sulawesi">South Sulawesi</option>
+                    <option value="central-sulawesi">Central Sulawesi</option>
+                    <option value="south-east-sulawesi">South East Sulawesi</option>
+                    <option value="north-sulawesi">North Sulawesi</option>
+                    <option value="west-sumatra">West Sumatra</option>
+                    <option value="south-sumatra">South Sumatra</option>
+                    <option value="north-sumatra">North Sumatra</option>
+                    <option value="yogyakarta">Yogyakarta</option>
             </select>
         </div>
     </div>
