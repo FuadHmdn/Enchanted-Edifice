@@ -206,210 +206,178 @@
     </div>
 
     <div style="margin-top: 40px;">
-            <br><br>
-            <br>
-            <div class="filter-bar">
-                <button id="date-filter" class="btn">
-                    <i class="bi bi-calendar"></i> Date
-                </button>
-                <button id="category-filter" class="btn">
-                    <i class="bi bi-list-ul"></i> Order Categories
-                </button>
-                <button id="status-filter" class="btn">
-                    <i class="bi bi-info-circle"></i> Order Status
-                </button>
-                <button class="btn reset-button" id="reset-filter">
-                    <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
-                </button>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>ADDRESS</th>
-                        <th>DATE</th>
-                        <th>CATEGORY</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody id="order-table">
-                    <!-- Table rows will be dynamically generated -->
-                </tbody>
-            </table>
-            <div class="popup" id="date-popup">
-                <div id="datepicker"></div>
-                <button id="apply-date">Apply Now</button>
-            </div>
-            <div class="popup" id="category-popup">
-                <select id="category-select">
-                    <option value="">Select Category</option>
-                    <option value="Wedding">Wedding</option>
-                    <option value="Birthday Party">Birthday Party</option>
-                    <option value="Anniversary">Anniversary</option>
-                </select>
-                <button id="apply-category">Apply Now</button>
-            </div>
-            <div class="popup" id="status-popup">
-                <select id="status-select">
-                    <option value="">Select Status</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Processing">Processing</option>
-                    <option value="Scheduled">Scheduled</option>
-                </select>
-                <button id="apply-status">Apply Now</button>
-            </div>
-            <br><br><br><br>
+    <br><br>
+    <br>
+    <div class="filter-bar">
+        <button id="date-filter" class="btn">
+            <i class="bi bi-calendar"></i> Date
+        </button>
+        <button id="category-filter" class="btn">
+            <i class="bi bi-list-ul"></i> Order Categories
+        </button>
+        <button id="status-filter" class="btn">
+            <i class="bi bi-info-circle"></i> Order Status
+        </button>
+        <button class="btn reset-button" id="reset-filter">
+            <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
+        </button>
     </div>
-
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DATE</th>
+                <th>BUILDING</th>
+                <th>CATEGORY</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody id="order-table">
+            <!-- Table rows will be dynamically generated -->
+        </tbody>
+    </table>
+    <div class="popup" id="date-popup">
+        <div id="datepicker"></div>
+        <button id="apply-date">Apply Now</button>
+    </div>
+    <div class="popup" id="category-popup">
+        <select id="category-select">
+            <option value="">Select Category</option>
+            <option value="Home">Home</option>
+                <option value="Ballroom">Ballroom</option>
+                <option value="MeetingRoom">Meeting Room</option>
+                <option value="OutdoorVenue">Outdoor Venue</option>
+                <option value="BanquetHall">Banquet Hall</option>
+                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="CafeRestaurant">Cafe/Restaurant</option>
+                <option value="SportsFacility">Sports Facility</option>
+        </select>
+        <button id="apply-category">Apply Now</button>
+    </div>
+    <div class="popup" id="status-popup">
+        <select id="status-select">
+            <option value="">Select Status</option>
+            <option value="completed">completed</option>
+            <option value="incomplete">incomplete</option>
+        </select>
+        <button id="apply-status">Apply Now</button>
+    </div>
+    <br><br><br><br>
+</div>
     
-
-    <!-- BOTTOM BAR -->
-    <div
-        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
-
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p
-                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting
-                Events, Enchanted<br>Experiences!</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                About</p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Follow Us
-            </p>
-
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
-
-    </div>
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-    <script>
-        const orders = [
-            { id: 1, name: 'John Doe', address: '123 Main St', date: '2023-05-01', category: 'Wedding', status: 'Completed' },
-            { id: 2, name: 'Jane Smith', address: '456 Oak Ave', date: '2023-06-15', category: 'Birthday Party', status: 'Processing' },
-            { id: 3, name: 'Mike Johnson', address: '789 Pine Rd', date: '2023-07-10', category: 'Anniversary', status: 'Scheduled' },
-            { id: 4, name: 'Alice Brown', address: '101 Maple St', date: '2023-05-20', category: 'Wedding', status: 'Completed' },
-            { id: 5, name: 'Bob White', address: '202 Birch Ave', date: '2023-08-05', category: 'Birthday Party', status: 'Processing' },
-            { id: 6, name: 'Charlie Green', address: '303 Cedar Rd', date: '2023-09-15', category: 'Anniversary', status: 'Scheduled' },
-            { id: 7, name: 'Dave Black', address: '404 Spruce St', date: '2023-10-10', category: 'Wedding', status: 'Completed' },
-            { id: 8, name: 'Eve Pink', address: '505 Elm Ave', date: '2023-11-05', category: 'Birthday Party', status: 'Processing' },
-            { id: 9, name: 'Frank Blue', address: '606 Willow Rd', date: '2023-12-15', category: 'Anniversary', status: 'Scheduled' },
-            { id: 10, name: 'Grace Yellow', address: '707 Poplar St', date: '2023-11-20', category: 'Wedding', status: 'Completed' }
-        ];
+<script>
+    $(document).ready(function () {
+    fetchOrders(); // Memuat data saat halaman dimuat
 
+    // Fungsi untuk memuat data dari getorder.php
+    function fetchOrders() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_penyedia_gedung = urlParams.get('id');
+        $.ajax({
+            url: '../../database/penyedia_gedung/getorder.php',
+            method: 'GET',
+            data: { id: id_penyedia_gedung },
+            success: function (data) {
+                const orders = JSON.parse(data);
+                displayOrders(orders); // Menampilkan data setelah berhasil dimuat
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error: ", status, error); // Debugging: Tampilkan error AJAX
+            }
+        });
+    }
+
+    // Fungsi untuk menampilkan data di tabel
+    function displayOrders(orders) {
         const orderTable = document.getElementById('order-table');
+        orderTable.innerHTML = '';
+        orders.forEach(order => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${order.id_order}</td>
+                <td>${order.username}</td>
+                <td>${order.tanggal_keluar}</td>
+                <td>${order.nama_gedung}</td>
+                <td>${order.kategori}</td>
+                <td class="${order.status_order === 'incomplete' ? 'status-incomplete' : 'status-complete'}">${order.status_order}</td>
+            `;
+            orderTable.appendChild(row);
+        });
+    }
 
-        const displayOrders = (orders) => {
-            orderTable.innerHTML = '';
-            orders.forEach(order => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${order.id}</td>
-                    <td>${order.name}</td>
-                    <td>${order.address}</td>
-                    <td>${order.date}</td>
-                    <td>${order.category}</td>
-                    <td class="${order.status === 'Completed' ? 'status-completed' : order.status === 'Processing' ? 'status-processing' : 'status-scheduled'}">${order.status}</td>
-                `;
-                orderTable.appendChild(row);
-            });
-        };
 
-        displayOrders(orders);
+
+        fetchOrders();
+
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+
+        $('#date-filter').click(function () {
+            $('#date-popup').toggle();
+        });
+
+        $('#category-filter').click(function () {
+            $('#category-popup').toggle();
+        });
+
+        $('#status-filter').click(function () {
+            $('#status-popup').toggle();
+        });
+
+        $('#apply-date').click(function () {
+            const selectedDate = $('#datepicker').datepicker('getFormattedDate');
+            filterOrders({ date: selectedDate });
+            $('.popup').hide();
+        });
+
+        $('#apply-category').click(function () {
+            const selectedCategory = $('#category-select').val();
+            filterOrders({ category: selectedCategory });
+            $('.popup').hide();
+        });
+
+        $('#apply-status').click(function () {
+            const selectedStatus = $('#status-select').val();
+            filterOrders({ status: selectedStatus });
+            $('.popup').hide();
+        });
+
+        $('#reset-filter').click(function () {
+            fetchOrders();
+            $('#category-select').val('');
+            $('#status-select').val('');
+            $('#datepicker').datepicker('clearDates');
+        });
+
+        $(document).click(function (event) {
+            if (!$(event.target).closest('.btn, .popup').length) {
+                $('.popup').hide();
+            }
+        });
 
         const filterOrders = (criteria) => {
-            let filteredOrders = orders;
-            if (criteria.date) {
-                filteredOrders = filteredOrders.filter(order => order.date === criteria.date);
-            }
-            if (criteria.category) {
-                filteredOrders = filteredOrders.filter(order => order.category === criteria.category);
-            }
-            if (criteria.status) {
-                filteredOrders = filteredOrders.filter(order => order.status === criteria.status);
-            }
-            displayOrders(filteredOrders);
-        };
-
-        $(document).ready(function () {
-            $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true
-            });
-
-            $('#date-filter').click(function () {
-                $('#date-popup').toggle();
-            });
-
-            $('#category-filter').click(function () {
-                $('#category-popup').toggle();
-            });
-
-            $('#status-filter').click(function () {
-                $('#status-popup').toggle();
-            });
-
-            $('#apply-date').click(function () {
-                const selectedDate = $('#datepicker').datepicker('getFormattedDate');
-                filterOrders({ date: selectedDate });
-                $('.popup').hide();
-            });
-
-            $('#apply-category').click(function () {
-                const selectedCategory = $('#category-select').val();
-                filterOrders({ category: selectedCategory });
-                $('.popup').hide();
-            });
-
-            $('#apply-status').click(function () {
-                const selectedStatus = $('#status-select').val();
-                filterOrders({ status: selectedStatus });
-                $('.popup').hide();
-            });
-
-            $('#reset-filter').click(function () {
-                displayOrders(orders);
-                $('#category-select').val('');
-                $('#status-select').val('');
-                $('#datepicker').datepicker('clearDates');
-            });
-
-            $(document).click(function (event) {
-                if (!$(event.target).closest('.btn, .popup').length) {
-                    $('.popup').hide();
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_penyedia_gedung = urlParams.get('id');
+            $.ajax({
+                url: '../../database/penyedia_gedung/getorder.php',
+                method: 'GET',
+                data: { id_penyedia_gedung, ...criteria },
+                success: function (data) {
+                    const orders = JSON.parse(data);
+                    displayOrders(orders);
                 }
             });
-        });
-    </script>
-
+        };
+    });
+</script>
 <script>
     function profileClick() {
         window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
