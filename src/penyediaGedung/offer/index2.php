@@ -294,15 +294,12 @@ mysqli_close($connection);
             <h4 style="font-weight: bold;">Fill in the basic information about your item <br> <br></h4>
             
             <label for="title">Title</label>
-            <input type="text" id="title" placeholder="Title" value="Grand Indonesia Ballroom" oninput="updateCharacterCount('title', 'title-count')">
-            <div id="title-count" class="character-count">38/60</div>
+            <input type="text" id="title" placeholder="Title"  oninput="updateCharacterCount('title', 'title-count')">
+            <div id="title-count" class="character-count">0/60</div>
     
             <label for="description">Description</label>
-            <textarea id="description" placeholder="Description" oninput="updateCharacterCount('description', 'description-count')">Capacity: The ballroom boasts a spacious area capable of accommodating up to 1000 guests in a banquet-style setup or up to 1500 guests in a theater-style arrangement. This ample space provides flexibility for hosting events of different scales.
-    Facilities: Equipped with modern audiovisual equipment, including sound systems, projectors, and screens, the ballroom ensures seamless presentations and entertainment during events. Additionally, professional lighting setups enhance the ambiance and create a captivating atmosphere for guests.
-    Services: The dedicated event management team at Grand Indonesia Hotel provides personalized assistance to ensure the success of every event. From event planning and coordination to catering services, the team is committed to delivering impeccable service and exceeding clients' expectations.
-    Location: Situated in the heart of Jakarta's central business district, Grand Indonesia Ballroom offers convenience and accessibility for both local and international guests. With its strategic location and luxurious amenities, it serves as an elegant venue choice for unforgettable events.</textarea>
-            <div id="description-count" class="character-count">322/1200</div>
+            <textarea id="description" placeholder="Description" oninput="updateCharacterCount('description', 'description-count')"></textarea>
+            <div id="description-count" class="character-count">0/1200</div>
     
             <div class="row">
                 <div>
@@ -319,8 +316,47 @@ mysqli_close($connection);
                 </div>
             </div>
     
-            <label for="price">Price</label>
+            <label for="price">Price (the price will be cut by 10% tax and the application cost is 2.5%)</label>
             <input type="text" id="price" placeholder="Product price in PLN (gross)">
+
+            <label for="location">Location</label>
+                <select id="location" style="height: 40px;">
+                    <option value="">Select Province</option>
+                    <option value="aceh">Aceh</option>
+                    <option value="bali">Bali</option>
+                    <option value="banten">Banten</option>
+                    <option value="bengkulu">Bengkulu</option>
+                    <option value="gorontalo">Gorontalo</option>
+                    <option value="jakarta">Jakarta</option>
+                    <option value="jambi">Jambi</option>
+                    <option value="west-java">West Java</option>
+                    <option value="central-java">Central Java</option>
+                    <option value="east-java">East Java</option>
+                    <option value="west-kalimantan">West Kalimantan</option>
+                    <option value="south-kalimantan">South Kalimantan</option>
+                    <option value="central-kalimantan">Central Kalimantan</option>
+                    <option value="east-kalimantan">East Kalimantan</option>
+                    <option value="north-kalimantan">North Kalimantan</option>
+                    <option value="bangka-belitung">Bangka Belitung</option>
+                    <option value="lampung">Lampung</option>
+                    <option value="maluku">Maluku</option>
+                    <option value="north-maluku">North Maluku</option>
+                    <option value="west-ntt">West Nusa Tenggara</option>
+                    <option value="east-ntt">East Nusa Tenggara</option>
+                    <option value="papua">Papua</option>
+                    <option value="west-papua">West Papua</option>
+                    <option value="riau">Riau</option>
+                    <option value="riau-islands">Riau Islands</option>
+                    <option value="west-sulawesi">West Sulawesi</option>
+                    <option value="south-sulawesi">South Sulawesi</option>
+                    <option value="central-sulawesi">Central Sulawesi</option>
+                    <option value="south-east-sulawesi">South East Sulawesi</option>
+                    <option value="north-sulawesi">North Sulawesi</option>
+                    <option value="west-sumatra">West Sumatra</option>
+                    <option value="south-sumatra">South Sumatra</option>
+                    <option value="north-sumatra">North Sumatra</option>
+                    <option value="yogyakarta">Yogyakarta</option>
+                </select>
     
             <a href="index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">
               <div class="next-button">
