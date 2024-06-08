@@ -150,7 +150,8 @@
         <p style="font-size: 23px; font-weight: 100; font-family: 'Abril Fatface', serif; margin: 0;">Jangan ragu untuk
           meminta konsultasi atau bertanya lansung saja hubungi kami </p>
           <!-- Input Data -->
-          <form action="<?php echo htmlspecialchars('../../../database/customer/submitform.php?id_custommer=' . urlencode($_GET['id_custommer'])); ?>" method="post">
+          <form action="../../database/custommer/submitform.php?id=<?php echo $_GET['id']; ?>" method="post">
+
 
     <!-- Text Field Name -->
     <div style="display: flex; flex-direction: row; max-width: 100%; justify-content: space-between; margin-top: 40px;">
