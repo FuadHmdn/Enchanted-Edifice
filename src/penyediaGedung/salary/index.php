@@ -8,139 +8,20 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Salary Enchanted Edifice</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
-
     <style>
-        body {
-            background-color: #F3F4F7;
-        }
-
-        @font-face {
-            font-family: 'Abril Fatface';
-            src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .nav-link {
-            font-family: 'Lato', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 20px;
-        }
-
-        .bg-home {
-            max-width: 100%;
-            height: auto;
-            padding-bottom: 120px;
-            background-color: #E2E9F8;
-        }
-
-        .team-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .filter-bar {
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            padding: 20px;
         }
-
-        .team-card img {
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
-        .team-card .team-info {
-            flex-grow: 1;
-        }
-
-        .team-card .team-info h5 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .team-card .team-info p {
-            margin: 0;
-            color: #888;
-        }
-
-        .team-card .badge {
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 20px;
-        }
-
-        .cek-salary-btn {
-            background-color: #E2E9F8;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            color: #0a1e3f;
-            font-family: 'Lato', sans-serif;
-        }
-
-        .modal {
+        .popup {
             display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            color: #212529;
-            border-collapse: collapse;
-        }
-
-        .table th,
-        .table td {
-            padding: 0.75rem;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .table thead th {
-            vertical-align: bottom;
-            border-bottom: 2px solid #dee2e6;
-        }
-
-        .table tbody + tbody {
-            border-top: 2px solid #dee2e6;
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            z-index: 10;
         }
     </style>
-
+    
 </head>
 
 <body>
@@ -195,188 +76,118 @@
         </div>
     </div>
 
-    <!-- CEK SALARY BUTTON -->
-    <div style="text-align: right; margin-right: 46px; margin-top: 20px;">
-        <button class="cek-salary-btn" onclick="openModal()">Cek Salary</button>
-    </div>
-
-    <!-- TEAM CARDS -->
-    <div class="container" style="margin-bottom: 90px; margin-top: 80px;">
-        <div class="team-card">
-            <img src="../salary/image/chief.png" alt="Chief of Company" width="60">
-            <div class="team-info">
-                <h5>Chief of Company</h5>
-                <p>5 members</p>
-            </div>
-            <span class="badge bg-success">Paid</span>
+    <div class="container">
+        <h1 class="mt-5">Salary Management</h1>
+        <div class="filter-bar">
+            <button id="admin-filter" class="btn btn-primary">Filter by Admin</button>
+            <button id="gedung-filter" class="btn btn-primary">Filter by Gedung</button>
+            <button id="nominal-asc" class="btn btn-primary">Sort by Nominal (Asc)</button>
+            <button id="nominal-desc" class="btn btn-primary">Sort by Nominal (Desc)</button>
+            <button id="reset-filter" class="btn btn-secondary">Reset Filter</button>
         </div>
-
-        <div class="team-card">
-            <img src="../salary/image/design.png" alt="Design Team" width="60">
-            <div class="team-info">
-                <h5>Design Team</h5>
-                <p>6 members</p>
-            </div>
-            <span class="badge bg-success">Paid</span>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Admin</th>
+                    <th>Nama Gedung</th>
+                    <th>Nominal</th>
+                    <th>Bukti Transfer</th>
+                </tr>
+            </thead>
+            <tbody id="salary-table">
+                <!-- Table rows will be dynamically generated -->
+            </tbody>
+        </table>
+        <div class="popup" id="admin-popup">
+            <input type="text" id="admin-input" placeholder="Enter Admin Name">
+            <button id="apply-admin">Apply</button>
         </div>
-
-        <div class="team-card">
-            <img src="../salary/image/develover.png" alt="Developer Team" width="60">
-            <div class="team-info">
-                <h5>Developer Team</h5>
-                <p>5 members</p>
-            </div>
-            <span class="badge bg-success">Paid</span>
-        </div>
-
-        <div class="team-card">
-            <img src="../salary/image/marketing.png" alt="Marketing Team" width="60">
-            <div class="team-info">
-                <h5>Marketing Team</h5>
-                <p>5 members</p>
-            </div>
-            <span class="badge bg-success">Paid</span>
-        </div>
-
-        <div class="team-card">
-            <img src="../salary/image/socialmedia.png" alt="Social Media Team" width="60">
-            <div class="team-info">
-                <h5>Social Media Team</h5>
-                <p>5 members</p>
-            </div>
-            <span class="badge bg-success">Paid</span>
+        <div class="popup" id="gedung-popup">
+            <input type="text" id="gedung-input" placeholder="Enter Gedung Name">
+            <button id="apply-gedung">Apply</button>
         </div>
     </div>
-
-    <!-- MODAL -->
-    <div id="salaryModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Salary Details</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Date</th>
-                        <th>Team</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00001</td>
-                        <td>Maharani Wahayuhu</td>
-                        <td>Wahayuhu@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Chief of Company</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>00002</td>
-                        <td>Fuuaach</td>
-                        <td>Fuuaach@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Chief of Company</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>00003</td>
-                        <td>Uripin</td>
-                        <td>Urip@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Design Team</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>00004</td>
-                        <td>Ithin</td>
-                        <td>Ithinnn@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Marketing Team</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>00005</td>
-                        <td>Bellacaw</td>
-                        <td>Beww@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Social Media Team</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>00006</td>
-                        <td>Alfad</td>
-                        <td>Alfad@gmail.com</td>
-                        <td>14 Feb 2019</td>
-                        <td>Developer Team</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <!-- Additional rows can be added here -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div
-        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
-
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p
-                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting
-                Events, Enchanted<br>Experiences!</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                About</p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Follow Us
-            </p>
-
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
-
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 
     <script>
-        function profileClick() {
-            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
-        }
+        $(document).ready(function () {
+            fetchSalaries();
 
-        function openModal() {
-            document.getElementById("salaryModal").style.display = "block";
-        }
+            function fetchSalaries(filters = {}) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id_penyedia_gedung = urlParams.get('id');
+                let queryParams = { id: id_penyedia_gedung, ...filters };
 
-        function closeModal() {
-            document.getElementById("salaryModal").style.display = "none";
-        }
+                $.ajax({
+                    url: '../../database/penyedia_gedung/getsalary.php',
+                    method: 'GET',
+                    data: queryParams,
+                    success: function (data) {
+                        const salaries = JSON.parse(data);
+                        displaySalaries(salaries);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error: ", status, error);
+                    }
+                });
+            }
+
+            function displaySalaries(salaries) {
+                const salaryTable = document.getElementById('salary-table');
+                salaryTable.innerHTML = '';
+                salaries.forEach(salary => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${salary.id_salary}</td>
+                        <td>${salary.nama_admin}</td>
+                        <td>${salary.nama_gedung}</td>
+                        <td>${salary.nominal}</td>
+                        <td><a href="/path/to/transfers/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
+                    `;
+                    salaryTable.appendChild(row);
+                });
+            }
+
+            $('#admin-filter').click(function () {
+                $('#admin-popup').toggle();
+            });
+
+            $('#gedung-filter').click(function () {
+                $('#gedung-popup').toggle();
+            });
+
+            $('#apply-admin').click(function () {
+                const adminName = $('#admin-input').val();
+                fetchSalaries({ admin: adminName });
+                $('.popup').hide();
+            });
+
+            $('#apply-gedung').click(function () {
+                const gedungName = $('#gedung-input').val();
+                fetchSalaries({ gedung: gedungName });
+                $('.popup').hide();
+            });
+
+            $('#nominal-asc').click(function () {
+                fetchSalaries({ sort: 'asc' });
+            });
+
+            $('#nominal-desc').click(function () {
+                fetchSalaries({ sort: 'desc' });
+            });
+
+            $('#reset-filter').click(function () {
+                fetchSalaries();
+                $('#admin-input').val('');
+                $('#gedung-input').val('');
+            });
+
+            $(document).click(function (event) {
+                if (!$(event.target).closest('.btn, .popup').length) {
+                    $('.popup').hide();
+                }
+            });
+        });
     </script>
 </body>
 
