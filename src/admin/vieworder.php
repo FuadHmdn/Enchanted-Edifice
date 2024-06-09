@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $update_stmt->bind_param("isi", $new_order_status, $new_payment_status, $order_id);
     if ($update_stmt->execute()) {
         echo "Record updated successfully";
-        // Refresh the page to show updated status
         header("Refresh:0");
     } else {
         echo "Error updating record: " . $connection->error;
@@ -88,11 +87,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: bold;
         }
         .form-group input, .form-group select {
-            width: 150%;
+            width: 80%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons .salary {
+            background-color: blue;
+            color: white;
         }
         .product-img {
             width: 300px;
@@ -184,7 +197,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
             <div class="form-group">
                 <label for="harga">Provider Salary</label>
-                <button >Send Salary</button>
+                <div class="buttons">
+                    <button class="salary" onclick="viewSalary()">Send Salary</button>
+                </div>
             </div>
         </div>
         <div class="product-img">
