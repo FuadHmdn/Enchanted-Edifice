@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status_payment = "awaiting";
     $tipe_pembayaran = $_POST['tipe_pembayaran'];
 
-    // Handle file upload
     $target_dir = "../BuktiPembayaran/";
     $target_file = $target_dir . basename($_FILES["buktiPembayaran"]["name"]);
     $uploadOk = 1;
@@ -48,16 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 0;
     }
 
-    // Check if $uploadOk is set to 0 by an error
+    
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["buktiPembayaran"]["tmp_name"], $target_file)) {
             // File is uploaded successfully
             $buktiPembayaran = $target_file;
 
-            // Insert data into database
+            
             $sql = "INSERT INTO order_cust (id_custommer, id_produk, tanggal_keluar, tanggal_masuk, complete, status_payment, tipe_pembayaran,  bukti_pembayaran, id_paket) 
                     VALUES ('$id_pelanggan', '$id_produk', '$checkinValue', '$checkoutValue', '$complete', '$status_payment', '$tipe_pembayaran', '$buktiPembayaran', '$id_paket')";
 
