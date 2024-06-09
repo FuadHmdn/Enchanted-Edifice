@@ -336,6 +336,8 @@
                                 <input type="hidden" name="id_produk" id="id_produk" value="${item.id_produk}" >
                                 <input type="hidden" name="id_paket" id="id_paket">
                                 <input type="hidden" name="tipe_pembayaran" id="tipe_pembayaran">
+                                <input type="hidden" name="id_penyedia_gedung" id="id_penyedia_gedung" value="${item.id_penyedia_gedung}">
+                                <input type="hidden" name="kategori" id="kategori" value="${item.kategori}">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <label for="judul" style="width: 100px;">Judul:</label>
                                     <input readonly type="text" name="judul" id="judul" value="${item.judul}" class="no-border">

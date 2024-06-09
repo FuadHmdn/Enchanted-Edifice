@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_produk = $_POST['id_produk'];
     $checkinValue = $_POST['checkinValue'];
     $checkoutValue = $_POST['checkoutValue'];
+    $id_penyedia_gedung = $_POST['id_penyedia_gedung'];
+    $kategori = $_POST['kategori'];
     $harga = $_POST['harga'];
     $paket = $_POST['paket'];
     $total = $_POST['total'];
@@ -76,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // File is uploaded successfully
             $buktiPembayaran = $target_file;
 
-            $sql = "INSERT INTO order_cust (id_custommer, id_produk, tanggal_keluar, tanggal_masuk, complete, status_payment, tipe_pembayaran,  bukti_pembayaran, id_paket) 
-                    VALUES ('$id_pelanggan', '$id_produk', '$checkinValue', '$checkoutValue', '$complete', '$status_payment', '$tipe_pembayaran', '$buktiPembayaran', '$id_paket')";
+            $sql = "INSERT INTO order_cust (id_custommer, id_produk, tanggal_keluar, tanggal_masuk, complete, status_payment, tipe_pembayaran,  bukti_pembayaran, id_paket, id_penyedia_gedung, kategori) 
+                    VALUES ('$id_pelanggan', '$id_produk', '$checkinValue', '$checkoutValue', '$complete', '$status_payment', '$tipe_pembayaran', '$buktiPembayaran', '$id_paket', '$id_penyedia_gedung', '$kategori')";
 
             if (mysqli_query($connection, $sql)) {
                 echo "<script>
