@@ -8,17 +8,68 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Salary Enchanted Edifice</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
+        
+        body {
+            background-color: #F3F4F7;
+        }
+
+        @font-face {
+            font-family: 'Abril Fatface';
+            src: url('/res/Abril_Fatface/AbrilFatface-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .nav-link {
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        .bg-home {
+            max-width: 80%;
+            height: auto;
+            padding-bottom: 120px;
+            background-color: #E2E9F8;
+            margin: auto;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+        .filter-bar .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .filter-bar .dropdown-menu {
+            font-size: 1em;
+        }
         .filter-bar {
             margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
-        .popup {
-            display: none;
-            position: absolute;
-            background-color: white;
-            padding: 10px;
-            border: 1px solid #ccc;
-            z-index: 10;
+        .filter-item {
+            flex: 1;
+            max-width: calc(20% - 20px); /* Adjusting for margin */
+            margin: 10px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            min-width: 900px;
         }
     </style>
     
@@ -70,22 +121,41 @@
 
     <!-- HOME IMAGE -->
     <div style="margin-left: 46px; margin-right: 46px; width: auto; height: auto; text-align: center; position: relative; margin-top: 30px;">
-        <img src="../salary/image/TFC Funding Process Help You With The Bank Processes.jpeg" alt="Order Image" style="width: 100%; border-radius: 40px;">
+        <img src="../salary/image/TFC Funding Process Help You With The Bank Processes.jpeg" alt="Order Image" style="width: 92%; border-radius: 40px;">
         <div class="image-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
             <p style="font-family: 'Lato', sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">SALARY</p>
         </div>
     </div>
 
     <div class="container">
-        <h1 class="mt-5">Salary Management</h1>
         <div class="filter-bar">
-            <button id="admin-filter" class="btn btn-primary">Filter by Admin</button>
-            <button id="gedung-filter" class="btn btn-primary">Filter by Gedung</button>
-            <button id="nominal-asc" class="btn btn-primary">Sort by Nominal (Asc)</button>
-            <button id="nominal-desc" class="btn btn-primary">Sort by Nominal (Desc)</button>
-            <button id="reset-filter" class="btn btn-secondary">Reset Filter</button>
+            <div class="dropdown">
+                <button id="admin-filter" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="fas fa-user"></i> Filter by Admin
+                </button>
+                <div id="admin-dropdown" class="dropdown-menu">
+                    <!-- Admin names will be dynamically generated -->
+                </div>
+            </div>
+            <div class="dropdown">
+                <button id="gedung-filter" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="fas fa-building"></i> Filter by Gedung
+                </button>
+                <div id="gedung-dropdown" class="dropdown-menu">
+                    <!-- Gedung names will be dynamically generated -->
+                </div>
+            </div>
+            <button id="nominal-asc" class="btn btn-primary">
+                <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
+            </button>
+            <button id="nominal-desc" class="btn btn-primary">
+                <i class="fas fa-sort-amount-up"></i> Sort by Nominal (Desc)
+            </button>
+            <button id="reset-filter" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Reset Filter
+            </button>
         </div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -99,95 +169,152 @@
                 <!-- Table rows will be dynamically generated -->
             </tbody>
         </table>
-        <div class="popup" id="admin-popup">
-            <input type="text" id="admin-input" placeholder="Enter Admin Name">
-            <button id="apply-admin">Apply</button>
+    </div><br><br><br><br>
+
+    <!-- BOTTOM BAR -->
+    <div
+        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+            <p
+                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting
+                Events, Enchanted<br>Experiences!</p>
         </div>
-        <div class="popup" id="gedung-popup">
-            <input type="text" id="gedung-input" placeholder="Enter Gedung Name">
-            <button id="apply-gedung">Apply</button>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Services</p>
+            <p style="margin: 0;">Booking</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                About</p>
+            <p style="margin: 0;">Our Story</p>
+            <p style="margin: 0;">Blog</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Follow Us
+            </p>
+
+            <div style="display: flex; flex-direction: row;">
+                <img src="../../res/Facebook.png" alt="Facebook">
+                <img src="../../res/Twitter.png" alt="Twitter">
+                <img src="../../res/LinkedIn.png" alt="LinkedIn">
+            </div>
         </div>
     </div>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            fetchSalaries();
+    fetchSalaries();
+    fetchDropdownData();
 
-            function fetchSalaries(filters = {}) {
-                const urlParams = new URLSearchParams(window.location.search);
-                const id_penyedia_gedung = urlParams.get('id');
-                let queryParams = { id: id_penyedia_gedung, ...filters };
+    function fetchSalaries(filters = {}) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_penyedia_gedung = urlParams.get('id');
+        let queryParams = { id: id_penyedia_gedung, ...filters };
 
-                $.ajax({
-                    url: '../../database/penyedia_gedung/getsalary.php',
-                    method: 'GET',
-                    data: queryParams,
-                    success: function (data) {
-                        const salaries = JSON.parse(data);
-                        displaySalaries(salaries);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("AJAX Error: ", status, error);
-                    }
-                });
+        $.ajax({
+            url: '../../database/penyedia_gedung/getsalary.php',
+            method: 'GET',
+            data: queryParams,
+            success: function (data) {
+                const salaries = JSON.parse(data);
+                displaySalaries(salaries);
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error: ", status, error);
             }
-
-            function displaySalaries(salaries) {
-                const salaryTable = document.getElementById('salary-table');
-                salaryTable.innerHTML = '';
-                salaries.forEach(salary => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${salary.id_salary}</td>
-                        <td>${salary.nama_admin}</td>
-                        <td>${salary.nama_gedung}</td>
-                        <td>${salary.nominal}</td>
-                        <td><a href="/path/to/transfers/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
-                    `;
-                    salaryTable.appendChild(row);
-                });
-            }
-
-            $('#admin-filter').click(function () {
-                $('#admin-popup').toggle();
-            });
-
-            $('#gedung-filter').click(function () {
-                $('#gedung-popup').toggle();
-            });
-
-            $('#apply-admin').click(function () {
-                const adminName = $('#admin-input').val();
-                fetchSalaries({ admin: adminName });
-                $('.popup').hide();
-            });
-
-            $('#apply-gedung').click(function () {
-                const gedungName = $('#gedung-input').val();
-                fetchSalaries({ gedung: gedungName });
-                $('.popup').hide();
-            });
-
-            $('#nominal-asc').click(function () {
-                fetchSalaries({ sort: 'asc' });
-            });
-
-            $('#nominal-desc').click(function () {
-                fetchSalaries({ sort: 'desc' });
-            });
-
-            $('#reset-filter').click(function () {
-                fetchSalaries();
-                $('#admin-input').val('');
-                $('#gedung-input').val('');
-            });
-
-            $(document).click(function (event) {
-                if (!$(event.target).closest('.btn, .popup').length) {
-                    $('.popup').hide();
-                }
-            });
         });
+    }
+
+    function displaySalaries(salaries) {
+        const salaryTable = document.getElementById('salary-table');
+        salaryTable.innerHTML = '';
+        salaries.forEach(salary => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${salary.id_salary}</td>
+                <td>${salary.nama_admin}</td>
+                <td>${salary.nama_gedung}</td>
+                <td>${salary.nominal}</td>
+                <td><a href="../../database/BuktiTransferSalary/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
+            `;
+            salaryTable.appendChild(row);
+        });
+    }
+
+    function fetchDropdownData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_penyedia_gedung = urlParams.get('id');
+
+        $.ajax({
+            url: '../../database/penyedia_gedung/getsalary.php',
+            method: 'GET',
+            data: { id: id_penyedia_gedung },
+            success: function (data) {
+                const salaries = JSON.parse(data);
+                populateDropdowns(salaries);
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error: ", status, error);
+            }
+        });
+    }
+
+    function populateDropdowns(salaries) {
+        const adminDropdown = document.getElementById('admin-dropdown');
+        const gedungDropdown = document.getElementById('gedung-dropdown');
+        const admins = [...new Set(salaries.map(salary => salary.nama_admin))];
+        const gedungs = [...new Set(salaries.map(salary => salary.nama_gedung))];
+
+        adminDropdown.innerHTML = ''; // Clear existing items
+        gedungDropdown.innerHTML = ''; // Clear existing items
+
+        admins.forEach(admin => {
+            const item = document.createElement('a');
+            item.className = 'dropdown-item';
+            item.href = '#';
+            item.textContent = admin;
+            item.onclick = function () {
+                fetchSalaries({ admin: admin });
+            };
+            adminDropdown.appendChild(item);
+        });
+
+        gedungs.forEach(gedung => {
+            const item = document.createElement('a');
+            item.className = 'dropdown-item';
+            item.href = '#';
+            item.textContent = gedung;
+            item.onclick = function () {
+                fetchSalaries({ gedung: gedung });
+            };
+            gedungDropdown.appendChild(item);
+        });
+    }
+
+    $('#nominal-asc').click(function () {
+        fetchSalaries({ sort: 'asc' });
+    });
+
+    $('#nominal-desc').click(function () {
+        fetchSalaries({ sort: 'desc' });
+    });
+
+    $('#reset-filter').click(function () {
+        fetchSalaries();
+    });
+});
+
     </script>
 </body>
 
