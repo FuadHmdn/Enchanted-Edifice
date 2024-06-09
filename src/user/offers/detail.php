@@ -221,16 +221,16 @@
             <div id="master-card" style="display: flex; flex-direction: row; align-items: center; margin-top: 16px; border: 1px solid #000; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
                 <img src="./res/mastercard_logo.png" alt="Master Card" style="width: 50px; height: 50px;">
                 <div style="border: 2px; margin-left: 10px;">
-                    <p style="margin: 0;">Cash</p>
+                    <p style="margin: 0;">Master Card</p>
                     <p style="margin: 0;">Set as default</p>
                 </div>
             </div>
 
             <!-- Visa -->
             <div id="visa-card" style="display: flex; flex-direction: row; align-items: center; border: 1px solid #000; margin-top: 10px; border-radius: 10px; cursor: pointer; height: 80px; padding-left: 16px;">
-                <img src="./res/Visa_Logo.png" alt="Master Card" style="width: 50px; height: 35px;">
+                <img src="./res/Visa_Logo.png" alt="Visa Card" style="width: 50px; height: 35px;">
                 <div style="border: 2px; margin-left: 10px;">
-                    <p style="margin: 0;">Cash</p>
+                    <p style="margin: 0;">Visa</p>
                     <p style="margin: 0;">Set as default</p>
                 </div>
             </div>
@@ -276,10 +276,17 @@
                                 </div>
 
                                 <!-- Check-Out Date -->
-                                <div>
+                                <div style="margin-left:10px;">
                                     <label for="checkout">Check-out
                                     </label>
                                     <input type="date" class="checkout" name="checkout" id="checkout" style="display:block;">
+                                </div>
+
+                                <div style="margin-left:20px;">
+                                    <label for="paket-dropdown">Pilih Paket</label>
+                                    <select id="paket-dropdown" name="paket" style="display:block; height:31px;">
+                                        <option value="">Select a package</option>
+                                    </select>
                                 </div>
 
                             </form>
@@ -327,6 +334,8 @@
                             <form action="../../database/custommer/orderProduct.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 10px;">
                                 <input type="hidden" name="id_pelanggan" id="id_pelanggan" value="<?php echo htmlspecialchars($_GET['id']); ?>" >
                                 <input type="hidden" name="id_produk" id="id_produk" value="${item.id_produk}" >
+                                <input type="hidden" name="id_paket" id="id_paket">
+                                <input type="hidden" name="tipe_pembayaran" id="tipe_pembayaran">
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <label for="judul" style="width: 100px;">Judul:</label>
                                     <input readonly type="text" name="judul" id="judul" value="${item.judul}" class="no-border">
@@ -344,8 +353,8 @@
                                     <input readonly type="text" name="harga" id="harga" value="${item.harga}" class="no-border">
                                 </div>
                                 <div style="display: flex; flex-direction: row; align-items: center;">
-                                    <label for="fee" style="width: 100px;">Fee:</label>
-                                    <input readonly type="text" name="fee" id="fee" value="50000" class="no-border">
+                                    <label for="paket" style="width: 100px;">Paket:</label>
+                                    <input readonly type="text" name="paket" id="paket" class="no-border">
                                 </div>
                                 <div style="display: flex; flex-direction: row; align-items: center;">
                                     <label for="total" style="width: 100px;">Total:</label>
@@ -431,11 +440,75 @@
     </script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            async function getPaket() {
+                try {
+                    const response = await fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getPaket.php');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const paketData = await response.json();
+                    return paketData;
+                } catch (error) {
+                    console.error('Error fetching paket data:', error);
+                    return [];
+                }
+            }
+
+            function selectPaymentMethod(method) {
+                document.getElementById('tipe_pembayaran').value = method;
+                console.log(`Payment method selected: ${method}`);
+            }
+
+            document.getElementById('master-card').addEventListener('click', function() {
+                selectPaymentMethod('Master Card');
+            });
+
+            document.getElementById('visa-card').addEventListener('click', function() {
+                selectPaymentMethod('Visa');
+            });
+
+            async function populatePaketDropdown() {
+                const paketData = await getPaket();
+                const paketDropdown = document.getElementById('paket-dropdown');
+
+                if (Array.isArray(paketData) && paketData.length > 0) {
+                    paketData.forEach(paket => {
+                        const option = document.createElement('option');
+                        option.value = paket.id_paket;
+                        option.setAttribute('data-price', paket.harga_paket);
+                        option.textContent = paket.nama_paket;
+                        paketDropdown.appendChild(option);
+                    });
+                } else {
+                    const option = document.createElement('option');
+                    option.value = "";
+                    option.textContent = "No packages available";
+                    paketDropdown.appendChild(option);
+                }
+
+                console.log('Dropdown populated with paket options:', paketData);
+            }
+
+            populatePaketDropdown();
+
+            document.getElementById('paket-dropdown').addEventListener('change', calculateTotal);
+        });
+
         function calculateTotal() {
-            var harga = parseInt(document.getElementById('harga').value, 10);
-            var fee = parseInt(document.getElementById('fee').value, 10);
-            var total = harga + fee;
+            const harga = parseInt(document.getElementById('harga').value, 10) || 0;
+            const paketDropdown = document.getElementById('paket-dropdown');
+            const selectedPaketOption = paketDropdown.options[paketDropdown.selectedIndex];
+            const hargaPaket = parseInt(selectedPaketOption.getAttribute('data-price'), 10) || 0;
+            const paketName = selectedPaketOption.textContent;
+            const total = harga + hargaPaket;
+
+            document.getElementById('paket').value = paketName;
             document.getElementById('total').value = total;
+            document.getElementById('id_paket').value = selectedPaketOption.value;
+
+            console.log('Selected package:', paketName, 'Price:', hargaPaket, 'ID Paket:', selectedPaketOption.value);
+            console.log('Hidden input id_paket value:', document.getElementById('id_paket').value);
         }
     </script>
 
