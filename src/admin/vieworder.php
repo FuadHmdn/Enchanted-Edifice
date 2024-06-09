@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 80%;
-            max-width: 800px;
+            max-width: 1000px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: bold;
         }
         .form-group input, .form-group select {
-            width: 100%;
+            width: 50%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -164,9 +164,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="status_payment">Payment Status</label>
-                        <a href="http://localhost/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
-                </div>
                     <div class="inline-group">
+                    <div class="form-group">
+                        <a href="http://localhost/PemWeb/Enchanted-Edifice/src/login/user/res/doclegalitas/<?php echo htmlspecialchars($order['legalitas']); ?>" target="_blank"><?php echo htmlspecialchars($order['legalitas']); ?></a>
+                    </div>
                         <select id="status_payment" name="status_payment">
                             <option value="awaiting" <?php echo $order['status_payment'] == 'awaiting' ? 'selected' : ''; ?>>Awaiting</option>
                             <option value="valid" <?php echo $order['status_payment'] == 'valid' ? 'selected' : ''; ?>>Valid</option>
