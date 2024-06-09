@@ -315,7 +315,8 @@
 
 <script>
     $(document).ready(function () {
-        fetchOrders(); // Memuat data saat halaman dimuat
+        // Memuat data saat halaman dimuat
+        fetchOrders();
 
         // Fungsi untuk memuat data dari getorder.php
         function fetchOrders() {
@@ -401,36 +402,36 @@
                 $('.popup').hide();
             }
         });
-        const filterOrders = (criteria) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id_penyedia_gedung = urlParams.get('id');
-    $.ajax({
-        url: '../../database/penyedia_gedung/getorder.php',
-        method: 'GET',
-        data: { id_penyedia_gedung },
-        success: function (data) {
-            let orders = JSON.parse(data);
-            
-            // Filter data berdasarkan tanggal
-            if (criteria.date) {
-                orders = orders.filter(order => order.tanggal_masuk === criteria.date);
-            }
-            
-            // Filter data berdasarkan kategori
-            if (criteria.category) {
-                orders = orders.filter(order => order.kategori === criteria.category);
-            }
-            
-            // Filter data berdasarkan status
-            if (criteria.status) {
-                orders = orders.filter(order => order.status_order === criteria.status);
-            }
-            
-            displayOrders(orders);
-        }
-    });
-};
 
+        const filterOrders = (criteria) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id_penyedia_gedung = urlParams.get('id');
+            $.ajax({
+                url: '../../database/penyedia_gedung/getorder.php',
+                method: 'GET',
+                data: { id: id_penyedia_gedung },
+                success: function (data) {
+                    let orders = JSON.parse(data);
+
+                    // Filter data berdasarkan tanggal
+                    if (criteria.date) {
+                        orders = orders.filter(order => order.tanggal_masuk === criteria.date);
+                    }
+
+                    // Filter data berdasarkan kategori
+                    if (criteria.category) {
+                        orders = orders.filter(order => order.kategori === criteria.category);
+                    }
+
+                    // Filter data berdasarkan status
+                    if (criteria.status) {
+                        orders = orders.filter(order => order.status_order === criteria.status);
+                    }
+
+                    displayOrders(orders);
+                }
+            });
+        };
     });
 </script>
 

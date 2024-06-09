@@ -1,67 +1,94 @@
 <?php
-
 require_once('../koneksi.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $id_produk = $_POST['id_produk'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_pelanggan = $_POST['id_pelanggan'];
-    $tanggal_masuk = $_POST['checkinValue'];
-    $tanggal_keluar = $_POST['checkoutValue'];
-    $status = 'schedule';
+    $id_produk = $_POST['id_produk'];
+    $checkinValue = $_POST['checkinValue'];
+    $checkoutValue = $_POST['checkoutValue'];
+    $harga = $_POST['harga'];
+    $paket = $_POST['paket'];
+    $total = $_POST['total'];
+    $id_paket = $_POST['id_paket'];
+    $complete = 0; // false
+    $status_payment = "awaiting";
+    $tipe_pembayaran = $_POST['tipe_pembayaran'];
 
-    // Validasi data
-    if (empty($id_produk) || empty($id_pelanggan) || empty($tanggal_masuk) || empty($tanggal_keluar) || empty($status)) {
-        echo "<script>alert('Semua field harus diisi.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
-        exit;
+    // Menyiapkan rentang tanggal
+    $start_date = strtotime($checkinValue);
+    $end_date = strtotime($checkoutValue);
+
+    // Query untuk memeriksa apakah ada pesanan dalam rentang tanggal yang sama
+    $check_query = "SELECT * FROM order_cust WHERE id_produk = '$id_produk' AND ((tanggal_masuk BETWEEN '$checkinValue' AND '$checkoutValue') OR (tanggal_keluar BETWEEN '$checkinValue' AND '$checkoutValue'))";
+
+    $result = mysqli_query($connection, $check_query);
+
+    // Jika ada pesanan dalam rentang tanggal yang sama, berikan pesan peringatan
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script>
+                alert('Maaf, Anda tidak dapat memesan pada tanggal tersebut. Silakan pilih tanggal lain.');
+                window.location.href = '../../user/orders/index.php?id=$id_pelanggan';
+              </script>";
+        exit(); // Menghentikan eksekusi skrip
     }
 
+    // Jika tidak ada pesanan dalam rentang tanggal yang sama, lanjutkan dengan proses pemesanan
     $target_dir = "../BuktiPembayaran/";
     $target_file = $target_dir . basename($_FILES["buktiPembayaran"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Memeriksa apakah file adalah gambar
+    // Check if file is an actual image or fake image
     $check = getimagesize($_FILES["buktiPembayaran"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;
     } else {
-        echo "<script>alert('File bukan gambar.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
+        echo "File is not an image.";
         $uploadOk = 0;
     }
 
-    // Memeriksa ukuran file
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
     if ($_FILES["buktiPembayaran"]["size"] > 500000) {
-        echo "<script>alert('Ukuran file terlalu besar.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
+        echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
 
-    // Memeriksa format file
+    // Allow certain file formats
     if (
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif"
     ) {
-        echo "<script>alert('Hanya file JPG, JPEG, PNG & GIF yang diperbolehkan.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
 
-    // Memeriksa apakah uploadOk bernilai 0 karena ada kesalahan
+
     if ($uploadOk == 0) {
-        echo "<script>alert('File tidak dapat diupload.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
+        echo "Sorry, your file was not uploaded.";
     } else {
         if (move_uploaded_file($_FILES["buktiPembayaran"]["tmp_name"], $target_file)) {
-            // Memasukkan data ke tabel order_customer
-            $sql = "INSERT INTO orders_customers (id_produk, id_custommer, tanggal_masuk, tanggal_keluar, status) 
-                    VALUES ('$id_produk', '$id_pelanggan', '$tanggal_masuk', '$tanggal_keluar', '$status')";
+            // File is uploaded successfully
+            $buktiPembayaran = $target_file;
+
+            $sql = "INSERT INTO order_cust (id_custommer, id_produk, tanggal_keluar, tanggal_masuk, complete, status_payment, tipe_pembayaran,  bukti_pembayaran, id_paket) 
+                    VALUES ('$id_pelanggan', '$id_produk', '$checkinValue', '$checkoutValue', '$complete', '$status_payment', '$tipe_pembayaran', '$buktiPembayaran', '$id_paket')";
 
             if (mysqli_query($connection, $sql)) {
-                echo "<script>alert('Pesanan berhasil disimpan!'); window.location.href = '../../user/orders/index.php?id=$id_pelanggan';</script>";
-                exit;
+                echo "<script>
+                alert('Berhasil melakukan pemesanan..');
+                window.location.href = '../../user/orders/index.php?id=$id_pelanggan';
+              </script>";
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($connection);
             }
         } else {
-            echo "<script>alert('Terjadi kesalahan saat mengupload file.'); window.location.href = '../../user/offers/index.php?id=$id_pelanggan';</script>";
+            echo "Sorry, there was an error uploading your file.";
         }
     }
 

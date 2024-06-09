@@ -14,7 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Debugging: Tampilkan id_penyedia_gedung
     // echo "id_penyedia_gedung: " . $id_penyedia_gedung;
 
-    $sql = "SELECT o.id_order, c.username, o.tanggal_keluar, o.tanggal_masuk, pr.judul AS nama_gedung, o.kategori, o.status_order
+    $sql = "SELECT o.id_order, c.username, o.tanggal_keluar, o.tanggal_masuk, pr.judul AS nama_gedung, o.kategori, 
+            CASE 
+                WHEN o.complete = 1 THEN 'completed' 
+                ELSE 'incomplete' 
+            END AS status_order
             FROM order_cust o
             JOIN custommer c ON o.id_custommer = c.id
             JOIN produk pr ON o.id_produk = pr.id_produk
@@ -38,8 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     if (isset($_GET['status'])) {
-        $sql .= " AND o.status_order = ?";
-        $params[] = $_GET['status'];
+        // Ubah status yang dipilih menjadi angka (0 = incomplete, 1 = complete)
+        $status = $_GET['status'] == 'completed' ? 1 : 0;
+        $sql .= " AND o.complete = ?";
+        $params[] = $status;
     }
 
     $stmt = $connection->prepare($sql);
