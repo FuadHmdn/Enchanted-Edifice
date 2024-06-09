@@ -193,24 +193,6 @@ $result = $connection->query($sql);
         color: #fff;
     }
 
-    .filters {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px;
-    }
-
-    .filters select, .filters button {
-        padding: 10px;
-        border: 1px solid #eceff1;
-        border-radius: 5px;
-    }
-
-    .reset-filters {
-        background-color: #1595eb;
-        color: #fff;
-        cursor: pointer;
-    }
-
     .order-list {
         background-color: #fff;
         border: 1px solid #ddd;
