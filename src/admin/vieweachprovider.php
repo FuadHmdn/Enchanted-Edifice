@@ -173,9 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (confirm("Are you sure you want to delete this user?")) {
                 window.location.href = "delete_penyediagedung.php?id=" + order_id;
             }
-        }function viewSalary(event, id) {
+        }function viewSalary(event, order_id) {
             event.stopPropagation();
-            window.location.href = 'vieweachsalary.php?id=' + id;
+            window.location.href = 'vieweachsalary.php?id=' + order_id;
         }
     </script>
 </body>
