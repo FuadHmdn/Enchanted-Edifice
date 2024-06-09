@@ -25,13 +25,13 @@ $result_products = $connection->query($sql_products);
 $total_products = $result_products->fetch_assoc()['total_products'];
 
 // Ambil total order
-$sql_orders = "SELECT COUNT(*) as total_orders FROM orders_customers";
+$sql_orders = "SELECT COUNT(*) as total_orders FROM order_cust";
 $result_orders = $connection->query($sql_orders);
 $total_orders = $result_orders->fetch_assoc()['total_orders'];
 
 // Ambil data penjualan
 $sales_data = [];
-$sql_sales = "SELECT DATE(tanggal_masuk) as order_date, COUNT(*) as total_sales FROM orders_customers GROUP BY DATE(tanggal_masuk) ORDER BY DATE(tanggal_masuk) DESC LIMIT 7";
+$sql_sales = "SELECT DATE(tanggal_masuk) as order_date, COUNT(*) as total_sales FROM order_cust GROUP BY DATE(tanggal_masuk) ORDER BY DATE(tanggal_masuk) DESC LIMIT 7";
 $result_sales = $connection->query($sql_sales);
 while ($row = $result_sales->fetch_assoc()) {
     $sales_data[] = $row;
@@ -44,7 +44,6 @@ while ($row = $result_sales->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        /* Tambahkan CSS Anda di sini */
         * {
             margin: 0;
             padding: 0;

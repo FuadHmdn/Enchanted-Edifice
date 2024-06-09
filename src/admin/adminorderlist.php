@@ -4,7 +4,7 @@ define('USER', 'root');
 define('PASS', '');
 define('DB', 'enchanted_edifice');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
+$connection = new mysqli(HOST, USER, PASS, DB);
 
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
@@ -291,6 +291,7 @@ $result = $connection->query($sql);
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $orderStatus = $row['complete'] ? 'Completed' : 'Incomplete';
                         echo "<div class='order-card' onclick='viewOrder({$row['id_order']})'>
                                 <h3>Order ID: {$row['id_order']}</h3>
                                 <p>Customer ID: {$row['id_custommer']}</p>
@@ -298,11 +299,10 @@ $result = $connection->query($sql);
                                 <p>Provider ID: {$row['id_penyedia_gedung']}</p>
                                 <p>Check-in Date: {$row['tanggal_masuk']}</p>
                                 <p>Check-out Date: {$row['tanggal_keluar']}</p>
-                                <p>Status Order: <span class='status {$row['status_order']}'>{$row['status_order']}</span></p>
+                                <p>Status Order: <span class='status {$orderStatus}'>{$orderStatus}</span></p>
                                 <p>Status Payment: {$row['status_payment']}</p>
                                 <p>Payment Type: {$row['tipe_pembayaran']}</p>
                                 <p>Category: {$row['kategori']}</p>
-                                <button onclick='editOrder(event, {$row['id_order']})'>Edit</button>
                                 <button onclick='deleteOrder(event, {$row['id_order']})'>Delete</button>
                             </div>";
                     }
@@ -316,11 +316,6 @@ $result = $connection->query($sql);
     <script>
         function viewOrder(orderId) {
             window.location.href = 'vieworder.php?id=' + orderId;
-        }
-
-        function editOrder(event, orderId) {
-            event.stopPropagation();
-            window.location.href = 'editorder.php?id=' + orderId;
         }
 
         function deleteOrder(event, orderId) {
