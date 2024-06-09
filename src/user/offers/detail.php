@@ -443,7 +443,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             async function getPaket() {
                 try {
-                    const response = await fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getPaket.php');
+                    const response = await fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getPaket.php?id_produk=<?php echo htmlspecialchars($_GET['id_produk']); ?>');
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
