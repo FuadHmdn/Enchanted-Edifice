@@ -29,12 +29,26 @@ $sql_orders = "SELECT COUNT(*) as total_orders FROM order_cust";
 $result_orders = $connection->query($sql_orders);
 $total_orders = $result_orders->fetch_assoc()['total_orders'];
 
-// Ambil data penjualan
-$sales_data = [];
-$sql_sales = "SELECT DATE(tanggal_masuk) as order_date, COUNT(*) as total_sales FROM order_cust GROUP BY DATE(tanggal_masuk) ORDER BY DATE(tanggal_masuk) DESC LIMIT 7";
+// Ambil data penjualan dari Januari hingga Desember 2024
+$sql_sales = "SELECT DATE_FORMAT(tanggal_masuk, '%Y-%m') as order_month, COUNT(*) as total_sales 
+              FROM order_cust 
+              WHERE YEAR(tanggal_masuk) = 2024 
+              GROUP BY order_month 
+              ORDER BY order_month";
 $result_sales = $connection->query($sql_sales);
+$sales_data = [];
 while ($row = $result_sales->fetch_assoc()) {
-    $sales_data[] = $row;
+    $sales_data[$row['order_month']] = $row['total_sales'];
+}
+
+// Menyiapkan data penjualan bulanan
+$monthly_sales = array_fill_keys(array(
+    '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', 
+    '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12'
+), 0);
+
+foreach ($sales_data as $month => $total) {
+    $monthly_sales[$month] = $total;
 }
 ?>
 <!DOCTYPE html>
@@ -152,7 +166,7 @@ while ($row = $result_sales->fetch_assoc()) {
         .notification-icon {
             font-size: 24px;
         }
-        h1{
+        h1 {
             padding: 20px;
         }
         .notification-count {
@@ -266,7 +280,6 @@ while ($row = $result_sales->fetch_assoc()) {
                 </ul>
             </nav>
             <div class="settings">
-                
                 <a href="logout.php">Logout</a>
             </div>
         </aside>
@@ -307,12 +320,12 @@ while ($row = $result_sales->fetch_assoc()) {
                 </div>
 
                 <div class="sales-details">
-                    <h3>Sales Details</h3>
+                    <h3>Sales Details (2024)</h3>
                     <div class="chart-container">
-                        <?php foreach ($sales_data as $data): ?>
-                            <div class="chart-bar" style="height: <?php echo $data['total_sales'] * 20; ?>px;">
-                                <span><?php echo $data['total_sales']; ?></span>
-                                <span><?php echo $data['order_date']; ?></span>
+                        <?php foreach ($monthly_sales as $month => $total_sales): ?>
+                            <div class="chart-bar" style="height: <?php echo $total_sales * 20; ?>px;">
+                                <span><?php echo $total_sales; ?></span>
+                                <span><?php echo substr($month, 5); ?></span>
                             </div>
                         <?php endforeach; ?>
                     </div>
