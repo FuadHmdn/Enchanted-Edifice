@@ -11,6 +11,7 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id'] ?? 0;
 $sql = "SELECT order_cust.id_order, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.complete, order_cust.status_payment, produk.judul, produk.deskripsi, produk.harga, produk.gambar, order_cust.bukti_pembayaran, order_cust.id_penyedia_gedung

@@ -9,9 +9,36 @@ $connection = mysqli_connect(HOST, USER, PASS, DB);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
 
-// Ambil data customer
-$sql = "SELECT * FROM custommer";
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
+
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+// Ambil data penyedia gedung
+$sql = "SELECT * FROM penyedia_gedung";
 $result = $connection->query($sql);
 ?>
 
@@ -20,7 +47,7 @@ $result = $connection->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer List</title>
+    <title>Penyedia Gedung</title>
 </head>
 <style>
     * {
@@ -131,6 +158,11 @@ $result = $connection->query($sql);
         align-items: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+    .search-bar input {
+            padding: 10px;
+            border: 1px solid #eceff1;
+            border-radius: 5px;
+        }
     h1 {
         padding: 20px;
     }
@@ -181,113 +213,6 @@ $result = $connection->query($sql);
         padding: 20px;
     }
 
-    .order-list {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .order-list table {
-        width: 100%;
-        border-collapse: collapse;
-        padding: 20px;
-    }
-
-    .order-list table th, .order-list table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .order-list table th {
-        background-color: #f8f8f8;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .order-list table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .status {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        text-align: center;
-    }
-
-    .status.completed {
-        background-color: #d4edda;
-        color: #155724;
-    }
-
-    .status.processing {
-        background-color: #fff3cd;
-        color: #856404;
-    }
-
-    .status.canceled {
-        background-color: #f8d7da;
-        color: #721c24;
-    }
-    .search-bar input {
-            padding: 10px;
-            border: 1px solid #eceff1;
-            border-radius: 5px;
-        }
-    .pagination {
-        padding: 15px;
-        text-align: right;
-        font-size: 14px;
-        color: #666;
-    }
-
-    .send-message-form {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border-radius: 10px;
-        z-index: 1000;
-    }
-
-    .send-message-form.active {
-        display: block;
-    }
-
-    .send-message-form h2 {
-        margin-bottom: 20px;
-    }
-
-    .send-message-form textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .send-message-form button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #1595eb;
-        color: #fff;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .send-message-form button.cancel {
-        background-color: #ddd;
-        color: #333;
-    }
-    
     .customer-list {
         display: flex;
         flex-wrap: wrap;
@@ -360,20 +285,20 @@ $result = $connection->query($sql);
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
+            <!--Navbar-->
             <nav>
                 <ul>
-                    <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li class="active"><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <!--<li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    --></ul>
+                    <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li class="active"><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
+                </ul>
             </nav>
+            
             <div class="settings">
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </div>
         </aside>
         <main class="main-content">
@@ -384,72 +309,63 @@ $result = $connection->query($sql);
                 <div class="header-right">
                     <div class="message">
                         <span class="message-icon">🔔</span>
-                        <span class="message-count">6</span>
                     </div>
                     <div class="user-info">
-                        <span>Fuad</span>
-                        <span class="role">Admin</span>
+                        <!-- Menampilkan username admin -->
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <h1>Customer List</h1>
-            <div class="customer-list" >
+
+
+            <h1>Penyedia Gedung</h1>
+            <div class="customer-list">
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $photo = $row['photo'];
-                        echo "<div class='customer-card' onclick='viewCustomer({$row['id']})'>
+                        echo "<div class='customer-card' onclick='viewProvider({$row['id']})'>
                                 <div class='profile-pic'>";
                         if(isset($photo) && !empty($photo)) {
-                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/{$photo}' alt='Profile'>";
+                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/penyedia_gedung/{$photo}' alt='Profile'>";
                         } else {
                             echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
                         }
                         echo "</div>
                                 <h3>{$row['username']}</h3>
                                 <p>{$row['email']}</p>
-                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
-                                <button onclick='deleteCust({$row['id']})'>Delete</button>
+                                <button onclick='viewSalary(event, {$row['id']})'>View Salary</button>
+                                <button onclick='deleteProvider(event, {$row['id']})'>Delete</button>
                             </div>";
                     }
                 } else {
-                    echo "<p>No customers found</p>";
+                    echo "<p>No providers found</p>";
                 }
                 ?>
             </div>
         </main>
     </div>
 
-    <div class="send-message-form" id="sendMessageForm">
-        <h2>Send Message to <span id="customerName"></span></h2>
-        <form action="#" method="POST">
-            <input type="hidden" name="customer_id" id="customerId">
-            <textarea name="message" placeholder="Write your message here..."></textarea>
-            <button type="submit">Send</button>
-            <button type="button" class="cancel" onclick="closeSendMessageForm()">Cancel</button>
-        </form>
-    </div>
-
     <script>
-        function viewCustomer(id) {
-            window.location.href = 'vieweachcust.php?id=' + id;
+        function viewProvider(id) {
+            window.location.href = 'vieweachprovider.php?id=' + id;
         }
 
-        function sendMessage(event, id, name, email) {
+        function viewSalary(event, id) {
             event.stopPropagation();
-            document.getElementById('customerId').value = id;
-            document.getElementById('customerName').textContent = name;
-            document.getElementById('sendMessageForm').classList.add('active');
+            window.location.href = 'vieweachsalary.php?id=' + id;
         }
 
-        function closeSendMessageForm() {
-            document.getElementById('sendMessageForm').classList.remove('active');
-        }
+        
 
-        function deleteCust(userId) {
+        function deleteProvider(event, userId) {
+            event.stopPropagation();
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_cust.php?id=" + userId;
+                window.location.href = "delete_penyediagedung.php?id=" + userId;
             }
         }
     </script>

@@ -14,9 +14,12 @@ $order_id = $_GET['id'];
 $query = "DELETE FROM order_cust WHERE id_order=$order_id";
 
 if (mysqli_query($connection, $query)) {
-    header('Location: adminorderlist.php');
+    header('Location: adminorderlist.php?id=' . $adminId);
     exit;
+
 } else {
     echo "Error: " . $query . "<br>" . $connection->error;
 }
+
+
 ?>

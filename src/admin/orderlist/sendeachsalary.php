@@ -11,6 +11,28 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
+
+
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id_order'] ?? 0;
 $penyedia_gedung_id = $_GET['id_penyedia_gedung'] ?? 0;
@@ -79,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($stmt->execute()) {
                 echo "Salary recorded successfully";
-                header("Location: adminorderlist.php"); // Ganti dengan halaman tujuan setelah sukses
+                header('Location: adminorderlist.php?id=' . $adminId); // Ganti dengan halaman tujuan setelah sukses
             } else {
                 echo "Error: " . $stmt->error;
             }

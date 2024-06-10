@@ -1,3 +1,66 @@
+<?php
+session_start();
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "enchanted_edifice";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+
+// Validasi ID admin
+if ($adminId <= 0) {
+    echo "<script>alert('ID admin tidak valid.'); window.location.href = '../admin/index.html';</script>";
+    exit;
+}
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
+
+// Query messages
+$userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
+if ($userType == 'customer') {
+    $sql = "SELECT m.id_custommer, m.message, c.username
+            FROM customer_messages m 
+            JOIN custommer c ON m.id_custommer = c.id";
+} else {
+    $sql = "SELECT m.id_provider, m.message, p.username
+            FROM provider_message m 
+            JOIN penyedia_gedung p ON m.id_provider = p.id";
+}
+
+$result = $conn->query($sql);
+
+// Close connection
+$conn->close();
+?>  
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +68,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
     <style>
-        /* Existing styles */
         * {
             margin: 0;
             padding: 0;
@@ -259,39 +321,41 @@
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
+    <aside class="sidebar">
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
+            <!--Navbar-->
             <nav>
                 <ul>
-                    <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li class="active"><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li class="active"><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-    <!--
-                    <li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    -->         
+                    <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
+            
             <div class="settings">
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a href="logout.php">Logout</a>
             </div>
         </aside>
         <main class="main-content">
-            <header>
+        <header>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
                 <div class="header-right">
                     <div class="message">
                         <span class="message-icon">🔔</span>
-                        <span class="message-count">6</span>
                     </div>
                     <div class="user-info">
-                        <span>Fuad</span>
-                        <span class="role">Admin</span>
+                        <!-- Menampilkan username admin -->
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -306,17 +370,7 @@
                 <div class="messages-content">
                     <div class="message-list">
                         <?php
-                        // Database connection
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "enchanted_edifice";
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
 
                         // Set error reporting to throw exceptions
                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
