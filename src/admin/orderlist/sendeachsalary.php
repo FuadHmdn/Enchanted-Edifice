@@ -12,26 +12,12 @@ if ($connection->connect_error) {
 }
 
 
-// Set sesi admin jika belum diatur
-if (!isset($_SESSION['admin_id'])) {
-    $_SESSION['admin_id'] = $adminId;
+session_start();
+
+if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
+    $_SESSION['admin_id'] = intval($_GET['admin_id']);
 }
-
-// Fetch admin username if not already set
-if (!isset($_SESSION['admin_username'])) {
-    $sql = "SELECT username FROM admin WHERE id = $adminId";
-    $result = $connection->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $_SESSION['admin_username'] = $row['username'];
-    } else {
-        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
-        exit;
-    }
-}
-
-$admin_username = $_SESSION['admin_username'];
-
+$adminId = $_SESSION['admin_id'];
 
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id_order'] ?? 0;

@@ -49,16 +49,15 @@ if ($userType == 'customer') {
             FROM customer_messages m 
             JOIN custommer c ON m.id_custommer = c.id";
 } else {
-    $sql = "SELECT m.id_provider, m.message, p.username
+    $sql = "SELECT m.id_penyedia_gedung AS id_provider, m.message, p.username
             FROM provider_message m 
-            JOIN penyedia_gedung p ON m.id_provider = p.id";
+            JOIN penyedia_gedung p ON m.id_penyedia_gedung = p.id";
 }
 
 $result = $conn->query($sql);
 
-// Close connection
 $conn->close();
-?>  
+?>
 
 
 <!DOCTYPE html>
@@ -318,14 +317,12 @@ $conn->close();
             color: #888;
         }
     </style>
-</head>
-<body>
+</head><body>
     <div class="container">
-    <aside class="sidebar">
+        <aside class="sidebar">
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
-            <!--Navbar-->
             <nav>
                 <ul>
                     <li><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
@@ -336,13 +333,12 @@ $conn->close();
                     <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
-            
             <div class="settings">
                 <a href="logout.php">Logout</a>
             </div>
         </aside>
         <main class="main-content">
-        <header>
+            <header>
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
                 </div>
@@ -351,15 +347,13 @@ $conn->close();
                         <span class="message-icon">🔔</span>
                     </div>
                     <div class="user-info">
-                        <!-- Menampilkan username admin -->
                         <div>
-                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
-                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                            <div style="font-size: 16px; font-weight: 700;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300;">Admin</p>
                         </div>
                     </div>
                 </div>
             </header>
-
             <div class="messages-section">
                 <aside class="messages-sidebar">
                     <form action="adminmessage.php" method="post">
@@ -370,41 +364,21 @@ $conn->close();
                 <div class="messages-content">
                     <div class="message-list">
                         <?php
-
-
-                        // Set error reporting to throw exceptions
-                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-                        try {
-                            $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
-                            if ($userType == 'customer') {
-                                $sql = "SELECT m.id_custommer, m.message, c.username
-                                        FROM customer_messages m 
-                                        JOIN custommer c ON m.id_custommer = c.id";
-                            } else {
-                                $sql = "SELECT m.id_provider, m.message, p.username
-                                        FROM provider_message m 
-                                        JOIN penyedia_gedung p ON m.id_provider = p.id";
-                            }
-
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<div class="message-item">';
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo '<div class="message-item">';
+                                if ($userType == 'customer') {
                                     echo '<span class="id_custommer">' . htmlspecialchars($row['id_custommer']) . '</span>';
-                                    echo '<span class="username">' . htmlspecialchars($row['username']) . '</span>';
-                                    echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
-                                    echo '</div>';
+                                } else {
+                                    echo '<span class="id_provider">' . htmlspecialchars($row['id_provider']) . '</span>';
                                 }
-                            } else {
-                                echo '<p>No messages found.</p>';
+                                echo '<span class="username">' . htmlspecialchars($row['username']) . '</span>';
+                                echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
+                                echo '</div>';
                             }
-                        } catch (mysqli_sql_exception $e) {
-                            echo "Error: " . $e->getMessage();
+                        } else {
+                            echo '<p>No messages found.</p>';
                         }
-
-                        $conn->close();
                         ?>
                     </div>
                 </div>

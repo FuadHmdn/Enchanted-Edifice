@@ -11,6 +11,13 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+session_start();
+
+if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
+    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+}
+$adminId = $_SESSION['admin_id'];
+
 // Ambil data customer berdasarkan ID
 $customer_id = $_GET['id'];
 $sql = "SELECT * FROM custommer WHERE id = $customer_id";

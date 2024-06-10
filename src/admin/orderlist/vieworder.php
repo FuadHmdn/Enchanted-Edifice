@@ -10,7 +10,13 @@ $connection = new mysqli(HOST, USER, PASS, DB);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
+session_start();
 
+if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
+    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+}
+
+$adminId = $_SESSION['admin_id'];
 
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id'] ?? 0;
