@@ -101,6 +101,35 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+
+        .nominal-cell {
+            position: relative;
+            text-align: center;
+        }
+
+        .nominal-amount {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            text-shadow: 
+                -0.7px -0.7px 0 #000,  
+                0.7px -0.7px 0 #000,
+                -0.7px  0.7px 0 #000,
+                0.7px  0.7px 0 #000;
+        }
+
+        .nominal-rectangle {
+            position: absolute;
+            left: -15%;
+            top: 10%;
+            width: 80%;
+            height: 80%;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
@@ -217,14 +246,44 @@
         </select>
         <button id="apply-category" class="btn btn-primary">Apply Now</button>
     </div>
-    <br><br><br><br>
-</div>\
+    <br><br>
+</div>
+<!-- BOTTOM BAR -->
+<div style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting Events, Enchanted<br>Experiences!
+            </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Services</p>
+            <p style="margin: 0;">Booking</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About</p>
+            <p style="margin: 0;">Our Story</p>
+            <p style="margin: 0;">Blog</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Follow Us</p>
+            <div style="display: flex; flex-direction: row;">
+                <img src="../../res/Facebook.png" alt="Facebook">
+                <img src="../../res/Twitter.png" alt="Twitter">
+                <img src="../../res/LinkedIn.png" alt="LinkedIn">
+            </div>
+        </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
-    $(document).ready(function () {
+
+$(document).ready(function () {
         // Memuat data saat halaman dimuat
         fetchSalaries();
 
@@ -253,19 +312,43 @@
             salaryTable.innerHTML = '';
             salaries.forEach(salary => {
                 const row = document.createElement('tr');
+                const nominalAmount = parseFloat(salary.nominal).toFixed(2);
+                let rectangleColor = '';
+
+                if (nominalAmount < 9000000) {
+                    rectangleColor = '#f5ffbc';
+                } else if (nominalAmount < 20000000) {
+                    rectangleColor = '#bce3ff';
+                } else if (nominalAmount < 35000000) {
+                    rectangleColor = '#cdffd7';
+                } else if (nominalAmount < 50000000) {
+                    rectangleColor = '#b5eaf8';
+                } else if (nominalAmount < 65000000) {
+                    rectangleColor = '#ffc1ee';
+                } else if (nominalAmount < 80000000) {
+                    rectangleColor = '#ffe39b';
+                } else if (nominalAmount < 99000000) {
+                    rectangleColor = '#ebbcff';
+                } else {
+                    rectangleColor = 'black'; // Default color
+                }
+
                 row.innerHTML = `
                     <td>${salary.id_salary}</td>
                     <td>${salary.nama_admin}</td>
                     <td>${salary.nama_gedung}</td>
                     <td>${salary.kategori}</td>
-                    <td>${salary.nominal}</td>
+                    <td class="nominal-cell">
+                        <div class="nominal-rectangle" style="background-color: ${rectangleColor};"></div>
+                        <span class="nominal-amount">${nominalAmount}</span>
+                    </td>
                     <td><a href="../../database/BuktiTransferSalary/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
                 `;
                 salaryTable.appendChild(row);
             });
         }
 
-        // Event listener untuk filter berdasarkan admin
+        // Fungsi untuk menambahkan filter berdasarkan admin
         $('#admin-filter').click(function () {
             $('#admin-popup').toggle();
         });
@@ -275,24 +358,8 @@
             $('#category-popup').toggle();
         });
 
-        // Event listener untuk mengurutkan nominal secara ascending
-        $('#nominal-asc').click(function () {
-            fetchSalaries({ sort: 'asc' });
-        });
 
-        // Event listener untuk mengurutkan nominal secara descending
-        $('#nominal-desc').click(function () {
-            fetchSalaries({ sort: 'desc' });
-        });
-
-        // Event listener untuk mereset filter
-        $('#reset-filter').click(function () {
-            fetchSalaries();
-            $('#admin-select').val('');
-            $('#category-select').val('');
-        });
-
-        // Event listener untuk menerapkan filter berdasarkan admin
+        // Fungsi untuk menerapkan filter admin
         $('#apply-admin').click(function () {
             const selectedAdmin = $('#admin-select').val();
             fetchSalaries({ admin: selectedAdmin });
@@ -306,7 +373,23 @@
             $('.popup').hide();
         });
 
-        // Event listener untuk menutup popup saat mengklik di luar area popup
+        // Fungsi untuk mengurutkan nominal dari terkecil ke terbesar
+        $('#nominal-asc').click(function () {
+            fetchSalaries({ sort: 'asc' });
+        });
+
+        // Fungsi untuk mengurutkan nominal dari terbesar ke terkecil
+        $('#nominal-desc').click(function () {
+            fetchSalaries({ sort: 'desc' });
+        });
+
+        // Fungsi untuk mereset filter
+        $('#reset-filter').click(function () {
+            fetchSalaries();
+            $('#admin-select').val('');
+            $('#category-select').val('');
+        });
+
         $(document).click(function (event) {
             if (!$(event.target).closest('.btn, .popup').length) {
                 $('.popup').hide();
@@ -315,4 +398,5 @@
     });
 </script>
 </body>
+
 </html>
