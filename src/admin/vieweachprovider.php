@@ -12,21 +12,21 @@ if ($connection->connect_error) {
 }
 
 // Ambil data penyedia gedung berdasarkan ID
-$order_id = $_GET['id'];
-$sql = "SELECT * FROM penyedia_gedung WHERE id = ?";
-$stmt = $connection->prepare($sql);
-$stmt->bind_param("i", $order_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$provider_id = isset($_GET['id']) ? $_GET['id'] : die("Provider ID not specified");
+
+// Sanitasi input pengguna
+$provider_id = mysqli_real_escape_string($connection, $provider_id);
+
+$sql = "SELECT * FROM penyedia_gedung WHERE id = $provider_id";
+$result = $connection->query($sql);
 $order = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update status legalitas
-    $new_status = $_POST['legalitas_status'];
-    $update_sql = "UPDATE penyedia_gedung SET legalitas_status = ? WHERE id = ?";
-    $update_stmt = $connection->prepare($update_sql);
-    $update_stmt->bind_param("si", $new_status, $order_id);
-    if ($update_stmt->execute()) {
+    $new_status = isset($_POST['legalitas_status']) ? $_POST['legalitas_status'] : '';
+    $new_status = mysqli_real_escape_string($connection, $new_status);
+    $update_sql = "UPDATE penyedia_gedung SET legalitas_status = '$new_status' WHERE id = $provider_id";
+    if ($connection->query($update_sql) === TRUE) {
         echo "Record updated successfully";
         // Refresh the page to show updated status
         header("Refresh:0");
@@ -155,8 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </form>
             <div class="buttons">
-                <button onclick="viewSalary(event, <?php echo $row['id']; ?>)">View Salary</button>
-                <button class="delete" onclick="deleteProvider(<?php echo $order_id; ?>)">Delete Account</button>
+                <button class="delete" onclick="deleteProvider(<?php echo $provider_id; ?>)">Delete Account</button>
             </div>
 
         </div>
@@ -169,13 +168,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script>
-        function deleteProvider(order_id) {
+        function deleteProvider(provider_id) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_penyediagedung.php?id=" + order_id;
+                window.location.href = "delete_penyediagedung.php?id=" + provider_id;
             }
-        }function viewSalary(event, order_id) {
-            event.stopPropagation();
-            window.location.href = 'vieweachsalary.php?id=' + order_id;
         }
     </script>
 </body>

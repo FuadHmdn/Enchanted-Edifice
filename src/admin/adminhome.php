@@ -46,6 +46,11 @@ $monthly_sales = array_fill_keys(array(
     '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', 
     '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12'
 ), 0);
+$bulan = array(
+    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', 
+    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', 
+    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+);
 
 foreach ($sales_data as $month => $total) {
     $monthly_sales[$month] = $total;
@@ -141,6 +146,7 @@ foreach ($sales_data as $month => $total) {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            padding: 20px;
         }
         header {
             padding: 20px;
@@ -167,7 +173,7 @@ foreach ($sales_data as $month => $total) {
             font-size: 24px;
         }
         h1 {
-            padding: 20px;
+            padding: 20px 0;
         }
         .message-count {
             position: absolute;
@@ -194,7 +200,7 @@ foreach ($sales_data as $month => $total) {
             margin: 2px 0;
         }
         .dashboard {
-            padding: 20px;
+            padding: 20px 0;
         }
         .overview-cards {
             display: flex;
@@ -245,19 +251,36 @@ foreach ($sales_data as $month => $total) {
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
+            position: relative;
             height: 300px;
+            padding: 20px;
+        }
+        .y-axis {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            justify-content: space-between;
+            padding-right: 10px;
+        }
+        .y-axis span {
+            font-size: 12px;
         }
         .chart-bar {
             width: 50px;
             background-color: #1595eb;
             text-align: center;
-            color: white;
+            color: black;
             margin: 0 10px;
             border-radius: 5px 5px 0 0;
         }
         .chart-bar span {
             display: block;
             padding: 5px 0;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -275,9 +298,6 @@ foreach ($sales_data as $month => $total) {
                     <li class="section-title">USER</li>
                     <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <!--<li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    -->
                 </ul>
             </nav>
             <div class="settings">
@@ -323,10 +343,23 @@ foreach ($sales_data as $month => $total) {
                 <div class="sales-details">
                     <h3>Sales Details (2024)</h3>
                     <div class="chart-container">
+                        <!-- Rentang nilai -->
+                        <div class="y-axis">
+                            <span>50</span>
+                            <span>40</span>
+                            <span>30</span>
+                            <span>20</span>
+                            <span>10</span>
+                            <span>0</span>
+                        </div>
                         <?php foreach ($monthly_sales as $month => $total_sales): ?>
-                            <div class="chart-bar" style="height: <?php echo $total_sales * 20; ?>px;">
+                            <?php 
+                            // Konversi angka bulan menjadi teks bulan dalam Bahasa Indonesia
+                            $bulan_teks = $bulan[substr($month, 5)]; 
+                            ?>
+                            <div class="chart-bar" style="height: <?php echo $total_sales * 6; ?>px;">
                                 <span><?php echo $total_sales; ?></span>
-                                <span><?php echo substr($month, 5); ?></span>
+                                <span><?php echo $bulan_teks; ?></span>
                             </div>
                         <?php endforeach; ?>
                     </div>
