@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_success = false;
 
     // Cek tabel admin
-    if (verify_login($connection, 'admin', $email, $password, '../../admin/adminhome.php')) {
+    if (verify_login($connection, 'admin', $email, $password, '../../admin/dashboard/adminhome.php')) {
         $login_success = true;
     }
     // Cek tabel penyedia gedung

@@ -124,29 +124,24 @@
             <p style="font-family: 'Lato', sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">SALARY</p>
         </div>
     </div>
-
     <div class="container">
-        <div class="filter-bar">
-            <div class="dropdown">
-                <button id="admin-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <div class="filter-bar mb-3">
+            <div class="btn-group me-2">
+                <button id="admin-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user"></i> Filter by Admin
                 </button>
-                <div id="admin-dropdown" class="dropdown-menu">
-                    <!-- Admin names will be dynamically generated -->
-                </div>
+                <ul id="admin-dropdown" class="dropdown-menu"></ul>
             </div>
-            <div class="dropdown">
-                <button id="gedung-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <div class="btn-group me-2">
+                <button id="gedung-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-building"></i> Filter by Gedung
                 </button>
-                <div id="gedung-dropdown" class="dropdown-menu">
-                    <!-- Gedung names will be dynamically generated -->
-                </div>
+                <ul id="gedung-dropdown" class="dropdown-menu"></ul>
             </div>
-            <button id="nominal-asc" class="btn btn-primary">
+            <button id="nominal-asc" class="btn btn-primary me-2">
                 <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
             </button>
-            <button id="nominal-desc" class="btn btn-primary">
+            <button id="nominal-desc" class="btn btn-primary me-2">
                 <i class="fas fa-sort-amount-up"></i> Sort by Nominal (Desc)
             </button>
             <button id="reset-filter" class="btn btn-secondary">
@@ -167,36 +162,6 @@
                 <!-- Table rows will be dynamically generated -->
             </tbody>
         </table>
-    </div><br><br><br><br>
-
-    <!-- BOTTOM BAR -->
-    <div style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting Events, Enchanted<br>Experiences!
-            </p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About</p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Follow Us</p>
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-2kPdJ8iC0yAOMvH6Z6JZBUyV00H5O0d2N5gLPmsW1UPgLrDDOXkfzTpIIeFCRH10" crossorigin="anonymous"></script>
@@ -266,24 +231,20 @@
                 gedungDropdown.innerHTML = '';
 
                 admins.forEach(admin => {
-                    const item = document.createElement('a');
-                    item.className = 'dropdown-item';
-                    item.href = '#';
-                    item.textContent = admin;
-                    item.onclick = function () {
+                    const item = document.createElement('li');
+                    item.innerHTML = `<a class="dropdown-item" href="#">${admin}</a>`;
+                    item.addEventListener('click', function () {
                         fetchSalaries({ admin: admin });
-                    };
+                    });
                     adminDropdown.appendChild(item);
                 });
 
                 gedungs.forEach(gedung => {
-                    const item = document.createElement('a');
-                    item.className = 'dropdown-item';
-                    item.href = '#';
-                    item.textContent = gedung;
-                    item.onclick = function () {
+                    const item = document.createElement('li');
+                    item.innerHTML = `<a class="dropdown-item" href="#">${gedung}</a>`;
+                    item.addEventListener('click', function () {
                         fetchSalaries({ gedung: gedung });
-                    };
+                    });
                     gedungDropdown.appendChild(item);
                 });
             }
@@ -300,17 +261,8 @@
                 fetchSalaries();
             });
 
-            // Call fetchSalaries initially to load data
             fetchSalaries();
         });
-
-        function profileClick() {
-            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
-        }
     </script>
 </body>
-
 </html>
-
-
-
