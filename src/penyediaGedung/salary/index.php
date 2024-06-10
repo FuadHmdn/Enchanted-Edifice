@@ -124,24 +124,19 @@
             <p style="font-family: 'Lato', sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">SALARY</p>
         </div>
     </div>
-
     <div class="container">
         <div class="filter-bar">
             <div class="dropdown">
                 <button id="admin-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     <i class="fas fa-user"></i> Filter by Admin
                 </button>
-                <div id="admin-dropdown" class="dropdown-menu">
-                    <!-- Admin names will be dynamically generated -->
-                </div>
+                <div id="admin-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="dropdown">
                 <button id="gedung-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     <i class="fas fa-building"></i> Filter by Gedung
                 </button>
-                <div id="gedung-dropdown" class="dropdown-menu">
-                    <!-- Gedung names will be dynamically generated -->
-                </div>
+                <div id="gedung-dropdown" class="dropdown-menu"></div>
             </div>
             <button id="nominal-asc" class="btn btn-primary">
                 <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
@@ -168,36 +163,6 @@
             </tbody>
         </table>
     </div><br><br><br><br>
-
-    <!-- BOTTOM BAR -->
-    <div style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting Events, Enchanted<br>Experiences!
-            </p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About</p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Follow Us</p>
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-2kPdJ8iC0yAOMvH6Z6JZBUyV00H5O0d2N5gLPmsW1UPgLrDDOXkfzTpIIeFCRH10" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-Yb8Qs27+QbGyqj8uZZN2g1POsW9GQ+M+kWikqkBYxHCSwiJzOk0Tf6m0Se2R2Ohl" crossorigin="anonymous"></script>
@@ -311,6 +276,3 @@
 </body>
 
 </html>
-
-
-

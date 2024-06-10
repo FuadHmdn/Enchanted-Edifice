@@ -148,7 +148,7 @@
 
         <p style="font-size: 66px; font-weight: 700; font-family: 'Abril Fatface', serif; margin: 0;">Hubungi Kami</p>
         <p style="font-size: 23px; font-weight: 100; font-family: 'Abril Fatface', serif; margin: 0;">Jangan ragu untuk
-          meminta konsultasi atau bertanya lansung saja hubungi kami </p>
+          meminta konsultasi atau bertanya langsung saja hubungi kami </p>
           <!-- Input Data -->
           <form action="../../database/custommer/submitform.php?id=<?php echo $_GET['id']; ?>" method="post">
 

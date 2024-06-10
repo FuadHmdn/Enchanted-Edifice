@@ -2,17 +2,15 @@
 
 require_once('../koneksi.php');
 
-// Debugging: Periksa koneksi database
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
     $id_penyedia_gedung = isset($_GET['id']) ? $_GET['id'] : '';
-    
-    // Debugging: Tampilkan id_penyedia_gedung
-    // echo "id_penyedia_gedung: " . $id_penyedia_gedung;
+    $admin = isset($_GET['admin']) ? $_GET['admin'] : '';
+    $gedung = isset($_GET['gedung']) ? $_GET['gedung'] : '';
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
 
     $sql = "
         SELECT 
@@ -34,12 +32,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             salary.id_penyedia_gedung = ?
     ";
 
+    if (!empty($admin)) {
+        $sql .= " AND admin.username = ?";
+    }
+
+    if (!empty($gedung)) {
+        $sql .= " AND produk.judul = ?";
+    }
+
+    if ($sort === 'asc') {
+        $sql .= " ORDER BY salary.nominal ASC";
+    } elseif ($sort === 'desc') {
+        $sql .= " ORDER BY salary.nominal DESC";
+    }
+
     $stmt = $connection->prepare($sql);
     if ($stmt === false) {
         die('Prepare failed: ' . htmlspecialchars($connection->error));
     }
 
-    $stmt->bind_param("i", $id_penyedia_gedung);
+    if (!empty($admin) && !empty($gedung)) {
+        $stmt->bind_param("iss", $id_penyedia_gedung, $admin, $gedung);
+    } elseif (!empty($admin)) {
+        $stmt->bind_param("is", $id_penyedia_gedung, $admin);
+    } elseif (!empty($gedung)) {
+        $stmt->bind_param("is", $id_penyedia_gedung, $gedung);
+    } else {
+        $stmt->bind_param("i", $id_penyedia_gedung);
+    }
+
     if ($stmt->execute() === false) {
         die('Execute failed: ' . htmlspecialchars($stmt->error));
     }
@@ -60,6 +81,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $connection->close();
 }
 ?>
-
 
 
