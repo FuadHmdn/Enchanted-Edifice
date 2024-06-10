@@ -68,6 +68,39 @@
             width: 100%;
             min-width: 900px;
         }
+
+
+        .popup {
+            display: none;
+            position: absolute;
+            top: 800px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1000;
+            width: 350px;
+        }
+
+        .popup button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .popup select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -124,145 +157,162 @@
             <p style="font-family: 'Lato', sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">SALARY</p>
         </div>
     </div>
-    <div class="container">
-        <div class="filter-bar mb-3">
-            <div class="btn-group me-2">
-                <button id="admin-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user"></i> Filter by Admin
-                </button>
-                <ul id="admin-dropdown" class="dropdown-menu"></ul>
-            </div>
-            <div class="btn-group me-2">
-                <button id="gedung-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-building"></i> Filter by Gedung
-                </button>
-                <ul id="gedung-dropdown" class="dropdown-menu"></ul>
-            </div>
-            <button id="nominal-asc" class="btn btn-primary me-2">
-                <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
-            </button>
-            <button id="nominal-desc" class="btn btn-primary me-2">
-                <i class="fas fa-sort-amount-up"></i> Sort by Nominal (Desc)
-            </button>
-            <button id="reset-filter" class="btn btn-secondary">
-                <i class="fas fa-redo"></i> Reset Filter
-            </button>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama Admin</th>
-                    <th>Nama Gedung</th>
-                    <th>Nominal</th>
-                    <th>Bukti Transfer</th>
-                </tr>
-            </thead>
-            <tbody id="salary-table">
-                <!-- Table rows will be dynamically generated -->
-            </tbody>
-        </table>
-    </div>
+    
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-2kPdJ8iC0yAOMvH6Z6JZBUyV00H5O0d2N5gLPmsW1UPgLrDDOXkfzTpIIeFCRH10" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-Yb8Qs27+QbGyqj8uZZN2g1POsW9GQ+M+kWikqkBYxHCSwiJzOk0Tf6m0Se2R2Ohl" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
+    <div class="container">
+    <div class="filter-bar">
+        <button id="admin-filter" class="btn btn-primary">
+            <i class="fas fa-user"></i> Filter by Admin
+        </button>
+        <button id="category-filter" class="btn btn-primary">
+            <i class="fas fa-building"></i> Filter by Category
+        </button>
+        <button id="nominal-asc" class="btn btn-primary">
+            <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
+        </button>
+        <button id="nominal-desc" class="btn btn-primary">
+            <i class="fas fa-sort-amount-up"></i> Sort by Nominal (Desc)
+        </button>
+        <button class="btn btn-secondary reset-button" id="reset-filter">
+            <i class="fas fa-redo"></i> Reset Filter
+        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Admin</th>
+                <th>Nama Gedung</th>
+                <th>Kategori</th>
+                <th>Nominal</th>
+                <th>Bukti Transfer</th>
+            </tr>
+        </thead>
+        <tbody id="salary-table">
+            <!-- Table rows will be dynamically generated -->
+        </tbody>
+    </table>
+    <div class="popup" id="admin-popup">
+        <select id="admin-select" class="form-control">
+            <option value="">Select Admin</option>
+            <option value="Dimas Adivia">Dimas Adivia</option>
+            <option value="Maharani Wahyu Tantri">Maharani Wahyu Tantri</option>
+            <option value="Widyasti Bella Kurnia">Widyasti Bella Kurnia</option>
+            <option value="Fuad Hamidan">Fuad Hamidan</option>
+        </select>
+        <button id="apply-admin" class="btn btn-primary">Apply Now</button>
+    </div>
+    <div class="popup" id="category-popup">
+        <select id="category-select" class="form-control">
+            <option value="">Select Category</option>
+            <option value="Home">Home</option>
+            <option value="Ballroom">Ballroom</option>
+            <option value="MeetingRoom">Meeting Room</option>
+            <option value="OutdoorVenue">Outdoor Venue</option>
+            <option value="BanquetHall">Banquet Hall</option>
+            <option value="ConferenceCenter">Conference Center</option>
+            <option value="Auditorium">Auditorium</option>
+            <option value="CafeRestaurant">Cafe/Restaurant</option>
+            <option value="SportsFacility">Sports Facility</option>
+        </select>
+        <button id="apply-category" class="btn btn-primary">Apply Now</button>
+    </div>
+    <br><br><br><br>
+</div>\
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Memuat data saat halaman dimuat
+        fetchSalaries();
+
+        // Fungsi untuk memuat data dari getsalary.php
+        function fetchSalaries(filters = {}) {
             const urlParams = new URLSearchParams(window.location.search);
             const id_penyedia_gedung = urlParams.get('id');
 
-            fetchDropdownData(id_penyedia_gedung);
-
-            function fetchSalaries(filters = {}) {
-                let queryParams = { id: id_penyedia_gedung, ...filters };
-
-                $.ajax({
-                    url: '../../database/penyedia_gedung/getsalary.php',
-                    method: 'GET',
-                    data: queryParams,
-                    success: function (data) {
-                        const salaries = JSON.parse(data);
-                        displaySalaries(salaries);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("AJAX Error: ", status, error);
-                    }
-                });
-            }
-
-            function displaySalaries(salaries) {
-                const salaryTable = document.getElementById('salary-table');
-                salaryTable.innerHTML = '';
-                salaries.forEach(salary => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${salary.id_salary}</td>
-                        <td>${salary.nama_admin}</td>
-                        <td>${salary.nama_gedung}</td>
-                        <td>${salary.nominal}</td>
-                        <td><a href="../../database/BuktiTransferSalary/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
-                    `;
-                    salaryTable.appendChild(row);
-                });
-            }
-
-            function fetchDropdownData(id) {
-                $.ajax({
-                    url: '../../database/penyedia_gedung/getsalary.php',
-                    method: 'GET',
-                    data: { id: id },
-                    success: function (data) {
-                        const salaries = JSON.parse(data);
-                        populateDropdowns(salaries);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("AJAX Error: ", status, error);
-                    }
-                });
-            }
-
-            function populateDropdowns(salaries) {
-                const adminDropdown = document.getElementById('admin-dropdown');
-                const gedungDropdown = document.getElementById('gedung-dropdown');
-                const admins = [...new Set(salaries.map(salary => salary.nama_admin))];
-                const gedungs = [...new Set(salaries.map(salary => salary.nama_gedung))];
-
-                adminDropdown.innerHTML = '';
-                gedungDropdown.innerHTML = '';
-
-                admins.forEach(admin => {
-                    const item = document.createElement('li');
-                    item.innerHTML = `<a class="dropdown-item" href="#">${admin}</a>`;
-                    item.addEventListener('click', function () {
-                        fetchSalaries({ admin: admin });
-                    });
-                    adminDropdown.appendChild(item);
-                });
-
-                gedungs.forEach(gedung => {
-                    const item = document.createElement('li');
-                    item.innerHTML = `<a class="dropdown-item" href="#">${gedung}</a>`;
-                    item.addEventListener('click', function () {
-                        fetchSalaries({ gedung: gedung });
-                    });
-                    gedungDropdown.appendChild(item);
-                });
-            }
-
-            $('#nominal-asc').click(function () {
-                fetchSalaries({ sort: 'asc' });
+            $.ajax({
+                url: '../../database/penyedia_gedung/getsalary.php',
+                method: 'GET',
+                data: { id: id_penyedia_gedung, ...filters },
+                success: function (data) {
+                    const salaries = JSON.parse(data);
+                    displaySalaries(salaries);
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", status, error);
+                }
             });
+        }
 
-            $('#nominal-desc').click(function () {
-                fetchSalaries({ sort: 'desc' });
+        // Fungsi untuk menampilkan data di tabel
+        function displaySalaries(salaries) {
+            const salaryTable = document.getElementById('salary-table');
+            salaryTable.innerHTML = '';
+            salaries.forEach(salary => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${salary.id_salary}</td>
+                    <td>${salary.nama_admin}</td>
+                    <td>${salary.nama_gedung}</td>
+                    <td>${salary.kategori}</td>
+                    <td>${salary.nominal}</td>
+                    <td><a href="../../database/BuktiTransferSalary/${salary.bukti_transfer}" download>${salary.bukti_transfer}</a></td>
+                `;
+                salaryTable.appendChild(row);
             });
+        }
 
-            $('#reset-filter').click(function () {
-                fetchSalaries();
-            });
-
-            fetchSalaries();
+        // Event listener untuk filter berdasarkan admin
+        $('#admin-filter').click(function () {
+            $('#admin-popup').toggle();
         });
-    </script>
+
+        // Event listener untuk filter berdasarkan kategori
+        $('#category-filter').click(function () {
+            $('#category-popup').toggle();
+        });
+
+        // Event listener untuk mengurutkan nominal secara ascending
+        $('#nominal-asc').click(function () {
+            fetchSalaries({ sort: 'asc' });
+        });
+
+        // Event listener untuk mengurutkan nominal secara descending
+        $('#nominal-desc').click(function () {
+            fetchSalaries({ sort: 'desc' });
+        });
+
+        // Event listener untuk mereset filter
+        $('#reset-filter').click(function () {
+            fetchSalaries();
+            $('#admin-select').val('');
+            $('#category-select').val('');
+        });
+
+        // Event listener untuk menerapkan filter berdasarkan admin
+        $('#apply-admin').click(function () {
+            const selectedAdmin = $('#admin-select').val();
+            fetchSalaries({ admin: selectedAdmin });
+            $('.popup').hide();
+        });
+
+        // Event listener untuk menerapkan filter berdasarkan kategori
+        $('#apply-category').click(function () {
+            const selectedCategory = $('#category-select').val();
+            fetchSalaries({ category: selectedCategory });
+            $('.popup').hide();
+        });
+
+        // Event listener untuk menutup popup saat mengklik di luar area popup
+        $(document).click(function (event) {
+            if (!$(event.target).closest('.btn, .popup').length) {
+                $('.popup').hide();
+            }
+        });
+    });
+</script>
 </body>
 </html>
