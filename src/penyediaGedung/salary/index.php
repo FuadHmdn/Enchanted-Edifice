@@ -125,23 +125,23 @@
         </div>
     </div>
     <div class="container">
-        <div class="filter-bar">
-            <div class="dropdown">
-                <button id="admin-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <div class="filter-bar mb-3">
+            <div class="btn-group me-2">
+                <button id="admin-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user"></i> Filter by Admin
                 </button>
-                <div id="admin-dropdown" class="dropdown-menu"></div>
+                <ul id="admin-dropdown" class="dropdown-menu"></ul>
             </div>
-            <div class="dropdown">
-                <button id="gedung-filter" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <div class="btn-group me-2">
+                <button id="gedung-filter" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-building"></i> Filter by Gedung
                 </button>
-                <div id="gedung-dropdown" class="dropdown-menu"></div>
+                <ul id="gedung-dropdown" class="dropdown-menu"></ul>
             </div>
-            <button id="nominal-asc" class="btn btn-primary">
+            <button id="nominal-asc" class="btn btn-primary me-2">
                 <i class="fas fa-sort-amount-down"></i> Sort by Nominal (Asc)
             </button>
-            <button id="nominal-desc" class="btn btn-primary">
+            <button id="nominal-desc" class="btn btn-primary me-2">
                 <i class="fas fa-sort-amount-up"></i> Sort by Nominal (Desc)
             </button>
             <button id="reset-filter" class="btn btn-secondary">
@@ -162,7 +162,7 @@
                 <!-- Table rows will be dynamically generated -->
             </tbody>
         </table>
-    </div><br><br><br><br>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-2kPdJ8iC0yAOMvH6Z6JZBUyV00H5O0d2N5gLPmsW1UPgLrDDOXkfzTpIIeFCRH10" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-Yb8Qs27+QbGyqj8uZZN2g1POsW9GQ+M+kWikqkBYxHCSwiJzOk0Tf6m0Se2R2Ohl" crossorigin="anonymous"></script>
@@ -231,24 +231,20 @@
                 gedungDropdown.innerHTML = '';
 
                 admins.forEach(admin => {
-                    const item = document.createElement('a');
-                    item.className = 'dropdown-item';
-                    item.href = '#';
-                    item.textContent = admin;
-                    item.onclick = function () {
+                    const item = document.createElement('li');
+                    item.innerHTML = `<a class="dropdown-item" href="#">${admin}</a>`;
+                    item.addEventListener('click', function () {
                         fetchSalaries({ admin: admin });
-                    };
+                    });
                     adminDropdown.appendChild(item);
                 });
 
                 gedungs.forEach(gedung => {
-                    const item = document.createElement('a');
-                    item.className = 'dropdown-item';
-                    item.href = '#';
-                    item.textContent = gedung;
-                    item.onclick = function () {
+                    const item = document.createElement('li');
+                    item.innerHTML = `<a class="dropdown-item" href="#">${gedung}</a>`;
+                    item.addEventListener('click', function () {
                         fetchSalaries({ gedung: gedung });
-                    };
+                    });
                     gedungDropdown.appendChild(item);
                 });
             }
@@ -265,14 +261,8 @@
                 fetchSalaries();
             });
 
-            // Call fetchSalaries initially to load data
             fetchSalaries();
         });
-
-        function profileClick() {
-            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
-        }
     </script>
 </body>
-
 </html>
