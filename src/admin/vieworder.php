@@ -13,7 +13,7 @@ if ($connection->connect_error) {
 
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id'] ?? 0;
-$sql = "SELECT order_cust.id_order, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.complete, order_cust.status_payment, produk.judul, produk.deskripsi, produk.harga, produk.gambar, order_cust.bukti_pembayaran
+$sql = "SELECT order_cust.id_order, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.complete, order_cust.status_payment, produk.judul, produk.deskripsi, produk.harga, produk.gambar, order_cust.bukti_pembayaran, order_cust.id_penyedia_gedung
         FROM order_cust
         JOIN produk ON order_cust.id_produk = produk.id_produk
         WHERE order_cust.id_order = ?";
@@ -196,9 +196,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </form>
             <div class="form-group">
-                <label for="harga">Provider Salary</label>
+                <label for="salary">Provider Salary</label>
                 <div class="buttons">
-                    <button class="salary" onclick="viewSalary()">Send Salary</button>
+                    <button class="salary" onclick="window.location.href='sendeachsalary.php?id_order=<?php echo $order['id_order']; ?>&id_penyedia_gedung=<?php echo $order['id_penyedia_gedung']; ?>'">Send Salary</button>
                 </div>
             </div>
         </div>
