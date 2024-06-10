@@ -145,16 +145,16 @@ $result = $connection->query($sql);
         align-items: center;
     }
 
-    .notification {
+    .message {
         position: relative;
         margin-right: 20px;
     }
 
-    .notification-icon {
+    .message-icon {
         font-size: 24px;
     }
 
-    .notification-count {
+    .message-count {
         position: absolute;
         top: -5px;
         right: -10px;
@@ -262,7 +262,7 @@ $result = $connection->query($sql);
                 <ul>
                     <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
                     <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminnotifikasi.html?id=<?php echo htmlspecialchars($admin_id); ?>">Notifications</a></li>
+                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">messages</a></li>
                     <li class="section-title">USER</li>
                     <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li class="active"><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
@@ -280,9 +280,9 @@ $result = $connection->query($sql);
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="header-right">
-                    <div class="notification">
-                        <span class="notification-icon">🔔</span>
-                        <span class="notification-count">6</span>
+                    <div class="message">
+                        <span class="message-icon">🔔</span>
+                        <span class="message-count">6</span>
                     </div>
                     <div class="user-info">
                         <span>Fuad</span>

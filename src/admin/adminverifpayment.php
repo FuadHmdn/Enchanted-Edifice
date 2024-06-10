@@ -11,11 +11,11 @@ if (!$connection) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['payment_id']) && isset($_POST['status'])) {
-        $payment_id = $_POST['payment_id'];
+    if (isset($_POST['salary_id']) && isset($_POST['status'])) {
+        $salary_id = $_POST['salary_id'];
         $status = $_POST['status'];
 
-        $update_query = "UPDATE admin_payment SET status='$status' WHERE id=$payment_id";
+        $update_query = "UPDATE salary SET status_payment='$status' WHERE id_salary=$salary_id";
         if ($connection->query($update_query) === TRUE) {
             echo "";
         } else {
@@ -24,20 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$sql = "SELECT * FROM admin_payment";
-$result = $connection->query($sql);
-?>
+$sql_salary = "SELECT * FROM salary";
+$result_salary = $connection->query($sql_salary);
 
+$sql_order = "SELECT * FROM order_cust"; 
+$result_order = $connection->query($sql_order);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Salary Dashboard</title>
 </head>
 <style>
-    /* Styles tetap sama */
     * {
         margin: 0;
         padding: 0;
@@ -133,7 +133,6 @@ $result = $connection->query($sql);
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-
     .header-right {
         display: flex;
         align-items: center;
@@ -193,7 +192,7 @@ $result = $connection->query($sql);
         color: #fff;
     }
 
-    .order-list {
+    .payment-list {
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -201,24 +200,24 @@ $result = $connection->query($sql);
         margin: 20px;
     }
 
-    .order-list table {
+    .payment-list table {
         width: 100%;
         border-collapse: collapse;
     }
 
-    .order-list table th, .order-list table td {
+    .payment-list table th, .payment-list table td {
         padding: 12px 15px;
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
 
-    .order-list table th {
+    .payment-list table th {
         background-color: #f8f8f8;
         font-weight: bold;
         color: #333;
     }
 
-    .order-list table tbody tr:nth-child(even) {
+    .payment-list table tbody tr:nth-child(even) {
         background-color: #f9f9f9;
     }
 
@@ -249,7 +248,32 @@ $result = $connection->query($sql);
         background-color: #d1ecf1;
         color: #0c5460;
     }
+    .buttons {
+        margin: 20px;
+        text-align: center;
+    }
 
+    .buttons button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1595eb;
+        color: white;
+        cursor: pointer;
+    }
+
+    .buttons button.active {
+        background-color: #0a6abf;
+    }
+
+    .table-container {
+        display: none;
+    }
+
+    .table-container.active {
+        display: block;
+    }
 </style>
 <body>
     <div class="container">
@@ -287,52 +311,141 @@ $result = $connection->query($sql);
                 </div>
             </header>
 
-    <div class="order-list">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Order ID</th>
-                    <th>Date</th>
-                    <th>Proof</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Action</th> <!-- Tambah kolom untuk dropdown status -->
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>{$row['id']}</td>
-                                <td>{$row['name']}</td>
-                                <td>{$row['order_id']}</td>
-                                <td>{$row['date']}</td>
-                                <td><a href='uploads/{$row['proof']}' target='_blank'>{$row['proof']}</a></td>
-                                <td>{$row['type']}</td>
-                                <td><span class='status {$row['status']}'>{$row['status']}</span></td>
-                                <td>
-                                    <form method='post'>
-                                        <input type='hidden' name='payment_id' value='{$row['id']}'>
-                                        <select name='status'>
-                                            <option value='Valid'>Valid</option>
-                                            <option value='Invalid'>Invalid</option>
-                                            <option value='Processing'>Processing</option>
-                                        </select>
-                                        <button type='submit'>Update</button>
-                                    </form>
-                                </td>
-                            </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='8'>No payments found</td></tr>";
-                }
-                $connection->close();
-                ?>
-            </tbody>
-        </table>
+            <div class="buttons">
+                <button id="showSalary" class="active" onclick="showTable('salaryTable')">Salary</button>
+                <button id="showOrder" onclick="showTable('orderTable')">Customer Order</button>
+            </div>
+
+            <div id="salaryTable" class="table-container active">
+                <div class="order-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Order ID</th>
+                                <th>Admin ID</th>
+                                <th>Nominal</th>
+                                <th>Proof</th>
+                                <th>Provider ID</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result_salary->num_rows > 0) {
+                                while ($row = $result_salary->fetch_assoc()) {
+                                    $id = isset($row['id_salary']) ? $row['id_salary'] : 'N/A';
+                                    $order_id = isset($row['id_order']) ? $row['id_order'] : 'N/A';
+                                    $admin_id = isset($row['id_admin']) ? $row['id_admin'] : 'N/A';
+                                    $nominal = isset($row['nominal']) ? $row['nominal'] : 'N/A';
+                                    $proof = isset($row['bukti_transfer']) ? $row['bukti_transfer'] : 'N/A';
+                                    $provider_id = isset($row['id_penyedia_gedung']) ? $row['id_penyedia_gedung'] : 'N/A';
+                                    $status = isset($row['status_payment']) ? $row['status_payment'] : 'N/A';
+
+                                    echo "<tr>
+                                            <td>{$id}</td>
+                                            <td>{$order_id}</td>
+                                            <td>{$admin_id}</td>
+                                            <td>{$nominal}</td>
+                                            <td><a href='uploads/{$proof}' target='_blank'>{$proof}</a></td>
+                                            <td>{$provider_id}</td>
+                                            <td><span class='status {$status}'>{$status}</span></td>
+                                            <td>
+                                                <form method='post'>
+                                                    <input type='hidden' name='salary_id' value='{$id}'>
+                                                    <select name='status'>
+                                                        <option value='Valid'>Valid</option>
+                                                        <option value='Invalid'>Invalid</option>
+                                                        <option value='Processing'>Processing</option>
+                                                    </select>
+                                                    <button type='submit'>Update</button>
+                                                </form>
+                                            </td>
+                                        </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='8'>No salaries found</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="orderTable" class="table-container">
+                <div class="order-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer ID</th>
+                                <th>Product ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Complete</th>
+                                <th>Status Payment</th>
+                                <th>Payment Type</th>
+                                <th>Payment Proof</th>
+                                <th>Package ID</th>
+                                <th>Provider ID</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result_order->num_rows > 0) {
+                                while ($row = $result_order->fetch_assoc()) {
+                                    $id = isset($row['id_order']) ? $row['id_order'] : 'N/A';
+                                    $customer_id = isset($row['id_custommer']) ? $row['id_custommer'] : 'N/A';
+                                    $product_id = isset($row['id_produk']) ? $row['id_produk'] : 'N/A';
+                                    $start_date = isset($row['tanggal_keluar']) ? $row['tanggal_keluar'] : 'N/A';
+                                    $end_date = isset($row['tanggal_masuk']) ? $row['tanggal_masuk'] : 'N/A';
+                                    $complete = isset($row['complete']) ? $row['complete'] : 'N/A';
+                                    $status_payment = isset($row['status_payment']) ? $row['status_payment'] : 'N/A';
+                                    $payment_type = isset($row['tipe_pembayaran']) ? $row['tipe_pembayaran'] : 'N/A';
+                                    $payment_proof = isset($row['bukti_pembayaran']) ? $row['bukti_pembayaran'] : 'N/A';
+                                    $package_id = isset($row['id_paket']) ? $row['id_paket'] : 'N/A';
+                                    $provider_id = isset($row['id_penyedia_gedung']) ? $row['id_penyedia_gedung'] : 'N/A';
+                                    $category = isset($row['kategori']) ? $row['kategori'] : 'N/A';
+
+                                    echo "<tr>
+                                            <td>{$id}</td>
+                                            <td>{$customer_id}</td>
+                                            <td>{$product_id}</td>
+                                            <td>{$start_date}</td>
+                                            <td>{$end_date}</td>
+                                            <td>{$complete}</td>
+                                            <td>{$status_payment}</td>
+                                            <td>{$payment_type}</td>
+                                            <td><a href='uploads/{$payment_proof}' target='_blank'>{$payment_proof}</a></td>
+                                            <td>{$package_id}</td>
+                                            <td>{$provider_id}</td>
+                                            <td>{$category}</td>
+                                        </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='12'>No orders found</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
+
+    <script>
+        function showTable(tableId) {
+            const tables = document.querySelectorAll('.table-container');
+            tables.forEach(table => table.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.buttons button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tableId).classList.add('active');
+            document.querySelector(`#${tableId}`).classList.add('active');
+        }
+    </script>
 </body>
 </html>
