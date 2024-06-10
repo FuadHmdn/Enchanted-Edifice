@@ -189,6 +189,8 @@ $id_penyedia_gedung = isset($_GET['id']) ? intval($_GET['id']) : 0;
             <a class="nav-link" href="../salary/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none;">
                 <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">SALARY</div>
             </a>
+            
+            <a class="nav-link" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">CONTACT US</a>
         </div>
       </div>    
     </div>

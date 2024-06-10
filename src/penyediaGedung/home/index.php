@@ -161,6 +161,9 @@
                         <a class="nav-link" href="../salary/?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
+                    </li>
+                    <li class="nav-item">
                         <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
                             <span class="d-inline d-sm-none">☰</span>
                             <span class="d-none d-sm-inline">
