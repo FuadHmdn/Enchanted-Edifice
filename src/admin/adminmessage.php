@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Messages</title>
     <style>
+        /* Existing styles */
         * {
             margin: 0;
             padding: 0;
@@ -161,6 +162,11 @@
             width: 100%;
             cursor: pointer;
             margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .messages-sidebar .send-messages.active {
+            background-color: #3949ab;
         }
 
         .messages-sidebar .inbox-menu {
@@ -234,12 +240,16 @@
             color: gold;
         }
 
-        .message-item .name {
+        .message-item .id_custommer {
             flex: 1;
         }
 
         .message-item .message {
             flex: 2;
+        }
+
+        .message-item .username {
+            flex: 1;
         }
 
         .message-item .time {
@@ -294,9 +304,6 @@
                     </form>
                 </aside>
                 <div class="messages-content">
-                    <div class="messages-header">
-                        <input type="search" placeholder="Search Inbox">
-                    </div>
                     <div class="message-list">
                         <?php
                         // Database connection
@@ -311,27 +318,36 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
-                        if ($userType == 'customer') {
-                            $sql = "SELECT c.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_customer m JOIN custommer c ON m.id_customer = c.id";
-                        } else {
-                            $sql = "SELECT p.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_penyediagedung m JOIN penyedia_gedung p ON m.id_penyediagedung = p.id";
-                        }
+                        // Set error reporting to throw exceptions
+                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                echo '<div class="message-item">';
-                                echo '<input type="checkbox">';
-                                echo '<span class="star">⭐</span>';
-                                echo '<span class="name">' . htmlspecialchars($row['name']) . '</span>';
-                                echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
-                                echo '<span class="time">' . htmlspecialchars($row['time']) . '</span>';
-                                echo '</div>';
+                        try {
+                            $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
+                            if ($userType == 'customer') {
+                                $sql = "SELECT m.id_custommer, m.message, c.username
+                                        FROM customer_messages m 
+                                        JOIN custommer c ON m.id_custommer = c.id";
+                            } else {
+                                $sql = "SELECT m.id_provider, m.message, p.username
+                                        FROM provider_message m 
+                                        JOIN penyedia_gedung p ON m.id_provider = p.id";
                             }
-                        } else {
-                            echo '<p>No messages found.</p>';
+
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo '<div class="message-item">';
+                                    echo '<span class="id_custommer">' . htmlspecialchars($row['id_custommer']) . '</span>';
+                                    echo '<span class="username">' . htmlspecialchars($row['username']) . '</span>';
+                                    echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo '<p>No messages found.</p>';
+                            }
+                        } catch (mysqli_sql_exception $e) {
+                            echo "Error: " . $e->getMessage();
                         }
 
                         $conn->close();
