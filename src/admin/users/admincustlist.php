@@ -166,26 +166,6 @@ $result = $connection->query($sql);
         align-items: center;
     }
 
-    .message {
-        position: relative;
-        margin-right: 20px;
-    }
-
-    .message-icon {
-        font-size: 24px;
-    }
-
-    .message-count {
-        position: absolute;
-        top: -5px;
-        right: -10px;
-        background-color: red;
-        color: white;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-    }
-
     .language img {
         width: 24px;
         height: 24px;
@@ -270,50 +250,6 @@ $result = $connection->query($sql);
         color: #666;
     }
 
-    .send-message-form {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border-radius: 10px;
-        z-index: 1000;
-    }
-
-    .send-message-form.active {
-        display: block;
-    }
-
-    .send-message-form h2 {
-        margin-bottom: 20px;
-    }
-
-    .send-message-form textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .send-message-form button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #1595eb;
-        color: #fff;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .send-message-form button.cancel {
-        background-color: #ddd;
-        color: #333;
-    }
-    
     .customer-list {
         display: flex;
         flex-wrap: wrap;
@@ -438,7 +374,6 @@ $result = $connection->query($sql);
                         echo "</div>
                                 <h3>{$row['username']}</h3>
                                 <p>{$row['email']}</p>
-                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
                                 <button onclick='deleteCust({$row['id']})'>Delete</button>
                             </div>";
                     }
@@ -450,30 +385,9 @@ $result = $connection->query($sql);
         </main>
     </div>
 
-    <div class="send-message-form" id="sendMessageForm">
-        <h2>Send Message to <span id="customerName"></span></h2>
-        <form action="#" method="POST">
-            <input type="hidden" name="customer_id" id="customerId">
-            <textarea name="message" placeholder="Write your message here..."></textarea>
-            <button type="submit">Send</button>
-            <button type="button" class="cancel" onclick="closeSendMessageForm()">Cancel</button>
-        </form>
-    </div>
-
     <script>
         function viewCustomer(id) {
             window.location.href = 'vieweachcust.php?id=' + id;
-        }
-
-        function sendMessage(event, id, name, email) {
-            event.stopPropagation();
-            document.getElementById('customerId').value = id;
-            document.getElementById('customerName').textContent = name;
-            document.getElementById('sendMessageForm').classList.add('active');
-        }
-
-        function closeSendMessageForm() {
-            document.getElementById('sendMessageForm').classList.remove('active');
         }
 
         function deleteCust(userId) {

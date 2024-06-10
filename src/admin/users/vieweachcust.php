@@ -94,10 +94,6 @@ $customer = $result->fetch_assoc();
             border-radius: 5px;
             cursor: pointer;
         }
-        .buttons .message {
-            background-color: #1595eb;
-            color: white;
-        }
         .buttons .delete {
             background-color: #f44336;
             color: white;
@@ -124,7 +120,6 @@ $customer = $result->fetch_assoc();
                 <input type="text" id="email" value="<?php echo htmlspecialchars($customer['email']); ?>" readonly>
             </div>
             <div class="buttons">
-                <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteCust(<?php echo $customer_id; ?>)">Delete Account</button>
             </div>
         </div>
