@@ -364,13 +364,13 @@ $result = $connection->query($sql);
                 <ul>
                     <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
                     <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">messages</a></li>
+                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
                     <li class="section-title">USER</li>
                     <li class="active"><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <li class="section-title">VERIFICATIONS</li>
+                    <!--<li class="section-title">VERIFICATIONS</li>
                     <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-                </ul>
+    --></ul>
             </nav>
             <div class="settings">
                 <a href="#">Logout</a>

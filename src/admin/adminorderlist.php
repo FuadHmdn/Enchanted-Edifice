@@ -234,6 +234,9 @@ $result = $connection->query($sql);
         font-size: 12px;
         text-align: center;
     }
+    h1 {
+        padding: 20px;
+    }
 
     .status.completed {
         background-color: #d4edda;
@@ -264,9 +267,11 @@ $result = $connection->query($sql);
                     <li class="section-title">USER</li>
                     <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
+                    <!--
                     <li class="section-title">VERIFICATIONS</li>
                     <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-                </ul>
+                    -->         
+    </ul>
             </nav>
             <div class="settings">
                 <a href="#">Logout</a>

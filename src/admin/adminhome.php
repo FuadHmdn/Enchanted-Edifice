@@ -275,8 +275,9 @@ foreach ($sales_data as $month => $total) {
                     <li class="section-title">USER</li>
                     <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
                     <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <li class="section-title">VERIFICATIONS</li>
+                    <!--<li class="section-title">VERIFICATIONS</li>
                     <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
+    -->
                 </ul>
             </nav>
             <div class="settings">
