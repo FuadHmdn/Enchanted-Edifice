@@ -10,6 +10,7 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+
 // Ambil ID penyedia gedung dari URL
 $id_penyedia_gedung = isset($_GET['id']) ? $_GET['id'] : die("Provider ID not specified");
 

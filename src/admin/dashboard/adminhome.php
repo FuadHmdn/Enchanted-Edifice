@@ -12,7 +12,20 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
 $admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '';
+
+// Validasi ID admin
+if ($adminId <= 0) {
+    echo "<script>alert('ID admin tidak valid.'); window.location.href = '../admin/index.html';</script>";
+    exit;
+}
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
 
 // Ambil total user
 $sql_users = "SELECT COUNT(*) as total_users FROM custommer";
@@ -42,10 +55,6 @@ while ($row = $result_sales->fetch_assoc()) {
 }
 
 // Menyiapkan data penjualan bulanan
-$monthly_sales = array_fill_keys(array(
-    '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', 
-    '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12'
-), 0);
 $bulan = array(
     '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', 
     '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', 
@@ -290,16 +299,18 @@ foreach ($sales_data as $month => $total) {
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
+            <!--Navbar-->
             <nav>
                 <ul>
-                    <li class="active"><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li class="active"><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
+                    <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
+            
             <div class="settings">
                 <a href="logout.php">Logout</a>
             </div>
