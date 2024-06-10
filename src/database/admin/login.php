@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validasi data
     if (empty($email) || empty($password)) {
-        echo "<script>alert('Email dan password harus diisi.'); window.location.href = '../admin/index.html';</script>";
+        echo "<script>alert('Email dan password harus diisi.'); window.location.href = 'index.html';</script>";
         exit;
     }
 
@@ -27,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             // Password salah
-            echo "<script>alert('Password salah.'); window.location.href = '../../../index.html';</script>";
+            echo "<script>alert('Password salah.'); window.location.href = 'index.html';</script>";
             exit;
         }
     } else {
         // Email tidak ditemukan
-        echo "<script>alert('Email tidak ditemukan.'); window.location.href = '../../../index.html';</script>";
+        echo "<script>alert('Email tidak ditemukan.'); window.location.href = 'index.html';</script>";
         exit;
     }
 

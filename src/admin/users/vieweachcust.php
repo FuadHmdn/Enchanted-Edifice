@@ -11,6 +11,13 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
+session_start();
+
+if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
+    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+}
+$adminId = $_SESSION['admin_id'];
+
 // Ambil data customer berdasarkan ID
 $customer_id = $_GET['id'];
 $sql = "SELECT * FROM custommer WHERE id = $customer_id";
@@ -87,10 +94,6 @@ $customer = $result->fetch_assoc();
             border-radius: 5px;
             cursor: pointer;
         }
-        .buttons .message {
-            background-color: #1595eb;
-            color: white;
-        }
         .buttons .delete {
             background-color: #f44336;
             color: white;
@@ -117,7 +120,6 @@ $customer = $result->fetch_assoc();
                 <input type="text" id="email" value="<?php echo htmlspecialchars($customer['email']); ?>" readonly>
             </div>
             <div class="buttons">
-                <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteCust(<?php echo $customer_id; ?>)">Delete Account</button>
             </div>
         </div>

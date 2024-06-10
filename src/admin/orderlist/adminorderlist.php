@@ -1,4 +1,6 @@
 <?php
+session_start(); // Memulai sesi
+
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
@@ -12,7 +14,6 @@ if ($connection->connect_error) {
 
 // Ambil ID admin dari URL atau sesi
 $adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
-
 
 // Set sesi admin jika belum diatur
 if (!isset($_SESSION['admin_id'])) {
@@ -34,13 +35,10 @@ if (!isset($_SESSION['admin_username'])) {
 
 $admin_username = $_SESSION['admin_username'];
 
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-
 $sql = "SELECT * FROM order_cust";
 $result = $connection->query($sql);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -353,13 +351,15 @@ $result = $connection->query($sql);
     </div>
     <script>
         function viewOrder(orderId) {
-            window.location.href = 'vieworder.php?id=' + orderId;
+            var adminId = <?php echo $adminId; ?>;
+            window.location.href = 'vieworder.php?id=' + orderId + '&admin_id=' + adminId;
         }
 
         function deleteOrder(event, orderId) {
             event.stopPropagation();
             if (confirm('Are you sure you want to delete this order?')) {
-                window.location.href = 'deleteorder.php?id=' + orderId;
+                var adminId = <?php echo $adminId; ?>;
+                window.location.href = 'deleteorder.php?id=' + orderId + '&admin_id=' + adminId;
             }
         }
     </script>
