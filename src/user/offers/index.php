@@ -371,7 +371,7 @@
                                                 <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
                                                 <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5
                                                     <span>999+
-                                                        reviews </span>| Bandar Lampung
+                                                        reviews </span>| ${item.alamat}
                                                 </p>
                                             </div>
                                         </div>
