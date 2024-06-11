@@ -1,30 +1,27 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
-
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 session_start();
+require_once('../../database/koneksi.php');
 
-if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
-    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['admin_id']) ? intval($_GET['admin_id']) : 0;
+
+// Ambil ID pelanggan dari URL
+$customer_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// Pastikan ID pelanggan dan ID admin valid
+if ($customer_id <= 0 || $adminId <= 0) {
+    echo "<script>alert('Invalid customer or admin ID.'); window.location.href = '../admin/index.html';</script>";
+    exit;
 }
-$adminId = $_SESSION['admin_id'];
 
-
-$customer_id = $_GET['id'];
+// Hapus pelanggan dari basis data
 $query = "DELETE FROM custommer WHERE id=$customer_id";
 
-mysqli_query($connection, $query);
-if ($connection->query($query) === TRUE) {
-    header('Location: adminpenyediagedung.php');
+if (mysqli_query($connection, $query)) {
+    // Redirect to after successful deletion
+    header('Location: admincustlist.php?id=' . $adminId);
     exit;
 } else {
-    echo "Error: " . $query . "<br>" . $connection->error;
+    echo "Error: " . $query . "<br>" . mysqli_error($connection);
 }
 ?>

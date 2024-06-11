@@ -1,15 +1,6 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
-
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 session_start();
+require_once('../../database/koneksi.php');
 
 if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
     $_SESSION['admin_id'] = intval($_GET['admin_id']);

@@ -1,17 +1,9 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
+session_start();
+require_once('../../database/koneksi.php');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
 // Ambil ID admin dari URL atau sesi
 $adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
-
 
 // Set sesi admin jika belum diatur
 if (!isset($_SESSION['admin_id'])) {
@@ -298,7 +290,7 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-                <a href="logout.php">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">

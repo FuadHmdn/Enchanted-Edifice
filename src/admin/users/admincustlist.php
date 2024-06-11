@@ -1,17 +1,9 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
+session_start();
+require_once('../../database/koneksi.php');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
 // Ambil ID admin dari URL atau sesi
 $adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
-
 
 // Set sesi admin jika belum diatur
 if (!isset($_SESSION['admin_id'])) {
@@ -36,10 +28,12 @@ $admin_username = $_SESSION['admin_username'];
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
+
 // Ambil data customer
 $sql = "SELECT * FROM custommer";
 $result = $connection->query($sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -299,6 +293,10 @@ $result = $connection->query($sql);
         margin: 5px 0 10px 0;
         color: #777;
     }
+    .message-icon {
+        font-size: 24px;
+        padding: 20px;
+    }
 
     .customer-card button {
         padding: 10px 20px;
@@ -335,7 +333,7 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-                <a href="logout.php">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">
@@ -387,14 +385,15 @@ $result = $connection->query($sql);
 
     <script>
         function viewCustomer(id) {
-            window.location.href = 'vieweachcust.php?id=' + id;
-        }
+        window.location.href = 'vieweachcust.php?id=' + id;
+    }
 
-        function deleteCust(userId) {
-            if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_cust.php?id=" + userId;
-            }
+    function deleteCust(userId) {
+        if (confirm("Are you sure you want to delete this user?")) {
+            window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
         }
+    }
+
     </script>
 </body>
 </html>

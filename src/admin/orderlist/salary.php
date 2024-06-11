@@ -1,14 +1,6 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
-
-$connection = new mysqli(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
+session_start();
+require_once('../../database/koneksi.php');
 
 $sql = "SELECT * FROM order_cust";
 $result = $connection->query($sql);
@@ -22,9 +14,7 @@ $result = $connection->query($sql);
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<style>
-    /* Add your CSS styles here */
-</style>
+
 <body>
     <div class="container">
         <aside class="sidebar">

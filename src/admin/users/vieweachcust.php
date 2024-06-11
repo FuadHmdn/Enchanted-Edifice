@@ -1,22 +1,30 @@
 <?php
-// Koneksi ke database
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
-
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-
 session_start();
+require_once('../../database/koneksi.php');
 
-if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
-    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
 }
-$adminId = $_SESSION['admin_id'];
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
 
 // Ambil data customer berdasarkan ID
 $customer_id = $_GET['id'];
@@ -132,11 +140,12 @@ $customer = $result->fetch_assoc();
         </div>
     </div>
     <script>
-        function deleteCust($customer_id) {
+        function deleteCust(userId) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_cust.php?id=" + $customer_id;
+                window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
             }
         }
+
     </script>
 </body>
 </html>

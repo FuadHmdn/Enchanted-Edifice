@@ -1,23 +1,29 @@
 <?php
-// Koneksi ke database
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');  // Jika root memiliki password, masukkan di sini
-define('DB', 'enchanted_edifice');
-
-$connection = new mysqli(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-
-
 session_start();
+require_once('../../database/koneksi.php');
 
-if (!isset($_SESSION['admin_id']) && isset($_GET['admin_id'])) {
-    $_SESSION['admin_id'] = intval($_GET['admin_id']);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
 }
-$adminId = $_SESSION['admin_id'];
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
 
 // Ambil data order berdasarkan ID
 $order_id = $_GET['id_order'] ?? 0;
@@ -27,6 +33,7 @@ $sql = "SELECT order_cust.id_order, order_cust.tanggal_masuk, order_cust.tanggal
         FROM order_cust
         JOIN produk ON order_cust.id_produk = produk.id_produk
         WHERE order_cust.id_order = ?";
+        
 $stmt = $connection->prepare($sql);
 if (!$stmt) {
     die("Preparation failed: " . $connection->error);

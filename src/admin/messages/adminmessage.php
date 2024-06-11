@@ -1,17 +1,6 @@
 <?php
 session_start();
-
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "enchanted_edifice";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once('../../database/koneksi.php');
 
 // Ambil ID admin dari URL atau sesi
 $adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
@@ -30,7 +19,7 @@ if (!isset($_SESSION['admin_id'])) {
 // Fetch admin username if not already set
 if (!isset($_SESSION['admin_username'])) {
     $sql = "SELECT username FROM admin WHERE id = $adminId";
-    $result = $conn->query($sql);
+    $result = $connection->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['admin_username'] = $row['username'];
@@ -45,20 +34,23 @@ $admin_username = $_SESSION['admin_username'];
 // Query messages
 $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
 if ($userType == 'customer') {
-    $sql = "SELECT m.id_custommer, m.message, c.username
-            FROM customer_messages m 
-            JOIN custommer c ON m.id_custommer = c.id";
+    $sql = "SELECT id_custommer, first_name, last_name, message FROM customer_messages";
 } else {
-    $sql = "SELECT m.id_penyedia_gedung AS id_provider, m.message, p.username
-            FROM provider_message m 
-            JOIN penyedia_gedung p ON m.id_penyedia_gedung = p.id";
+    $sql = "SELECT id, first_name, last_name, message FROM provider_message"; // Changed to provider_message
 }
 
-$result = $conn->query($sql);
+try {
+    $result = $connection->query($sql);
+    if (!$result) {
+        throw new Exception("Query failed: " . $connection->error);
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}
 
-$conn->close();
+$connection->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -227,7 +219,12 @@ $conn->close();
         }
 
         .messages-sidebar .send-messages.active {
-            background-color: #3949ab;
+            background-color: #1595eb;
+        }
+
+        .messages-sidebar .send-messages.inactive {
+            background-color: #cccccc;
+            color: #666666;
         }
 
         .messages-sidebar .inbox-menu {
@@ -292,32 +289,28 @@ $conn->close();
             border-bottom: 1px solid #ddd;
         }
 
-        .message-item input[type="checkbox"] {
-            margin-right: 10px;
+        .message-item span {
+            margin-right: 20px; 
         }
 
-        .message-item .star {
-            margin-right: 10px;
-            color: gold;
-        }
-
-        .message-item .id_custommer {
+        .message-item .id_custommer, .message-item .id {
             flex: 1;
         }
 
-        .message-item .message {
+        .message-item .first_name {
             flex: 2;
         }
 
-        .message-item .username {
-            flex: 1;
+        .message-item .last_name {
+            flex: 2;
         }
 
-        .message-item .time {
-            color: #888;
+        .message-item .message {
+            flex: 4;
         }
     </style>
-</head><body>
+</head>
+<body>
     <div class="container">
         <aside class="sidebar">
             <div class="logo">
@@ -334,7 +327,7 @@ $conn->close();
                 </ul>
             </nav>
             <div class="settings">
-                <a href="logout.php">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">
@@ -357,8 +350,8 @@ $conn->close();
             <div class="messages-section">
                 <aside class="messages-sidebar">
                     <form action="adminmessage.php" method="post">
-                        <button type="submit" name="userType" value="customer" class="send-messages">Customer</button>
-                        <button type="submit" name="userType" value="provider" class="send-messages">Provider</button>
+                        <button type="submit" name="userType" value="customer" class="send-messages <?php echo ($userType == 'customer') ? 'active' : 'inactive'; ?>">Customer</button>
+                        <button type="submit" name="userType" value="provider" class="send-messages <?php echo ($userType == 'provider') ? 'active' : 'inactive'; ?>">Provider</button>
                     </form>
                 </aside>
                 <div class="messages-content">
@@ -370,9 +363,10 @@ $conn->close();
                                 if ($userType == 'customer') {
                                     echo '<span class="id_custommer">' . htmlspecialchars($row['id_custommer']) . '</span>';
                                 } else {
-                                    echo '<span class="id_provider">' . htmlspecialchars($row['id_provider']) . '</span>';
+                                    echo '<span class="id">' . htmlspecialchars($row['id']) . '</span>';
                                 }
-                                echo '<span class="username">' . htmlspecialchars($row['username']) . '</span>';
+                                echo '<span class="first_name">' . htmlspecialchars($row['first_name']) . '</span>';
+                                echo '<span class="last_name">' . htmlspecialchars($row['last_name']) . '</span>';
                                 echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
                                 echo '</div>';
                             }

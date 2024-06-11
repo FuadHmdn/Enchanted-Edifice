@@ -1,16 +1,7 @@
 <?php
 session_start();
-// Koneksi ke database
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
+require_once('../../database/koneksi.php');
 
 // Ambil ID admin dari URL atau sesi
 $adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
@@ -65,6 +56,7 @@ foreach ($sales_data as $month => $total) {
     $monthly_sales[$month] = $total;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,7 +134,7 @@ foreach ($sales_data as $month => $total) {
             border-radius: 10px;
         }
         .settings {
-            padding: 20px;
+            padding: 30px;
             border-top: 1px solid #eceff1;
         }
         .settings a {
@@ -310,10 +302,11 @@ foreach ($sales_data as $month => $total) {
                     <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
-            
             <div class="settings">
-                <a href="logout.php">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
+            
+
         </aside>
         <main class="main-content">
             <header>

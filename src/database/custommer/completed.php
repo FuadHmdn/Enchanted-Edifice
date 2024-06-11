@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../koneksi.php');
+require_once ('../koneksi.php')
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sql = "SELECT produk.id_produk, produk.gambar, produk.judul, produk.harga, orders_customers.tanggal_masuk, orders_customers.tanggal_keluar 
