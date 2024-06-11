@@ -397,6 +397,12 @@ $(document).ready(function () {
         });
     });
 </script>
+
+<script>
+    function profileClick() {
+        window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
+    }
+</script>
 </body>
 
 </html>
