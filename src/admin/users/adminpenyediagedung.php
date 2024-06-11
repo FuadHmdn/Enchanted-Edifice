@@ -290,8 +290,9 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
+                <button onclick="confirmLogout()" style="align-items: center;"><b>Log Out</b></button>
             </div>
+
         </aside>
         <main class="main-content">
             <header>
@@ -360,6 +361,12 @@ $result = $connection->query($sql);
                 window.location.href = "delete_penyediagedung.php?id=" + userId;
             }
         }
+    function confirmLogout() {
+        if (confirm("Apakah Anda yakin ingin keluar?")) {
+            window.location.href = "../../login/user/login/UserLogin/index.html";
+        }
+    }
+
     </script>
 </body>
 </html>

@@ -45,28 +45,50 @@ if ($customer_id > 0) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $newPassword = $_POST['new_password'];
     $photo = $_FILES['photo'];
 
     // Check if photo is uploaded
     if ($photo['error'] == UPLOAD_ERR_OK) {
-        $photoName = $photo['name'];
+        $photoName = basename($photo['name']);
         $photoTmpName = $photo['tmp_name'];
-        $photoPath = "/PemWeb/Enchanted-Edifice/src/login/user/res/customer/" . $photoName;
-        move_uploaded_file($photoTmpName, $photoPath);
+        $photoPath = "C:/xampp/htdocs/PemWeb/Enchanted-Edifice/src/login/user/res/customer/" . $photoName;
+
+        // Check if the directory exists, if not, create it
+        if (!is_dir(dirname($photoPath))) {
+            mkdir(dirname($photoPath), 0755, true);
+        }
+
+        // Move the uploaded file
+        if (!move_uploaded_file($photoTmpName, $photoPath)) {
+            echo "<script>alert('Error uploading photo.'); window.location.href = 'admincustlist.php';</script>";
+            exit;
+        }
     } else {
         $photoName = $customer['photo'];
     }
 
+    // Hash the new password if provided
+    if (!empty($newPassword)) {
+        $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    } else {
+        $hashedNewPassword = $customer['password']; // Retain the old password if no new password is provided
+    }
+
     // Update customer in the database
-    $sql = "UPDATE custommer SET username = '$username', email = '$email', password = '$password', photo = '$photoName' WHERE id = $customer_id";
+    $sql = "UPDATE custommer SET username = '$username', email = '$email', password = '$hashedNewPassword', photo = '$photoName' WHERE id = $customer_id";
     if ($connection->query($sql) === TRUE) {
         echo "<script>alert('Customer updated successfully.'); window.location.href = 'admincustlist.php';</script>";
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
 }
+
+// Tutup koneksi
+mysqli_close($connection);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -163,8 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="email" class="form-control" id="InputEmail" name="email" value="<?php echo htmlspecialchars($customer['email']); ?>">
                 </div>
                 <div class="form-group">
-                    <label for="InputPassword">Password</label>
-                    <input type="password" class="form-control" id="InputPassword" name="password" value="<?php echo htmlspecialchars($customer['password']); ?>">
+                    <label for="InputNewPassword">New Password</label>
+                    <input type="password" class="form-control" id="InputNewPassword" name="new_password">
                 </div>
                 <div class="form-group">
                     <label for="InputPhoto">Upload Photo</label>
