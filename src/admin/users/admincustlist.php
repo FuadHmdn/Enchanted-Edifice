@@ -313,6 +313,22 @@ $result = $connection->query($sql);
         background-color: #0f7bb5;
     }
 
+    .add-customer-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        background-color: #1595eb;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        width: fit-content;
+    }
+
+    .add-customer-button:hover {
+        background-color: #0f7bb5;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -333,7 +349,7 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
+                <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">
@@ -355,45 +371,52 @@ $result = $connection->query($sql);
                 </div>
             </header>
 
-
             <h1>Customer List</h1>
-            <div class="customer-list" >
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $photo = $row['photo'];
-                        echo "<div class='customer-card' onclick='viewCustomer({$row['id']})'>
+            <a href="add_customer.php" class="add-customer-button">Add Customer</a>
+
+                <div class="customer-list">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $photo = $row['photo'];
+                            echo "<div class='customer-card' onclick='viewCustomer(" . $row["id"] . ")'>
                                 <div class='profile-pic'>";
-                        if(isset($photo) && !empty($photo)) {
-                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/{$photo}' alt='Profile'>";
-                        } else {
-                            echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
-                        }
-                        echo "</div>
-                                <h3>{$row['username']}</h3>
-                                <p>{$row['email']}</p>
-                                <button onclick='deleteCust({$row['id']})'>Delete</button>
+                            if (!empty($row["photo"])) {
+                                echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/" . htmlspecialchars($row["photo"]) . "' alt='Profile Picture'>";
+                            } else {
+                                echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
+                            }
+                            echo "</div>
+                                <h3>" . htmlspecialchars($row["username"]) . "</h3>
+                                <p>" . htmlspecialchars($row["email"]) . "</p>
+                                <button onclick='deleteCust(event, " . $row["id"] . ")'>Delete</button>
+                                <button onclick='editCust(event, " . $row["id"] . ")'>Edit</button>
                             </div>";
+                        }
+                    } else {
+                        echo "<p>No customers found</p>";
                     }
-                } else {
-                    echo "<p>No customers found</p>";
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
         </main>
     </div>
 
     <script>
         function viewCustomer(id) {
-        window.location.href = 'vieweachcust.php?id=' + id;
-    }
-
-    function deleteCust(userId) {
-        if (confirm("Are you sure you want to delete this user?")) {
-            window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
+            window.location.href = 'vieweachcust.php?id=' + id;
         }
-    }
 
+        function deleteCust(event, userId) {
+            event.stopPropagation();
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
+            }
+        }
+
+        function editCust(event, userId) {
+            event.stopPropagation();
+            window.location.href = "edit_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
+        }
     </script>
 </body>
 </html>
