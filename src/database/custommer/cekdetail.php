@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id_produk'])) {
         $id_produk = mysqli_real_escape_string($connection, $_GET['id_produk']);
         
-        $sql = "SELECT produk.gambar, produk.judul, produk.harga, produk.lokasi, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.status_payment 
+        $sql = "SELECT produk.gambar, produk.judul, produk.harga, produk.alamat, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.status_payment 
                 FROM order_cust 
                 JOIN produk ON order_cust.id_produk = produk.id_produk 
                 WHERE order_cust.id_produk = '$id_produk';";

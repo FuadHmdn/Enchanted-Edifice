@@ -347,7 +347,7 @@
             <h2>${data.judul}</h2>
             <p><strong>Check-in:</strong> ${data.tanggal_masuk}</p>
             <p><strong>Check-out:</strong> ${data.tanggal_keluar}</p>
-            <p><strong>Lokasi:</strong> ${data.lokasi}</p>
+            <p><strong>Lokasi:</strong> ${data.alamat}</p>
             <p><strong>Harga:</strong> Rp. ${data.harga}</p>
             <p><strong>Status Payment:</strong> ${data.status_payment }</p>
           </div>
