@@ -157,7 +157,7 @@
 
   <!-- Menu -->
   <div class="menu" style="display: flex; flex-direction: row; justify-content: center;">
-    <button id="btnScheduled" type="button" class="btn btn-secondary active">Scheduled</button>
+    <button id="btnScheduled" type="button" class="btn btn-secondary active">Awaiting</button>
     <button id="btnOngoing" type="button" class="btn btn-secondary">Ongoing</button>
     <button id="btnCompleted" type="button" class="btn btn-secondary">History</button>
   </div>
