@@ -1,18 +1,22 @@
 <?php
 session_start();
-// Koneksi ke database
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
+require_once('../../database/koneksi.php');
 
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+$admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '';
+
+// Validasi ID admin
+if ($adminId <= 0) {
+    echo "<script>alert('ID admin tidak valid.'); window.location.href = '../admin/index.html';</script>";
+    exit;
 }
 
-$admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '';
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
 
 // Ambil total user
 $sql_users = "SELECT COUNT(*) as total_users FROM custommer";
@@ -42,15 +46,17 @@ while ($row = $result_sales->fetch_assoc()) {
 }
 
 // Menyiapkan data penjualan bulanan
-$monthly_sales = array_fill_keys(array(
-    '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', 
-    '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12'
-), 0);
+$bulan = array(
+    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', 
+    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', 
+    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+);
 
 foreach ($sales_data as $month => $total) {
     $monthly_sales[$month] = $total;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +134,7 @@ foreach ($sales_data as $month => $total) {
             border-radius: 10px;
         }
         .settings {
-            padding: 20px;
+            padding: 30px;
             border-top: 1px solid #eceff1;
         }
         .settings a {
@@ -141,7 +147,15 @@ foreach ($sales_data as $month => $total) {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            padding: 0px;
         }
+        .contenttt {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
         header {
             padding: 20px;
             background-color: #ffffff;
@@ -167,7 +181,7 @@ foreach ($sales_data as $month => $total) {
             font-size: 24px;
         }
         h1 {
-            padding: 20px;
+            padding: 20px 0;
         }
         .message-count {
             position: absolute;
@@ -194,7 +208,7 @@ foreach ($sales_data as $month => $total) {
             margin: 2px 0;
         }
         .dashboard {
-            padding: 20px;
+            padding: 20px 0;
         }
         .overview-cards {
             display: flex;
@@ -245,19 +259,36 @@ foreach ($sales_data as $month => $total) {
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
+            position: relative;
             height: 300px;
+            padding: 20px;
+        }
+        .y-axis {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            justify-content: space-between;
+            padding-right: 10px;
+        }
+        .y-axis span {
+            font-size: 12px;
         }
         .chart-bar {
             width: 50px;
             background-color: #1595eb;
             text-align: center;
-            color: white;
+            color: black;
             margin: 0 10px;
             border-radius: 5px 5px 0 0;
         }
         .chart-bar span {
             display: block;
             padding: 5px 0;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -267,22 +298,22 @@ foreach ($sales_data as $month => $total) {
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
+            <!--Navbar-->
             <nav>
                 <ul>
-                    <li class="active"><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li class="active"><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <!--<li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    -->
+                    <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
             <div class="settings">
-                <a href="logout.php">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
+            
+
         </aside>
         <main class="main-content">
             <header>
@@ -302,7 +333,7 @@ foreach ($sales_data as $month => $total) {
                     </div>
                 </div>
             </header>
-
+            <div class="contenttt">
             <h1>Dashboard</h1>
             <div class="dashboard">
                 <div class="overview-cards">
@@ -323,14 +354,28 @@ foreach ($sales_data as $month => $total) {
                 <div class="sales-details">
                     <h3>Sales Details (2024)</h3>
                     <div class="chart-container">
+                        <!-- Rentang nilai -->
+                        <div class="y-axis">
+                            <span>50</span>
+                            <span>40</span>
+                            <span>30</span>
+                            <span>20</span>
+                            <span>10</span>
+                            <span>0</span>
+                        </div>
                         <?php foreach ($monthly_sales as $month => $total_sales): ?>
-                            <div class="chart-bar" style="height: <?php echo $total_sales * 20; ?>px;">
+                            <?php 
+                            // Konversi angka bulan menjadi teks bulan dalam Bahasa Indonesia
+                            $bulan_teks = $bulan[substr($month, 5)]; 
+                            ?>
+                            <div class="chart-bar" style="height: <?php echo $total_sales * 6; ?>px;">
                                 <span><?php echo $total_sales; ?></span>
-                                <span><?php echo substr($month, 5); ?></span>
+                                <span><?php echo $bulan_teks; ?></span>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
+            </div>
             </div>
         </main>
     </div>

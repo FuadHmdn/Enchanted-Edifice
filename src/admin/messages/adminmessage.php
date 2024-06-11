@@ -1,9 +1,63 @@
+<?php
+session_start();
+require_once('../../database/koneksi.php');
+
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+
+// Validasi ID admin
+if ($adminId <= 0) {
+    echo "<script>alert('ID admin tidak valid.'); window.location.href = '../admin/index.html';</script>";
+    exit;
+}
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
+
+// Query messages
+$userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
+if ($userType == 'customer') {
+    $sql = "SELECT id_custommer, first_name, last_name, message FROM customer_messages";
+} else {
+    $sql = "SELECT id, first_name, last_name, message FROM provider_message"; // Changed to provider_message
+}
+
+try {
+    $result = $connection->query($sql);
+    if (!$result) {
+        throw new Exception("Query failed: " . $connection->error);
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}
+
+$connection->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Messages</title>
     <style>
         * {
             margin: 0;
@@ -161,6 +215,16 @@
             width: 100%;
             cursor: pointer;
             margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .messages-sidebar .send-messages.active {
+            background-color: #1595eb;
+        }
+
+        .messages-sidebar .send-messages.inactive {
+            background-color: #cccccc;
+            color: #666666;
         }
 
         .messages-sidebar .inbox-menu {
@@ -225,25 +289,24 @@
             border-bottom: 1px solid #ddd;
         }
 
-        .message-item input[type="checkbox"] {
-            margin-right: 10px;
+        .message-item span {
+            margin-right: 20px; 
         }
 
-        .message-item .star {
-            margin-right: 10px;
-            color: gold;
-        }
-
-        .message-item .name {
+        .message-item .id_custommer, .message-item .id {
             flex: 1;
         }
 
-        .message-item .message {
+        .message-item .first_name {
             flex: 2;
         }
 
-        .message-item .time {
-            color: #888;
+        .message-item .last_name {
+            flex: 2;
+        }
+
+        .message-item .message {
+            flex: 4;
         }
     </style>
 </head>
@@ -255,86 +318,61 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li class="active"><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li class="active"><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-    <!--
-                    <li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    -->         
+                    <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
                 </ul>
             </nav>
             <div class="settings">
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
+            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">
             <header>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
                 <div class="header-right">
                     <div class="message">
                         <span class="message-icon">🔔</span>
-                        <span class="message-count">6</span>
                     </div>
                     <div class="user-info">
-                        <span>Fuad</span>
-                        <span class="role">Admin</span>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300;">Admin</p>
+                        </div>
                     </div>
                 </div>
             </header>
-
             <div class="messages-section">
                 <aside class="messages-sidebar">
                     <form action="adminmessage.php" method="post">
-                        <button type="submit" name="userType" value="customer" class="send-messages">Customer</button>
-                        <button type="submit" name="userType" value="provider" class="send-messages">Provider</button>
+                        <button type="submit" name="userType" value="customer" class="send-messages <?php echo ($userType == 'customer') ? 'active' : 'inactive'; ?>">Customer</button>
+                        <button type="submit" name="userType" value="provider" class="send-messages <?php echo ($userType == 'provider') ? 'active' : 'inactive'; ?>">Provider</button>
                     </form>
                 </aside>
                 <div class="messages-content">
-                    <div class="messages-header">
-                        <input type="search" placeholder="Search Inbox">
-                    </div>
                     <div class="message-list">
                         <?php
-                        // Database connection
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "enchanted_edifice";
-
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        $userType = isset($_POST['userType']) ? $_POST['userType'] : 'customer';
-                        if ($userType == 'customer') {
-                            $sql = "SELECT c.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_customer m JOIN custommer c ON m.id_customer = c.id";
-                        } else {
-                            $sql = "SELECT p.nama AS name, m.isi_pesan AS message, m.created_at AS time FROM message_penyediagedung m JOIN penyedia_gedung p ON m.id_penyediagedung = p.id";
-                        }
-
-                        $result = $conn->query($sql);
-
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo '<div class="message-item">';
-                                echo '<input type="checkbox">';
-                                echo '<span class="star">⭐</span>';
-                                echo '<span class="name">' . htmlspecialchars($row['name']) . '</span>';
+                                if ($userType == 'customer') {
+                                    echo '<span class="id_custommer">' . htmlspecialchars($row['id_custommer']) . '</span>';
+                                } else {
+                                    echo '<span class="id">' . htmlspecialchars($row['id']) . '</span>';
+                                }
+                                echo '<span class="first_name">' . htmlspecialchars($row['first_name']) . '</span>';
+                                echo '<span class="last_name">' . htmlspecialchars($row['last_name']) . '</span>';
                                 echo '<span class="message">' . htmlspecialchars($row['message']) . '</span>';
-                                echo '<span class="time">' . htmlspecialchars($row['time']) . '</span>';
                                 echo '</div>';
                             }
                         } else {
                             echo '<p>No messages found.</p>';
                         }
-
-                        $conn->close();
                         ?>
                     </div>
                 </div>

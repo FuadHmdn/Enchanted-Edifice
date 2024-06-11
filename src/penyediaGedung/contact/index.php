@@ -69,16 +69,19 @@
             <a class="nav-link" aria-current="page" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../offers/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
+            <a class="nav-link" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
+            <a class="nav-link" href="../order/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../review/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">REVIEW</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../salary/?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #000000;">CONTACT US</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../about/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ABOUT</a>
           </li>
           <li class="nav-item">
             <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
@@ -150,7 +153,7 @@
         <p style="font-size: 23px; font-weight: 100; font-family: 'Abril Fatface', serif; margin: 0;">Jangan ragu untuk
           meminta konsultasi atau bertanya langsung saja hubungi kami </p>
           <!-- Input Data -->
-          <form action="../../database/custommer/submitform.php?id=<?php echo $_GET['id']; ?>" method="post">
+          <form action="../../database/penyedia_gedung/submitform.php?id=<?php echo $_GET['id']; ?>" method="post">
 
 
     <!-- Text Field Name -->

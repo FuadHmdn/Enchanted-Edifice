@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ('../koneksi.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -7,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validasi data
     if (empty($email) || empty($password)) {
-        echo "<script>alert('Email dan password harus diisi.'); window.location.href = '../../login/user/login/admin/index.html';</script>";
+        echo "<script>alert('Email dan password harus diisi.'); window.location.href = 'index.html';</script>";
         exit;
     }
 
@@ -20,17 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             // Login berhasil
             $_SESSION['admin_id'] = $user['id'];
+            $_SESSION['admin_username'] = $user['username']; // Misalnya, jika ada username
             $adminId = $user['id'];
-            echo "<script>alert('Login berhasil!'); window.location.href = '../../admin/adminhome.php?id=$adminId';</script>";
+            echo "<script>alert('Login berhasil!'); window.location.href ='../../../src/admin/dashboard/adminhome.php?id=$adminId';</script>";
             exit;
         } else {
             // Password salah
-            echo "<script>alert('Password salah. $password '); window.location.href = '../../login/user/login/admin/index.html';</script>";
+            echo "<script>alert('Password salah.'); window.location.href = 'index.html';</script>";
             exit;
         }
     } else {
         // Email tidak ditemukan
-        echo "<script>alert('Email tidak ditemukan.'); window.location.href = '../../login/user/login/admin/index.html';</script>";
+        echo "<script>alert('Email tidak ditemukan.'); window.location.href = 'index.html';</script>";
         exit;
     }
 

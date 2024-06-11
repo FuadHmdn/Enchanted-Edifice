@@ -1,10 +1,29 @@
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
+session_start();
+require_once('../../database/koneksi.php');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
+}
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
 
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
@@ -14,6 +33,7 @@ if ($connection->connect_error) {
 $sql = "SELECT * FROM custommer";
 $result = $connection->query($sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -140,26 +160,6 @@ $result = $connection->query($sql);
         align-items: center;
     }
 
-    .message {
-        position: relative;
-        margin-right: 20px;
-    }
-
-    .message-icon {
-        font-size: 24px;
-    }
-
-    .message-count {
-        position: absolute;
-        top: -5px;
-        right: -10px;
-        background-color: red;
-        color: white;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-    }
-
     .language img {
         width: 24px;
         height: 24px;
@@ -244,50 +244,6 @@ $result = $connection->query($sql);
         color: #666;
     }
 
-    .send-message-form {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border-radius: 10px;
-        z-index: 1000;
-    }
-
-    .send-message-form.active {
-        display: block;
-    }
-
-    .send-message-form h2 {
-        margin-bottom: 20px;
-    }
-
-    .send-message-form textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .send-message-form button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #1595eb;
-        color: #fff;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .send-message-form button.cancel {
-        background-color: #ddd;
-        color: #333;
-    }
-    
     .customer-list {
         display: flex;
         flex-wrap: wrap;
@@ -337,6 +293,10 @@ $result = $connection->query($sql);
         margin: 5px 0 10px 0;
         color: #777;
     }
+    .message-icon {
+        font-size: 24px;
+        padding: 20px;
+    }
 
     .customer-card button {
         padding: 10px 20px;
@@ -353,6 +313,22 @@ $result = $connection->query($sql);
         background-color: #0f7bb5;
     }
 
+    .add-customer-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        background-color: #1595eb;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        width: fit-content;
+    }
+
+    .add-customer-button:hover {
+        background-color: #0f7bb5;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -360,20 +336,20 @@ $result = $connection->query($sql);
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
+            <!--Navbar-->
             <nav>
                 <ul>
-                    <li><a href="adminhome.php?id=<?php echo htmlspecialchars($admin_id); ?>">Dashboard</a></li>
-                    <li><a href="adminorderlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Order List</a></li>
-                    <li><a href="adminmessage.php?id=<?php echo htmlspecialchars($admin_id); ?>">Messages</a></li>
+                    <li><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
+                    <li><a href="../orderlist/adminorderlist.php?id=<?php echo $adminId; ?>">Order List</a></li>
+                    <li><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
-                    <li class="active"><a href="admincustlist.php?id=<?php echo htmlspecialchars($admin_id); ?>">Customer</a></li>
-                    <li><a href="adminpenyediagedung.php?id=<?php echo htmlspecialchars($admin_id); ?>">Provider</a></li>
-                    <!--<li class="section-title">VERIFICATIONS</li>
-                    <li><a href="adminverifpayment.php?id=<?php echo htmlspecialchars($admin_id); ?>">Payments</a></li>
-    --></ul>
+                    <li class="active"><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
+                    <li><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
+                </ul>
             </nav>
+            
             <div class="settings">
-                <a href="#">Logout</a>
+                <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
             </div>
         </aside>
         <main class="main-content">
@@ -384,51 +360,45 @@ $result = $connection->query($sql);
                 <div class="header-right">
                     <div class="message">
                         <span class="message-icon">🔔</span>
-                        <span class="message-count">6</span>
                     </div>
                     <div class="user-info">
-                        <span>Fuad</span>
-                        <span class="role">Admin</span>
+                        <!-- Menampilkan username admin -->
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                        </div>
                     </div>
                 </div>
             </header>
 
             <h1>Customer List</h1>
-            <div class="customer-list" >
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $photo = $row['photo'];
-                        echo "<div class='customer-card' onclick='viewCustomer({$row['id']})'>
-                                <div class='profile-pic'>";
-                        if(isset($photo) && !empty($photo)) {
-                            echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/{$photo}' alt='Profile'>";
-                        } else {
-                            echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
-                        }
-                        echo "</div>
-                                <h3>{$row['username']}</h3>
-                                <p>{$row['email']}</p>
-                                <button onclick='sendMessage(event, {$row['id']}, \"{$row['username']}\", \"{$row['email']}\")'>Message</button>
-                                <button onclick='deleteCust({$row['id']})'>Delete</button>
-                            </div>";
-                    }
-                } else {
-                    echo "<p>No customers found</p>";
-                }
-                ?>
-            </div>
-        </main>
-    </div>
+            <a href="add_customer.php" class="add-customer-button">Add Customer</a>
 
-    <div class="send-message-form" id="sendMessageForm">
-        <h2>Send Message to <span id="customerName"></span></h2>
-        <form action="#" method="POST">
-            <input type="hidden" name="customer_id" id="customerId">
-            <textarea name="message" placeholder="Write your message here..."></textarea>
-            <button type="submit">Send</button>
-            <button type="button" class="cancel" onclick="closeSendMessageForm()">Cancel</button>
-        </form>
+                <div class="customer-list">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $photo = $row['photo'];
+                            echo "<div class='customer-card' onclick='viewCustomer(" . $row["id"] . ")'>
+                                <div class='profile-pic'>";
+                            if (!empty($row["photo"])) {
+                                echo "<img src='/PemWeb/Enchanted-Edifice/src/login/user/res/customer/" . htmlspecialchars($row["photo"]) . "' alt='Profile Picture'>";
+                            } else {
+                                echo "<img src='/path/to/default-image.jpg' alt='No Photo'>";
+                            }
+                            echo "</div>
+                                <h3>" . htmlspecialchars($row["username"]) . "</h3>
+                                <p>" . htmlspecialchars($row["email"]) . "</p>
+                                <button onclick='deleteCust(event, " . $row["id"] . ")'>Delete</button>
+                                <button onclick='editCust(event, " . $row["id"] . ")'>Edit</button>
+                            </div>";
+                        }
+                    } else {
+                        echo "<p>No customers found</p>";
+                    }
+                    ?>
+                </div>
+        </main>
     </div>
 
     <script>
@@ -436,21 +406,16 @@ $result = $connection->query($sql);
             window.location.href = 'vieweachcust.php?id=' + id;
         }
 
-        function sendMessage(event, id, name, email) {
+        function deleteCust(event, userId) {
             event.stopPropagation();
-            document.getElementById('customerId').value = id;
-            document.getElementById('customerName').textContent = name;
-            document.getElementById('sendMessageForm').classList.add('active');
-        }
-
-        function closeSendMessageForm() {
-            document.getElementById('sendMessageForm').classList.remove('active');
-        }
-
-        function deleteCust(userId) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_cust.php?id=" + userId;
+                window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
             }
+        }
+
+        function editCust(event, userId) {
+            event.stopPropagation();
+            window.location.href = "edit_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
         }
     </script>
 </body>

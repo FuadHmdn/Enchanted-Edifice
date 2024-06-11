@@ -3,13 +3,13 @@
 require_once ('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['id'])) {
-        $id = mysqli_real_escape_string($connection, $_GET['id']);
+    if (isset($_GET['id_produk'])) {
+        $id_produk = mysqli_real_escape_string($connection, $_GET['id_produk']);
         
-        $sql = "SELECT produk.gambar, produk.judul, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.id_produk 
+        $sql = "SELECT produk.gambar, produk.judul, produk.harga, produk.lokasi, order_cust.tanggal_masuk, order_cust.tanggal_keluar, order_cust.status_payment 
                 FROM order_cust 
                 JOIN produk ON order_cust.id_produk = produk.id_produk 
-                WHERE order_cust.status_payment = 'awaiting' AND order_cust.complete = 0 AND order_cust.id_custommer = '$id';";
+                WHERE order_cust.id_produk = '$id_produk';";
 
         $result = mysqli_query($connection, $sql);
 
@@ -30,4 +30,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 mysqli_close($connection);
 
 ?>
-

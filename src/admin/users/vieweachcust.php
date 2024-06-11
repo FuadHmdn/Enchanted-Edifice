@@ -1,15 +1,30 @@
 <?php
-// Koneksi ke database
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'enchanted_edifice');
+session_start();
+require_once('../../database/koneksi.php');
 
-$connection = mysqli_connect(HOST, USER, PASS, DB);
+// Ambil ID admin dari URL atau sesi
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
 
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+
+// Set sesi admin jika belum diatur
+if (!isset($_SESSION['admin_id'])) {
+    $_SESSION['admin_id'] = $adminId;
 }
+
+// Fetch admin username if not already set
+if (!isset($_SESSION['admin_username'])) {
+    $sql = "SELECT username FROM admin WHERE id = $adminId";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['admin_username'] = $row['username'];
+    } else {
+        echo "<script>alert('Admin not found.'); window.location.href = '../admin/index.html';</script>";
+        exit;
+    }
+}
+
+$admin_username = $_SESSION['admin_username'];
 
 // Ambil data customer berdasarkan ID
 $customer_id = $_GET['id'];
@@ -87,10 +102,6 @@ $customer = $result->fetch_assoc();
             border-radius: 5px;
             cursor: pointer;
         }
-        .buttons .message {
-            background-color: #1595eb;
-            color: white;
-        }
         .buttons .delete {
             background-color: #f44336;
             color: white;
@@ -117,7 +128,6 @@ $customer = $result->fetch_assoc();
                 <input type="text" id="email" value="<?php echo htmlspecialchars($customer['email']); ?>" readonly>
             </div>
             <div class="buttons">
-                <button class="message">Send Message</button>
                 <button class="delete" onclick="deleteCust(<?php echo $customer_id; ?>)">Delete Account</button>
             </div>
         </div>
@@ -130,11 +140,12 @@ $customer = $result->fetch_assoc();
         </div>
     </div>
     <script>
-        function deleteCust($customer_id) {
+        function deleteCust(userId) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "delete_cust.php?id=" + $customer_id;
+                window.location.href = "delete_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
             }
         }
+
     </script>
 </body>
 </html>
