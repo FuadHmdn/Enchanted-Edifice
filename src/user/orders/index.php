@@ -261,107 +261,122 @@
     });
   </script>
 
-  <!-- Schedule Get -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Menemukan elemen kontainer
-    var menuScheduleContainer = document.getElementById("scheduled");
+    <!-- Schedule Get -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Menemukan elemen kontainer
+      var menuScheduleContainer = document.getElementById("scheduled");
 
-    // Dapatkan nilai ID dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+      // Dapatkan nilai ID dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
 
-    // Pastikan ID tidak null
-    if (id) {
-      fetch(`http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/schedule.php?id=${id}`)
-        .then(response => response.json())
-        .then(data => {
-          // Memastikan ada data
-          if (data.length === 0) {
-            menuScheduleContainer.innerHTML = '<p>No data found</p>';
-            return;
-          }
+      // Pastikan ID tidak null
+      if (id) {
+        fetch(`http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/schedule.php?id=${id}`)
+          .then(response => response.json())
+          .then(data => {
+            // Memastikan ada data
+            if (data.length === 0) {
+              menuScheduleContainer.innerHTML = '<p>No data found</p>';
+              return;
+            }
 
-          // Membuat elemen untuk setiap item dalam data
-          data.forEach(function (item) {
-            var itemContainer = document.createElement("section");
-            itemContainer.classList.add("scheduled");
+            // Membuat elemen untuk setiap item dalam data
+            data.forEach(function (item) {
+              var itemContainer = document.createElement("section");
+              itemContainer.classList.add("scheduled");
 
-            var content = `
-              <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
-                <div style="display: flex; flex-direction: column;">
-                  <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
-                  <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                    <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
-                    <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5 <span>999+ reviews </span>| Bandar Lampung</p>
+              var content = `
+                <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
+                  <div style="display: flex; flex-direction: column;">
+                    <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
+                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                      <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
+                      <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5 <span>999+ reviews </span>| Bandar Lampung</p>
+                    </div>
+                    <img src="${item.gambar}" alt="contoh" style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
                   </div>
-                  <img src="${item.gambar}" alt="contoh" style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
-                </div>
-                <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
-                  <div style="margin-right: 100px;">
-                    <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check In: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
-                    <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check Out: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span></p>
+                  <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 90px">
+                    <div style="margin-right: 100px;">
+                      <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check In: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
+                      <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848;">Check Out: <span style="font-size: 22px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span></p>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
                   </div>
-                  <button type="button" class="btn btn-primary" style="margin-top: 40px; width: 200px; border-radius: 30px; margin-left: 150px;">Cek Detail</button>
                 </div>
-              </div>
-            `;
+              `;
 
-            itemContainer.innerHTML = content;
-            itemContainer.style.marginBottom = "60px";
-            menuScheduleContainer.appendChild(itemContainer);
-          });
-        })
-        .catch(error => console.error('Error:', error));
-    } else {
-      menuScheduleContainer.innerHTML = '<p>No ID provided in the URL</p>';
-    }
-  });
-</script>
+              itemContainer.innerHTML = content;
+              itemContainer.style.marginBottom = "60px";
+              menuScheduleContainer.appendChild(itemContainer);
+            });
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        menuScheduleContainer.innerHTML = '<p>No ID provided in the URL</p>';
+      }
+    });
+  </script>
 
 
   <!-- Ongoing -->
   <script>
-    // Menemukan elemen kontainer
-    var menuOngoingContainer = document.getElementById("ongoing");
+    document.addEventListener('DOMContentLoaded', function() {
+      // Menemukan elemen kontainer
+      var menuOngoingContainer = document.getElementById("ongoing");
 
-    fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/ongoing.php')
-      .then(response => response.json())
-      .then(data => {
-        // Membuat elemen untuk setiap item dalam data
-        data.forEach(function (item) {
-          var itemContainer = document.createElement("section");
-          itemContainer.classList.add("ongoing");
+      // Dapatkan nilai ID dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
 
-          var content = `
-          <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
-            <div style="display: flex; flex-direction: column;">
-              <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
-              <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                <img src="${item.gambar}" alt="contoh"
-                  style="width: 285px; height: 195px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
-                <div style="display: flex; flex-direction: column; margin-left: 60px;">
-                  <p
-                    style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500">
-                    Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
-                  <p
-                    style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600;">
-                    Rp.<span>${item.harga}</span></p>
-                </div>
-              </div>
-            </div>
+      // Pastikan ID tidak null
+      if (id) {
+        fetch(`http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/ongoing.php?id=${id}`)
+          .then(response => response.json())
+          .then(data => {
+            // Memastikan ada data
+            if (data.length === 0) {
+              menuOngoingContainer.innerHTML = '<p>No data found</p>';
+              return;
+            }
 
-            <button type="button" class="btn btn-danger"
-              style="margin-top: 195px; width: 200px; height: 40px; border-radius: 30px; margin-left: 150px;">Cancel
-              Reservation</button>
-          </div>`;
+            // Membuat elemen untuk setiap item dalam data
+            data.forEach(function (item) {
+              var itemContainer = document.createElement("section");
+              itemContainer.classList.add("ongoing");
 
-          itemContainer.innerHTML = content;
-          itemContainer.style.marginBottom = "60px";
-          menuOngoingContainer.appendChild(itemContainer);
-        });
-      })
-      .catch(error => console.error('Error:', error));
+              var content = `
+                <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px; padding-top: 20px;">
+                  <div style="display: flex; flex-direction: column;">
+                    <p style="margin: 0; font-size: 21px; font-family: 'Lato', sans-serif;">${item.judul}</p>
+                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                      <img src="${item.gambar}" alt="contoh"
+                        style="width: 285px; height: 195px; margin-left: 32px; margin-top: 10px; border-radius: 5px;">
+                      <div style="display: flex; flex-direction: column; margin-left: 60px;">
+                        <p style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500">
+                          Check In: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_masuk}</span></p>
+                        <p style="margin:5px; font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600;">
+                          Rp.<span>${item.harga}</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-danger"
+                    style="margin-top: 195px; width: 200px; height: 40px; border-radius: 30px; margin-left: 150px;">Cancel
+                    Reservation</button>
+                </div>`;
+
+              itemContainer.innerHTML = content;
+              itemContainer.style.marginBottom = "60px";
+              menuOngoingContainer.appendChild(itemContainer);
+            });
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        menuOngoingContainer.innerHTML = '<p>No ID provided in the URL</p>';
+      }
+    });
   </script>
 
   <!-- Completed -->
