@@ -325,8 +325,8 @@ mysqli_close($connection);
                     </div>
                 </div>
 
-                <label for="price">Price (the price will be cut by 10% tax and the application cost is 2.5%)</label>
-                <input type="text" id="price" placeholder="Product price in PLN (gross)">
+                <label for="price">Price </label>
+                <input type="number" id="price" placeholder="Product price in PLN (gross)">
 
                 <label for="loc">Location</label>
                 <select id="loc" style="height: 40px;">

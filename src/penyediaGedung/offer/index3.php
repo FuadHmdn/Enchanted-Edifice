@@ -445,7 +445,6 @@ mysqli_close($connection);
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
         <button onclick="profileClick()" class="btn btn-outline-secondary" style="width: 80px; height: 41px; left: 1250px; top: 30px; position: absolute; justify-content: center; align-items: center; display: inline-flex; border: 20px">
             <img style="width: 23px; height: 23px; left: 44px; top: 9px; position: absolute; " src="../offer/res/🦆 icon _User Circle_.png">
             <div style="width: 29px; height: 29px; padding-left: 3.62px; padding-right: 3.62px; padding-top: 7.25px; padding-bottom: 7.25px; left: 8px; top: 6px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
@@ -465,30 +464,6 @@ mysqli_close($connection);
                 </a>
             </div>
         </div>
-=======
-    <button onclick="profileClick()" class="btn btn-outline-secondary" style="width: 80px; height: 41px; left: 1250px; top: 30px; position: absolute; justify-content: center; align-items: center; display: inline-flex; border: 20px">
-        <img style="width: 23px; height: 23px; left: 44px; top: 9px; position: absolute; " src="../offer/res/🦆 icon _User Circle_.png">
-        <div style="width: 29px; height: 29px; padding-left: 3.62px; padding-right: 3.62px; padding-top: 7.25px; padding-bottom: 7.25px; left: 8px; top: 6px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-          <img style="width: 21.75px; height: 14.50px;" src="../offer/res/material-symbols_menu.png">
-        </div>
-        <div style="width: 80px; height: 41px; top: 0px; position: absolute; border-radius: 15px; border: 2px white solid">
-        </div>
-    </button>
-    <div style="width: 440px; height: 24px; left: 777px; top: 39px; position: absolute; justify-content: flex-end; align-items: center; gap: 40px; display: inline-flex">
-  <div style="justify-content: center; align-items: center; gap: 32px; display: flex">
-    <a class="nav-link" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">HOME</a>
-    <a class="nav-link active" aria-current="page" href="../offer/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #95A4C0; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">OFFERS</a>
-    <a class="nav-link" href="../order/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: white; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">ORDERS</a>
-    <a class="nav-link" href="../review/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">REVIEW</a>
-    <a class="nav-link" href="../salary/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="justify-content: center; align-items: center; gap: 4px; display: flex; text-decoration: none; white-space: nowrap;">
-      <div style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word">
-        SALARY
-      </div>
-    </a>
-    <a class="nav-link" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #EFF0F4; font-size: 16px; font-family: Lato; font-weight: 700; line-height: 24px; word-wrap: break-word; white-space: nowrap; text-decoration: none;">CONTACT US</a>
-  </div>
-</div>
->>>>>>> cbbad40875c3d34fd5b10e903058bc9cae2d13e0
     </div>
 
     <div style="width: 1217px; height: 521px; left: 163px; top: 371px; position: absolute; background: rgba(133.98, 145.72, 165.75, 0.55)"></div>
@@ -717,6 +692,7 @@ mysqli_close($connection);
             document.getElementById("hidden-price").value = price;
             document.getElementById("hidden-location").value = loc;
 
+
             // Collect selected categories
             var selectedCategories = [];
             var categoryCheckboxes = document.querySelectorAll('.category-item input[type="checkbox"]');
@@ -755,6 +731,14 @@ mysqli_close($connection);
             localStorage.setItem("selectedOthers", selectedOthers);
             localStorage.setItem("selectedCapacity", selectedCapacity);
             localStorage.setItem("selectedAvEquipment", selectedAvEquipment);
+
+            console.log("Title: ", title);
+            console.log("Description: ", description);
+            console.log("Length: ", length);
+            console.log("Width: ", width);
+            console.log("Height: ", height);
+            console.log("Price: ", price);
+            console.log("Location: ", loc);
 
             // Proceed to the next page
             window.location.href = "index4.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
