@@ -3,11 +3,13 @@
 require_once ('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $sql = "SELECT produk.gambar, produk.judul, produk.harga, orders_customers.tanggal_masuk, orders_customers.tanggal_keluar 
-    FROM orders_customers 
-    JOIN produk ON orders_customers.id_produk = produk.id_produk 
-    WHERE orders_customers.status = 'ongoing';
-    ";
+    if (isset($_GET['id'])) {
+        $id_custommer = $_GET['id'];
+        
+    $sql = "SELECT produk.gambar, produk.judul, produk.harga, order_cust.tanggal_masuk, order_cust.tanggal_keluar 
+            FROM order_cust 
+            JOIN produk ON order_cust.id_produk = produk.id_produk 
+            WHERE order_cust.status_payment = 'valid' AND order_cust.complete = 0;";
 
     $result = mysqli_query($connection, $sql);
 
@@ -20,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } else {
         echo json_encode(array('message' => 'No data found'));
     }
+}
 }
 
 mysqli_close($connection);
