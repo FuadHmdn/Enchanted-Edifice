@@ -23,7 +23,6 @@
             font-weight: normal;
             font-style: normal;
         }
-        
 
         .nav-link {
             font-family: 'Lato', sans-serif;
@@ -46,17 +45,24 @@
             margin-bottom: 20px;
             justify-content: space-between;
             align-items: center;
-            margin-left: 200px;
-            margin-right: 260px;
+            margin-left: 46px;
+            margin-right: 46px;
+            width: auto;
+            background-color: #bce3ff;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .filter-bar .btn {
             display: flex;
             align-items: center;
             gap: 10px;
-            background-color: #fff;
-            border: 1px solid #ced4da;
+            background-color: #98d4ff;
+            color: white;
+            font-weight: bold;
+            border: 1px solid white;
             padding: 10px 15px;
+            border-radius: 5px;
         }
 
         .filter-bar .bi {
@@ -64,14 +70,14 @@
         }
 
         table {
-            width: 70%;
-            max-width: 70%;
+            width: calc(100% - 92px);
+            max-width: calc(100% - 92px);
             border-collapse: collapse;
             margin-bottom: 20px;
             background-color: white;
             border-radius: 40px;
-            margin-left: 200px;
-            margin-right: 200px;
+            margin-left: 46px;
+            margin-right: 46px;
         }
 
         table, th, td {
@@ -83,6 +89,10 @@
             text-align: left;
         }
 
+        thead tr {
+            background-color: #e7f0ff; /* Warna biru soft untuk baris pertama tabel */
+        }
+
         .rectangle-status {
             border-radius: 8px;
             padding: 5px 10px;
@@ -92,12 +102,15 @@
             min-width: 100px;
             height: 35px;
         }
+
         .status-complete .rectangle-status {
             background-color: #cdffd7; /* Warna untuk status complete */
         }
+
         .status-incomplete .rectangle-status {
             background-color: #f5ffbc; /* Warna untuk status incomplete */
         }
+
         .status-amount {
             position: absolute;
             top: 50%;
@@ -108,9 +121,9 @@
             color: #fff;
             text-shadow: 
                 -1px -1px 0 #000,  
-                 1px -1px 0 #000,
-                -1px  1px 0 #000,
-                 1px  1px 0 #000;
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
         }
 
         .popup {
@@ -158,8 +171,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
-                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;"
-                    alt="Logo">
+                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -183,7 +195,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../salary/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
                     </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
                     </li>
@@ -196,7 +207,6 @@
                         </button>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -209,63 +219,93 @@
             <p style="font-family: 'Lato',sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">ORDER</p>
         </div>
     </div>
-        <div style="margin-top: 40px;">
-            <div class="filter-bar">
-                <button id="date-filter" class="btn">
-                    <i class="bi bi-calendar"></i> Date
-                </button>
-                <button id="category-filter" class="btn">
-                    <i class="bi bi-list-ul"></i> Order Categories
-                </button>
-                <button id="status-filter" class="btn">
-                    <i class="bi bi-info-circle"></i> Order Status
-                </button>
-                <button class="btn reset-button" id="reset-filter">
-                    <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
-                </button>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>DATE CHECK-IN</th>
-                        <th>DATE CHECK-OUT</th>
-                        <th>BUILDING</th>
-                        <th>CATEGORY</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody id="order-table">
-                    <!-- Table rows will be dynamically generated -->
-                </tbody>
-            </table>
-            <div class="popup" id="date-popup">
-                <div id="datepicker"></div>
-                <button id="apply-date">Apply Now</button>
-            </div>
-            <div class="popup" id="category-popup">
-                <select id="category-select">
-                    <option value="">Select Category</option>
-                    <option value="Home">Home</option>
-                    <option value="Ballroom">Ballroom</option>
-                    <option value="MeetingRoom">Meeting Room</option>
-                    <option value="OutdoorVenue">Outdoor Venue</option>
-                    <option value="BanquetHall">Banquet Hall</option>
-                    <option value="ConferenceCenter">Conference Center</option>
-                    <option value="Auditorium">Auditorium</option>
-                    <option value="CafeRestaurant">Cafe/Restaurant</option>
-                    <option value="SportsFacility">Sports Facility</option>
-                </select>
-                <button id="apply-category">Apply Now</button>
-            </div>
-            <div class="popup" id="status-popup">
-                <select id="status-select">
-                    <option value="">Select Status</option>
-                    <option value="completed">completed</option>
-                    <option value="incomplete">incomplete</option>
-                </select>
-                <button id="apply-status">Apply Now</button>
+
+    <div style="margin-top: 50px; margin-bottom: 50px;">
+        <div class="filter-bar">
+            <button id="date-filter" class="btn">
+                <i class="bi bi-calendar"></i> Date
+            </button>
+            <button id="category-filter" class="btn">
+                <i class="bi bi-list-ul"></i> Order Categories
+            </button>
+            <button id="status-filter" class="btn">
+                <i class="bi bi-info-circle"></i> Order Status
+            </button>
+            <button class="btn reset-button" id="reset-filter">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
+            </button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DATE CHECK-IN</th>
+                    <th>DATE CHECK-OUT</th>
+                    <th>BUILDING</th>
+                    <th>CATEGORY</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody id="order-table">
+                <!-- Table rows will be dynamically generated -->
+            </tbody>
+        </table>
+        <div class="popup" id="date-popup">
+            <div id="datepicker"></div>
+            <button id="apply-date">Apply Now</button>
+        </div>
+        <div class="popup" id="category-popup">
+            <select id="category-select">
+                <option value="">Select Category</option>
+                <option value="Home">Home</option>
+                <option value="Ballroom">Ballroom</option>
+                <option value="MeetingRoom">Meeting Room</option>
+                <option value="OutdoorVenue">Outdoor Venue</option>
+                <option value="BanquetHall">Banquet Hall</option>
+                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="CafeRestaurant">Cafe/Restaurant</option>
+                <option value="SportsFacility">Sports Facility</option>
+            </select>
+            <button id="apply-category">Apply Now</button>
+        </div>
+        <div class="popup" id="status-popup">
+            <select id="status-select">
+                <option value="">Select Status</option>
+                <option value="completed">completed</option>
+                <option value="incomplete">incomplete</option>
+            </select>
+            <button id="apply-status">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting Events, Enchanted<br>Experiences!
+            </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Services</p>
+            <p style="margin: 0;">Booking</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About</p>
+            <p style="margin: 0;">Our Story</p>
+            <p style="margin: 0;">Blog</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Follow Us</p>
+            <div style="display: flex; flex-direction: row;">
+                <img src="../../res/Facebook.png" alt="Facebook">
+                <img src="../../res/Twitter.png" alt="Twitter">
+                <img src="../../res/LinkedIn.png" alt="LinkedIn">
             </div>
         </div>
     </div>
