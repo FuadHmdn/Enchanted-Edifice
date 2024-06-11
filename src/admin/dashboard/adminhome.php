@@ -147,8 +147,15 @@ foreach ($sales_data as $month => $total) {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            padding: 0px;
+        }
+        .contenttt {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
             padding: 20px;
         }
+        
         header {
             padding: 20px;
             background-color: #ffffff;
@@ -326,7 +333,7 @@ foreach ($sales_data as $month => $total) {
                     </div>
                 </div>
             </header>
-
+            <div class="contenttt">
             <h1>Dashboard</h1>
             <div class="dashboard">
                 <div class="overview-cards">
@@ -368,6 +375,7 @@ foreach ($sales_data as $month => $total) {
                         <?php endforeach; ?>
                     </div>
                 </div>
+            </div>
             </div>
         </main>
     </div>
