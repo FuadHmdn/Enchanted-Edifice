@@ -380,6 +380,7 @@
   </script>
 
   <!-- Completed -->
+   <!-- Completed -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Menemukan elemen kontainer
@@ -405,22 +406,41 @@
             var itemContainer = document.createElement("section");
             itemContainer.classList.add("completed");
 
-            var content = `
-              <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px;">
-                <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 55px;">
-                  <p style="margin: 0; font-size: 26px; font-family: 'Lato', sans-serif; color: #000000; font-weight: 800;">${item.judul}</p>
-                  <p style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500; margin-top: 30px;">
-                    Check Out: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span>
-                  </p>
-                </div>
-                <div style="display: flex; flex-direction: column; margin-top: 65px; align-items: flex-end;">
-                  <p style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600; margin-right: 5px;">
-                    Rp.<span>${item.harga}</span>
-                  </p>
-                  <button type="button" class="btn btn-primary detail-button" data-id="${item.id_produk}"
-                    style="margin-top: 0px; width: 200px; height: 40px; border-radius: 30px;">Tambah Ulasan</button>
-                </div>
-              </div>`;
+            // Check if status_payment is 'invalid' to modify the content accordingly
+            if (item.status_payment === 'invalid') {
+              itemContainer.style.backgroundColor = '#ffe6e6'; // light red background for invalid status
+              var content = `
+                <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px;">
+                  <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 55px;">
+                    <p style="margin: 0; font-size: 26px; font-family: 'Lato', sans-serif; color: red; font-weight: 800;">${item.judul} Canceled</p>
+                    <p style="color: red; font-size: 16px; font-family: 'Montserrat', sans-serif; margin-top: 40px">
+                      Dear customer, we regret to inform you that your order has been canceled by our administration due to payment issues. If you have any questions or need further assistance, please feel free to reach out to our customer support. Thank you for your understanding.
+                    </p>
+                  </div>
+                  <div style="display: flex; flex-direction: column; margin-top: 65px; align-items: flex-end;">
+                    <p style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600; margin-right: 5px;">
+                      Rp.<span>${item.harga}</span>
+                    </p>
+                  </div>
+                </div>`;
+            } else {
+              var content = `
+                <div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 50px; margin-right: 50px;">
+                  <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 55px;">
+                    <p style="margin: 0; font-size: 26px; font-family: 'Lato', sans-serif; color: #000000; font-weight: 800;">${item.judul}</p>
+                    <p style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 500; margin-top: 30px;">
+                      Check Out: <span style="font-size: 24px; font-family: 'Montserrat', sans-serif; color: #9A9A9A;">${item.tanggal_keluar}</span>
+                    </p>
+                  </div>
+                  <div style="display: flex; flex-direction: column; margin-top: 65px; align-items: flex-end;">
+                    <p style="font-size: 21px; font-family: 'Montserrat', sans-serif; color: #484848; font-weight: 600; margin-right: 5px;">
+                      Rp.<span>${item.harga}</span>
+                    </p>
+                    <button type="button" class="btn btn-primary detail-button" data-id="${item.id_produk}"
+                      style="margin-top: 0px; width: 200px; height: 40px; border-radius: 30px;">Tambah Ulasan</button>
+                  </div>
+                </div>`;
+            }
 
             itemContainer.innerHTML = content;
             itemContainer.style.marginBottom = "60px";
