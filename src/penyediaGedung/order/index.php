@@ -23,7 +23,6 @@
             font-weight: normal;
             font-style: normal;
         }
-        
 
         .nav-link {
             font-family: 'Lato', sans-serif;
@@ -46,17 +45,24 @@
             margin-bottom: 20px;
             justify-content: space-between;
             align-items: center;
-            margin-left: 200px;
-            margin-right: 260px;
+            margin-left: 46px;
+            margin-right: 46px;
+            width: auto;
+            background-color: #bce3ff;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .filter-bar .btn {
             display: flex;
             align-items: center;
             gap: 10px;
-            background-color: #fff;
-            border: 1px solid #ced4da;
+            background-color: #98d4ff;
+            color: white;
+            font-weight: bold;
+            border: 1px solid white;
             padding: 10px 15px;
+            border-radius: 5px;
         }
 
         .filter-bar .bi {
@@ -64,14 +70,14 @@
         }
 
         table {
-            width: 70%;
-            max-width: 70%;
+            width: calc(100% - 92px);
+            max-width: calc(100% - 92px);
             border-collapse: collapse;
             margin-bottom: 20px;
             background-color: white;
             border-radius: 40px;
-            margin-left: 200px;
-            margin-right: 200px;
+            margin-left: 46px;
+            margin-right: 46px;
         }
 
         table, th, td {
@@ -82,35 +88,43 @@
             padding: 10px;
             text-align: left;
         }
-        .status-completed {
-            background-color: #d4edda !important;
-            color: #155724 !important;
-            padding: 5px 10px;
-            border-radius: 60px;
-            width: 120px;
-            height: 15px;
 
+        thead tr {
+            background-color: #e7f0ff; /* Warna biru soft untuk baris pertama tabel */
         }
 
-        .status-processing {
-            background-color: #ffeeba !important;
-            color: #856404 !important;
+        .rectangle-status {
+            border-radius: 8px;
             padding: 5px 10px;
-            border-radius: 60px;
-            width: 120px;
-            height: 15px;
-            top: 5px;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            min-width: 100px;
+            height: 35px;
         }
 
-        .status-scheduled {
-            background-color: #f1cbff !important;
-            color: #79238b !important;
-            padding: 5px 10px;
-            border-radius: 60px;
-            width: 120px;
-            height: 15px;
+        .status-complete .rectangle-status {
+            background-color: #cdffd7; /* Warna untuk status complete */
         }
 
+        .status-incomplete .rectangle-status {
+            background-color: #f5ffbc; /* Warna untuk status incomplete */
+        }
+
+        .status-amount {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
 
         .popup {
             display: none;
@@ -157,8 +171,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
-                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;"
-                    alt="Logo">
+                <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -182,7 +195,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../salary/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">SALARY</a>
                     </li>
-                    
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
                     </li>
@@ -195,7 +207,6 @@
                         </button>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -208,242 +219,232 @@
             <p style="font-family: 'Lato',sans-serif; font-size: 90px; font-weight: bold; color: #ffffff; display: inline-block;">ORDER</p>
         </div>
     </div>
-    <div style="margin-top: 40px;">
-    <br><br>
-    <br>
-    <div class="filter-bar">
-        <button id="date-filter" class="btn">
-            <i class="bi bi-calendar"></i> Date
-        </button>
-        <button id="category-filter" class="btn">
-            <i class="bi bi-list-ul"></i> Order Categories
-        </button>
-        <button id="status-filter" class="btn">
-            <i class="bi bi-info-circle"></i> Order Status
-        </button>
-        <button class="btn reset-button" id="reset-filter">
-            <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
-        </button>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>DATE CHECK-IN</th>
-                <th>DATE CHECK-OUT</th>
-                <th>BUILDING</th>
-                <th>CATEGORY</th>
-                <th>STATUS</th>
-            </tr>
-        </thead>
-        <tbody id="order-table">
-            <!-- Table rows will be dynamically generated -->
-        </tbody>
-    </table>
-    <div class="popup" id="date-popup">
-        <div id="datepicker"></div>
-        <button id="apply-date">Apply Now</button>
-    </div>
-    <div class="popup" id="category-popup">
-        <select id="category-select">
-            <option value="">Select Category</option>
-            <option value="Home">Home</option>
-            <option value="Ballroom">Ballroom</option>
-            <option value="MeetingRoom">Meeting Room</option>
-            <option value="OutdoorVenue">Outdoor Venue</option>
-            <option value="BanquetHall">Banquet Hall</option>
-            <option value="ConferenceCenter">Conference Center</option>
-            <option value="Auditorium">Auditorium</option>
-            <option value="CafeRestaurant">Cafe/Restaurant</option>
-            <option value="SportsFacility">Sports Facility</option>
-        </select>
-        <button id="apply-category">Apply Now</button>
-    </div>
-    <div class="popup" id="status-popup">
-        <select id="status-select">
-            <option value="">Select Status</option>
-            <option value="completed">completed</option>
-            <option value="incomplete">incomplete</option>
-        </select>
-        <button id="apply-status">Apply Now</button>
-    </div>
-    <br><br><br><br>
-</div>
 
-<!-- BOTTOM BAR -->
-<div
-        style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+    <div style="margin-top: 50px; margin-bottom: 50px;">
+        <div class="filter-bar">
+            <button id="date-filter" class="btn">
+                <i class="bi bi-calendar"></i> Date
+            </button>
+            <button id="category-filter" class="btn">
+                <i class="bi bi-list-ul"></i> Order Categories
+            </button>
+            <button id="status-filter" class="btn">
+                <i class="bi bi-info-circle"></i> Order Status
+            </button>
+            <button class="btn reset-button" id="reset-filter">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset Filter
+            </button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DATE CHECK-IN</th>
+                    <th>DATE CHECK-OUT</th>
+                    <th>BUILDING</th>
+                    <th>CATEGORY</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody id="order-table">
+                <!-- Table rows will be dynamically generated -->
+            </tbody>
+        </table>
+        <div class="popup" id="date-popup">
+            <div id="datepicker"></div>
+            <button id="apply-date">Apply Now</button>
+        </div>
+        <div class="popup" id="category-popup">
+            <select id="category-select">
+                <option value="">Select Category</option>
+                <option value="Home">Home</option>
+                <option value="Ballroom">Ballroom</option>
+                <option value="MeetingRoom">Meeting Room</option>
+                <option value="OutdoorVenue">Outdoor Venue</option>
+                <option value="BanquetHall">Banquet Hall</option>
+                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="CafeRestaurant">Cafe/Restaurant</option>
+                <option value="SportsFacility">Sports Facility</option>
+            </select>
+            <button id="apply-category">Apply Now</button>
+        </div>
+        <div class="popup" id="status-popup">
+            <select id="status-select">
+                <option value="">Select Status</option>
+                <option value="completed">completed</option>
+                <option value="incomplete">incomplete</option>
+            </select>
+            <button id="apply-status">Apply Now</button>
+        </div>
+    </div>
 
+    <!-- BOTTOM BAR -->
+    <div style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
             <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p
-                style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting
-                Events, Enchanted<br>Experiences!</p>
+            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting Events, Enchanted<br>Experiences!
+            </p>
         </div>
 
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Services</p>
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Services</p>
             <p style="margin: 0;">Booking</p>
         </div>
 
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                About</p>
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About</p>
             <p style="margin: 0;">Our Story</p>
             <p style="margin: 0;">Blog</p>
         </div>
 
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p
-                style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Follow Us
-            </p>
-
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">Follow Us</p>
             <div style="display: flex; flex-direction: row;">
                 <img src="../../res/Facebook.png" alt="Facebook">
                 <img src="../../res/Twitter.png" alt="Twitter">
                 <img src="../../res/LinkedIn.png" alt="LinkedIn">
             </div>
         </div>
-
     </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        // Memuat data saat halaman dimuat
-        fetchOrders();
-
-        // Fungsi untuk memuat data dari getorder.php
-        function fetchOrders() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id_penyedia_gedung = urlParams.get('id');
-            $.ajax({
-                url: '../../database/penyedia_gedung/getorder.php',
-                method: 'GET',
-                data: { id: id_penyedia_gedung },
-                success: function (data) {
-                    const orders = JSON.parse(data);
-                    displayOrders(orders); // Menampilkan data setelah berhasil dimuat
-                },
-                error: function (xhr, status, error) {
-                    console.error("AJAX Error: ", status, error); // Debugging: Tampilkan error AJAX
-                }
-            });
-        }
-
-        // Fungsi untuk menampilkan data di tabel
-        function displayOrders(orders) {
-            const orderTable = document.getElementById('order-table');
-            orderTable.innerHTML = '';
-            orders.forEach(order => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${order.id_order}</td>
-                    <td>${order.username}</td>
-                    <td>${order.tanggal_masuk}</td>
-                    <td>${order.tanggal_keluar}</td>
-                    <td>${order.nama_gedung}</td>
-                    <td>${order.kategori}</td>
-                    <td class="${order.status_order === 'incomplete' ? 'status-incomplete' : 'status-complete'}">${order.status_order}</td>
-                `;
-                orderTable.appendChild(row);
-            });
-        }
-
-        $('#datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true
-        });
-
-        $('#date-filter').click(function () {
-            $('#date-popup').toggle();
-        });
-
-        $('#category-filter').click(function () {
-            $('#category-popup').toggle();
-        });
-
-        $('#status-filter').click(function () {
-            $('#status-popup').toggle();
-        });
-
-        $('#apply-date').click(function () {
-            const selectedDate = $('#datepicker').datepicker('getFormattedDate');
-            filterOrders({ date: selectedDate });
-            $('.popup').hide();
-        });
-
-        $('#apply-category').click(function () {
-            const selectedCategory = $('#category-select').val();
-            filterOrders({ category: selectedCategory });
-            $('.popup').hide();
-        });
-
-        $('#apply-status').click(function () {
-            const selectedStatus = $('#status-select').val();
-            filterOrders({ status: selectedStatus });
-            $('.popup').hide();
-        });
-
-        $('#reset-filter').click(function () {
+    <script>
+        $(document).ready(function () {
+            // Memuat data saat halaman dimuat
             fetchOrders();
-            $('#category-select').val('');
-            $('#status-select').val('');
-            $('#datepicker').datepicker('clearDates');
-        });
 
-        $(document).click(function (event) {
-            if (!$(event.target).closest('.btn, .popup').length) {
-                $('.popup').hide();
+            // Fungsi untuk memuat data dari getorder.php
+            function fetchOrders() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id_penyedia_gedung = urlParams.get('id');
+                $.ajax({
+                    url: '../../database/penyedia_gedung/getorder.php',
+                    method: 'GET',
+                    data: { id: id_penyedia_gedung },
+                    success: function (data) {
+                        const orders = JSON.parse(data);
+                        displayOrders(orders); // Menampilkan data setelah berhasil dimuat
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error: ", status, error); // Debugging: Tampilkan error AJAX
+                    }
+                });
             }
-        });
 
-        const filterOrders = (criteria) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id_penyedia_gedung = urlParams.get('id');
-            $.ajax({
-                url: '../../database/penyedia_gedung/getorder.php',
-                method: 'GET',
-                data: { id: id_penyedia_gedung },
-                success: function (data) {
-                    let orders = JSON.parse(data);
+            // Fungsi untuk menampilkan data di tabel
+            function displayOrders(orders) {
+                const orderTable = document.getElementById('order-table');
+                orderTable.innerHTML = '';
+                orders.forEach(order => {
+                    const row = document.createElement('tr');
+                    const statusClass = order.status_order === 'incomplete' ? 'status-incomplete' : 'status-complete';
+                    row.innerHTML = `
+                        <td>${order.id_order}</td>
+                        <td>${order.username}</td>
+                        <td>${order.tanggal_masuk}</td>
+                        <td>${order.tanggal_keluar}</td>
+                        <td>${order.nama_gedung}</td>
+                        <td>${order.kategori}</td>
+                        <td class="${statusClass}">
+                            <div class="rectangle-status">
+                                <span class="status-amount">${order.status_order}</span>
+                            </div>
+                        </td>
+                    `;
+                    orderTable.appendChild(row);
+                });
+            }
 
-                    // Filter data berdasarkan tanggal
-                    if (criteria.date) {
-                        orders = orders.filter(order => order.tanggal_masuk === criteria.date);
-                    }
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
 
-                    // Filter data berdasarkan kategori
-                    if (criteria.category) {
-                        orders = orders.filter(order => order.kategori === criteria.category);
-                    }
+            $('#date-filter').click(function () {
+                $('#date-popup').toggle();
+            });
 
-                    // Filter data berdasarkan status
-                    if (criteria.status) {
-                        orders = orders.filter(order => order.status_order === criteria.status);
-                    }
+            $('#category-filter').click(function () {
+                $('#category-popup').toggle();
+            });
 
-                    displayOrders(orders);
+            $('#status-filter').click(function () {
+                $('#status-popup').toggle();
+            });
+
+            $('#apply-date').click(function () {
+                const selectedDate = $('#datepicker').datepicker('getFormattedDate');
+                filterOrders({ date: selectedDate });
+                $('.popup').hide();
+            });
+
+            $('#apply-category').click(function () {
+                const selectedCategory = $('#category-select').val();
+                filterOrders({ category: selectedCategory });
+                $('.popup').hide();
+            });
+
+            $('#apply-status').click(function () {
+                const selectedStatus = $('#status-select').val();
+                filterOrders({ status: selectedStatus });
+                $('.popup').hide();
+            });
+
+            $('#reset-filter').click(function () {
+                fetchOrders();
+                $('#category-select').val('');
+                $('#status-select').val('');
+                $('#datepicker').datepicker('clearDates');
+            });
+
+            $(document).click(function (event) {
+                if (!$(event.target).closest('.btn, .popup').length) {
+                    $('.popup').hide();
                 }
             });
-        };
-    });
-</script>
 
-<script>
-    function profileClick() {
-        window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
-    }
-</script>
+            const filterOrders = (criteria) => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id_penyedia_gedung = urlParams.get('id');
+                $.ajax({
+                    url: '../../database/penyedia_gedung/getorder.php',
+                    method: 'GET',
+                    data: { id: id_penyedia_gedung },
+                    success: function (data) {
+                        let orders = JSON.parse(data);
+
+                        // Filter data berdasarkan tanggal
+                        if (criteria.date) {
+                            orders = orders.filter(order => order.tanggal_masuk === criteria.date);
+                        }
+
+                        // Filter data berdasarkan kategori
+                        if (criteria.category) {
+                            orders = orders.filter(order => order.kategori === criteria.category);
+                        }
+
+                        // Filter data berdasarkan status
+                        if (criteria.status) {
+                            orders = orders.filter(order => order.status_order === criteria.status);
+                        }
+
+                        displayOrders(orders);
+                    }
+                });
+            };
+        });
+    </script>
+
+    <script>
+        function profileClick() {
+            window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
+        }
+    </script>
 </body>
-
 </html>
