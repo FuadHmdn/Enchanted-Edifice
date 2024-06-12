@@ -143,6 +143,14 @@
             font-size: 28px;
             font-weight: bold;
         }
+        .tombolapply {
+            padding: 0px;
+            width: 70px;
+            height: 50px;
+            font-size: 12px;
+            background-color: white;
+            border-radius: 10px;
+        }
     </style>
 
 </head>
@@ -269,7 +277,7 @@
                     <option value="yogyakarta">Yogyakarta</option>
 </select>
 
-<button onclick="applyFilter()">Apply Filter</button>
+<button class="tombolapply" onclick="applyFilter()">Apply</button>
 
 
 <script>
