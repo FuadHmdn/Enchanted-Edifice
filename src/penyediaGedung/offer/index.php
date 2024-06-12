@@ -247,6 +247,43 @@ mysqli_close($connection);
     </div>
   </div>
 
+  
+    <!-- BOTTOM BAR -->
+    <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2000px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
+
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+                Enchanting
+                Events, Enchanted<br>Experiences!</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Services</p>
+            <p style="margin: 0;">Booking</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                About</p>
+            <p style="margin: 0;">Our Story</p>
+            <p style="margin: 0;">Blog</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+                Follow Us
+            </p>
+
+            <div style="display: flex; flex-direction: row;">
+                <img src="../../res/Facebook.png" alt="Facebook">
+                <img src="../../res/Twitter.png" alt="Twitter">
+                <img src="../../res/LinkedIn.png" alt="LinkedIn">
+            </div>
+        </div>
+    </div>
+
   <!-- Get Data Item Produk Hotel -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {

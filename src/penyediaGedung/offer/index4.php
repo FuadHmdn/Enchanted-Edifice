@@ -279,7 +279,35 @@ mysqli_close($connection);
             background-color: #2A3B5E;
             color: #D3D6DB;
         }
-    </style>
+
+        .form-action button[type="submit"] {
+            background: #D3E3FF;
+            color: #3B527E;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            width: 399px;
+            height: 60px;
+            margin-left: 450px;
+            margin-right: 450px;
+            margin-top: 40px;
+        }
+
+        .form-action button[type="submit"]:hover,
+        .form-action button[type="submit"]:focus {
+            background: #3B527E;
+            color: white;
+        }
+
+        .form-action button[type="submit"]:active {
+            background: #2A3B5E;
+            color: white;
+        }
+        </style>
 
 </head>
 
@@ -365,7 +393,9 @@ mysqli_close($connection);
                         </label>
                     </div>
                 </div>
-                <button type="submit">Upload Photos and Next</button>
+                    <div class="form-action">
+                        <button type="submit">Upload Photos and Next</button>
+                    </div>
             </form>
         </div>
     </div>
