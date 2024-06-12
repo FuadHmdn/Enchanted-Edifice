@@ -269,6 +269,26 @@ $result = $connection->query($sql);
     .customer-card button:hover {
         background-color: #0f7bb5;
     }
+    .add-provider-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        background-color: #1595eb;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        width: fit-content;
+    }
+
+    .add-provider-button:hover {
+        background-color: #0f7bb5;
+    }
+    .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
 
 </style>
 <body>
@@ -290,8 +310,9 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-            <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
+                <button onclick="confirmLogout()" style="align-items: center;"><b>Log Out</b></button>
             </div>
+
         </aside>
         <main class="main-content">
             <header>
@@ -315,6 +336,9 @@ $result = $connection->query($sql);
 
 
             <h1>Penyedia Gedung</h1>
+            <div class="button-container">
+                <a href="add_provider.php" class="add-provider-button">Add Provider</a>
+            </div>
             <div class="customer-list">
                 <?php
                 if ($result->num_rows > 0) {
@@ -360,6 +384,12 @@ $result = $connection->query($sql);
                 window.location.href = "delete_penyediagedung.php?id=" + userId;
             }
         }
+    function confirmLogout() {
+        if (confirm("Apakah Anda yakin ingin keluar?")) {
+            window.location.href = "../../login/user/login/UserLogin/index.html";
+        }
+    }
+
     </script>
 </body>
 </html>

@@ -328,6 +328,11 @@ $result = $connection->query($sql);
     .add-customer-button:hover {
         background-color: #0f7bb5;
     }
+    .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
 
 </style>
 <body>
@@ -349,8 +354,9 @@ $result = $connection->query($sql);
             </nav>
             
             <div class="settings">
-                <a href="../../login/user/login/UserLogin/index.html" style="align-items: center;"><b>Log Out</b></a>
+                <button onclick="confirmLogout()" style="align-items: center;"><b>Log Out</b></button>
             </div>
+
         </aside>
         <main class="main-content">
             <header>
@@ -372,7 +378,9 @@ $result = $connection->query($sql);
             </header>
 
             <h1>Customer List</h1>
+            <div class="button-container">
             <a href="add_customer.php" class="add-customer-button">Add Customer</a>
+            </div>
 
                 <div class="customer-list">
                     <?php
@@ -417,6 +425,13 @@ $result = $connection->query($sql);
             event.stopPropagation();
             window.location.href = "edit_cust.php?id=" + userId + "&admin_id=<?php echo $adminId; ?>";
         }
+
+        function confirmLogout() {
+            if (confirm("Apakah Anda yakin ingin keluar?")) {
+                window.location.href = "../../login/user/login/UserLogin/index.html";
+            }
+        }
+
     </script>
 </body>
 </html>
