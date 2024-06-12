@@ -216,23 +216,23 @@
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 40px; margin-left: 46px; margin-right: 46px;">
         <p style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 30px; color: #8692A6;">Temukan Ruang
             Acara Impian Anda</p>
-        <div class="bg-kategori" style="display: flex; flex-direction: row; margin-top: 0; justify-content: space-between; align-items: center; padding-left: 40px; padding-right: 40px; max-width: 100%;">
+        <!-- KATEGORI GEDUNG -->
+            <div class="bg-kategori" style="display: flex; flex-direction: row; margin-top: 0; justify-content: space-between; align-items: center; padding-left: 40px; padding-right: 40px; max-width: 100%;">
             <select id="kategoriValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-                <option selected>Categories</option>
-                <option value="Home">Home</option>
-                <option value="Ballroom">Ballroom</option>
-                <option value="MeetingRoom">Meeting Room</option>
-                <option value="OutdoorVenue">Outdoor Venue</option>
-                <option value="BanquetHall">Banquet Hall</option>
-                <option value="ConferenceCenter">Conference Center</option>
-                <option value="Auditorium">Auditorium</option>
-                <option value="CafeRestaurant">Cafe/Restaurant</option>
-                <option value="SportsFacility">Sports Facility</option>
+            <option selected disabled>Kategori</option>
+                    <option value="Home">Home</option>
+                    <option value="Ballroom">Ballroom</option>
+                    <option value="MeetingRoom">Meeting Room</option>
+                    <option value="OutdoorVenue">Outdoor Venue</option>
+                    <option value="BanquetHall">Banquet Hall</option>
+                    <option value="ConferenceCenter">Conference Center</option>
+                    <option value="Auditorium">Auditorium</option>
+                    <option value="CafeRestaurant">Cafe/Restaurant</option>
+                    <option value="SportsFacility">Sports Facility</option>
+                </select>
 
-            </select>
-
-            <select class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-                <option selected>Location</option>
+                <select id="alamatValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
+                    <option selected disabled>Location</option>
                     <option value="aceh">Aceh</option>
                     <option value="bali">Bali</option>
                     <option value="banten">Banten</option>
@@ -267,7 +267,35 @@
                     <option value="south-sumatra">South Sumatra</option>
                     <option value="north-sumatra">North Sumatra</option>
                     <option value="yogyakarta">Yogyakarta</option>
-            </select>
+</select>
+
+<button onclick="applyFilter()">Apply Filter</button>
+
+
+<script>
+        function applyFilter() {
+            const selectedCategory = document.getElementById('kategoriValue').value;
+            const selectedAlamat = document.getElementById('alamatValue').value;
+
+            fetch(`../../database/custommer/filteroffer.php?kategori=${selectedCategory}&alamat=${selectedAlamat}`)
+                .then(response => response.json())
+                .then(data => {
+                    const daftarHotelContainer = document.getElementById("daftar-hotel");
+                    daftarHotelContainer.innerHTML = '';
+
+                    data.forEach(item => {
+                        var itemContainer = document.createElement("div");
+                        itemContainer.classList.add("daftar-hotel");
+                        // Kode untuk menampilkan detail gedung disini
+                        daftarHotelContainer.appendChild(itemContainer);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+</script>
+
+
         </div>
     </div>
 
@@ -345,6 +373,7 @@
     <!-- Daftar Hotel -->
     <script>
         // Menemukan elemen kontainer
+        
         var daftarHotelContainer = document.getElementById("daftar-hotel");
 
         fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getAll.php')
@@ -488,7 +517,9 @@
                 });
             })
             .catch(error => console.error('Error:', error));
-    </script>
+            
+            </script>
+
 </body>
 
 </html>

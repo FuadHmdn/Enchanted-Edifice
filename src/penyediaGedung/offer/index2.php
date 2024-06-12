@@ -329,7 +329,7 @@ mysqli_close($connection);
                 <input type="number" id="price" placeholder="Product price in PLN (gross)">
 
                 <label for="loc">Location</label>
-                <select id="loc" style="height: 40px;">
+                <select id="alamatValue" class="form-select">
                     <option value="">Select Province</option>
                     <option value="aceh">Aceh</option>
                     <option value="bali">Bali</option>

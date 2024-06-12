@@ -1,39 +1,55 @@
 <?php
 session_start();
-
 require_once('../../database/koneksi.php');
 
-// Ambil ID admin dari URL atau sesi
-$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
-$admin_username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '';
+// Function to get admin username by admin ID
+function getAdminUsername($connection, $adminId) {
+    $sql_username = "SELECT username FROM admin WHERE id = $adminId";
+    $result_username = $connection->query($sql_username);
+    if ($result_username->num_rows > 0) {
+        return $result_username->fetch_assoc()['username'];
+    } else {
+        return '';
+    }
+}
 
-// Validasi ID admin
+// Get admin ID from URL or session
+$adminId = isset($_GET['id']) ? intval($_GET['id']) : (isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : 0);
+$admin_username = isset($_GET['username']) ? $_GET['username'] : (isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '');
+
+// Validate admin ID
 if ($adminId <= 0) {
     echo "<script>alert('ID admin tidak valid.'); window.location.href = '../admin/index.html';</script>";
     exit;
 }
 
-// Set sesi admin jika belum diatur
-if (!isset($_SESSION['admin_id'])) {
+// Set session admin if not set
+if (!isset($_SESSION['admin_id']) || $_SESSION['admin_id'] != $adminId) {
     $_SESSION['admin_id'] = $adminId;
 }
 
-// Ambil total user
+// Get admin username from session or database
+if (empty($admin_username)) {
+    $admin_username = getAdminUsername($connection, $adminId);
+    $_SESSION['admin_username'] = $admin_username;
+}
+
+// Get total users
 $sql_users = "SELECT COUNT(*) as total_users FROM custommer";
 $result_users = $connection->query($sql_users);
 $total_users = $result_users->fetch_assoc()['total_users'];
 
-// Ambil total product
+// Get total products
 $sql_products = "SELECT COUNT(*) as total_products FROM produk";
 $result_products = $connection->query($sql_products);
 $total_products = $result_products->fetch_assoc()['total_products'];
 
-// Ambil total order
+// Get total orders
 $sql_orders = "SELECT COUNT(*) as total_orders FROM order_cust";
 $result_orders = $connection->query($sql_orders);
 $total_orders = $result_orders->fetch_assoc()['total_orders'];
 
-// Ambil data penjualan dari Januari hingga Desember 2024
+// Get sales data from January to December 2024
 $sql_sales = "SELECT DATE_FORMAT(tanggal_masuk, '%Y-%m') as order_month, COUNT(*) as total_sales 
               FROM order_cust 
               WHERE YEAR(tanggal_masuk) = 2024 
@@ -45,15 +61,17 @@ while ($row = $result_sales->fetch_assoc()) {
     $sales_data[$row['order_month']] = $row['total_sales'];
 }
 
-// Menyiapkan data penjualan bulanan
+// Prepare monthly sales data
 $bulan = array(
     '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', 
     '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', 
     '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
 );
 
-foreach ($sales_data as $month => $total) {
-    $monthly_sales[$month] = $total;
+$monthly_sales = [];
+foreach ($bulan as $num => $name) {
+    $key = '2024-' . $num;
+    $monthly_sales[$key] = isset($sales_data[$key]) ? $sales_data[$key] : 0;
 }
 ?>
 
@@ -298,7 +316,6 @@ foreach ($sales_data as $month => $total) {
             <div class="logo">
                 <h2>EnchantedEdifice</h2>
             </div>
-            <!--Navbar-->
             <nav>
                 <ul>
                     <li class="active"><a href="../dashboard/adminhome.php?id=<?php echo $adminId; ?>">Dashboard</a></li>
@@ -310,11 +327,8 @@ foreach ($sales_data as $month => $total) {
                 </ul>
             </nav>
             <div class="settings">
-                <button onclick="confirmLogout()" style="align-items: center;"><b>Log Out</b></button>
+                <button onclick="confirmLogout()"><b>Log Out</b></button>
             </div>
-
-            
-
         </aside>
         <main class="main-content">
             <header>
@@ -326,71 +340,64 @@ foreach ($sales_data as $month => $total) {
                         <span class="message-icon">🔔</span>
                     </div>
                     <div class="user-info">
-                        <!-- Menampilkan username admin -->
                         <div>
-                            <div style="font-size: 16px; font-weight: 700; max-width: 100%; margin: 0;"><?php echo htmlspecialchars($admin_username); ?></div>
-                            <p style="font-size: 12px; font-weight: 300; max-width: 100%; margin: 0;">Admin</p>
+                            <div style="font-size: 16px; font-weight: 700;"><?php echo htmlspecialchars($admin_username); ?></div>
+                            <p style="font-size: 12px; font-weight: 300;">Admin</p>
                         </div>
                     </div>
                 </div>
             </header>
             <div class="contenttt">
-            <h1>Dashboard</h1>
-            <div class="dashboard">
-                <div class="overview-cards">
-                    <div class="card">
-                        <h3>Total Users</h3>
-                        <p><?php echo $total_users; ?></p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Products</h3>
-                        <p><?php echo $total_products; ?></p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Orders</h3>
-                        <p><?php echo $total_orders; ?></p>
-                    </div>
-                </div>
-
-                <div class="sales-details">
-                    <h3>Sales Details (2024)</h3>
-                    <div class="chart-container">
-                        <!-- Rentang nilai -->
-                        <div class="y-axis">
-                            <span>50</span>
-                            <span>40</span>
-                            <span>30</span>
-                            <span>20</span>
-                            <span>10</span>
-                            <span>0</span>
+                <h1>Dashboard</h1>
+                <div class="dashboard">
+                    <div class="overview-cards">
+                        <div class="card">
+                            <h3>Total Users</h3>
+                            <p><?php echo $total_users; ?></p>
                         </div>
-                        <?php foreach ($monthly_sales as $month => $total_sales): ?>
-                            <?php 
-                            // Konversi angka bulan menjadi teks bulan dalam Bahasa Indonesia
-                            $bulan_teks = $bulan[substr($month, 5)]; 
-                            ?>
-                            <div class="chart-bar" style="height: <?php echo $total_sales * 6; ?>px;">
-                                <span><?php echo $total_sales; ?></span>
-                                <span><?php echo $bulan_teks; ?></span>
+                        <div class="card">
+                            <h3>Total Products</h3>
+                            <p><?php echo $total_products; ?></p>
+                        </div>
+                        <div class="card">
+                            <h3>Total Orders</h3>
+                            <p><?php echo $total_orders; ?></p>
+                        </div>
+                    </div>
+                    <div class="sales-details">
+                        <h3>Sales Details (2024)</h3>
+                        <div class="chart-container">
+                            <div class="y-axis">
+                                <span>50</span>
+                                <span>40</span>
+                                <span>30</span>
+                                <span>20</span>
+                                <span>10</span>
+                                <span>0</span>
                             </div>
-                        <?php endforeach; ?>
+                            <?php foreach ($monthly_sales as $month => $total_sales): ?>
+                                <div class="chart-bar" style="height: <?php echo $total_sales * 6; ?>px;">
+                                    <span><?php echo $total_sales; ?></span>
+                                    <span><?php echo $bulan[substr($month, 5)]; ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </main>
     </div>
     <script>
         function confirmLogout() {
-        if (confirm("Apakah Anda yakin ingin keluar?")) {
-            window.location.href = "../../login/user/login/UserLogin/index.html";
+            if (confirm("Apakah Anda yakin ingin keluar?")) {
+                window.location.href = "../../login/user/login/UserLogin/index.html";
+            }
         }
-    }
     </script>
 </body>
 </html>
 
 <?php
-// Tutup koneksi database
+// Close the database connection
 $connection->close();
 ?>
