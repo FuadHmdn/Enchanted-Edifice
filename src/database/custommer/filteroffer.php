@@ -5,33 +5,23 @@ require_once('../../database/koneksi.php');
 $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
 $alamat = isset($_GET['alamat']) ? $_GET['alamat'] : '';
 
-// Buat query untuk memfilter gedung berdasarkan kategori dan alamat
-// Perlu diperhatikan apakah parameter kategori dan alamat sudah di-set atau tidak sebelum membangun query SQL
-if (!empty($kategori) && !empty($alamat)) {
-    $sql = "SELECT * FROM produk WHERE kategori='$kategori' AND alamat='$alamat'";
-} elseif (!empty($kategori)) {
-    $sql = "SELECT * FROM produk WHERE kategori='$kategori'";
-} elseif (!empty($alamat)) {
-    $sql = "SELECT * FROM produk WHERE alamat='$alamat'";
-} else {
-    // Jika tidak ada parameter yang diset, kembalikan semua produk
-    $sql = "SELECT * FROM produk";
+// Buat query untuk memfilter produk berdasarkan kategori dan alamat
+$sql = "SELECT * FROM produk WHERE kategori LIKE ? AND alamat LIKE ?";
+$stmt = $connection->prepare($sql);
+$kategori = "%" . $kategori . "%";
+$alamat = "%" . $alamat . "%";
+$stmt->bind_param('ss', $kategori, $alamat);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$hotels = [];
+while ($row = $result->fetch_assoc()) {
+    $hotels[] = $row;
 }
 
-$result = $connection->query($sql);
+header('Content-Type: application/json');
+echo json_encode($hotels);
 
-$gedungList = array();
-
-// Periksa apakah ada hasil dari query
-if ($result->num_rows > 0) {
-    // Jika ada, tambahkan setiap baris sebagai elemen dalam array gedungList
-    while ($row = $result->fetch_assoc()) {
-        $gedungList[] = $row;
-    }
-}
-
-// Mengembalikan data gedung dalam format JSON
-echo json_encode($gedungList);
-
+$stmt->close();
 $connection->close();
 ?>
