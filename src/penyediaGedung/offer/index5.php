@@ -256,7 +256,7 @@ mysqli_close($connection);
 
         .post-button-container {
             text-align: center;
-            margin-top: 2820px;
+            margin-top: 1720px;
             margin-left: 70px;
         }
 

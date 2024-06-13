@@ -421,10 +421,10 @@ mysqli_close($connection);
                         </div>
                     </div>
                 </div>
-                <div class="selected-categories">
+                <!-- <div class="selected-categories">
                     <h3 style="display: inline-block; margin-right: 10px;"><br>Selected categories:</h3>
                     <div id="selected-items" style="display: inline-block;"></div>
-                </div>
+                </div> -->
                 <div class="next-button">
                     <button onclick="saveDataAndNext()">Next →</button>
                 </div>
