@@ -229,13 +229,13 @@
                 <option selected disabled>Kategori</option>
                 <option value="Home">Home</option>
                 <option value="Ballroom">Ballroom</option>
-                <option value="MeetingRoom">Meeting Room</option>
-                <option value="OutdoorVenue">Outdoor Venue</option>
-                <option value="BanquetHall">Banquet Hall</option>
-                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Meeting Room">Meeting Room</option>
+                <option value="Outdoor Venue">Outdoor Venue</option>
+                <option value="Banquet Hall">Banquet Hall</option>
+                <option value="Conference Center">Conference Center</option>
                 <option value="Auditorium">Auditorium</option>
-                <option value="CafeRestaurant">Cafe/Restaurant</option>
-                <option value="SportsFacility">Sports Facility</option>
+                <option value="Cafe Restaurant">Cafe/Restaurant</option>
+                <option value="Sports Facility">Sports Facility</option>
             </select>
 
             <select id="alamatValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
