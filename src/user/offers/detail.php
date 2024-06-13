@@ -77,6 +77,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #333;
+            margin-top: 30px;
         }
 
         .btn-custom {
@@ -290,7 +291,7 @@
                                 </div>
 
                             </form>
-                            <h3>Rp.${item.harga}</h3>
+                            <h3>Rp.${item.harga} / Night</h3>
                             <button class="btn btn-primary btn-custom" onclick="calculateTotal()" id="reserve">Reserve Now</button>
                         </div>
                     </div>
@@ -503,7 +504,13 @@
             const selectedPaketOption = paketDropdown.options[paketDropdown.selectedIndex];
             const hargaPaket = parseInt(selectedPaketOption.getAttribute('data-price'), 10) || 0;
             const paketName = selectedPaketOption.textContent;
-            const total = harga + hargaPaket;
+
+            const checkinDate = new Date(document.getElementById('checkin').value);
+            const checkoutDate = new Date(document.getElementById('checkout').value);
+            const diffTime = Math.abs(checkoutDate - checkinDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+
+            const total = (harga * diffDays) + hargaPaket;
 
             document.getElementById('paket').value = paketName;
             document.getElementById('total').value = total;
@@ -511,7 +518,14 @@
 
             console.log('Selected package:', paketName, 'Price:', hargaPaket, 'ID Paket:', selectedPaketOption.value);
             console.log('Hidden input id_paket value:', document.getElementById('id_paket').value);
+            console.log('Number of days:', diffDays, 'Total Price:', total);
         }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('checkin').addEventListener('change', calculateTotal);
+            document.getElementById('checkout').addEventListener('change', calculateTotal);
+            document.getElementById('paket-dropdown').addEventListener('change', calculateTotal);
+        });
     </script>
 
 </body>
