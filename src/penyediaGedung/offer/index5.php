@@ -68,7 +68,7 @@ mysqli_close($connection);
             position: absolute;
             left: 90px;
             top: 550px;
-            min-height: 700px;
+            height: auto;
         }
 
         .icon-section {
@@ -186,6 +186,7 @@ mysqli_close($connection);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 40px;
         }
 
         .controls .left-controls {
@@ -329,6 +330,10 @@ mysqli_close($connection);
         .confirm-modal-content button:active {
             background-color: #5e7995;
         }
+
+        .daftar-paket {
+            margin-top: 30px;
+        }
     </style>
 
 </head>
@@ -383,12 +388,16 @@ mysqli_close($connection);
                         <div class="icon-text">Package</div>
                     </div>
             </div></a>
-            
+
             <div class="controls">
                 <div class="left-controls">
                     <button class="add-button" onclick="showAddPackageForm()">+</button>
                     <span>Package</span>
                 </div>
+            </div>
+
+            <div id="daftar-paket">
+
             </div>
         </div>
         <div class="post-button-container">
@@ -399,6 +408,7 @@ mysqli_close($connection);
             <div class="modal-content" style="max-width: 800px;">
                 <h2>Add Package</h2>
                 <form id="addPackageForm" action="../../database/penyedia_gedung/addPaketProduk.php" method="POST">
+                    <input type="hidden" name="id_produk" value="<?php echo htmlspecialchars($_GET['id_produk']); ?>">
                     <input type="hidden" name="id_penyedia_gedung" value="<?php echo htmlspecialchars($_GET['id']); ?>">
                     <input type="text" id="packageTitle" name="nama_paket" placeholder="Title" required>
                     <input type="text" id="packageDesc" name="deskripsi" placeholder="Description" required>
@@ -434,8 +444,6 @@ mysqli_close($connection);
                 <button onclick="goToNextPage()">OK</button>
             </div>
         </div>
-
-    </div>
     </div>
     <!-- BOTTOM BAR -->
     <div style="position:absolute ;width: 1281px; height: 614px; left: 129px; top: 2480px; display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 30px; padding-bottom: 20px;">
@@ -582,14 +590,50 @@ mysqli_close($connection);
             xhr.send(params);
         }
 
-        function confirmDeletion(button) {
-            packageToDelete = button.parentElement.parentElement.parentElement;
-            document.getElementById('confirmDeletionModal').style.display = 'flex';
-        }
+        function confirmDeletion(id) {
+            // Show confirmation dialog
+            if (confirm("Are you sure you want to delete this item?")) {
+                // User confirmed, proceed with deletion
 
-        function deletePackage() {
-            packageToDelete.remove();
-            hideDeletionModal();
+                // Create an XMLHttpRequest object
+                var xhr = new XMLHttpRequest();
+
+                // Configure it: POST-request for the URL /delete.php with async=true
+                xhr.open("POST", "http://localhost/PemWeb/Enchanted-Edifice/src/database/penyedia_gedung/deletePaket.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                // Define what happens on successful data submission
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // Parse JSON response
+                        var response = JSON.parse(xhr.responseText);
+
+                        // Check if deletion was successful
+                        if (response.success) {
+                            alert("Item deleted successfully!");
+                            location.reload();
+                        } else {
+                            alert("Error deleting item: " + response.message);
+                        }
+                    } else {
+                        alert("Error deleting item: " + xhr.statusText);
+                    }
+                };
+
+                // Define what happens in case of error
+                xhr.onerror = function() {
+                    alert("Request failed");
+                };
+
+                // Set up the request data
+                var requestData = "id=" + id;
+
+                // Send the request with the data
+                xhr.send(requestData);
+            } else {
+                // User canceled, do nothing
+                console.log("User canceled the deletion.");
+            }
         }
 
         function hideDeletionModal() {
@@ -632,6 +676,49 @@ mysqli_close($connection);
         function profileClick() {
             window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
         }
+    </script>
+
+    <script>
+        var daftarPaketContainer = document.getElementById("daftar-paket");
+
+        fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/penyedia_gedung/getPaket.php?id_produk=<?php echo htmlspecialchars($_GET['id_produk']); ?>')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+
+                data.forEach(function(item) {
+                    var itemContainer = document.createElement("div");
+                    itemContainer.classList.add("package");
+
+                    var facilitiesList = item.fasilitas_paket.split(',').map(facility => `<li>${facility.trim()}</li>`).join('');
+
+                    var content = `
+                        <div class="controls">
+                            <div class="left-controls">
+                                <button class="remove-button" onclick="confirmDeletion(${item.id_paket})">-</button>
+                                <h2>${item.nama_paket}</h2>
+                            </div>
+                            <div class="price">Rp ${item.harga_paket},-</div>
+                        </div>
+                        <div class="description">
+                            <p><strong>Desc:</strong></p>
+                            <p>${item.deskripsi}</p>
+                        </div>
+                        <div class="facilities-container">
+                            <p><strong>Facilities:</strong></p>
+                            <p>${item.fasilitas_paket}</p>
+                        </div>
+                    `;
+
+                    itemContainer.innerHTML = content;
+                    daftarPaketContainer.appendChild(itemContainer);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
     </script>
 </body>
 

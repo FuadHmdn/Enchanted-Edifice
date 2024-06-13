@@ -63,7 +63,8 @@ if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] == UPLOAD_ERR_OK) {
                     VALUES ('$id_penyedia_gedung', '$judul', '$alamat', '$deskripsi', '$panjang', '$lebar', '$tinggi', '$harga', '$gambar', '$kategori', '$kapasitas', '$audiovisualEquipment', '$cateringService', '$outdoorSpace', '$decoration', '$photography', '$others')";
             
             if ($connection->query($sql) === TRUE) {
-                echo "<script>alert('Data berhasil ditambahkan.'); window.location.href = '../../penyediaGedung/offer/index5.php?id=$id_penyedia_gedung';</script>";
+                $last_id = $connection->insert_id; 
+                echo "<script>alert('Data berhasil ditambahkan.'); window.location.href = '../../penyediaGedung/offer/index5.php?id=$id_penyedia_gedung&id_produk=$last_id';</script>";
             } else {
                 echo "Error: " . $sql . "<br>" . $connection->error;
             }
