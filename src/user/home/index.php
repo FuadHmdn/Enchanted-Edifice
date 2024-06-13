@@ -140,7 +140,6 @@
 <body>
     
     <!-- NAVIGASI -->
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
