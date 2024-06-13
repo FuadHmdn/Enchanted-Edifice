@@ -290,7 +290,7 @@
                                 </div>
 
                             </form>
-                            <h3>Rp.${item.harga}</h3>
+                            <h3>Total Harga: Rp.<span id="totalPrice">${item.gambar}</span></h3>
                             <button class="btn btn-primary btn-custom" onclick="calculateTotal()" id="reserve">Reserve Now</button>
                         </div>
                     </div>
@@ -498,20 +498,29 @@
         });
 
         function calculateTotal() {
-            const harga = parseInt(document.getElementById('harga').value, 10) || 0;
-            const paketDropdown = document.getElementById('paket-dropdown');
-            const selectedPaketOption = paketDropdown.options[paketDropdown.selectedIndex];
-            const hargaPaket = parseInt(selectedPaketOption.getAttribute('data-price'), 10) || 0;
-            const paketName = selectedPaketOption.textContent;
-            const total = harga + hargaPaket;
+    const hargaPerHari = parseInt(document.getElementById('harga').value, 10) || 0;
+    const paketDropdown = document.getElementById('paket-dropdown');
+    const selectedPaketOption = paketDropdown.options[paketDropdown.selectedIndex];
+    const hargaPaket = parseInt(selectedPaketOption.getAttribute('data-price'), 10) || 0;
+    const paketName = selectedPaketOption.textContent;
 
-            document.getElementById('paket').value = paketName;
-            document.getElementById('total').value = total;
-            document.getElementById('id_paket').value = selectedPaketOption.value;
+    const checkinDate = new Date(document.getElementById('checkin').value);
+    const checkoutDate = new Date(document.getElementById('checkout').value);
+    const timeDiff = checkoutDate - checkinDate;
+    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Konversi dari milidetik ke hari
 
-            console.log('Selected package:', paketName, 'Price:', hargaPaket, 'ID Paket:', selectedPaketOption.value);
-            console.log('Hidden input id_paket value:', document.getElementById('id_paket').value);
-        }
+    const totalHarga = (hargaPerHari + hargaPaket) * daysDiff;
+
+    document.getElementById('paket').value = paketName;
+    document.getElementById('total').value = totalHarga;
+    document.getElementById('id_paket').value = selectedPaketOption.value;
+    document.getElementById('totalPrice').textContent = totalHarga;
+
+    console.log('Selected package:', paketName, 'Price:', hargaPaket, 'ID Paket:', selectedPaketOption.value);
+    console.log('Hidden input id_paket value:', document.getElementById('id_paket').value);
+    console.log('Total days:', daysDiff, 'Total Price:', totalHarga);
+}
+
     </script>
 
 </body>

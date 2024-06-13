@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../koneksi.php');
+require_once('../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id_produk'])) {
@@ -16,6 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (mysqli_num_rows($result) > 0) {
             $response = array();
             while ($row = mysqli_fetch_assoc($result)) {
+                // Menghitung jumlah hari
+                $tanggal_masuk = new DateTime($row['tanggal_masuk']);
+                $tanggal_keluar = new DateTime($row['tanggal_keluar']);
+                $interval = $tanggal_masuk->diff($tanggal_keluar);
+                $jumlah_hari = $interval->days;
+                
+                // Menghitung total harga berdasarkan jumlah hari
+                $total_harga = $row['harga'] * $jumlah_hari;
+
+                // Menambahkan total harga ke dalam array response
+                $row['total_harga'] = $total_harga;
+
                 $response[] = $row;
             }
             echo json_encode($response);
