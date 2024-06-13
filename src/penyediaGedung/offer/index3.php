@@ -673,25 +673,35 @@ mysqli_close($connection);
     </script>
 
     <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function populateHiddenInputs() {
+            document.getElementById("hidden-title").value = getQueryParameter("title");
+            document.getElementById("hidden-description").value = getQueryParameter("description");
+            document.getElementById("hidden-length").value = getQueryParameter("length");
+            document.getElementById("hidden-width").value = getQueryParameter("width");
+            document.getElementById("hidden-height").value = getQueryParameter("height");
+            document.getElementById("hidden-price").value = getQueryParameter("price");
+            document.getElementById("hidden-location").value = getQueryParameter("loc");
+        }
+        
+
+        window.onload = function() {
+            populateHiddenInputs();
+        };
+
         function saveDataAndNext() {
-            // Get values from localStorage (assuming they were stored in the previous page)
-            var title = localStorage.getItem("title");
-            var description = localStorage.getItem("description");
-            var length = localStorage.getItem("length");
-            var width = localStorage.getItem("width");
-            var height = localStorage.getItem("height");
-            var price = localStorage.getItem("price");
-            var loc = localStorage.getItem("loc");
-
-            // Set hidden inputs with the retrieved values
-            document.getElementById("hidden-title").value = title;
-            document.getElementById("hidden-description").value = description;
-            document.getElementById("hidden-length").value = length;
-            document.getElementById("hidden-width").value = width;
-            document.getElementById("hidden-height").value = height;
-            document.getElementById("hidden-price").value = price;
-            document.getElementById("hidden-location").value = loc;
-
+            // Get values from hidden inputs (since we populated them from URL)
+            var title = document.getElementById("hidden-title").value;
+            var description = document.getElementById("hidden-description").value;
+            var length = document.getElementById("hidden-length").value;
+            var width = document.getElementById("hidden-width").value;
+            var height = document.getElementById("hidden-height").value;
+            var price = document.getElementById("hidden-price").value;
+            var loc = document.getElementById("hidden-location").value;
 
             // Collect selected categories
             var selectedCategories = [];

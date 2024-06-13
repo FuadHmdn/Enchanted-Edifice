@@ -328,7 +328,7 @@ mysqli_close($connection);
                 <label for="price">Price </label>
                 <input type="number" id="price" placeholder="Product price in PLN (gross)">
 
-                <label for="loc">Location</label>
+                <label for="alamatValue">Location</label>
                 <select id="alamatValue" class="form-select">
                     <option value="">Select Province</option>
                     <option value="aceh">Aceh</option>
@@ -367,11 +367,10 @@ mysqli_close($connection);
                     <option value="yogyakarta">Yogyakarta</option>
                 </select>
 
-                <a href="index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">
-                    <div class="next-button">
-                        <button onclick="saveData()">Next →</button>
-                    </div>
-                </a>
+
+                <div class="next-button">
+                    <button onclick="saveData()">Next →</button>
+                </div>
             </div>
         </div>
     </div>
@@ -498,34 +497,46 @@ mysqli_close($connection);
     </script>
 
     <script>
-        function saveData() {
-            document.getElementById("loc").addEventListener("change", function() {
-                var loc = this.value; // Ambil nilai dari opsi yang dipilih
-                console.log("Selected location:", loc); // Tampilkan nilai loc di console untuk debug
-
-                // Menyimpan nilai loc ke dalam localStorage (jika perlu)
-                localStorage.setItem("loc", loc);
-
-                // Ambil nilai dari elemen input-form setelah event listener atau pada saat dibutuhkan
-                var title = document.getElementById("title").value;
-                var description = document.getElementById("description").value;
-                var length = document.getElementById("length").value;
-                var width = document.getElementById("width").value;
-                var height = document.getElementById("height").value;
-                var price = document.getElementById("price").value;
-
-                // Menyimpan data dari input-form ke dalam localStorage
-                localStorage.setItem("title", title);
-                localStorage.setItem("description", description);
-                localStorage.setItem("length", length);
-                localStorage.setItem("width", width);
-                localStorage.setItem("height", height);
-                localStorage.setItem("price", price);
-
-                // Mengarahkan pengguna ke halaman berikutnya
-                window.location.href = "index3.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
-            });
+        function updateCharacterCount(inputId, countId) {
+            var input = document.getElementById(inputId);
+            var count = document.getElementById(countId);
+            var maxLength = inputId === 'title' ? 60 : 1200;
+            count.textContent = `${input.value.length}/${maxLength}`;
         }
+
+        function saveData() {
+            var loc = document.getElementById("alamatValue").value;
+            console.log("Selected location:", loc);
+
+            // Save the location to localStorage
+            localStorage.setItem("loc", loc);
+
+            var title = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+            var length = document.getElementById("length").value;
+            var width = document.getElementById("width").value;
+            var height = document.getElementById("height").value;
+            var price = document.getElementById("price").value;
+
+            // Save form data to localStorage
+            localStorage.setItem("title", title);
+            localStorage.setItem("description", description);
+            localStorage.setItem("length", length);
+            localStorage.setItem("width", width);
+            localStorage.setItem("height", height);
+            localStorage.setItem("price", price);
+
+            // Construct the query string
+            var queryParams = `?id=<?php echo htmlspecialchars($_GET['id']); ?>&loc=${encodeURIComponent(loc)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&length=${encodeURIComponent(length)}&width=${encodeURIComponent(width)}&height=${encodeURIComponent(height)}&price=${encodeURIComponent(price)}`;
+
+            // Redirect to the next page with query parameters
+            window.location.href = "index3.php" + queryParams;
+        }
+
+        window.onload = function() {
+            updateCharacterCount('title', 'title-count');
+            updateCharacterCount('description', 'description-count');
+        };
     </script>
 </body>
 
