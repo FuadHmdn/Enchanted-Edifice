@@ -169,7 +169,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto" style="margin-right: 46px;">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">HOME</a>
+                        <a class="nav-link"href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="../offers/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #000000;">OFFERS</a>
@@ -193,7 +193,6 @@
                         </button>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -221,94 +220,67 @@
     </div>
 
     <!-- Temukan Ruang Acara Impian Anda -->
+
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 40px; margin-left: 46px; margin-right: 46px;">
-        <p style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 30px; color: #8692A6;">Temukan Ruang
-            Acara Impian Anda</p>
+        <p style="font-family: 'Lato', sans-serif; font-weight: bold; font-size: 30px; color: #8692A6;">Temukan Ruang Acara Impian Anda</p>
         <!-- KATEGORI GEDUNG -->
-            <div class="bg-kategori" style="display: flex; flex-direction: row; margin-top: 0; justify-content: space-between; align-items: center; padding-left: 40px; padding-right: 40px; max-width: 100%;">
+        <div class="bg-kategori" style="display: flex; flex-direction: row; margin-top: 0; justify-content: space-between; align-items: center; padding-left: 40px; padding-right: 40px; max-width: 100%;">
             <select id="kategoriValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-            <option selected disabled>Kategori</option>
-                    <option value="Home">Home</option>
-                    <option value="Ballroom">Ballroom</option>
-                    <option value="MeetingRoom">Meeting Room</option>
-                    <option value="OutdoorVenue">Outdoor Venue</option>
-                    <option value="BanquetHall">Banquet Hall</option>
-                    <option value="ConferenceCenter">Conference Center</option>
-                    <option value="Auditorium">Auditorium</option>
-                    <option value="CafeRestaurant">Cafe/Restaurant</option>
-                    <option value="SportsFacility">Sports Facility</option>
-                </select>
+                <option selected disabled>Kategori</option>
+                <option value="Home">Home</option>
+                <option value="Ballroom">Ballroom</option>
+                <option value="MeetingRoom">Meeting Room</option>
+                <option value="OutdoorVenue">Outdoor Venue</option>
+                <option value="BanquetHall">Banquet Hall</option>
+                <option value="ConferenceCenter">Conference Center</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="CafeRestaurant">Cafe/Restaurant</option>
+                <option value="SportsFacility">Sports Facility</option>
+            </select>
 
-                <select id="alamatValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
-                    <option selected disabled>Location</option>
-                    <option value="aceh">Aceh</option>
-                    <option value="bali">Bali</option>
-                    <option value="banten">Banten</option>
-                    <option value="bengkulu">Bengkulu</option>
-                    <option value="gorontalo">Gorontalo</option>
-                    <option value="jakarta">Jakarta</option>
-                    <option value="jambi">Jambi</option>
-                    <option value="west-java">West Java</option>
-                    <option value="central-java">Central Java</option>
-                    <option value="east-java">East Java</option>
-                    <option value="west-kalimantan">West Kalimantan</option>
-                    <option value="south-kalimantan">South Kalimantan</option>
-                    <option value="central-kalimantan">Central Kalimantan</option>
-                    <option value="east-kalimantan">East Kalimantan</option>
-                    <option value="north-kalimantan">North Kalimantan</option>
-                    <option value="bangka-belitung">Bangka Belitung</option>
-                    <option value="lampung">Lampung</option>
-                    <option value="maluku">Maluku</option>
-                    <option value="north-maluku">North Maluku</option>
-                    <option value="west-ntt">West Nusa Tenggara</option>
-                    <option value="east-ntt">East Nusa Tenggara</option>
-                    <option value="papua">Papua</option>
-                    <option value="west-papua">West Papua</option>
-                    <option value="riau">Riau</option>
-                    <option value="riau-islands">Riau Islands</option>
-                    <option value="west-sulawesi">West Sulawesi</option>
-                    <option value="south-sulawesi">South Sulawesi</option>
-                    <option value="central-sulawesi">Central Sulawesi</option>
-                    <option value="south-east-sulawesi">South East Sulawesi</option>
-                    <option value="north-sulawesi">North Sulawesi</option>
-                    <option value="west-sumatra">West Sumatra</option>
-                    <option value="south-sumatra">South Sumatra</option>
-                    <option value="north-sumatra">North Sumatra</option>
-                    <option value="yogyakarta">Yogyakarta</option>
-</select>
+            <select id="alamatValue" class="form-select" aria-label="Default select example" style="width: 250px; height: 50px;">
+                <option selected disabled>Location</option>
+                <option value="aceh">Aceh</option>
+                <option value="bali">Bali</option>
+                <option value="banten">Banten</option>
+                <option value="bengkulu">Bengkulu</option>
+                <option value="gorontalo">Gorontalo</option>
+                <option value="jakarta">Jakarta</option>
+                <option value="jambi">Jambi</option>
+                <option value="west-java">West Java</option>
+                <option value="central-java">Central Java</option>
+                <option value="east-java">East Java</option>
+                <option value="west-kalimantan">West Kalimantan</option>
+                <option value="south-kalimantan">South Kalimantan</option>
+                <option value="central-kalimantan">Central Kalimantan</option>
+                <option value="east-kalimantan">East Kalimantan</option>
+                <option value="north-kalimantan">North Kalimantan</option>
+                <option value="bangka-belitung">Bangka Belitung</option>
+                <option value="lampung">Lampung</option>
+                <option value="maluku">Maluku</option>
+                <option value="north-maluku">North Maluku</option>
+                <option value="west-ntt">West Nusa Tenggara</option>
+                <option value="east-ntt">East Nusa Tenggara</option>
+                <option value="papua">Papua</option>
+                <option value="west-papua">West Papua</option>
+                <option value="riau">Riau</option>
+                <option value="riau-islands">Riau Islands</option>
+                <option value="west-sulawesi">West Sulawesi</option>
+                <option value="south-sulawesi">South Sulawesi</option>
+                <option value="central-sulawesi">Central Sulawesi</option>
+                <option value="south-east-sulawesi">South East Sulawesi</option>
+                <option value="north-sulawesi">North Sulawesi</option>
+                <option value="west-sumatra">West Sumatra</option>
+                <option value="south-sumatra">South Sumatra</option>
+                <option value="north-sumatra">North Sumatra</option>
+                <option value="yogyakarta">Yogyakarta</option>
+            </select>
 
-<button class="tombolapply" onclick="applyFilter()">Apply</button>
-
-
-<script>
-        function applyFilter() {
-            const selectedCategory = document.getElementById('kategoriValue').value;
-            const selectedAlamat = document.getElementById('alamatValue').value;
-
-            fetch(`../../database/custommer/filteroffer.php?kategori=${selectedCategory}&alamat=${selectedAlamat}`)
-                .then(response => response.json())
-                .then(data => {
-                    const daftarHotelContainer = document.getElementById("daftar-hotel");
-                    daftarHotelContainer.innerHTML = '';
-
-                    data.forEach(item => {
-                        var itemContainer = document.createElement("div");
-                        itemContainer.classList.add("daftar-hotel");
-                        // Kode untuk menampilkan detail gedung disini
-                        daftarHotelContainer.appendChild(itemContainer);
-                    });
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
-
-</script>
-
-
+            <button id="resetButton" class="btn btn-secondary" style="height: 50px;">Reset</button>
         </div>
     </div>
 
     <!-- Daftar Hotel -->
-
     <section class="daftar-hotel" style="margin-top: 60px; max-width: 100%;">
         <div style="display: flex; flex-direction: row; justify-content: space-between; max-width: 100%;">
             <div id="daftar-hotel" style="max-width: 100%;">
@@ -322,80 +294,80 @@
         </div>
     </section>
 
-    <!-- BOTTOM BAR -->
-    <div class="footer" style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 55px; padding-bottom: 30px;">
-
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
-            <p style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
-                Enchanting
-                Events, Enchanted<br>Experiences!</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Services</p>
-            <p style="margin: 0;">Booking</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                About
-            </p>
-            <p style="margin: 0;">Our Story</p>
-            <p style="margin: 0;">Blog</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
-                Follow Us
-            </p>
-
-            <div style="display: flex; flex-direction: row;">
-                <img src="../../res/Facebook.png" alt="Facebook">
-                <img src="../../res/Twitter.png" alt="Twitter">
-                <img src="../../res/LinkedIn.png" alt="LinkedIn">
-            </div>
-        </div>
-
-    </div>
-
     <!-- Modal detail hotel -->
     <div class="modalOverlay" id="modalOverlay"></div>
 
     <div class="modal" id="modal">
         <span class="close">&times;</span>
-
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <!-- BOTTOM BAR -->
+  <div class="footer"
+    style="display: flex; flex-direction: row; padding-right: 46px; padding-left: 46px; justify-content: space-between; padding-top: 155px; padding-bottom: 30px;">
+
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+      <img src="../../res/logo_and_name.png" style="width: 210px; height: auto;" alt="Logo">
+      <p
+        style="margin: 0; padding-left: 50px; font-size: 16px; font-family: 'Roboto', sans-serif; color: #545454; font-weight: bold;">
+        Enchanting
+        Events, Enchanted<br>Experiences!</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+        Services</p>
+      <p style="margin: 0;">Booking</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">About
+      </p>
+      <p style="margin: 0;">Our Story</p>
+      <p style="margin: 0;">Blog</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; color: #8692A6; font-weight: bold;">
+        Follow Us
+      </p>
+
+      <div style="display: flex; flex-direction: row;">
+        <img src="../../res/Facebook.png" alt="Facebook">
+        <img src="../../res/Twitter.png" alt="Twitter">
+        <img src="../../res/LinkedIn.png" alt="LinkedIn">
+      </div>
+    </div>
+
+  </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
         function profileClick() {
             window.location.href = "../profile/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>";
         }
-    </script>
 
+        var allHotelsData = [];
 
-    <!-- Daftar Hotel -->
-    <script>
-        // Menemukan elemen kontainer
-        
-        var daftarHotelContainer = document.getElementById("daftar-hotel");
+        function fetchHotels() {
+            fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getAll.php')
+                .then(response => response.json())
+                .then(data => {
+                    allHotelsData = data;
+                    displayHotels(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
-        fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/getAll.php')
-            .then(response => response.json())
-            .then(data => {
-                // Membuat elemen untuk setiap item dalam data
-                data.forEach(function(item) {
-                    // Buat elemen div untuk setiap item
-                    var itemContainer = document.createElement("div");
-                    itemContainer.classList.add("daftar-hotel");
-
-                    // Konten HTML untuk setiap item
-                    var content = `
-                    <div style="display: flex; flex-direction: row; margin-left: 46px; margin-right: 46px; ">
+        function displayHotels(data) {
+            var daftarHotelContainer = document.getElementById("daftar-hotel");
+            daftarHotelContainer.innerHTML = '';
+            data.forEach(function(item) {
+                var itemContainer = document.createElement("div");
+                itemContainer.classList.add("daftar-hotel");
+                var content = `
+                    <div style="display: flex; flex-direction: row; margin-left: 46px; margin-right: 46px;">
                         <div style="display: flex; flex-direction: column;">
                             <section class="test">
                                 <div style="display: flex; flex-direction: column; margin-right: 46px; margin-left: 46px; margin-top: 25px; margin-bottom: 25px;">
@@ -407,75 +379,59 @@
                                             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
                                                 <img src="../orders/res/Vector.png" alt="stars" style="margin-right: 5px; width: auto; height: 25px;">
                                                 <p style="margin: 0; font-size: 16px; font-family: 'Lato', sans-serif;">4.5/5
-                                                    <span>999+
-                                                        reviews </span>| ${item.alamat}
+                                                    <span>999+ reviews </span>| ${item.alamat}
                                                 </p>
                                             </div>
                                         </div>
                                         <div style="display: flex; flex-direction: column; align-items: flex-end;">
                                             <div id="kategori" style="display: flex; flex-direction: row; margin-bottom: 10px;">
-                                                
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.kapasitas}
                                                     </p>
                                                 </div>
 
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.AudiovisualEquipment}
                                                     </p>
                                                 </div>
 
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.cateringService}
                                                     </p>
                                                 </div>
-
                                             </div>
                                             <div id="kategori2" style="display: flex; flex-direction: row;">
-                                                
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.outdoorSpace}
                                                     </p>
                                                 </div>
 
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.decoration}
                                                     </p>
                                                 </div>
 
-                                                <div class="bg-fitur"
-                                                    style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                                <div class="bg-fitur" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
                                                     <p style="margin: 0px; padding-left: 15px; padding-right: 15px; font-size: 10px;">
                                                         ${item.others}
                                                     </p>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                     <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                                        <img src="${item.gambar}" alt="contoh"
-                                            style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 10px; max-width: 100%">
+                                        <img src="${item.gambar}" alt="contoh" style="width: 285px; height: 185px; margin-left: 32px; margin-top: 10px; border-radius: 10px; max-width: 100%">
 
                                         <div style="display: flex; flex-direction: column; margin-top: 50px; align-items: flex-end;">
-                                            <p
-                                                style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 500 color: #484848;">
-                                                Harga: <span style="font-size: 26px; font-weight: 600;">Rp.<span
-                                                    style="font-family: 'Montserrat', sans-serif; color: #06ac00;">${item.harga}</span></span>
+                                            <p style="margin:0px; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 500 color: #484848;">
+                                                Harga: <span style="font-size: 26px; font-weight: 600;">Rp.<span style="font-family: 'Montserrat', sans-serif; color: #06ac00;">${item.harga}</span></span>
                                             </p>
-                                            <button type="button" class="btn btn-primary"
-                                                style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;" onclick="window.location.href='detail.php?id_produk=${item.id_produk}&id=<?php echo htmlspecialchars($_GET['id']); ?>'">Cek
-                                                Detail</button>
+                                            <button type="button" class="btn btn-primary" style="margin-top: 0px; width: 200px; border-radius: 30px; margin-top: 15px;" onclick="window.location.href='detail.php?id_produk=${item.id_produk}&id=<?php echo htmlspecialchars($_GET['id']); ?>'">Cek Detail</button>
                                         </div>
                                     </div>
                                 </div>
@@ -483,51 +439,64 @@
                         </div>
                     </div>
                 `;
+                itemContainer.innerHTML = content;
+                itemContainer.style.paddingBottom = "20px";
+                itemContainer.style.paddingTop = "20px";
+                daftarHotelContainer.appendChild(itemContainer);
+            });
+        }
 
-                    itemContainer.innerHTML = content;
-                    itemContainer.style.paddingBottom = "20px";
-                    itemContainer.style.paddingTop = "20px";
-                    daftarHotelContainer.appendChild(itemContainer);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+        function filterHotels() {
+            var kategoriValue = document.getElementById("kategoriValue").value;
+            var alamatValue = document.getElementById("alamatValue").value;
+            var filteredHotels = allHotelsData.filter(function(hotel) {
+                var kategoriMatch = (kategoriValue === "Kategori" || kategoriValue === hotel.kategori);
+                var alamatMatch = (alamatValue === "Location" || alamatValue === hotel.alamat);
+                return kategoriMatch && alamatMatch;
+            });
+            displayHotels(filteredHotels);
+        }
+
+        function resetFilters() {
+            document.getElementById("kategoriValue").selectedIndex = 0;
+            document.getElementById("alamatValue").selectedIndex = 0;
+            displayHotels(allHotelsData);
+        }
+
+        document.getElementById("kategoriValue").addEventListener("change", filterHotels);
+        document.getElementById("alamatValue").addEventListener("change", filterHotels);
+        document.getElementById("resetButton").addEventListener("click", resetFilters);
+
+        fetchHotels();
     </script>
 
     <!-- Daftar Special Offers -->
     <script>
-        // Menemukan elemen kontainer
         var daftarSpecialOffers = document.getElementById("special-offers");
 
         fetch('http://localhost/PemWeb/Enchanted-Edifice/src/database/custommer/SpecialOffers.php')
             .then(response => response.json())
             .then(data => {
-                // Membuat elemen untuk setiap item dalam data
                 data.forEach(function(item) {
-                    // Buat elemen div untuk setiap item
                     var itemContainer = document.createElement("section");
                     itemContainer.classList.add("special-offers-style");
 
-                    // Konten HTML untuk setiap item
                     var content = `
-                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; flex-direction: column; width: 100%;">
                             <div style="display: flex; align-items: center; width: 100%; justify-content: center;">
                                 <img src="${item.gambar}" alt="contoh" style="width: 270px; height: 190px; margin-top: 16px; border-radius: 15px;">
                             </div>
                             <p style="margin-left: 16px; margin-top: 26px; font-weight: 600; font-size: 18px;">${item.judul}</p>
-                            <p style="margin-left: 16px; margin-top: 0; font-weight: 400; font-size: 14px;">4 Mei - 1 November</p>
                             <p style="margin-left: 16px; margin-top: 0; font-weight: 500; font-size: 18px;">mulai <span style="font-size: 26px; font-weight: 600;">Rp.<span style="color: #06ac00;">${item.harga}</span></span></p>
-                    </div>
-                `;
-
+                        </div>
+                    `;
                     itemContainer.innerHTML = content;
                     itemContainer.style.marginBottom = "30px";
                     daftarSpecialOffers.appendChild(itemContainer);
                 });
             })
             .catch(error => console.error('Error:', error));
-            
-            </script>
-
+    </script>
 </body>
 
 </html>

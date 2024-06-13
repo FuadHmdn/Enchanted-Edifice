@@ -138,12 +138,11 @@
 </head>
 
 <body>
-
+    
     <!-- NAVIGASI -->
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: sticky; top: 0; z-index: 1000;">
         <div class="container-fluid">
-
             <a class="navbar-brand" href="/home">
                 <img src="../../res/logo_and_name.png" style="width: 210px; height: auto; margin-left: 46px;" alt="Logo">
             </a>
@@ -152,20 +151,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto" style="margin-right: 46px;">
-                    <div class="dropdown manuDropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn-home" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Menu
-                        </button>
-                        
-                            <a class="dropdown-item" href="../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">Order</a>
-                            <a class="dropdown-item" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">Contact Us</a>
-                            <a class="dropdown-item" href="../about/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">About</a>
-                            <a class="dropdown-item" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>">Home</a>
-                        
-                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../home/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #000000;">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../offers/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">OFFERS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../orders/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ORDERS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">CONTACT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about/index.php?id=<?php echo htmlspecialchars($_GET['id']); ?>" style="color: #8692A6;">ABOUT</a>
+                    </li>
                     <li class="nav-item">
                         <button onclick="profileClick()" class="btn btn-outline-secondary" style="border-radius: 15px;">
                             <span class="d-inline d-sm-none">☰</span>
+                            <i class="bi bi-person"></i>
                             <span class="d-none d-sm-inline">
                                 <img src="../../res/profile_vector.png" alt="profile">
                             </span>
@@ -175,6 +179,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- HOME IMAGE -->
     <div style="margin-left: 46px; margin-right: 46px; width: auto; height: auto; text-align: center; position: relative; margin-top: 30px;">
