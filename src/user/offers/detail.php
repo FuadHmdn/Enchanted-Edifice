@@ -302,20 +302,20 @@
                             <div>
                                 <h3 class="section-title">Fasilitas Teratas</h3>
                                 <ul class="facilities-list">
-                                    <li><img src="../offers/image/PemanasRuangan.png" alt="Facility 1" class="facility-icon"> Pemanas ruangan</li>
-                                    <li><img src="../offers/image/AC.png" alt="Facility 2" class="facility-icon"> Ruangan Ber AC</li>
-                                    <li><img src="../offers/image/Elevator.png" alt="Facility 3" class="facility-icon"> Elevator</li>
-                                    <li><img src="../offers/image/Layanan.png" alt="Facility 4" class="facility-icon"> Layanan Tiap Saat</li>
+                                    <li><img src="../offers/image/PemanasRuangan.png" alt="Facility 1" class="facility-icon"> ${item.AudiovisualEquipment}</li>
+                                    <li><img src="../offers/image/AC.png" alt="Facility 2" class="facility-icon"> ${item.cateringService}</li>
+                                    <li><img src="../offers/image/Elevator.png" alt="Facility 3" class="facility-icon"> ${item.outdorSpace}</li>
+                                    <li><img src="../offers/image/Layanan.png" alt="Facility 4" class="facility-icon"> ${item.decoration}</li>
                                     <li><a href="#">Lihat semua fasilitas</a></li>
                                 </ul>
                             </div>
                             <div>
                                 <h3 class="section-title">The Sonder standard</h3>
                                 <ul class="facilities-list">
-                                    <li><img src="../offers/image/Password.png" alt="Facility 5" class="facility-icon"> Chek-in Password</li>
-                                    <li><img src="../offers/image/Wifi.png" alt="Facility 6" class="facility-icon"> WIFI Cepat</li>
-                                    <li><img src="../offers/image/Kebersihan.png" alt="Facility 7" class="facility-icon"> Kebersihan Profesional</li>
-                                    <li><img src="../offers/image/Perlengkapan.png" alt="Facility 8" class="facility-icon"> Perlengkapan Lengkap</li>
+                                    <li><img src="../offers/image/Password.png" alt="Facility 5" class="facility-icon"> ${item.kategori}</li>
+                                    <li><img src="../offers/image/Wifi.png" alt="Facility 6" class="facility-icon"> ${item.kapasitas}</li>
+                                    <li><img src="../offers/image/Kebersihan.png" alt="Facility 7" class="facility-icon"> ${item.Photography}</li>
+                                    <li><img src="../offers/image/Perlengkapan.png" alt="Facility 8" class="facility-icon"> ${item.others}</li>
                                 </ul>
                             </div>
                             <div class="contact-host">
