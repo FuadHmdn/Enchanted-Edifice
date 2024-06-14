@@ -35,20 +35,28 @@ $jumlah_hari = $interval->days;
 $total_harga = $order['harga'] * $jumlah_hari;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Update status order dan status pembayaran
-    $new_order_status = $_POST['status_order'] === 'completed' ? 1 : 0;
-    $new_payment_status = $_POST['status_payment'];
-    $update_sql = "UPDATE order_cust SET complete = ?, status_payment = ? WHERE id_order = ?";
-    $update_stmt = $connection->prepare($update_sql);
-    if (!$update_stmt) {
-        die("Preparation failed: " . $connection->error);
-    }
-    $update_stmt->bind_param("isi", $new_order_status, $new_payment_status, $order_id);
-    if ($update_stmt->execute()) {
-        echo "Record updated successfully";
-        header("Refresh:0");
+    if ($order['complete'] == 0 && $order['status_payment'] != 'invalid') { // Only allow updates if order is not completed and payment status is not invalid
+        // Update status order dan status pembayaran
+        $new_order_status = $_POST['status_order'] === 'completed' ? 1 : 0;
+        $new_payment_status = $_POST['status_payment'];
+        $update_sql = "UPDATE order_cust SET complete = ?, status_payment = ? WHERE id_order = ?";
+        $update_stmt = $connection->prepare($update_sql);
+        if (!$update_stmt) {
+            die("Preparation failed: " . $connection->error);
+        }
+        $update_stmt->bind_param("isi", $new_order_status, $new_payment_status, $order_id);
+        if ($update_stmt->execute()) {
+            echo "Record updated successfully";
+            header("Refresh:0");
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
     } else {
-        echo "Error updating record: " . $connection->error;
+        if ($order['complete'] == 1) {
+            echo "Order is already completed and cannot be updated.";
+        } else {
+            echo "Order status cannot be updated because the payment status is invalid.";
+        }
     }
 }
 ?>
@@ -174,22 +182,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="status_order">Order Status</label>
                     <div class="inline-group">
-                        <select id="status_order" name="status_order">
+                        <select id="status_order" name="status_order" <?php echo ($order['complete'] == 1 || $order['status_payment'] == 'invalid') ? 'disabled' : ''; ?>>
                             <option value="completed" <?php echo $order['complete'] == 1 ? 'selected' : ''; ?>>Completed</option>
                             <option value="incompleted" <?php echo $order['complete'] == 0 ? 'selected' : ''; ?>>Incomplete</option>
                         </select>
-                        <button type="submit" class="update">Update</button>
+                        <button type="submit" class="update" <?php echo ($order['complete'] == 1 || $order['status_payment'] == 'invalid') ? 'disabled' : ''; ?>>Update</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="status_payment">Payment Status</label>
                     <div class="inline-group">
-                        <select id="status_payment" name="status_payment">
+                        <select id="status_payment" name="status_payment" <?php echo $order['complete'] == 1 ? 'disabled' : ''; ?>>
                             <option value="awaiting" <?php echo $order['status_payment'] == 'awaiting' ? 'selected' : ''; ?>>Awaiting</option>
                             <option value="valid" <?php echo $order['status_payment'] == 'valid' ? 'selected' : ''; ?>>Valid</option>
                             <option value="invalid" <?php echo $order['status_payment'] == 'invalid' ? 'selected' : ''; ?>>Invalid</option>
                         </select>
-                        <button type="submit" class="update">Update</button>
+                        <button type="submit" class="update" <?php echo $order['complete'] == 1 ? 'disabled' : ''; ?>>Update</button>
                     </div>
                 </div>
                 <div class="form-group">
