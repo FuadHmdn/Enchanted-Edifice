@@ -27,6 +27,13 @@ if (!$order) {
     die("Order with ID $order_id not found.");
 }
 
+// Calculate total price
+$tanggal_masuk = new DateTime($order['tanggal_masuk']);
+$tanggal_keluar = new DateTime($order['tanggal_keluar']);
+$interval = $tanggal_masuk->diff($tanggal_keluar);
+$jumlah_hari = $interval->days + 1;
+$total_harga = $order['harga'] * $jumlah_hari;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update status order dan status pembayaran
     $new_order_status = $_POST['status_order'] === 'completed' ? 1 : 0;
@@ -160,8 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="deskripsi" value="<?php echo htmlspecialchars($order['deskripsi']); ?>" readonly>
             </div>
             <div class="form-group">
-                <label for="harga">Price</label>
-                <input type="text" id="harga" value="<?php echo htmlspecialchars($order['harga']); ?>" readonly>
+                <label for="harga">Price (Total)</label>
+                <input type="text" id="harga" value="<?php echo htmlspecialchars($total_harga); ?>" readonly>
             </div>
             <form method="post">
                 <div class="form-group">
