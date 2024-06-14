@@ -325,7 +325,11 @@
                         </div>
                     </div>
                     `;
+                    // Menyisipkan konten ke dalam elemen div
+                    itemContainer.innerHTML = content;
 
+                    // Menambahkan elemen div ke dalam kontainer utama
+                    container.appendChild(itemContainer);
                     var itemContent = `
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px;">
                         <h2>Booking Details</h2>
@@ -374,13 +378,22 @@
                     </div>
                     `;
 
+                    var payment = document.getElementById("payment");
                     payment.innerHTML = itemContent;
-                    itemContainer.innerHTML = content;
-                    container.appendChild(itemContainer);
 
                     itemContainer.querySelector('.btn.btn-primary.btn-custom').addEventListener('click', function() {
+                        var modal = document.getElementById("modal");
+                        var modalOverlay = document.getElementById("modalOverlay");
                         modal.style.display = "block";
                         modalOverlay.style.display = "block";
+                    });
+
+                    var close = document.getElementById("close");
+                    close.addEventListener('click', function() {
+                        var modal = document.getElementById("modal");
+                        var modalOverlay = document.getElementById("modalOverlay");
+                        modal.style.display = "none";
+                        modalOverlay.style.display = "none";
                     });
 
                     const checkin = document.getElementById('checkin');
@@ -395,6 +408,16 @@
 
                     checkout.addEventListener("input", function() {
                         checkoutValue.value = checkout.value;
+
+                        // Calculate total price
+                        const checkinDate = new Date(checkinValue.value);
+                        const checkoutDate = new Date(checkoutValue.value);
+                        const timeDiff = Math.abs(checkoutDate - checkinDate);
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24) + 1);
+                        const totalPrice = item.harga * daysDiff;
+
+                        // Update total price in the form
+                        document.getElementById('total').value = totalPrice.toLocaleString();
                     });
 
                 });

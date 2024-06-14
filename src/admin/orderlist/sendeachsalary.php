@@ -47,7 +47,14 @@ if (!$order) {
     die("Order with ID $order_id not found.");
 }
 
-$nominal = $order['harga'] * 0.875; // Harga dikurangi 12.5% pajak
+// Calculate total days
+$tanggal_masuk = new DateTime($order['tanggal_masuk']);
+$tanggal_keluar = new DateTime($order['tanggal_keluar']);
+$interval = $tanggal_masuk->diff($tanggal_keluar);
+$jumlah_hari = $interval->days; // Include both check-in and check-out days
+
+// Calculate nominal salary based on days and price
+$nominal = $order['harga'] * $jumlah_hari * 0.875; // Harga dikurangi 12.5% pajak
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Upload bukti transfer

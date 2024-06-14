@@ -31,7 +31,7 @@ if (!$order) {
 $tanggal_masuk = new DateTime($order['tanggal_masuk']);
 $tanggal_keluar = new DateTime($order['tanggal_keluar']);
 $interval = $tanggal_masuk->diff($tanggal_keluar);
-$jumlah_hari = $interval->days + 1;
+$jumlah_hari = $interval->days;
 $total_harga = $order['harga'] * $jumlah_hari;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

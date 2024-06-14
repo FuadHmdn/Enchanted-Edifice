@@ -305,7 +305,7 @@ $result = $connection->query($sql);
                     <li><a href="../messages/adminmessage.php?id=<?php echo $adminId; ?>">Messages</a></li>
                     <li class="section-title">USER</li>
                     <li><a href="../users/admincustlist.php?id=<?php echo $adminId; ?>">Customer</a></li>
-                    <li class="active"><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Provider</a></li>
+                    <li class="active"><a href="../users/adminpenyediagedung.php?id=<?php echo $adminId; ?>">Penyedia Gedung</a></li>
                 </ul>
             </nav>
             
