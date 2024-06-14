@@ -351,7 +351,7 @@ $connection->close();
                 <aside class="messages-sidebar">
                     <form action="adminmessage.php" method="post">
                         <button type="submit" name="userType" value="customer" class="send-messages <?php echo ($userType == 'customer') ? 'active' : 'inactive'; ?>">Customer</button>
-                        <button type="submit" name="userType" value="provider" class="send-messages <?php echo ($userType == 'provider') ? 'active' : 'inactive'; ?>">Provider</button>
+                        <button type="submit" name="userType" value="provider" class="send-messages <?php echo ($userType == 'provider') ? 'active' : 'inactive'; ?>">Penyedia Gedung</button>
                     </form>
                 </aside>
                 <div class="messages-content">
